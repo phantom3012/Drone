@@ -1,5 +1,6 @@
 import math
 import time
+from gps import GPS
 
 # --- PID Controller Class ---
 
@@ -72,7 +73,7 @@ class DroneNavigator:
                  kp_roll, ki_roll, kd_roll,
                  max_pitch_cmd=15.0,
                  max_roll_cmd=15.0,
-                 distance_threshold=3.0):
+                 distance_threshold=5.0):
         self.target_lat = target_lat
         self.target_lon = target_lon
         self.max_pitch_cmd = max_pitch_cmd
@@ -94,16 +95,17 @@ class DroneNavigator:
                fixed_drone_heading_degrees, dt_external=None):
         """Calculates pitch and roll commands to navigate."""
         dt = dt_external if dt_external is not None else 0.1
-
-        distance = self._haversine(
+        distance = GPS.haversine_distance(
             current_lat, current_lon, self.target_lat, self.target_lon)
         if distance < self.distance_threshold:
             self.pitch_pid.reset()
             self.roll_pid.reset()
             return 0.0, 0.0, True
 
-        bearing_rad = math.radians(self._calculate_bearing(
-            current_lat, current_lon, self.target_lat, self.target_lon))
+        bearing_to_target_deg = GPS.calculate_bearing(
+            current_lat, current_lon, self.target_lat, self.target_lon
+        )
+        bearing_rad = math.radians(bearing_to_target_deg)
         heading_rad = math.radians(fixed_drone_heading_degrees)
 
         relative_bearing_rad = math.atan2(
@@ -120,27 +122,3 @@ class DroneNavigator:
         roll_cmd = -roll_norm * self.max_roll_cmd
 
         return pitch_cmd, roll_cmd, False
-
-    def _haversine(self, lat1, lon1, lat2, lon2):
-        """Helper for distance calculation."""
-        radius_earth = 6371000
-        phi1 = math.radians(lat1)
-        phi2 = math.radians(lat2)
-        delta_phi = math.radians(lat2 - lat1)
-        delta_lambda = math.radians(lon2 - lon1)
-        a = (math.sin(delta_phi / 2.0)**2 +
-             math.cos(phi1) * math.cos(phi2) *
-             math.sin(delta_lambda / 2.0)**2)
-        c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
-        return radius_earth * c
-
-    def _calculate_bearing(self, lat1, lon1, lat2, lon2):
-        """Helper for bearing calculation."""
-        phi1 = math.radians(lat1)
-        lambda1 = math.radians(lon1)
-        phi2 = math.radians(lat2)
-        lambda2 = math.radians(lon2)
-        y = math.sin(lambda2 - lambda1) * math.cos(phi2)
-        x = (math.cos(phi1) * math.sin(phi2) -
-             math.sin(phi1) * math.cos(phi2) * math.cos(lambda2 - lambda1))
-        return (math.degrees(math.atan2(y, x)) + 360) % 360

@@ -132,27 +132,8 @@ def write_log_to_csv(log_data, filename="simulation_log.csv"):
         writer.writerows(log_data)
     print(f"Simulation log saved to {filename}")
 
-
-def haversine(lat1, lon1, lat2, lon2):
-    """
-    Calculate the great circle distance in meters between two points
-    on the earth (specified in decimal degrees).
-    """
-    radius_earth = 6371000  # In meters
-    phi1 = math.radians(lat1)
-    phi2 = math.radians(lat2)
-    delta_phi = math.radians(lat2 - lat1)
-    delta_lambda = math.radians(lon2 - lon1)
-
-    a = (math.sin(delta_phi / 2.0)**2 +
-         math.cos(phi1) * math.cos(phi2) *
-         math.sin(delta_lambda / 2.0)**2)
-    c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
-    distance = radius_earth * c
-    return distance
-
-
 # --- Main Simulation Testbench ---
+
 
 if __name__ == "__main__":
     # --- 1. Initialization ---
@@ -192,7 +173,7 @@ if __name__ == "__main__":
 
     # Slew Rate Limits (degrees per second)
     PITCH_SLEW_RATE_LIMIT = 4.0  # Reduced for smoother pitch transitions
-    ROLL_SLEW_RATE_LIMIT = 5.0   # Reduced for smoother roll transitions
+    ROLL_SLEW_RATE_LIMIT = 4.0   # Reduced for smoother roll transitions
 
     # Old speed limits (MAX_SPEED_FORWARD_CMPS, MAX_SPEED_STRAFE_CMPS)
     # are no longer directly used by update_physics.
@@ -367,7 +348,9 @@ if __name__ == "__main__":
             autopilot_step_count += 1
             step_display = f" | A/P Steps: {autopilot_step_count}"
 
-        dist_now = haversine(current_lat, current_lon, TARGET_LAT, TARGET_LON)
+        dist_now = GPS.haversine_distance(
+            current_lat, current_lon, TARGET_LAT, TARGET_LON
+        )
         status_text.set_text(
             f'Total Steps: {total_step_count} | '
             f'Autopilot: {mode}{step_display}\n'

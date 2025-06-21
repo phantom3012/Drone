@@ -11,7 +11,7 @@ class Pilot:
     commands.
     """
     def __init__(self, max_pitch=15.0, max_roll=15.0,
-                 pitch_slew_rate=10.0, roll_slew_rate=15.0):
+                 pitch_slew_rate=4.0, roll_slew_rate=4.0):
         """
         Initializes the pilot with command limits and slew rates.
         """

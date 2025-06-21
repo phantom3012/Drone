@@ -21,8 +21,8 @@ class GPS:
         """
         return self.target_lat, self.target_lon
 
-    def get_random_start_position(self, min_radius_meters=3,
-                                  max_radius_meters=10):
+    def get_random_start_position(self, min_radius_meters=100,
+                                  max_radius_meters=300):
         """
         Generates a random latitude and longitude within a specified
         distance range of the target coordinate.
@@ -56,3 +56,36 @@ class GPS:
         )
 
         return math.degrees(lat2), math.degrees(lon2)
+
+    @staticmethod
+    def haversine_distance(lat1, lon1, lat2, lon2):
+        """
+        Calculate the great circle distance in meters between two points
+        on the earth (specified in decimal degrees).
+        """
+        radius_earth = 6371000  # In meters
+        phi1 = math.radians(lat1)
+        phi2 = math.radians(lat2)
+        delta_phi = math.radians(lat2 - lat1)
+        delta_lambda = math.radians(lon2 - lon1)
+
+        a = (math.sin(delta_phi / 2.0)**2 +
+             math.cos(phi1) * math.cos(phi2) *
+             math.sin(delta_lambda / 2.0)**2)
+        c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
+        distance = radius_earth * c
+        return distance
+
+    @staticmethod
+    def calculate_bearing(lat1, lon1, lat2, lon2):
+        """
+        Calculates the initial bearing in degrees from point 1 to point 2.
+        """
+        phi1 = math.radians(lat1)
+        lambda1 = math.radians(lon1)
+        phi2 = math.radians(lat2)
+        lambda2 = math.radians(lon2)
+        y = math.sin(lambda2 - lambda1) * math.cos(phi2)
+        x = (math.cos(phi1) * math.sin(phi2) -
+             math.sin(phi1) * math.cos(phi2) * math.cos(lambda2 - lambda1))
+        return (math.degrees(math.atan2(y, x)) + 360) % 360
