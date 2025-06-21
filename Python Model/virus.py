@@ -27,10 +27,11 @@ class SimplePID:
         """Calculates PID output."""
         if dt is None:
             current_time = time.monotonic()
+            # On the first call, dt is unknown. Skip the update this frame.
             if self._last_time is None:
-                dt_calc = 0.01
-            else:
-                dt_calc = current_time - self._last_time
+                self._last_time = current_time
+                return 0.0
+            dt_calc = current_time - self._last_time
             self._last_time = current_time
             dt_to_use = max(dt_calc, 1e-6)
         else:
