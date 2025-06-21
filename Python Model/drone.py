@@ -227,6 +227,51 @@ if __name__ == "__main__":
     handles, labels = ax.get_legend_handles_labels()
     fig.legend(handles, labels, loc='upper right', bbox_to_anchor=(0.98, 0.97))
 
+    # --- Add orientation indicator ---
+    # Create a new axes for the orientation arrows near the title
+    # Position: [left, bottom, width, height] in figure coordinates
+    ax_indicator = fig.add_axes([0.45, 0.85, 0.1, 0.1])
+    ax_indicator.set_aspect('equal')
+    ax_indicator.axis('off')  # Hide the axes frame and ticks
+
+    # Calculate arrow vectors based on initial heading
+    # Pitch(+) is forward, Roll(+) is to the right
+    heading_rad = math.radians(INITIAL_HEADING)
+    # Forward vector in plot coordinates (East, North) -> (x, y)
+    pitch_dx = math.sin(heading_rad)
+    pitch_dy = math.cos(heading_rad)
+    # Rightward vector in plot coordinates (East, North) -> (x, y)
+    roll_dx = math.cos(heading_rad)
+    roll_dy = -math.sin(heading_rad)
+
+    # Draw arrows from the center of the indicator axes
+    arrow_len = 0.8
+    ax_indicator.arrow(0, 0, pitch_dx * arrow_len, pitch_dy * arrow_len,
+                       head_width=0.2, head_length=0.2, fc='k', ec='k',
+                       length_includes_head=True)
+    ax_indicator.arrow(0, 0, roll_dx * arrow_len, roll_dy * arrow_len,
+                       head_width=0.2, head_length=0.2, fc='gray', ec='gray',
+                       length_includes_head=True)
+
+    # Add labels just beyond the arrow tips and set axis limits
+    label_dist = 1.2
+    ax_indicator.text(
+        pitch_dx * label_dist,
+        pitch_dy * label_dist,
+        'Pitch (+)',
+        ha='center',
+        va='center',
+        fontsize=8,
+        color='k'
+    )
+    ax_indicator.text(
+        roll_dx * label_dist,
+        roll_dy * label_dist,
+        'Roll (+)',
+        ha='center', va='center', fontsize=8, color='dimgray')
+    ax_indicator.set_xlim(-1.5, 1.5)
+    ax_indicator.set_ylim(-1.5, 1.5)
+
     # --- 3. Animation Loop ---
     def init_animation():
         """Initializes the animated elements for a clean start."""
@@ -371,7 +416,7 @@ if __name__ == "__main__":
     # Set interval for a much faster animation
     ani = animation.FuncAnimation(
         fig, animate, init_func=init_animation, frames=None,
-        interval=1, blit=False, repeat=False
+        interval=1, blit=False, repeat=False, cache_frame_data=False
     )
     plt.show()
 
