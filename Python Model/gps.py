@@ -1,47 +1,58 @@
-# spit out a fixed GPS value
-# Will be set to const for now but can be modelled to grab input from the GPS\\
-# module later
-
 import random
 import math
 
 
-def generate_random_coordinate_within_500m():
+class GPS:
     """
-    Generates a random latitude and longitude within 500 meters of the origin:
-    Origin: 43.0653950N, 89.2803402W
-    Returns:
-        tuple: (latitude, longitude)
+    A class to simulate a GPS module. It provides a fixed target
+    coordinate and can generate random starting positions.
     """
-    # Earth's radius in meters
-    R = 6378137
-    # Origin coordinates in degrees
-    origin_lat = 43.0653950
-    origin_lon = -89.2803402
 
-    # Random distance in meters (0 to 500)
-    distance = random.uniform(0, 500)
-    # Random bearing in radians (0 to 2*pi)
-    bearing = random.uniform(0, 2 * math.pi)
+    def __init__(self):
+        """Initializes the GPS with a fixed target coordinate."""
+        # Target is a fixed point (e.g., a landmark in Madison, WI)
+        self.target_lat = 43.074722
+        self.target_lon = -89.384167
 
-    # Convert origin latitude to radians
-    lat1 = math.radians(origin_lat)
-    lon1 = math.radians(origin_lon)
+    def get_target_coordinates(self):
+        """
+        Returns the fixed target GPS coordinates.
+        :return: A tuple of (latitude, longitude).
+        """
+        return self.target_lat, self.target_lon
 
-    # Calculate new latitude
-    lat2 = math.asin(
-        math.sin(lat1) * math.cos(distance / R) +
-        math.cos(lat1) * math.sin(distance / R) * math.cos(bearing)
-    )
+    def get_random_start_position(self, min_radius_meters=3,
+                                  max_radius_meters=10):
+        """
+        Generates a random latitude and longitude within a specified
+        distance range of the target coordinate.
+        :param min_radius_meters: The minimum distance from the target.
+        :param max_radius_meters: The maximum distance from the target.
+        :return: A tuple of (latitude, longitude).
+        """
+        # Earth's radius in meters
+        R = 6378137
+        origin_lat = self.target_lat
+        origin_lon = self.target_lon
 
-    # Calculate new longitude
-    lon2 = lon1 + math.atan2(
-        math.sin(bearing) * math.sin(distance / R) * math.cos(lat1),
-        math.cos(distance / R) - math.sin(lat1) * math.sin(lat2)
-    )
+        # Random distance and bearing
+        distance = random.uniform(min_radius_meters, max_radius_meters)
+        bearing = random.uniform(0, 2 * math.pi)
 
-    # Convert back to degrees
-    new_lat = math.degrees(lat2)
-    new_lon = math.degrees(lon2)
+        # Convert origin to radians
+        lat1 = math.radians(origin_lat)
+        lon1 = math.radians(origin_lon)
 
-    return (new_lat, new_lon)
+        # Calculate new latitude
+        lat2 = math.asin(
+            math.sin(lat1) * math.cos(distance / R) +
+            math.cos(lat1) * math.sin(distance / R) * math.cos(bearing)
+        )
+
+        # Calculate new longitude
+        lon2 = lon1 + math.atan2(
+            math.sin(bearing) * math.sin(distance / R) * math.cos(lat1),
+            math.cos(distance / R) - math.sin(lat1) * math.sin(lat2)
+        )
+
+        return math.degrees(lat2), math.degrees(lon2)
