@@ -69,38 +69,23 @@ class SimplePID:
 class DroneNavigator:
     """Navigates a drone with a fixed yaw to target GPS coordinates."""
 
-    def __init__(self, target_lat, target_lon,
-                 kp_pitch, ki_pitch, kd_pitch,
-                 kp_roll, ki_roll, kd_roll,
+    def __init__(self, target_lat, target_lon, control_gain,
                  max_pitch_cmd=15.0,
                  max_roll_cmd=15.0,
                  distance_threshold=5.0):
         self.target_lat = target_lat
         self.target_lon = target_lon
+        self.control_gain = control_gain  # New single gain parameter
         self.max_pitch_cmd = max_pitch_cmd
         self.max_roll_cmd = max_roll_cmd
         self.distance_threshold = distance_threshold
 
-        self.pitch_pid = SimplePID(
-            kp_pitch, ki_pitch, kd_pitch, setpoint=0.0,
-            output_limits=(-1.0, 1.0), integral_limits=(-50.0, 50.0),
-            name="Pitch (Forward Error)"
-        )
-        self.roll_pid = SimplePID(
-            kp_roll, ki_roll, kd_roll, setpoint=0.0,
-            output_limits=(-1.0, 1.0), integral_limits=(-50.0, 50.0),
-            name="Roll (Rightward Error)"
-        )
-
     def update(self, current_lat, current_lon,
                fixed_drone_heading_degrees, dt_external=None):
         """Calculates pitch and roll commands to navigate."""
-        dt = dt_external if dt_external is not None else 0.1
         distance = GPS.haversine_distance(
             current_lat, current_lon, self.target_lat, self.target_lon)
         if distance < self.distance_threshold:
-            self.pitch_pid.reset()
-            self.roll_pid.reset()
             return 0.0, 0.0, True
 
         bearing_to_target_deg = GPS.calculate_bearing(
@@ -116,10 +101,17 @@ class DroneNavigator:
         error_forward = distance * math.cos(relative_bearing_rad)
         error_right = distance * math.sin(relative_bearing_rad)
 
-        pitch_norm = self.pitch_pid.update(error_forward, dt=dt)
-        pitch_cmd = -pitch_norm * self.max_pitch_cmd
+        # --- Non-linear atan() control law ---
+        # Use atan to convert large error distances into a bounded, normalized
+        # command. The output of atan(x) is in radians [-pi/2, pi/2].
+        # We normalize it to [-1, 1] by dividing by (pi/2).
+        pitch_norm = (
+            math.atan(self.control_gain * error_forward) / (math.pi / 2)
+        )
+        roll_norm = math.atan(self.control_gain * error_right) / (math.pi / 2)
 
-        roll_norm = self.roll_pid.update(error_right, dt=dt)
-        roll_cmd = -roll_norm * self.max_roll_cmd
+        # Scale the normalized command to the desired angle
+        pitch_cmd = pitch_norm * self.max_pitch_cmd
+        roll_cmd = roll_norm * self.max_roll_cmd
 
         return pitch_cmd, roll_cmd, False

@@ -162,10 +162,10 @@ if __name__ == "__main__":
                       max_roll=MAX_ROLL_CMD_DEGREES)
 
     # Autopilot (VIRUS) controller setup - Tuned for smoother control
+    # Using a non-linear atan controller instead of PID
     virus_controller = DroneNavigator(
         target_lat=TARGET_LAT, target_lon=TARGET_LON,
-        kp_pitch=0.04, ki_pitch=0.003, kd_pitch=0.03,
-        kp_roll=0.04, ki_roll=0.003, kd_roll=0.03,
+        control_gain=0.05,  # Single gain for the atan controller
         distance_threshold=5.0,  # Updated target reached threshold to 5m
         max_pitch_cmd=MAX_PITCH_CMD_DEGREES,
         max_roll_cmd=MAX_ROLL_CMD_DEGREES
@@ -304,9 +304,6 @@ if __name__ == "__main__":
 
         if not autopilot_on and total_step_count > 100:
             autopilot_on = True
-            # Reset PID controllers for a smooth handover
-            virus_controller.pitch_pid.reset()
-            virus_controller.roll_pid.reset()
 
         current_lat, current_lon = drone_sim.get_position()
         virus_pitch, virus_roll, reached = virus_controller.update(
