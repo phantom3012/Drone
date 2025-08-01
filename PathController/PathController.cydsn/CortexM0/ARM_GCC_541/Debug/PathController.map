@@ -73,7 +73,7 @@ e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/a
 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_dvmd_tls.o)
                               e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_udivsi3.o) (__aeabi_idiv0)
 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_arm_cmpdf2.o)
-                              .\CortexM0\ARM_GCC_541\Debug\main.o (__aeabi_dcmpeq)
+                              e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libm.a(lib_a-w_fmod.o) (__aeabi_dcmpeq)
 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_fixunsdfsi.o)
                               .\CortexM0\ARM_GCC_541\Debug\main.o (__aeabi_d2uiz)
 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(adddf3.o)
@@ -153,7 +153,7 @@ tmr_dec             0x1               .\CortexM0\ARM_GCC_541\Debug\main.o
 GP_timer            0x14              .\CortexM0\ARM_GCC_541\Debug\main.o
 virus               0x30              .\CortexM0\ARM_GCC_541\Debug\main.o
 GPS_UART_tmr        0x1               .\CortexM0\ARM_GCC_541\Debug\main.o
-rx_bytes_FC_buff    0x6               .\CortexM0\ARM_GCC_541\Debug\main.o
+rx_bytes_FC_buff    0x5               .\CortexM0\ARM_GCC_541\Debug\main.o
 
 Discarded input sections
 
@@ -172,8 +172,12 @@ Discarded input sections
                 0x00000000       0x40 .\CortexM0\ARM_GCC_541\Debug\main.o
  .text.append_char
                 0x00000000       0x1c .\CortexM0\ARM_GCC_541\Debug\main.o
+ .text.append_char_FC
+                0x00000000       0x1c .\CortexM0\ARM_GCC_541\Debug\main.o
  .text.append_num32
                 0x00000000       0xb0 .\CortexM0\ARM_GCC_541\Debug\main.o
+ .text.append_float_FC
+                0x00000000       0x90 .\CortexM0\ARM_GCC_541\Debug\main.o
  .text.set_GP_timer
                 0x00000000       0x64 .\CortexM0\ARM_GCC_541\Debug\main.o
  .text.processGPS_Pckt
@@ -185,9 +189,26 @@ Discarded input sections
  .text          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\algorithm.o
  .data          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\algorithm.o
  .bss           0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\algorithm.o
+ .text.calculate_bearing
+                0x00000000      0x120 .\CortexM0\ARM_GCC_541\Debug\algorithm.o
+ .text.haversine_distance
+                0x00000000      0x174 .\CortexM0\ARM_GCC_541\Debug\algorithm.o
+ .text.navigator_init
+                0x00000000       0x30 .\CortexM0\ARM_GCC_541\Debug\algorithm.o
+ .text.navigator_update
+                0x00000000      0x1b8 .\CortexM0\ARM_GCC_541\Debug\algorithm.o
  .text          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\cordic.o
  .data          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\cordic.o
  .bss           0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\cordic.o
+ .text.cordic_atan2_core
+                0x00000000       0x60 .\CortexM0\ARM_GCC_541\Debug\cordic.o
+ .text.cordic_sincos_core
+                0x00000000       0x54 .\CortexM0\ARM_GCC_541\Debug\cordic.o
+ .text.fast_atan2
+                0x00000000       0x30 .\CortexM0\ARM_GCC_541\Debug\cordic.o
+ .text.fast_sincos
+                0x00000000       0x68 .\CortexM0\ARM_GCC_541\Debug\cordic.o
+ .rodata        0x00000000       0x40 .\CortexM0\ARM_GCC_541\Debug\cordic.o
  .text          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\cyfitter_cfg.o
  .data          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\cyfitter_cfg.o
  .bss           0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\cyfitter_cfg.o
@@ -719,51 +740,77 @@ Discarded input sections
  .text          0x00000000        0x0 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libm.a(lib_a-w_fmod.o)
  .data          0x00000000        0x0 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libm.a(lib_a-w_fmod.o)
  .bss           0x00000000        0x0 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libm.a(lib_a-w_fmod.o)
+ .text.fmod     0x00000000       0xd8 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libm.a(lib_a-w_fmod.o)
+ .rodata.str1.4
+                0x00000000        0x5 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libm.a(lib_a-w_fmod.o)
  .text          0x00000000        0x0 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libm.a(lib_a-w_sqrt.o)
  .data          0x00000000        0x0 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libm.a(lib_a-w_sqrt.o)
  .bss           0x00000000        0x0 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libm.a(lib_a-w_sqrt.o)
+ .text.sqrt     0x00000000       0xc0 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libm.a(lib_a-w_sqrt.o)
+ .rodata.str1.4
+                0x00000000        0x5 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libm.a(lib_a-w_sqrt.o)
  .text          0x00000000        0x0 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libm.a(lib_a-e_fmod.o)
  .data          0x00000000        0x0 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libm.a(lib_a-e_fmod.o)
  .bss           0x00000000        0x0 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libm.a(lib_a-e_fmod.o)
+ .text.__ieee754_fmod
+                0x00000000      0x254 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libm.a(lib_a-e_fmod.o)
+ .rodata.Zero   0x00000000       0x10 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libm.a(lib_a-e_fmod.o)
  .text          0x00000000        0x0 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libm.a(lib_a-e_sqrt.o)
  .data          0x00000000        0x0 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libm.a(lib_a-e_sqrt.o)
  .bss           0x00000000        0x0 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libm.a(lib_a-e_sqrt.o)
+ .text.__ieee754_sqrt
+                0x00000000      0x1ec e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libm.a(lib_a-e_sqrt.o)
  .text          0x00000000        0x0 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libm.a(lib_a-s_lib_ver.o)
  .data          0x00000000        0x0 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libm.a(lib_a-s_lib_ver.o)
  .bss           0x00000000        0x0 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libm.a(lib_a-s_lib_ver.o)
+ .data.__fdlib_version
+                0x00000000        0x1 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libm.a(lib_a-s_lib_ver.o)
  .text          0x00000000        0x0 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libm.a(lib_a-s_matherr.o)
  .data          0x00000000        0x0 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libm.a(lib_a-s_matherr.o)
  .bss           0x00000000        0x0 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libm.a(lib_a-s_matherr.o)
+ .text.matherr  0x00000000        0x4 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libm.a(lib_a-s_matherr.o)
  .data          0x00000000        0x0 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_udivsi3.o)
  .bss           0x00000000        0x0 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_udivsi3.o)
  .data          0x00000000        0x0 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_divsi3.o)
  .bss           0x00000000        0x0 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_divsi3.o)
  .data          0x00000000        0x0 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_dvmd_tls.o)
  .bss           0x00000000        0x0 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_dvmd_tls.o)
+ .text          0x00000000       0x7c e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_arm_cmpdf2.o)
  .data          0x00000000        0x0 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_arm_cmpdf2.o)
  .bss           0x00000000        0x0 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_arm_cmpdf2.o)
+ .text          0x00000000       0x3c e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_fixunsdfsi.o)
  .data          0x00000000        0x0 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_fixunsdfsi.o)
  .bss           0x00000000        0x0 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_fixunsdfsi.o)
+ .text          0x00000000      0x658 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(adddf3.o)
  .data          0x00000000        0x0 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(adddf3.o)
  .bss           0x00000000        0x0 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(adddf3.o)
  .data          0x00000000        0x0 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(divdf3.o)
  .bss           0x00000000        0x0 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(divdf3.o)
+ .text          0x00000000       0x80 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(eqdf2.o)
  .data          0x00000000        0x0 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(eqdf2.o)
  .bss           0x00000000        0x0 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(eqdf2.o)
+ .text          0x00000000       0xc8 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(gedf2.o)
  .data          0x00000000        0x0 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(gedf2.o)
  .bss           0x00000000        0x0 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(gedf2.o)
+ .text          0x00000000       0xd4 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(ledf2.o)
  .data          0x00000000        0x0 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(ledf2.o)
  .bss           0x00000000        0x0 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(ledf2.o)
+ .text          0x00000000      0x4f4 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(muldf3.o)
  .data          0x00000000        0x0 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(muldf3.o)
  .bss           0x00000000        0x0 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(muldf3.o)
+ .rodata        0x00000000       0x40 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(muldf3.o)
+ .text          0x00000000      0x6a8 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(subdf3.o)
  .data          0x00000000        0x0 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(subdf3.o)
  .bss           0x00000000        0x0 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(subdf3.o)
+ .text          0x00000000       0x40 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(unorddf2.o)
  .data          0x00000000        0x0 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(unorddf2.o)
  .bss           0x00000000        0x0 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(unorddf2.o)
+ .text          0x00000000       0x6c e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(fixdfsi.o)
  .data          0x00000000        0x0 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(fixdfsi.o)
  .bss           0x00000000        0x0 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(fixdfsi.o)
  .data          0x00000000        0x0 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(floatsidf.o)
  .bss           0x00000000        0x0 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(floatsidf.o)
+ .text          0x00000000       0x70 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(floatunsidf.o)
  .data          0x00000000        0x0 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(floatunsidf.o)
  .bss           0x00000000        0x0 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(floatunsidf.o)
  .data          0x00000000        0x0 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_clzsi2.o)
@@ -873,7 +920,7 @@ END GROUP
                 0x00000001                cy_project_type_bootloader = (appl_start == 0x0)?0x1:0x0
                 0x00000000                cy_project_type_app_for_stack_and_copier = (CY_APP_FOR_STACK_AND_COPIER == 0x1)?0x1:0x0
 
-.text           0x00000000     0x4758
+.text           0x00000000     0x2430
  CREATE_OBJECT_SYMBOLS
                 0x00000000                PROVIDE (__cy_interrupt_vector, RomVectors)
  *(.romvectors)
@@ -901,526 +948,448 @@ END GROUP
  .text.append_msg_FC
                 0x000002a4       0x28 .\CortexM0\ARM_GCC_541\Debug\main.o
                 0x000002a4                append_msg_FC
- .text.append_char_FC
-                0x000002cc       0x1c .\CortexM0\ARM_GCC_541\Debug\main.o
-                0x000002cc                append_char_FC
  .text.append_num16
-                0x000002e8       0x94 .\CortexM0\ARM_GCC_541\Debug\main.o
-                0x000002e8                append_num16
+                0x000002cc       0x94 .\CortexM0\ARM_GCC_541\Debug\main.o
+                0x000002cc                append_num16
  .text.append_num32_FC
-                0x0000037c       0xb0 .\CortexM0\ARM_GCC_541\Debug\main.o
-                0x0000037c                append_num32_FC
- .text.append_float_FC
-                0x0000042c       0x90 .\CortexM0\ARM_GCC_541\Debug\main.o
-                0x0000042c                append_float_FC
+                0x00000360       0xb0 .\CortexM0\ARM_GCC_541\Debug\main.o
+                0x00000360                append_num32_FC
  .text.cancel_GP_timer
-                0x000004bc       0x78 .\CortexM0\ARM_GCC_541\Debug\main.o
-                0x000004bc                cancel_GP_timer
+                0x00000410       0x78 .\CortexM0\ARM_GCC_541\Debug\main.o
+                0x00000410                cancel_GP_timer
  .text.process_GP_timer_evt
-                0x00000534       0x24 .\CortexM0\ARM_GCC_541\Debug\main.o
-                0x00000534                process_GP_timer_evt
+                0x00000488       0x24 .\CortexM0\ARM_GCC_541\Debug\main.o
+                0x00000488                process_GP_timer_evt
  .text.enqueue_task
-                0x00000558       0x44 .\CortexM0\ARM_GCC_541\Debug\main.o
-                0x00000558                enqueue_task
+                0x000004ac       0x44 .\CortexM0\ARM_GCC_541\Debug\main.o
+                0x000004ac                enqueue_task
  .text.dequeue_task
-                0x0000059c       0x8c .\CortexM0\ARM_GCC_541\Debug\main.o
-                0x0000059c                dequeue_task
+                0x000004f0       0x8c .\CortexM0\ARM_GCC_541\Debug\main.o
+                0x000004f0                dequeue_task
  .text.LED_display
-                0x00000628       0x84 .\CortexM0\ARM_GCC_541\Debug\main.o
-                0x00000628                LED_display
+                0x0000057c       0x84 .\CortexM0\ARM_GCC_541\Debug\main.o
+                0x0000057c                LED_display
  .text.init_periphs
-                0x000006ac       0x28 .\CortexM0\ARM_GCC_541\Debug\main.o
-                0x000006ac                init_periphs
+                0x00000600       0x28 .\CortexM0\ARM_GCC_541\Debug\main.o
+                0x00000600                init_periphs
  .text.processDbgCmd
-                0x000006d4       0x44 .\CortexM0\ARM_GCC_541\Debug\main.o
-                0x000006d4                processDbgCmd
+                0x00000628       0x44 .\CortexM0\ARM_GCC_541\Debug\main.o
+                0x00000628                processDbgCmd
  .text.processFC_Pckt
-                0x00000718      0x158 .\CortexM0\ARM_GCC_541\Debug\main.o
-                0x00000718                processFC_Pckt
- .text.main     0x00000870      0x148 .\CortexM0\ARM_GCC_541\Debug\main.o
-                0x00000870                main
+                0x0000066c       0x70 .\CortexM0\ARM_GCC_541\Debug\main.o
+                0x0000066c                processFC_Pckt
+ .text.main     0x000006dc      0x148 .\CortexM0\ARM_GCC_541\Debug\main.o
+                0x000006dc                main
  .text.convert_coord_dege6
-                0x000009b8       0x8c .\CortexM0\ARM_GCC_541\Debug\sanitize.o
-                0x000009b8                convert_coord_dege6
+                0x00000824       0x8c .\CortexM0\ARM_GCC_541\Debug\sanitize.o
+                0x00000824                convert_coord_dege6
  .text.parse_gps
-                0x00000a44      0x114 .\CortexM0\ARM_GCC_541\Debug\sanitize.o
-                0x00000a44                parse_gps
- .text.calculate_bearing
-                0x00000b58      0x120 .\CortexM0\ARM_GCC_541\Debug\algorithm.o
- .text.haversine_distance
-                0x00000c78      0x174 .\CortexM0\ARM_GCC_541\Debug\algorithm.o
-                0x00000c78                haversine_distance
- .text.navigator_init
-                0x00000dec       0x30 .\CortexM0\ARM_GCC_541\Debug\algorithm.o
-                0x00000dec                navigator_init
- .text.navigator_update
-                0x00000e1c      0x1b8 .\CortexM0\ARM_GCC_541\Debug\algorithm.o
-                0x00000e1c                navigator_update
- .text.cordic_atan2_core
-                0x00000fd4       0x60 .\CortexM0\ARM_GCC_541\Debug\cordic.o
- .text.cordic_sincos_core
-                0x00001034       0x54 .\CortexM0\ARM_GCC_541\Debug\cordic.o
- .text.fast_atan2
-                0x00001088       0x30 .\CortexM0\ARM_GCC_541\Debug\cordic.o
-                0x00001088                fast_atan2
- .text.fast_sincos
-                0x000010b8       0x68 .\CortexM0\ARM_GCC_541\Debug\cordic.o
-                0x000010b8                fast_sincos
+                0x000008b0      0x114 .\CortexM0\ARM_GCC_541\Debug\sanitize.o
+                0x000008b0                parse_gps
  .text.AnalogSetDefault
-                0x00001120       0x20 .\CortexM0\ARM_GCC_541\Debug\cyfitter_cfg.o
+                0x000009c4       0x20 .\CortexM0\ARM_GCC_541\Debug\cyfitter_cfg.o
  .text.CYMEMZERO
-                0x00001140        0xc .\CortexM0\ARM_GCC_541\Debug\cyfitter_cfg.o
+                0x000009e4        0xc .\CortexM0\ARM_GCC_541\Debug\cyfitter_cfg.o
  .text.IntDefaultHandler
-                0x0000114c       0x10 .\CortexM0\ARM_GCC_541\Debug\Cm0Start.o
-                0x0000114c                IntDefaultHandler
- .text.Start_c  0x0000115c       0x48 .\CortexM0\ARM_GCC_541\Debug\Cm0Start.o
-                0x0000115c                Start_c
+                0x000009f0       0x10 .\CortexM0\ARM_GCC_541\Debug\Cm0Start.o
+                0x000009f0                IntDefaultHandler
+ .text.Start_c  0x00000a00       0x48 .\CortexM0\ARM_GCC_541\Debug\Cm0Start.o
+                0x00000a00                Start_c
  .text.initialize_psoc
-                0x000011a4       0x4c .\CortexM0\ARM_GCC_541\Debug\Cm0Start.o
-                0x000011a4                initialize_psoc
+                0x00000a48       0x4c .\CortexM0\ARM_GCC_541\Debug\Cm0Start.o
+                0x00000a48                initialize_psoc
  .text.LED4_Write
-                0x000011f0       0x18 .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED4.o)
-                0x000011f0                LED4_Write
+                0x00000a94       0x18 .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED4.o)
+                0x00000a94                LED4_Write
  .text.LED3_Write
-                0x00001208       0x18 .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED3.o)
-                0x00001208                LED3_Write
+                0x00000aac       0x18 .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED3.o)
+                0x00000aac                LED3_Write
  .text.LED2_Write
-                0x00001220       0x18 .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED2.o)
-                0x00001220                LED2_Write
+                0x00000ac4       0x18 .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED2.o)
+                0x00000ac4                LED2_Write
  .text.LED1_Write
-                0x00001238       0x18 .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED1.o)
-                0x00001238                LED1_Write
+                0x00000adc       0x18 .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED1.o)
+                0x00000adc                LED1_Write
  .text.LED0_Write
-                0x00001250       0x18 .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED0.o)
-                0x00001250                LED0_Write
+                0x00000af4       0x18 .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED0.o)
+                0x00000af4                LED0_Write
  .text.LED5_Write
-                0x00001268       0x18 .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED5.o)
-                0x00001268                LED5_Write
+                0x00000b0c       0x18 .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED5.o)
+                0x00000b0c                LED5_Write
  .text.CySysClkImoDisableWcoLock
-                0x00001280       0x54 .\CortexM0\ARM_GCC_541\Debug\PathController.a(CyLib.o)
-                0x00001280                CySysClkImoDisableWcoLock
+                0x00000b24       0x54 .\CortexM0\ARM_GCC_541\Debug\PathController.a(CyLib.o)
+                0x00000b24                CySysClkImoDisableWcoLock
  .text.CySysClkImoGetWcoLock
-                0x000012d4       0x14 .\CortexM0\ARM_GCC_541\Debug\PathController.a(CyLib.o)
-                0x000012d4                CySysClkImoGetWcoLock
+                0x00000b78       0x14 .\CortexM0\ARM_GCC_541\Debug\PathController.a(CyLib.o)
+                0x00000b78                CySysClkImoGetWcoLock
  .text.CyIntEnable
-                0x000012e8       0x14 .\CortexM0\ARM_GCC_541\Debug\PathController.a(CyLib.o)
-                0x000012e8                CyIntEnable
+                0x00000b8c       0x14 .\CortexM0\ARM_GCC_541\Debug\PathController.a(CyLib.o)
+                0x00000b8c                CyIntEnable
  .text.CyIntDisable
-                0x000012fc       0x14 .\CortexM0\ARM_GCC_541\Debug\PathController.a(CyLib.o)
-                0x000012fc                CyIntDisable
- .text.CyHalt   0x00001310        0x4 .\CortexM0\ARM_GCC_541\Debug\PathController.a(CyLib.o)
-                0x00001310                CyHalt
+                0x00000ba0       0x14 .\CortexM0\ARM_GCC_541\Debug\PathController.a(CyLib.o)
+                0x00000ba0                CyIntDisable
+ .text.CyHalt   0x00000bb4        0x4 .\CortexM0\ARM_GCC_541\Debug\PathController.a(CyLib.o)
+                0x00000bb4                CyHalt
  .text.CyIntSetVector
-                0x00001314       0x24 .\CortexM0\ARM_GCC_541\Debug\PathController.a(CyLib.o)
-                0x00001314                CyIntSetVector
+                0x00000bb8       0x24 .\CortexM0\ARM_GCC_541\Debug\PathController.a(CyLib.o)
+                0x00000bb8                CyIntSetVector
  .text.CyIntSetPriority
-                0x00001338       0x4c .\CortexM0\ARM_GCC_541\Debug\PathController.a(CyLib.o)
-                0x00001338                CyIntSetPriority
- .text.CyDelay  0x00001384       0x30 .\CortexM0\ARM_GCC_541\Debug\PathController.a(CyLib.o)
-                0x00001384                CyDelay
+                0x00000bdc       0x4c .\CortexM0\ARM_GCC_541\Debug\PathController.a(CyLib.o)
+                0x00000bdc                CyIntSetPriority
+ .text.CyDelay  0x00000c28       0x30 .\CortexM0\ARM_GCC_541\Debug\PathController.a(CyLib.o)
+                0x00000c28                CyDelay
  .text.CySysClkImoEnableWcoLock
-                0x000013b4       0xf4 .\CortexM0\ARM_GCC_541\Debug\PathController.a(CyLib.o)
-                0x000013b4                CySysClkImoEnableWcoLock
+                0x00000c58       0xf4 .\CortexM0\ARM_GCC_541\Debug\PathController.a(CyLib.o)
+                0x00000c58                CySysClkImoEnableWcoLock
  .text.CySysClkWriteImoFreq
-                0x000014a8       0x80 .\CortexM0\ARM_GCC_541\Debug\PathController.a(CyLib.o)
-                0x000014a8                CySysClkWriteImoFreq
+                0x00000d4c       0x80 .\CortexM0\ARM_GCC_541\Debug\PathController.a(CyLib.o)
+                0x00000d4c                CySysClkWriteImoFreq
  .text.CySysWdtLocked
-                0x00001528       0x14 .\CortexM0\ARM_GCC_541\Debug\PathController.a(CyLFClk.o)
+                0x00000dcc       0x14 .\CortexM0\ARM_GCC_541\Debug\PathController.a(CyLFClk.o)
  .text.CySysClkWcoStart
-                0x0000153c       0x40 .\CortexM0\ARM_GCC_541\Debug\PathController.a(CyLFClk.o)
-                0x0000153c                CySysClkWcoStart
+                0x00000de0       0x40 .\CortexM0\ARM_GCC_541\Debug\PathController.a(CyLFClk.o)
+                0x00000de0                CySysClkWcoStart
  .text.CySysClkWcoEnabled
-                0x0000157c       0x14 .\CortexM0\ARM_GCC_541\Debug\PathController.a(CyLFClk.o)
-                0x0000157c                CySysClkWcoEnabled
+                0x00000e20       0x14 .\CortexM0\ARM_GCC_541\Debug\PathController.a(CyLFClk.o)
+                0x00000e20                CySysClkWcoEnabled
  .text.CySysWdtLock
-                0x00001590       0x1c .\CortexM0\ARM_GCC_541\Debug\PathController.a(CyLFClk.o)
-                0x00001590                CySysWdtLock
+                0x00000e34       0x1c .\CortexM0\ARM_GCC_541\Debug\PathController.a(CyLFClk.o)
+                0x00000e34                CySysWdtLock
  .text.CySysWdtUnlock
-                0x000015ac       0x30 .\CortexM0\ARM_GCC_541\Debug\PathController.a(CyLFClk.o)
-                0x000015ac                CySysWdtUnlock
+                0x00000e50       0x30 .\CortexM0\ARM_GCC_541\Debug\PathController.a(CyLFClk.o)
+                0x00000e50                CySysWdtUnlock
  .text.CySysWdtGetInterruptSource
-                0x000015dc       0x14 .\CortexM0\ARM_GCC_541\Debug\PathController.a(CyLFClk.o)
-                0x000015dc                CySysWdtGetInterruptSource
+                0x00000e80       0x14 .\CortexM0\ARM_GCC_541\Debug\PathController.a(CyLFClk.o)
+                0x00000e80                CySysWdtGetInterruptSource
  .text.CySysWdtClearInterrupt
-                0x000015f0       0x4c .\CortexM0\ARM_GCC_541\Debug\PathController.a(CyLFClk.o)
-                0x000015f0                CySysWdtClearInterrupt
+                0x00000e94       0x4c .\CortexM0\ARM_GCC_541\Debug\PathController.a(CyLFClk.o)
+                0x00000e94                CySysWdtClearInterrupt
  .text.UART_DBG_ScbEnableIntr
-                0x0000163c        0xc .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG.o)
+                0x00000ee0        0xc .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG.o)
  .text.UART_DBG_ScbModePostEnable
-                0x00001648        0x8 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG.o)
+                0x00000eec        0x8 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG.o)
  .text.UART_DBG_Init
-                0x00001650        0x8 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG.o)
-                0x00001650                UART_DBG_Init
+                0x00000ef4        0x8 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG.o)
+                0x00000ef4                UART_DBG_Init
  .text.UART_DBG_Enable
-                0x00001658       0x1c .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG.o)
-                0x00001658                UART_DBG_Enable
+                0x00000efc       0x1c .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG.o)
+                0x00000efc                UART_DBG_Enable
  .text.UART_DBG_Start
-                0x00001674       0x20 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG.o)
-                0x00001674                UART_DBG_Start
+                0x00000f18       0x20 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG.o)
+                0x00000f18                UART_DBG_Start
  .text.UART_DBG_SpiUartReadRxData
-                0x00001694        0xc .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG_SPI_UART.o)
-                0x00001694                UART_DBG_SpiUartReadRxData
+                0x00000f38        0xc .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG_SPI_UART.o)
+                0x00000f38                UART_DBG_SpiUartReadRxData
  .text.UART_DBG_SpiUartGetRxBufferSize
-                0x000016a0       0x10 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG_SPI_UART.o)
-                0x000016a0                UART_DBG_SpiUartGetRxBufferSize
+                0x00000f44       0x10 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG_SPI_UART.o)
+                0x00000f44                UART_DBG_SpiUartGetRxBufferSize
  .text.UART_DBG_UartInit
-                0x000016b0       0xc4 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG_UART.o)
-                0x000016b0                UART_DBG_UartInit
+                0x00000f54       0xc4 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG_UART.o)
+                0x00000f54                UART_DBG_UartInit
  .text.UART_DBG_UartPostEnable
-                0x00001774       0x24 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG_UART.o)
-                0x00001774                UART_DBG_UartPostEnable
+                0x00001018       0x24 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG_UART.o)
+                0x00001018                UART_DBG_UartPostEnable
  .text.UART_DBG_UartGetByte
-                0x00001798       0x34 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG_UART.o)
-                0x00001798                UART_DBG_UartGetByte
+                0x0000103c       0x34 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG_UART.o)
+                0x0000103c                UART_DBG_UartGetByte
  .text.UART_DBG_SCB_IRQ_Interrupt
-                0x000017cc       0x88 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG_SCB_IRQ.o)
-                0x000017cc                UART_DBG_SCB_IRQ_Interrupt
+                0x00001070       0x88 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG_SCB_IRQ.o)
+                0x00001070                UART_DBG_SCB_IRQ_Interrupt
  .text.UART_DBG_SCB_IRQ_SetVector
-                0x00001854        0xc .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG_SCB_IRQ.o)
-                0x00001854                UART_DBG_SCB_IRQ_SetVector
+                0x000010f8        0xc .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG_SCB_IRQ.o)
+                0x000010f8                UART_DBG_SCB_IRQ_SetVector
  .text.UART_DBG_SCB_IRQ_SetPriority
-                0x00001860       0x20 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG_SCB_IRQ.o)
-                0x00001860                UART_DBG_SCB_IRQ_SetPriority
+                0x00001104       0x20 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG_SCB_IRQ.o)
+                0x00001104                UART_DBG_SCB_IRQ_SetPriority
  .text.UART_DBG_SCB_IRQ_Enable
-                0x00001880       0x10 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG_SCB_IRQ.o)
-                0x00001880                UART_DBG_SCB_IRQ_Enable
+                0x00001124       0x10 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG_SCB_IRQ.o)
+                0x00001124                UART_DBG_SCB_IRQ_Enable
  .text.UART_DBG_SCB_IRQ_Disable
-                0x00001890       0x10 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG_SCB_IRQ.o)
-                0x00001890                UART_DBG_SCB_IRQ_Disable
+                0x00001134       0x10 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG_SCB_IRQ.o)
+                0x00001134                UART_DBG_SCB_IRQ_Disable
  .text.UART_DBG_SCB_IRQ_Start
-                0x000018a0       0x1c .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG_SCB_IRQ.o)
-                0x000018a0                UART_DBG_SCB_IRQ_Start
+                0x00001144       0x1c .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG_SCB_IRQ.o)
+                0x00001144                UART_DBG_SCB_IRQ_Start
  .text.LED6_Write
-                0x000018bc       0x18 .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED6.o)
-                0x000018bc                LED6_Write
+                0x00001160       0x18 .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED6.o)
+                0x00001160                LED6_Write
  .text.WDT_ISR_SetVector
-                0x000018d4        0xc .\CortexM0\ARM_GCC_541\Debug\PathController.a(WDT_ISR.o)
-                0x000018d4                WDT_ISR_SetVector
+                0x00001178        0xc .\CortexM0\ARM_GCC_541\Debug\PathController.a(WDT_ISR.o)
+                0x00001178                WDT_ISR_SetVector
  .text.WDT_ISR_SetPriority
-                0x000018e0       0x20 .\CortexM0\ARM_GCC_541\Debug\PathController.a(WDT_ISR.o)
-                0x000018e0                WDT_ISR_SetPriority
+                0x00001184       0x20 .\CortexM0\ARM_GCC_541\Debug\PathController.a(WDT_ISR.o)
+                0x00001184                WDT_ISR_SetPriority
  .text.WDT_ISR_Enable
-                0x00001900        0xc .\CortexM0\ARM_GCC_541\Debug\PathController.a(WDT_ISR.o)
-                0x00001900                WDT_ISR_Enable
+                0x000011a4        0xc .\CortexM0\ARM_GCC_541\Debug\PathController.a(WDT_ISR.o)
+                0x000011a4                WDT_ISR_Enable
  .text.WDT_ISR_Disable
-                0x0000190c        0xc .\CortexM0\ARM_GCC_541\Debug\PathController.a(WDT_ISR.o)
-                0x0000190c                WDT_ISR_Disable
+                0x000011b0        0xc .\CortexM0\ARM_GCC_541\Debug\PathController.a(WDT_ISR.o)
+                0x000011b0                WDT_ISR_Disable
  .text.WDT_ISR_Start
-                0x00001918       0x1c .\CortexM0\ARM_GCC_541\Debug\PathController.a(WDT_ISR.o)
-                0x00001918                WDT_ISR_Start
+                0x000011bc       0x1c .\CortexM0\ARM_GCC_541\Debug\PathController.a(WDT_ISR.o)
+                0x000011bc                WDT_ISR_Start
  .text.WDT_ISR_ClearPending
-                0x00001934        0xc .\CortexM0\ARM_GCC_541\Debug\PathController.a(WDT_ISR.o)
-                0x00001934                WDT_ISR_ClearPending
+                0x000011d8        0xc .\CortexM0\ARM_GCC_541\Debug\PathController.a(WDT_ISR.o)
+                0x000011d8                WDT_ISR_ClearPending
  .text.WDT_ISR_Interrupt
-                0x00001940       0x2c .\CortexM0\ARM_GCC_541\Debug\PathController.a(WDT_ISR.o)
-                0x00001940                WDT_ISR_Interrupt
+                0x000011e4       0x2c .\CortexM0\ARM_GCC_541\Debug\PathController.a(WDT_ISR.o)
+                0x000011e4                WDT_ISR_Interrupt
  .text.UART_GPS_ScbEnableIntr
-                0x0000196c        0xc .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS.o)
+                0x00001210        0xc .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS.o)
  .text.UART_GPS_ScbModePostEnable
-                0x00001978        0x8 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS.o)
+                0x0000121c        0x8 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS.o)
  .text.UART_GPS_Init
-                0x00001980        0x8 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS.o)
-                0x00001980                UART_GPS_Init
+                0x00001224        0x8 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS.o)
+                0x00001224                UART_GPS_Init
  .text.UART_GPS_Enable
-                0x00001988       0x1c .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS.o)
-                0x00001988                UART_GPS_Enable
+                0x0000122c       0x1c .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS.o)
+                0x0000122c                UART_GPS_Enable
  .text.UART_GPS_Start
-                0x000019a4       0x20 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS.o)
-                0x000019a4                UART_GPS_Start
+                0x00001248       0x20 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS.o)
+                0x00001248                UART_GPS_Start
  .text.UART_GPS_UartInit
-                0x000019c4       0xc4 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS_UART.o)
-                0x000019c4                UART_GPS_UartInit
+                0x00001268       0xc4 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS_UART.o)
+                0x00001268                UART_GPS_UartInit
  .text.UART_GPS_UartPostEnable
-                0x00001a88       0x24 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS_UART.o)
-                0x00001a88                UART_GPS_UartPostEnable
+                0x0000132c       0x24 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS_UART.o)
+                0x0000132c                UART_GPS_UartPostEnable
  .text.UART_GPS_UartGetByte
-                0x00001aac       0x34 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS_UART.o)
-                0x00001aac                UART_GPS_UartGetByte
+                0x00001350       0x34 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS_UART.o)
+                0x00001350                UART_GPS_UartGetByte
  .text.UART_FC_ScbEnableIntr
-                0x00001ae0        0xc .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC.o)
+                0x00001384        0xc .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC.o)
  .text.UART_FC_ScbModePostEnable
-                0x00001aec        0x8 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC.o)
+                0x00001390        0x8 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC.o)
  .text.UART_FC_Init
-                0x00001af4        0x8 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC.o)
-                0x00001af4                UART_FC_Init
+                0x00001398        0x8 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC.o)
+                0x00001398                UART_FC_Init
  .text.UART_FC_Enable
-                0x00001afc       0x1c .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC.o)
-                0x00001afc                UART_FC_Enable
+                0x000013a0       0x1c .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC.o)
+                0x000013a0                UART_FC_Enable
  .text.UART_FC_Start
-                0x00001b18       0x20 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC.o)
-                0x00001b18                UART_FC_Start
+                0x000013bc       0x20 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC.o)
+                0x000013bc                UART_FC_Start
  .text.UART_FC_SpiUartReadRxData
-                0x00001b38        0xc .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC_SPI_UART.o)
-                0x00001b38                UART_FC_SpiUartReadRxData
+                0x000013dc        0xc .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC_SPI_UART.o)
+                0x000013dc                UART_FC_SpiUartReadRxData
  .text.UART_FC_SpiUartGetRxBufferSize
-                0x00001b44       0x10 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC_SPI_UART.o)
-                0x00001b44                UART_FC_SpiUartGetRxBufferSize
+                0x000013e8       0x10 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC_SPI_UART.o)
+                0x000013e8                UART_FC_SpiUartGetRxBufferSize
  .text.UART_FC_SpiUartWriteTxData
-                0x00001b54       0x1c .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC_SPI_UART.o)
-                0x00001b54                UART_FC_SpiUartWriteTxData
+                0x000013f8       0x1c .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC_SPI_UART.o)
+                0x000013f8                UART_FC_SpiUartWriteTxData
  .text.UART_FC_UartInit
-                0x00001b70       0xc4 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC_UART.o)
-                0x00001b70                UART_FC_UartInit
+                0x00001414       0xc4 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC_UART.o)
+                0x00001414                UART_FC_UartInit
  .text.UART_FC_UartPostEnable
-                0x00001c34       0x24 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC_UART.o)
-                0x00001c34                UART_FC_UartPostEnable
+                0x000014d8       0x24 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC_UART.o)
+                0x000014d8                UART_FC_UartPostEnable
  .text.UART_FC_UartGetByte
-                0x00001c58       0x34 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC_UART.o)
-                0x00001c58                UART_FC_UartGetByte
+                0x000014fc       0x34 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC_UART.o)
+                0x000014fc                UART_FC_UartGetByte
  .text.UART_GPS_SCB_IRQ_Interrupt
-                0x00001c8c       0x9c .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS_SCB_IRQ.o)
-                0x00001c8c                UART_GPS_SCB_IRQ_Interrupt
+                0x00001530       0xa4 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS_SCB_IRQ.o)
+                0x00001530                UART_GPS_SCB_IRQ_Interrupt
  .text.UART_GPS_SCB_IRQ_SetVector
-                0x00001d28        0xc .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS_SCB_IRQ.o)
-                0x00001d28                UART_GPS_SCB_IRQ_SetVector
+                0x000015d4        0xc .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS_SCB_IRQ.o)
+                0x000015d4                UART_GPS_SCB_IRQ_SetVector
  .text.UART_GPS_SCB_IRQ_SetPriority
-                0x00001d34       0x24 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS_SCB_IRQ.o)
-                0x00001d34                UART_GPS_SCB_IRQ_SetPriority
+                0x000015e0       0x24 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS_SCB_IRQ.o)
+                0x000015e0                UART_GPS_SCB_IRQ_SetPriority
  .text.UART_GPS_SCB_IRQ_Enable
-                0x00001d58       0x10 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS_SCB_IRQ.o)
-                0x00001d58                UART_GPS_SCB_IRQ_Enable
+                0x00001604       0x10 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS_SCB_IRQ.o)
+                0x00001604                UART_GPS_SCB_IRQ_Enable
  .text.UART_GPS_SCB_IRQ_Disable
-                0x00001d68       0x10 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS_SCB_IRQ.o)
-                0x00001d68                UART_GPS_SCB_IRQ_Disable
+                0x00001614       0x10 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS_SCB_IRQ.o)
+                0x00001614                UART_GPS_SCB_IRQ_Disable
  .text.UART_GPS_SCB_IRQ_Start
-                0x00001d78       0x1c .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS_SCB_IRQ.o)
-                0x00001d78                UART_GPS_SCB_IRQ_Start
+                0x00001624       0x1c .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS_SCB_IRQ.o)
+                0x00001624                UART_GPS_SCB_IRQ_Start
  .text.UART_FC_SCB_IRQ_Interrupt
-                0x00001d94       0x84 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC_SCB_IRQ.o)
-                0x00001d94                UART_FC_SCB_IRQ_Interrupt
+                0x00001640       0x6c .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC_SCB_IRQ.o)
+                0x00001640                UART_FC_SCB_IRQ_Interrupt
  .text.UART_FC_SCB_IRQ_SetVector
-                0x00001e18        0xc .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC_SCB_IRQ.o)
-                0x00001e18                UART_FC_SCB_IRQ_SetVector
+                0x000016ac        0xc .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC_SCB_IRQ.o)
+                0x000016ac                UART_FC_SCB_IRQ_SetVector
  .text.UART_FC_SCB_IRQ_SetPriority
-                0x00001e24       0x20 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC_SCB_IRQ.o)
-                0x00001e24                UART_FC_SCB_IRQ_SetPriority
+                0x000016b8       0x20 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC_SCB_IRQ.o)
+                0x000016b8                UART_FC_SCB_IRQ_SetPriority
  .text.UART_FC_SCB_IRQ_Enable
-                0x00001e44       0x10 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC_SCB_IRQ.o)
-                0x00001e44                UART_FC_SCB_IRQ_Enable
+                0x000016d8       0x10 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC_SCB_IRQ.o)
+                0x000016d8                UART_FC_SCB_IRQ_Enable
  .text.UART_FC_SCB_IRQ_Disable
-                0x00001e54       0x10 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC_SCB_IRQ.o)
-                0x00001e54                UART_FC_SCB_IRQ_Disable
+                0x000016e8       0x10 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC_SCB_IRQ.o)
+                0x000016e8                UART_FC_SCB_IRQ_Disable
  .text.UART_FC_SCB_IRQ_Start
-                0x00001e64       0x1c .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC_SCB_IRQ.o)
-                0x00001e64                UART_FC_SCB_IRQ_Start
- .text          0x00001e80       0x20 .\CortexM0\ARM_GCC_541\Debug\PathController.a(CyBootAsmGnu.o)
-                0x00001e80                CyDelayCycles
-                0x00001e92                CyEnterCriticalSection
-                0x00001e9a                CyExitCriticalSection
+                0x000016f8       0x1c .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC_SCB_IRQ.o)
+                0x000016f8                UART_FC_SCB_IRQ_Start
+ *fill*         0x00001714        0x4 
+ .text          0x00001718       0x20 .\CortexM0\ARM_GCC_541\Debug\PathController.a(CyBootAsmGnu.o)
+                0x00001718                CyDelayCycles
+                0x0000172a                CyEnterCriticalSection
+                0x00001732                CyExitCriticalSection
  .text.CySysFlashSetWaitCycles
-                0x00001ea0       0x54 .\CortexM0\ARM_GCC_541\Debug\PathController.a(CyFlash.o)
-                0x00001ea0                CySysFlashSetWaitCycles
+                0x00001738       0x54 .\CortexM0\ARM_GCC_541\Debug\PathController.a(CyFlash.o)
+                0x00001738                CySysFlashSetWaitCycles
  .text.UART_DBG_SPI_UART_ISR
-                0x00001ef4       0x14 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG_SPI_UART_INT.o)
-                0x00001ef4                UART_DBG_SPI_UART_ISR
+                0x0000178c       0x14 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG_SPI_UART_INT.o)
+                0x0000178c                UART_DBG_SPI_UART_ISR
  .text.UART_GPS_SpiUartReadRxData
-                0x00001f08        0xc .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS_SPI_UART.o)
-                0x00001f08                UART_GPS_SpiUartReadRxData
+                0x000017a0        0xc .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS_SPI_UART.o)
+                0x000017a0                UART_GPS_SpiUartReadRxData
  .text.UART_GPS_SpiUartGetRxBufferSize
-                0x00001f14       0x10 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS_SPI_UART.o)
-                0x00001f14                UART_GPS_SpiUartGetRxBufferSize
+                0x000017ac       0x10 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS_SPI_UART.o)
+                0x000017ac                UART_GPS_SpiUartGetRxBufferSize
  .text.UART_GPS_SPI_UART_ISR
-                0x00001f24       0x14 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS_SPI_UART_INT.o)
-                0x00001f24                UART_GPS_SPI_UART_ISR
+                0x000017bc       0x14 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS_SPI_UART_INT.o)
+                0x000017bc                UART_GPS_SPI_UART_ISR
  .text.UART_FC_SPI_UART_ISR
-                0x00001f38       0x14 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC_SPI_UART_INT.o)
-                0x00001f38                UART_FC_SPI_UART_ISR
- .text.fmod     0x00001f4c       0xd8 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libm.a(lib_a-w_fmod.o)
-                0x00001f4c                fmod
- .text.sqrt     0x00002024       0xc0 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libm.a(lib_a-w_sqrt.o)
-                0x00002024                sqrt
- .text.__ieee754_fmod
-                0x000020e4      0x254 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libm.a(lib_a-e_fmod.o)
-                0x000020e4                __ieee754_fmod
- .text.__ieee754_sqrt
-                0x00002338      0x1ec e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libm.a(lib_a-e_sqrt.o)
-                0x00002338                __ieee754_sqrt
- .text.matherr  0x00002524        0x4 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libm.a(lib_a-s_matherr.o)
-                0x00002524                matherr
- .text          0x00002528      0x114 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_udivsi3.o)
-                0x00002528                __aeabi_uidiv
-                0x00002528                __udivsi3
-                0x00002634                __aeabi_uidivmod
- .text          0x0000263c      0x1d4 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_divsi3.o)
-                0x0000263c                __divsi3
-                0x0000263c                __aeabi_idiv
-                0x00002808                __aeabi_idivmod
- .text          0x00002810        0x4 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_dvmd_tls.o)
-                0x00002810                __aeabi_idiv0
-                0x00002810                __aeabi_ldiv0
- .text          0x00002814       0x7c e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_arm_cmpdf2.o)
-                0x00002814                __aeabi_cdrcmple
-                0x00002824                __aeabi_cdcmple
-                0x00002824                __aeabi_cdcmpeq
-                0x00002834                __aeabi_dcmpeq
-                0x00002840                __aeabi_dcmplt
-                0x00002854                __aeabi_dcmple
-                0x00002868                __aeabi_dcmpgt
-                0x0000287c                __aeabi_dcmpge
- .text          0x00002890       0x3c e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_fixunsdfsi.o)
-                0x00002890                __aeabi_d2uiz
-                0x00002890                __fixunsdfsi
- .text          0x000028cc      0x658 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(adddf3.o)
-                0x000028cc                __aeabi_dadd
- .text          0x00002f24      0x62c e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(divdf3.o)
-                0x00002f24                __aeabi_ddiv
- .text          0x00003550       0x80 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(eqdf2.o)
-                0x00003550                __nedf2
-                0x00003550                __eqdf2
- .text          0x000035d0       0xc8 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(gedf2.o)
-                0x000035d0                __gedf2
-                0x000035d0                __gtdf2
- .text          0x00003698       0xd4 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(ledf2.o)
-                0x00003698                __ledf2
-                0x00003698                __ltdf2
- .text          0x0000376c      0x4f4 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(muldf3.o)
-                0x0000376c                __aeabi_dmul
- .text          0x00003c60      0x6a8 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(subdf3.o)
-                0x00003c60                __aeabi_dsub
- .text          0x00004308       0x40 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(unorddf2.o)
-                0x00004308                __aeabi_dcmpun
- .text          0x00004348       0x6c e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(fixdfsi.o)
-                0x00004348                __aeabi_d2iz
- .text          0x000043b4       0x84 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(floatsidf.o)
-                0x000043b4                __aeabi_i2d
- .text          0x00004438       0x70 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(floatunsidf.o)
-                0x00004438                __aeabi_ui2d
- .text          0x000044a8       0x3c e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_clzsi2.o)
-                0x000044a8                __clzsi2
- .text.__errno  0x000044e4        0xc e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-errno.o)
-                0x000044e4                __errno
+                0x000017d0       0x14 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC_SPI_UART_INT.o)
+                0x000017d0                UART_FC_SPI_UART_ISR
+ .text          0x000017e4      0x114 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_udivsi3.o)
+                0x000017e4                __aeabi_uidiv
+                0x000017e4                __udivsi3
+                0x000018f0                __aeabi_uidivmod
+ .text          0x000018f8      0x1d4 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_divsi3.o)
+                0x000018f8                __divsi3
+                0x000018f8                __aeabi_idiv
+                0x00001ac4                __aeabi_idivmod
+ .text          0x00001acc        0x4 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_dvmd_tls.o)
+                0x00001acc                __aeabi_idiv0
+                0x00001acc                __aeabi_ldiv0
+ .text          0x00001ad0      0x62c e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(divdf3.o)
+                0x00001ad0                __aeabi_ddiv
+ .text          0x000020fc       0x84 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(floatsidf.o)
+                0x000020fc                __aeabi_i2d
+ .text          0x00002180       0x3c e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_clzsi2.o)
+                0x00002180                __clzsi2
+ .text.__errno  0x000021bc        0xc e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-errno.o)
+                0x000021bc                __errno
  .text.__libc_init_array
-                0x000044f0       0x4c e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-init.o)
-                0x000044f0                __libc_init_array
- .text.memcpy   0x0000453c       0x12 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-memcpy-stub.o)
-                0x0000453c                memcpy
- .text.memset   0x0000454e       0x10 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-memset.o)
-                0x0000454e                memset
- .text.strchr   0x0000455e       0x1c e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-strchr.o)
-                0x0000455e                strchr
- .text          0x0000457a       0x14 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-strcmp.o)
-                0x0000457a                strcmp
- .text.strncpy  0x0000458e       0x26 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-strncpy.o)
-                0x0000458e                strncpy
+                0x000021c8       0x4c e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-init.o)
+                0x000021c8                __libc_init_array
+ .text.memcpy   0x00002214       0x12 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-memcpy-stub.o)
+                0x00002214                memcpy
+ .text.memset   0x00002226       0x10 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-memset.o)
+                0x00002226                memset
+ .text.strchr   0x00002236       0x1c e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-strchr.o)
+                0x00002236                strchr
+ .text          0x00002252       0x14 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-strcmp.o)
+                0x00002252                strcmp
+ .text.strncpy  0x00002266       0x26 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-strncpy.o)
+                0x00002266                strncpy
  .text.__strtok_r
-                0x000045b4       0x5e e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-strtok_r.o)
-                0x000045b4                __strtok_r
+                0x0000228c       0x5e e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-strtok_r.o)
+                0x0000228c                __strtok_r
  .text.strtok_r
-                0x00004612        0xa e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-strtok_r.o)
-                0x00004612                strtok_r
+                0x000022ea        0xa e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-strtok_r.o)
+                0x000022ea                strtok_r
  .text._strtol_r
-                0x0000461c      0x124 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-strtol.o)
-                0x0000461c                _strtol_r
- .text.strtol   0x00004740       0x18 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-strtol.o)
-                0x00004740                strtol
+                0x000022f4      0x124 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-strtol.o)
+                0x000022f4                _strtol_r
+ .text.strtol   0x00002418       0x18 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-strtol.o)
+                0x00002418                strtol
  *(.plt)
  *(.gnu.warning)
  *(.glue_7t)
- .glue_7t       0x00004758        0x0 linker stubs
+ .glue_7t       0x00002430        0x0 linker stubs
  *(.glue_7)
- .glue_7        0x00004758        0x0 linker stubs
+ .glue_7        0x00002430        0x0 linker stubs
  *(.vfp11_veneer)
- .vfp11_veneer  0x00004758        0x0 linker stubs
+ .vfp11_veneer  0x00002430        0x0 linker stubs
  *(.bootloader)
  *(.ARM.extab* .gnu.linkonce.armextab.*)
  *(.gcc_except_table)
 
-.v4_bx          0x00004758        0x0
- .v4_bx         0x00004758        0x0 linker stubs
+.v4_bx          0x00002430        0x0
+ .v4_bx         0x00002430        0x0 linker stubs
 
-.iplt           0x00004758        0x0
- .iplt          0x00004758        0x0 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m/crtbegin.o
+.iplt           0x00002430        0x0
+ .iplt          0x00002430        0x0 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m/crtbegin.o
 
 .eh_frame_hdr
  *(.eh_frame_hdr)
 
-.eh_frame       0x00004758        0x4
+.eh_frame       0x00002430        0x4
  *(.eh_frame)
- .eh_frame      0x00004758        0x0 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m/crtbegin.o
- .eh_frame      0x00004758        0x4 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m/crtend.o
+ .eh_frame      0x00002430        0x0 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m/crtbegin.o
+ .eh_frame      0x00002430        0x4 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m/crtend.o
                 [!provide]                PROVIDE (__exidx_start, .)
 
 .ARM.exidx
  *(.ARM.exidx* .gnu.linkonce.armexidx.*)
-                0x0000475c                __exidx_end = .
+                0x00002434                __exidx_end = .
 
-.rodata         0x00004760      0x3a0
+.rodata         0x00002434      0x2c4
  *(.rodata .rodata.* .gnu.linkonce.r.*)
  .rodata.str1.4
-                0x00004760      0x13e .\CortexM0\ARM_GCC_541\Debug\main.o
- *fill*         0x0000489e        0x2 
+                0x00002434       0xfe .\CortexM0\ARM_GCC_541\Debug\main.o
+                                0x102 (size before relaxing)
+ *fill*         0x00002532        0x2 
  .rodata.str1.4
-                0x000048a0        0xb .\CortexM0\ARM_GCC_541\Debug\sanitize.o
- *fill*         0x000048ab        0x1 
- .rodata        0x000048ac       0x40 .\CortexM0\ARM_GCC_541\Debug\cordic.o
- .rodata        0x000048ec        0xc .\CortexM0\ARM_GCC_541\Debug\cyfitter_cfg.o
- .rodata        0x000048f8       0x2e .\CortexM0\ARM_GCC_541\Debug\PathController.a(CyLib.o)
-                0x000048f8                cyImoFreqMhz2Reg
- *fill*         0x00004926        0x2 
- .rodata.str1.4
-                0x00004928        0x5 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libm.a(lib_a-w_fmod.o)
- *fill*         0x0000492d        0x3 
- .rodata.str1.4
-                0x00004930        0x8 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libm.a(lib_a-w_sqrt.o)
-                                  0x5 (size before relaxing)
- .rodata.Zero   0x00004938       0x10 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libm.a(lib_a-e_fmod.o)
- .rodata        0x00004948       0x40 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(divdf3.o)
- .rodata        0x00004988       0x40 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(muldf3.o)
+                0x00002534        0xc .\CortexM0\ARM_GCC_541\Debug\sanitize.o
+                                  0xb (size before relaxing)
+ .rodata        0x00002540        0xc .\CortexM0\ARM_GCC_541\Debug\cyfitter_cfg.o
+ .rodata        0x0000254c       0x2e .\CortexM0\ARM_GCC_541\Debug\PathController.a(CyLib.o)
+                0x0000254c                cyImoFreqMhz2Reg
+ *fill*         0x0000257a        0x2 
+ .rodata        0x0000257c       0x40 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(divdf3.o)
  .rodata.str1.1
-                0x000049c8        0x2 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-impure.o)
+                0x000025bc        0x2 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-impure.o)
  .rodata._ctype_
-                0x000049ca      0x101 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-ctype_.o)
-                0x000049ca                _ctype_
-                0x00004acc                . = ALIGN (0x4)
- *fill*         0x00004acb        0x1 
+                0x000025be      0x101 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-ctype_.o)
+                0x000025be                _ctype_
+                0x000026c0                . = ALIGN (0x4)
+ *fill*         0x000026bf        0x1 
  *(.init)
- .init          0x00004acc        0x4 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m/crti.o
-                0x00004acc                _init
- .init          0x00004ad0        0x8 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m/crtn.o
-                0x00004ad8                . = ALIGN (0x4)
-                0x00004ad8                __preinit_array_start = .
+ .init          0x000026c0        0x4 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m/crti.o
+                0x000026c0                _init
+ .init          0x000026c4        0x8 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m/crtn.o
+                0x000026cc                . = ALIGN (0x4)
+                0x000026cc                __preinit_array_start = .
  *(.preinit_array)
-                0x00004ad8                __preinit_array_end = .
-                0x00004ad8                . = ALIGN (0x4)
-                0x00004ad8                __init_array_start = .
+                0x000026cc                __preinit_array_end = .
+                0x000026cc                . = ALIGN (0x4)
+                0x000026cc                __init_array_start = .
  *(SORT(.init_array.*))
  *(.init_array)
- .init_array    0x00004ad8        0x4 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m/crtbegin.o
- .init_array    0x00004adc        0x4 .\CortexM0\ARM_GCC_541\Debug\Cm0Start.o
-                0x00004ae0                __init_array_end = .
-                0x00004ae0                . = ALIGN (0x4)
+ .init_array    0x000026cc        0x4 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m/crtbegin.o
+ .init_array    0x000026d0        0x4 .\CortexM0\ARM_GCC_541\Debug\Cm0Start.o
+                0x000026d4                __init_array_end = .
+                0x000026d4                . = ALIGN (0x4)
  *(.fini)
- .fini          0x00004ae0        0x4 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m/crti.o
-                0x00004ae0                _fini
- .fini          0x00004ae4        0x8 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m/crtn.o
-                0x00004aec                . = ALIGN (0x4)
-                0x00004aec                __fini_array_start = .
+ .fini          0x000026d4        0x4 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m/crti.o
+                0x000026d4                _fini
+ .fini          0x000026d8        0x8 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m/crtn.o
+                0x000026e0                . = ALIGN (0x4)
+                0x000026e0                __fini_array_start = .
  *(.fini_array)
- .fini_array    0x00004aec        0x4 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m/crtbegin.o
+ .fini_array    0x000026e0        0x4 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m/crtbegin.o
  *(SORT(.fini_array.*))
-                0x00004af0                __fini_array_end = .
-                0x00004af0                . = ALIGN (0x4)
+                0x000026e4                __fini_array_end = .
+                0x000026e4                . = ALIGN (0x4)
  *crtbegin.o(.ctors)
  *(EXCLUDE_FILE(*crtend.o) .ctors)
  *(SORT(.ctors.*))
  *crtend.o(.ctors)
-                0x00004af0                . = ALIGN (0x4)
+                0x000026e4                . = ALIGN (0x4)
  *crtbegin.o(.dtors)
  *(EXCLUDE_FILE(*crtend.o) .dtors)
  *(SORT(.dtors.*))
  *crtend.o(.dtors)
-                0x00004af0                . = ALIGN (0x4)
-                0x00004af0                __cy_regions = .
-                0x00004af0        0x4 LONG 0x4b00 __cy_region_init_ram
-                0x00004af4        0x4 LONG 0x200000c0 __cy_region_start_data
-                0x00004af8        0x4 LONG 0x88 __cy_region_init_size_ram
-                0x00004afc        0x4 LONG 0x3a0 __cy_region_zero_size_ram
-                0x00004b00                __cy_regions_end = .
-                0x00004b00                . = ALIGN (0x8)
-                0x00004b00                _etext = .
+                0x000026e4                . = ALIGN (0x4)
+                0x000026e4                __cy_regions = .
+                0x000026e4        0x4 LONG 0x26f8 __cy_region_init_ram
+                0x000026e8        0x4 LONG 0x200000c0 __cy_region_start_data
+                0x000026ec        0x4 LONG 0x80 __cy_region_init_size_ram
+                0x000026f0        0x4 LONG 0x3a0 __cy_region_zero_size_ram
+                0x000026f4                __cy_regions_end = .
+                0x000026f8                . = ALIGN (0x8)
+ *fill*         0x000026f4        0x4 
+                0x000026f8                _etext = .
 
 .cy_checksum_exclude
-                0x00004b00        0x0
+                0x000026f8        0x0
  *(.cy_checksum_exclude)
 
 .ramvectors     0x20000000       0xc0
@@ -1432,7 +1401,7 @@ END GROUP
 .noinit
  *(.noinit)
 
-.data           0x200000c0       0x88 load address 0x00004b00
+.data           0x200000c0       0x80 load address 0x000026f8
                 0x200000c0                __cy_region_start_data = .
  *(.jcr)
  .jcr           0x200000c0        0x0 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m/crtbegin.o
@@ -1447,96 +1416,91 @@ END GROUP
                 0x200000cc                cydelayFreqKhz
                 0x200000d0                cydelayFreqMhz
                 0x200000d4                cydelayFreqHz
- .data.__fdlib_version
-                0x200000d8        0x1 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libm.a(lib_a-s_lib_ver.o)
-                0x200000d8                __fdlib_version
- *fill*         0x200000d9        0x3 
  .data.impure_data
-                0x200000dc       0x60 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-impure.o)
+                0x200000d8       0x60 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-impure.o)
  .data._impure_ptr
-                0x2000013c        0x4 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-impure.o)
-                0x2000013c                _impure_ptr
+                0x20000138        0x4 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-impure.o)
+                0x20000138                _impure_ptr
  .data.__ctype_ptr__
-                0x20000140        0x4 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-ctype_.o)
-                0x20000140                __ctype_ptr__
-                0x20000148                . = ALIGN (0x8)
- *fill*         0x20000144        0x4 
+                0x2000013c        0x4 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-ctype_.o)
+                0x2000013c                __ctype_ptr__
+                0x20000140                . = ALIGN (0x8)
  *(.ram)
-                0x20000148                _edata = .
+                0x20000140                _edata = .
 
-.igot.plt       0x20000148        0x0 load address 0x00004b88
- .igot.plt      0x20000148        0x0 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m/crtbegin.o
+.igot.plt       0x20000140        0x0 load address 0x00002778
+ .igot.plt      0x20000140        0x0 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m/crtbegin.o
 
-.bss            0x20000148      0x3a0 load address 0x00004b88
-                0x20000148                PROVIDE (__bss_start__, .)
+.bss            0x20000140      0x3a0 load address 0x00002778
+                0x20000140                PROVIDE (__bss_start__, .)
  *(.shbss)
  *(.bss .bss.* .gnu.linkonce.b.*)
- .bss           0x20000148       0x1c e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m/crtbegin.o
- *fill*         0x20000164        0x4 
- .bss           0x20000168       0x19 .\CortexM0\ARM_GCC_541\Debug\main.o
-                0x20000168                fc_msg_ptr_tail
-                0x20000169                fc_msg_ptr_head
-                0x2000016a                msg_ptr_tail
-                0x2000016b                msg_ptr_head
-                0x2000016c                num_GP_timers
-                0x20000170                coords
- *fill*         0x20000181        0x3 
- .bss           0x20000184        0xa .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG.o)
-                0x20000184                UART_DBG_initVar
-                0x20000188                UART_DBG_customIntrHandler
-                0x2000018c                UART_DBG_IntrTxMask
- *fill*         0x2000018e        0x2 
- .bss           0x20000190        0xa .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS.o)
-                0x20000190                UART_GPS_initVar
-                0x20000194                UART_GPS_customIntrHandler
-                0x20000198                UART_GPS_IntrTxMask
- *fill*         0x2000019a        0x2 
- .bss           0x2000019c        0xa .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC.o)
-                0x2000019c                UART_FC_initVar
-                0x200001a0                UART_FC_customIntrHandler
-                0x200001a4                UART_FC_IntrTxMask
+ .bss           0x20000140       0x1c e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m/crtbegin.o
+ *fill*         0x2000015c        0x4 
+ .bss           0x20000160       0x19 .\CortexM0\ARM_GCC_541\Debug\main.o
+                0x20000160                fc_msg_ptr_tail
+                0x20000161                fc_msg_ptr_head
+                0x20000162                msg_ptr_tail
+                0x20000163                msg_ptr_head
+                0x20000164                num_GP_timers
+                0x20000168                coords
+ *fill*         0x20000179        0x3 
+ .bss           0x2000017c        0xa .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG.o)
+                0x2000017c                UART_DBG_initVar
+                0x20000180                UART_DBG_customIntrHandler
+                0x20000184                UART_DBG_IntrTxMask
+ *fill*         0x20000186        0x2 
+ .bss           0x20000188        0xa .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS.o)
+                0x20000188                UART_GPS_initVar
+                0x2000018c                UART_GPS_customIntrHandler
+                0x20000190                UART_GPS_IntrTxMask
+ *fill*         0x20000192        0x2 
+ .bss           0x20000194        0xa .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC.o)
+                0x20000194                UART_FC_initVar
+                0x20000198                UART_FC_customIntrHandler
+                0x2000019c                UART_FC_IntrTxMask
  *(COMMON)
- *fill*         0x200001a6        0x2 
- COMMON         0x200001a8      0x33a .\CortexM0\ARM_GCC_541\Debug\main.o
-                0x200001a8                num_rx_bytes_dbg_buff
-                0x200001a9                num_rx_bytes_dbg
-                0x200001ac                rx_bytes_dbg
-                0x200001bc                num_rx_bytes_FC_buff
-                0x200001c0                rx_bytes_gps_buff
-                0x20000208                num_rx_bytes_gps_buff
-                0x2000020c                debug_msg
-                0x2000030c                rx_bytes_FC
-                0x20000312                num_rx_bytes_gps
-                0x20000313                num_tasks
-                0x20000314                fc_msg
-                0x20000414                GP_evt
-                0x20000418                task_queue
-                0x20000424                rx_bytes_dbg_buff
-                0x20000434                gps_data
-                0x20000440                sec
-                0x20000442                num_rx_bytes_FC
-                0x20000444                rx_bytes_gps
-                0x2000048c                tmr_dec
-                0x20000490                GP_timer
-                0x200004a8                virus
-                0x200004d8                GPS_UART_tmr
-                0x200004dc                rx_bytes_FC_buff
-                0x200004e8                . = ALIGN (0x8)
- *fill*         0x200004e2        0x6 
+ *fill*         0x2000019e        0x2 
+ COMMON         0x200001a0      0x339 .\CortexM0\ARM_GCC_541\Debug\main.o
+                0x200001a0                num_rx_bytes_dbg_buff
+                0x200001a1                num_rx_bytes_dbg
+                0x200001a4                rx_bytes_dbg
+                0x200001b4                num_rx_bytes_FC_buff
+                0x200001b8                rx_bytes_gps_buff
+                0x20000200                num_rx_bytes_gps_buff
+                0x20000204                debug_msg
+                0x20000304                rx_bytes_FC
+                0x2000030a                num_rx_bytes_gps
+                0x2000030b                num_tasks
+                0x2000030c                fc_msg
+                0x2000040c                GP_evt
+                0x20000410                task_queue
+                0x2000041c                rx_bytes_dbg_buff
+                0x2000042c                gps_data
+                0x20000438                sec
+                0x2000043a                num_rx_bytes_FC
+                0x2000043c                rx_bytes_gps
+                0x20000484                tmr_dec
+                0x20000488                GP_timer
+                0x200004a0                virus
+                0x200004d0                GPS_UART_tmr
+                0x200004d4                rx_bytes_FC_buff
+                0x200004e0                . = ALIGN (0x8)
+ *fill*         0x200004d9        0x7 
  *(.ram.b)
-                0x200004e8                _end = .
-                0x200004e8                __end = .
-                0x200004e8                PROVIDE (end, .)
-                0x200004e8                PROVIDE (__bss_end__, .)
-                0x00004b00                __cy_region_init_ram = LOADADDR (.data)
-                0x00000088                __cy_region_init_size_ram = (_edata - ADDR (.data))
+                0x200004e0                _end = .
+                0x200004e0                __end = .
+                0x200004e0                PROVIDE (end, .)
+                0x200004e0                PROVIDE (__bss_end__, .)
+                0x000026f8                __cy_region_init_ram = LOADADDR (.data)
+                0x00000080                __cy_region_init_size_ram = (_edata - ADDR (.data))
                 0x000003a0                __cy_region_zero_size_ram = (_end - _edata)
 
-.heap           0x200004e8       0x80 load address 0x00004b88
-                0x200004e8                . = _end
-                0x20000568                . = (. + 0x80)
- *fill*         0x200004e8       0x80 
-                0x20000568                __cy_heap_limit = .
+.heap           0x200004e0       0x80 load address 0x00002778
+                0x200004e0                . = _end
+                0x20000560                . = (. + 0x80)
+ *fill*         0x200004e0       0x80 
+                0x20000560                __cy_heap_limit = .
 
 .stack          0x20001800      0x800
                 0x20001800                __cy_stack_limit = .
@@ -1572,8 +1536,8 @@ END GROUP
                 0x90600000        0x1 .\CortexM0\ARM_GCC_541\Debug\cymetadata.o
                 0x90600000                cy_meta_chipprotect
 
-.rel.dyn        0x00004b88        0x0 load address 0x90600004
- .rel.iplt      0x00004b88        0x0 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m/crtbegin.o
+.rel.dyn        0x00002778        0x0 load address 0x90600004
+ .rel.iplt      0x00002778        0x0 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m/crtbegin.o
 
 .stab
  *(.stab)
@@ -1667,319 +1631,319 @@ END GROUP
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x8496
+.debug_info     0x00000000     0x842c
  *(.debug_info .gnu.linkonce.wi.*)
- .debug_info    0x00000000     0x1022 .\CortexM0\ARM_GCC_541\Debug\main.o
- .debug_info    0x00001022      0x4c7 .\CortexM0\ARM_GCC_541\Debug\sanitize.o
- .debug_info    0x000014e9      0x707 .\CortexM0\ARM_GCC_541\Debug\algorithm.o
- .debug_info    0x00001bf0      0x305 .\CortexM0\ARM_GCC_541\Debug\cordic.o
- .debug_info    0x00001ef5      0x293 .\CortexM0\ARM_GCC_541\Debug\cyfitter_cfg.o
- .debug_info    0x00002188       0xf8 .\CortexM0\ARM_GCC_541\Debug\cymetadata.o
- .debug_info    0x00002280      0x3a2 .\CortexM0\ARM_GCC_541\Debug\Cm0Start.o
- .debug_info    0x00002622      0x19d .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED4.o)
- .debug_info    0x000027bf      0x19d .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED3.o)
- .debug_info    0x0000295c      0x19d .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED2.o)
- .debug_info    0x00002af9      0x19d .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED1.o)
- .debug_info    0x00002c96      0x19d .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED0.o)
- .debug_info    0x00002e33      0x19b .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED5.o)
- .debug_info    0x00002fce      0xd40 .\CortexM0\ARM_GCC_541\Debug\PathController.a(CyLib.o)
- .debug_info    0x00003d0e     0x1058 .\CortexM0\ARM_GCC_541\Debug\PathController.a(CyLFClk.o)
- .debug_info    0x00004d66      0x2e9 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG.o)
- .debug_info    0x0000504f      0x220 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG_SPI_UART.o)
- .debug_info    0x0000526f      0x421 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG_UART.o)
- .debug_info    0x00005690      0x4f4 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG_SCB_IRQ.o)
- .debug_info    0x00005b84      0x19d .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED6.o)
- .debug_info    0x00005d21      0x50f .\CortexM0\ARM_GCC_541\Debug\PathController.a(WDT_ISR.o)
- .debug_info    0x00006230      0x2e9 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS.o)
- .debug_info    0x00006519      0x421 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS_UART.o)
- .debug_info    0x0000693a      0x2e9 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC.o)
- .debug_info    0x00006c23      0x220 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC_SPI_UART.o)
- .debug_info    0x00006e43      0x421 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC_UART.o)
- .debug_info    0x00007264      0x4f4 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS_SCB_IRQ.o)
- .debug_info    0x00007758      0x50b .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC_SCB_IRQ.o)
- .debug_info    0x00007c63       0x89 .\CortexM0\ARM_GCC_541\Debug\PathController.a(CyBootAsmGnu.o)
- .debug_info    0x00007cec      0x350 .\CortexM0\ARM_GCC_541\Debug\PathController.a(CyFlash.o)
- .debug_info    0x0000803c       0xbe .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG_SPI_UART_INT.o)
- .debug_info    0x000080fa      0x220 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS_SPI_UART.o)
- .debug_info    0x0000831a       0xbe .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS_SPI_UART_INT.o)
- .debug_info    0x000083d8       0xbe .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC_SPI_UART_INT.o)
+ .debug_info    0x00000000      0xf73 .\CortexM0\ARM_GCC_541\Debug\main.o
+ .debug_info    0x00000f73      0x4c7 .\CortexM0\ARM_GCC_541\Debug\sanitize.o
+ .debug_info    0x0000143a      0x707 .\CortexM0\ARM_GCC_541\Debug\algorithm.o
+ .debug_info    0x00001b41      0x305 .\CortexM0\ARM_GCC_541\Debug\cordic.o
+ .debug_info    0x00001e46      0x293 .\CortexM0\ARM_GCC_541\Debug\cyfitter_cfg.o
+ .debug_info    0x000020d9       0xf8 .\CortexM0\ARM_GCC_541\Debug\cymetadata.o
+ .debug_info    0x000021d1      0x3a2 .\CortexM0\ARM_GCC_541\Debug\Cm0Start.o
+ .debug_info    0x00002573      0x19d .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED4.o)
+ .debug_info    0x00002710      0x19d .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED3.o)
+ .debug_info    0x000028ad      0x19d .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED2.o)
+ .debug_info    0x00002a4a      0x19d .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED1.o)
+ .debug_info    0x00002be7      0x19d .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED0.o)
+ .debug_info    0x00002d84      0x19b .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED5.o)
+ .debug_info    0x00002f1f      0xd40 .\CortexM0\ARM_GCC_541\Debug\PathController.a(CyLib.o)
+ .debug_info    0x00003c5f     0x1058 .\CortexM0\ARM_GCC_541\Debug\PathController.a(CyLFClk.o)
+ .debug_info    0x00004cb7      0x2e9 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG.o)
+ .debug_info    0x00004fa0      0x220 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG_SPI_UART.o)
+ .debug_info    0x000051c0      0x421 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG_UART.o)
+ .debug_info    0x000055e1      0x504 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG_SCB_IRQ.o)
+ .debug_info    0x00005ae5      0x19d .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED6.o)
+ .debug_info    0x00005c82      0x51f .\CortexM0\ARM_GCC_541\Debug\PathController.a(WDT_ISR.o)
+ .debug_info    0x000061a1      0x2e9 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS.o)
+ .debug_info    0x0000648a      0x421 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS_UART.o)
+ .debug_info    0x000068ab      0x2e9 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC.o)
+ .debug_info    0x00006b94      0x220 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC_SPI_UART.o)
+ .debug_info    0x00006db4      0x421 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC_UART.o)
+ .debug_info    0x000071d5      0x504 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS_SCB_IRQ.o)
+ .debug_info    0x000076d9      0x520 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC_SCB_IRQ.o)
+ .debug_info    0x00007bf9       0x89 .\CortexM0\ARM_GCC_541\Debug\PathController.a(CyBootAsmGnu.o)
+ .debug_info    0x00007c82      0x350 .\CortexM0\ARM_GCC_541\Debug\PathController.a(CyFlash.o)
+ .debug_info    0x00007fd2       0xbe .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG_SPI_UART_INT.o)
+ .debug_info    0x00008090      0x220 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS_SPI_UART.o)
+ .debug_info    0x000082b0       0xbe .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS_SPI_UART_INT.o)
+ .debug_info    0x0000836e       0xbe .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC_SPI_UART_INT.o)
 
-.debug_abbrev   0x00000000     0x29f2
+.debug_abbrev   0x00000000     0x29d1
  *(.debug_abbrev)
- .debug_abbrev  0x00000000      0x2a0 .\CortexM0\ARM_GCC_541\Debug\main.o
- .debug_abbrev  0x000002a0      0x12b .\CortexM0\ARM_GCC_541\Debug\sanitize.o
- .debug_abbrev  0x000003cb      0x1ad .\CortexM0\ARM_GCC_541\Debug\algorithm.o
- .debug_abbrev  0x00000578      0x14e .\CortexM0\ARM_GCC_541\Debug\cordic.o
- .debug_abbrev  0x000006c6      0x166 .\CortexM0\ARM_GCC_541\Debug\cyfitter_cfg.o
- .debug_abbrev  0x0000082c       0x5d .\CortexM0\ARM_GCC_541\Debug\cymetadata.o
- .debug_abbrev  0x00000889      0x1d7 .\CortexM0\ARM_GCC_541\Debug\Cm0Start.o
- .debug_abbrev  0x00000a60       0xc8 .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED4.o)
- .debug_abbrev  0x00000b28       0xc8 .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED3.o)
- .debug_abbrev  0x00000bf0       0xc8 .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED2.o)
- .debug_abbrev  0x00000cb8       0xc8 .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED1.o)
- .debug_abbrev  0x00000d80       0xc8 .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED0.o)
- .debug_abbrev  0x00000e48       0xc8 .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED5.o)
- .debug_abbrev  0x00000f10      0x20b .\CortexM0\ARM_GCC_541\Debug\PathController.a(CyLib.o)
- .debug_abbrev  0x0000111b      0x248 .\CortexM0\ARM_GCC_541\Debug\PathController.a(CyLFClk.o)
- .debug_abbrev  0x00001363      0x118 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG.o)
- .debug_abbrev  0x0000147b      0x14f .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG_SPI_UART.o)
- .debug_abbrev  0x000015ca      0x145 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG_UART.o)
- .debug_abbrev  0x0000170f      0x1fd .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG_SCB_IRQ.o)
- .debug_abbrev  0x0000190c       0xc8 .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED6.o)
- .debug_abbrev  0x000019d4      0x1dd .\CortexM0\ARM_GCC_541\Debug\PathController.a(WDT_ISR.o)
- .debug_abbrev  0x00001bb1      0x118 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS.o)
- .debug_abbrev  0x00001cc9      0x145 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS_UART.o)
- .debug_abbrev  0x00001e0e      0x118 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC.o)
- .debug_abbrev  0x00001f26      0x14f .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC_SPI_UART.o)
- .debug_abbrev  0x00002075      0x145 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC_UART.o)
- .debug_abbrev  0x000021ba      0x1fd .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS_SCB_IRQ.o)
- .debug_abbrev  0x000023b7      0x206 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC_SCB_IRQ.o)
- .debug_abbrev  0x000025bd       0x14 .\CortexM0\ARM_GCC_541\Debug\PathController.a(CyBootAsmGnu.o)
- .debug_abbrev  0x000025d1      0x182 .\CortexM0\ARM_GCC_541\Debug\PathController.a(CyFlash.o)
- .debug_abbrev  0x00002753       0x70 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG_SPI_UART_INT.o)
- .debug_abbrev  0x000027c3      0x14f .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS_SPI_UART.o)
- .debug_abbrev  0x00002912       0x70 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS_SPI_UART_INT.o)
- .debug_abbrev  0x00002982       0x70 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC_SPI_UART_INT.o)
+ .debug_abbrev  0x00000000      0x297 .\CortexM0\ARM_GCC_541\Debug\main.o
+ .debug_abbrev  0x00000297      0x12b .\CortexM0\ARM_GCC_541\Debug\sanitize.o
+ .debug_abbrev  0x000003c2      0x1ad .\CortexM0\ARM_GCC_541\Debug\algorithm.o
+ .debug_abbrev  0x0000056f      0x14e .\CortexM0\ARM_GCC_541\Debug\cordic.o
+ .debug_abbrev  0x000006bd      0x166 .\CortexM0\ARM_GCC_541\Debug\cyfitter_cfg.o
+ .debug_abbrev  0x00000823       0x5d .\CortexM0\ARM_GCC_541\Debug\cymetadata.o
+ .debug_abbrev  0x00000880      0x1d7 .\CortexM0\ARM_GCC_541\Debug\Cm0Start.o
+ .debug_abbrev  0x00000a57       0xc8 .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED4.o)
+ .debug_abbrev  0x00000b1f       0xc8 .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED3.o)
+ .debug_abbrev  0x00000be7       0xc8 .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED2.o)
+ .debug_abbrev  0x00000caf       0xc8 .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED1.o)
+ .debug_abbrev  0x00000d77       0xc8 .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED0.o)
+ .debug_abbrev  0x00000e3f       0xc8 .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED5.o)
+ .debug_abbrev  0x00000f07      0x20b .\CortexM0\ARM_GCC_541\Debug\PathController.a(CyLib.o)
+ .debug_abbrev  0x00001112      0x248 .\CortexM0\ARM_GCC_541\Debug\PathController.a(CyLFClk.o)
+ .debug_abbrev  0x0000135a      0x118 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG.o)
+ .debug_abbrev  0x00001472      0x14f .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG_SPI_UART.o)
+ .debug_abbrev  0x000015c1      0x145 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG_UART.o)
+ .debug_abbrev  0x00001706      0x1fd .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG_SCB_IRQ.o)
+ .debug_abbrev  0x00001903       0xc8 .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED6.o)
+ .debug_abbrev  0x000019cb      0x1dd .\CortexM0\ARM_GCC_541\Debug\PathController.a(WDT_ISR.o)
+ .debug_abbrev  0x00001ba8      0x118 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS.o)
+ .debug_abbrev  0x00001cc0      0x145 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS_UART.o)
+ .debug_abbrev  0x00001e05      0x118 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC.o)
+ .debug_abbrev  0x00001f1d      0x14f .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC_SPI_UART.o)
+ .debug_abbrev  0x0000206c      0x145 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC_UART.o)
+ .debug_abbrev  0x000021b1      0x1fd .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS_SCB_IRQ.o)
+ .debug_abbrev  0x000023ae      0x1ee .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC_SCB_IRQ.o)
+ .debug_abbrev  0x0000259c       0x14 .\CortexM0\ARM_GCC_541\Debug\PathController.a(CyBootAsmGnu.o)
+ .debug_abbrev  0x000025b0      0x182 .\CortexM0\ARM_GCC_541\Debug\PathController.a(CyFlash.o)
+ .debug_abbrev  0x00002732       0x70 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG_SPI_UART_INT.o)
+ .debug_abbrev  0x000027a2      0x14f .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS_SPI_UART.o)
+ .debug_abbrev  0x000028f1       0x70 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS_SPI_UART_INT.o)
+ .debug_abbrev  0x00002961       0x70 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC_SPI_UART_INT.o)
 
-.debug_line     0x00000000     0x3a07
+.debug_line     0x00000000     0x39d3
  *(.debug_line)
- .debug_line    0x00000000      0x5b0 .\CortexM0\ARM_GCC_541\Debug\main.o
- .debug_line    0x000005b0      0x21d .\CortexM0\ARM_GCC_541\Debug\sanitize.o
- .debug_line    0x000007cd      0x137 .\CortexM0\ARM_GCC_541\Debug\algorithm.o
- .debug_line    0x00000904      0x211 .\CortexM0\ARM_GCC_541\Debug\cordic.o
- .debug_line    0x00000b15      0x15b .\CortexM0\ARM_GCC_541\Debug\cyfitter_cfg.o
- .debug_line    0x00000c70      0x11d .\CortexM0\ARM_GCC_541\Debug\cymetadata.o
- .debug_line    0x00000d8d      0x212 .\CortexM0\ARM_GCC_541\Debug\Cm0Start.o
- .debug_line    0x00000f9f       0xbc .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED4.o)
- .debug_line    0x0000105b       0xbc .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED3.o)
- .debug_line    0x00001117       0xbc .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED2.o)
- .debug_line    0x000011d3       0xbc .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED1.o)
- .debug_line    0x0000128f       0xbc .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED0.o)
- .debug_line    0x0000134b       0xbb .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED5.o)
- .debug_line    0x00001406      0x563 .\CortexM0\ARM_GCC_541\Debug\PathController.a(CyLib.o)
- .debug_line    0x00001969      0x5d1 .\CortexM0\ARM_GCC_541\Debug\PathController.a(CyLFClk.o)
- .debug_line    0x00001f3a      0x144 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG.o)
- .debug_line    0x0000207e      0x11e .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG_SPI_UART.o)
- .debug_line    0x0000219c      0x1e9 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG_UART.o)
- .debug_line    0x00002385      0x281 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG_SCB_IRQ.o)
- .debug_line    0x00002606       0xbc .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED6.o)
- .debug_line    0x000026c2      0x248 .\CortexM0\ARM_GCC_541\Debug\PathController.a(WDT_ISR.o)
- .debug_line    0x0000290a      0x144 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS.o)
- .debug_line    0x00002a4e      0x1e9 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS_UART.o)
- .debug_line    0x00002c37      0x142 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC.o)
- .debug_line    0x00002d79      0x11d .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC_SPI_UART.o)
- .debug_line    0x00002e96      0x1e6 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC_UART.o)
- .debug_line    0x0000307c      0x283 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS_SCB_IRQ.o)
- .debug_line    0x000032ff      0x282 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC_SCB_IRQ.o)
- .debug_line    0x00003581       0x68 .\CortexM0\ARM_GCC_541\Debug\PathController.a(CyBootAsmGnu.o)
- .debug_line    0x000035e9      0x173 .\CortexM0\ARM_GCC_541\Debug\PathController.a(CyFlash.o)
- .debug_line    0x0000375c       0x85 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG_SPI_UART_INT.o)
- .debug_line    0x000037e1      0x11e .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS_SPI_UART.o)
- .debug_line    0x000038ff       0x85 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS_SPI_UART_INT.o)
- .debug_line    0x00003984       0x83 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC_SPI_UART_INT.o)
+ .debug_line    0x00000000      0x57c .\CortexM0\ARM_GCC_541\Debug\main.o
+ .debug_line    0x0000057c      0x21d .\CortexM0\ARM_GCC_541\Debug\sanitize.o
+ .debug_line    0x00000799      0x137 .\CortexM0\ARM_GCC_541\Debug\algorithm.o
+ .debug_line    0x000008d0      0x211 .\CortexM0\ARM_GCC_541\Debug\cordic.o
+ .debug_line    0x00000ae1      0x15b .\CortexM0\ARM_GCC_541\Debug\cyfitter_cfg.o
+ .debug_line    0x00000c3c      0x11d .\CortexM0\ARM_GCC_541\Debug\cymetadata.o
+ .debug_line    0x00000d59      0x212 .\CortexM0\ARM_GCC_541\Debug\Cm0Start.o
+ .debug_line    0x00000f6b       0xbc .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED4.o)
+ .debug_line    0x00001027       0xbc .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED3.o)
+ .debug_line    0x000010e3       0xbc .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED2.o)
+ .debug_line    0x0000119f       0xbc .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED1.o)
+ .debug_line    0x0000125b       0xbc .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED0.o)
+ .debug_line    0x00001317       0xbb .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED5.o)
+ .debug_line    0x000013d2      0x563 .\CortexM0\ARM_GCC_541\Debug\PathController.a(CyLib.o)
+ .debug_line    0x00001935      0x5d1 .\CortexM0\ARM_GCC_541\Debug\PathController.a(CyLFClk.o)
+ .debug_line    0x00001f06      0x144 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG.o)
+ .debug_line    0x0000204a      0x11e .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG_SPI_UART.o)
+ .debug_line    0x00002168      0x1e9 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG_UART.o)
+ .debug_line    0x00002351      0x281 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG_SCB_IRQ.o)
+ .debug_line    0x000025d2       0xbc .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED6.o)
+ .debug_line    0x0000268e      0x248 .\CortexM0\ARM_GCC_541\Debug\PathController.a(WDT_ISR.o)
+ .debug_line    0x000028d6      0x144 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS.o)
+ .debug_line    0x00002a1a      0x1e9 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS_UART.o)
+ .debug_line    0x00002c03      0x142 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC.o)
+ .debug_line    0x00002d45      0x11d .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC_SPI_UART.o)
+ .debug_line    0x00002e62      0x1e6 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC_UART.o)
+ .debug_line    0x00003048      0x284 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS_SCB_IRQ.o)
+ .debug_line    0x000032cc      0x281 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC_SCB_IRQ.o)
+ .debug_line    0x0000354d       0x68 .\CortexM0\ARM_GCC_541\Debug\PathController.a(CyBootAsmGnu.o)
+ .debug_line    0x000035b5      0x173 .\CortexM0\ARM_GCC_541\Debug\PathController.a(CyFlash.o)
+ .debug_line    0x00003728       0x85 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG_SPI_UART_INT.o)
+ .debug_line    0x000037ad      0x11e .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS_SPI_UART.o)
+ .debug_line    0x000038cb       0x85 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS_SPI_UART_INT.o)
+ .debug_line    0x00003950       0x83 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC_SPI_UART_INT.o)
 
-.debug_frame    0x00000000     0x25ac
+.debug_frame    0x00000000     0x25a4
  *(.debug_frame)
- .debug_frame   0x00000000      0x290 .\CortexM0\ARM_GCC_541\Debug\main.o
- .debug_frame   0x00000290       0x60 .\CortexM0\ARM_GCC_541\Debug\sanitize.o
- .debug_frame   0x000002f0       0x98 .\CortexM0\ARM_GCC_541\Debug\algorithm.o
- .debug_frame   0x00000388       0x9c .\CortexM0\ARM_GCC_541\Debug\cordic.o
- .debug_frame   0x00000424       0x74 .\CortexM0\ARM_GCC_541\Debug\cyfitter_cfg.o
- .debug_frame   0x00000498       0xbc .\CortexM0\ARM_GCC_541\Debug\Cm0Start.o
- .debug_frame   0x00000554       0x70 .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED4.o)
- .debug_frame   0x000005c4       0x70 .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED3.o)
- .debug_frame   0x00000634       0x70 .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED2.o)
- .debug_frame   0x000006a4       0x70 .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED1.o)
- .debug_frame   0x00000714       0x70 .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED0.o)
- .debug_frame   0x00000784       0x70 .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED5.o)
- .debug_frame   0x000007f4      0x48c .\CortexM0\ARM_GCC_541\Debug\PathController.a(CyLib.o)
- .debug_frame   0x00000c80      0x4a4 .\CortexM0\ARM_GCC_541\Debug\PathController.a(CyLFClk.o)
- .debug_frame   0x00001124      0x104 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG.o)
- .debug_frame   0x00001228       0xb0 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG_SPI_UART.o)
- .debug_frame   0x000012d8      0x154 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG_UART.o)
- .debug_frame   0x0000142c      0x120 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG_SCB_IRQ.o)
- .debug_frame   0x0000154c       0x70 .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED6.o)
- .debug_frame   0x000015bc      0x11c .\CortexM0\ARM_GCC_541\Debug\PathController.a(WDT_ISR.o)
- .debug_frame   0x000016d8      0x104 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS.o)
- .debug_frame   0x000017dc      0x154 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS_UART.o)
- .debug_frame   0x00001930      0x104 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC.o)
- .debug_frame   0x00001a34       0xb0 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC_SPI_UART.o)
- .debug_frame   0x00001ae4      0x154 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC_UART.o)
- .debug_frame   0x00001c38      0x120 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS_SCB_IRQ.o)
- .debug_frame   0x00001d58      0x120 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC_SCB_IRQ.o)
- .debug_frame   0x00001e78       0x90 .\CortexM0\ARM_GCC_541\Debug\PathController.a(CyFlash.o)
- .debug_frame   0x00001f08       0x2c .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG_SPI_UART_INT.o)
- .debug_frame   0x00001f34       0xb0 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS_SPI_UART.o)
- .debug_frame   0x00001fe4       0x2c .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS_SPI_UART_INT.o)
- .debug_frame   0x00002010       0x2c .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC_SPI_UART_INT.o)
- .debug_frame   0x0000203c       0x38 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libm.a(lib_a-w_fmod.o)
- .debug_frame   0x00002074       0x38 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libm.a(lib_a-w_sqrt.o)
- .debug_frame   0x000020ac       0x3c e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libm.a(lib_a-e_fmod.o)
- .debug_frame   0x000020e8       0x3c e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libm.a(lib_a-e_sqrt.o)
- .debug_frame   0x00002124       0x20 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libm.a(lib_a-s_matherr.o)
- .debug_frame   0x00002144       0x20 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_udivsi3.o)
- .debug_frame   0x00002164       0x20 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_divsi3.o)
- .debug_frame   0x00002184       0x2c e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_fixunsdfsi.o)
- .debug_frame   0x000021b0       0x3c e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(adddf3.o)
- .debug_frame   0x000021ec       0x3c e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(divdf3.o)
- .debug_frame   0x00002228       0x38 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(eqdf2.o)
- .debug_frame   0x00002260       0x38 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(gedf2.o)
- .debug_frame   0x00002298       0x38 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(ledf2.o)
- .debug_frame   0x000022d0       0x3c e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(muldf3.o)
- .debug_frame   0x0000230c       0x38 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(subdf3.o)
- .debug_frame   0x00002344       0x2c e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(unorddf2.o)
- .debug_frame   0x00002370       0x2c e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(fixdfsi.o)
- .debug_frame   0x0000239c       0x2c e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(floatsidf.o)
- .debug_frame   0x000023c8       0x2c e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(floatunsidf.o)
- .debug_frame   0x000023f4       0x20 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-errno.o)
- .debug_frame   0x00002414       0x28 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-exit.o)
- .debug_frame   0x0000243c       0x2c e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-init.o)
- .debug_frame   0x00002468       0x28 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-memcpy-stub.o)
- .debug_frame   0x00002490       0x20 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-memset.o)
- .debug_frame   0x000024b0       0x20 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-strchr.o)
- .debug_frame   0x000024d0       0x20 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-strcmp.o)
- .debug_frame   0x000024f0       0x2c e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-strncpy.o)
- .debug_frame   0x0000251c       0x48 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-strtok_r.o)
- .debug_frame   0x00002564       0x48 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-strtol.o)
+ .debug_frame   0x00000000      0x288 .\CortexM0\ARM_GCC_541\Debug\main.o
+ .debug_frame   0x00000288       0x60 .\CortexM0\ARM_GCC_541\Debug\sanitize.o
+ .debug_frame   0x000002e8       0x98 .\CortexM0\ARM_GCC_541\Debug\algorithm.o
+ .debug_frame   0x00000380       0x9c .\CortexM0\ARM_GCC_541\Debug\cordic.o
+ .debug_frame   0x0000041c       0x74 .\CortexM0\ARM_GCC_541\Debug\cyfitter_cfg.o
+ .debug_frame   0x00000490       0xbc .\CortexM0\ARM_GCC_541\Debug\Cm0Start.o
+ .debug_frame   0x0000054c       0x70 .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED4.o)
+ .debug_frame   0x000005bc       0x70 .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED3.o)
+ .debug_frame   0x0000062c       0x70 .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED2.o)
+ .debug_frame   0x0000069c       0x70 .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED1.o)
+ .debug_frame   0x0000070c       0x70 .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED0.o)
+ .debug_frame   0x0000077c       0x70 .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED5.o)
+ .debug_frame   0x000007ec      0x48c .\CortexM0\ARM_GCC_541\Debug\PathController.a(CyLib.o)
+ .debug_frame   0x00000c78      0x4a4 .\CortexM0\ARM_GCC_541\Debug\PathController.a(CyLFClk.o)
+ .debug_frame   0x0000111c      0x104 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG.o)
+ .debug_frame   0x00001220       0xb0 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG_SPI_UART.o)
+ .debug_frame   0x000012d0      0x154 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG_UART.o)
+ .debug_frame   0x00001424      0x120 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG_SCB_IRQ.o)
+ .debug_frame   0x00001544       0x70 .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED6.o)
+ .debug_frame   0x000015b4      0x11c .\CortexM0\ARM_GCC_541\Debug\PathController.a(WDT_ISR.o)
+ .debug_frame   0x000016d0      0x104 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS.o)
+ .debug_frame   0x000017d4      0x154 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS_UART.o)
+ .debug_frame   0x00001928      0x104 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC.o)
+ .debug_frame   0x00001a2c       0xb0 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC_SPI_UART.o)
+ .debug_frame   0x00001adc      0x154 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC_UART.o)
+ .debug_frame   0x00001c30      0x120 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS_SCB_IRQ.o)
+ .debug_frame   0x00001d50      0x120 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC_SCB_IRQ.o)
+ .debug_frame   0x00001e70       0x90 .\CortexM0\ARM_GCC_541\Debug\PathController.a(CyFlash.o)
+ .debug_frame   0x00001f00       0x2c .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG_SPI_UART_INT.o)
+ .debug_frame   0x00001f2c       0xb0 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS_SPI_UART.o)
+ .debug_frame   0x00001fdc       0x2c .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS_SPI_UART_INT.o)
+ .debug_frame   0x00002008       0x2c .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC_SPI_UART_INT.o)
+ .debug_frame   0x00002034       0x38 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libm.a(lib_a-w_fmod.o)
+ .debug_frame   0x0000206c       0x38 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libm.a(lib_a-w_sqrt.o)
+ .debug_frame   0x000020a4       0x3c e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libm.a(lib_a-e_fmod.o)
+ .debug_frame   0x000020e0       0x3c e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libm.a(lib_a-e_sqrt.o)
+ .debug_frame   0x0000211c       0x20 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libm.a(lib_a-s_matherr.o)
+ .debug_frame   0x0000213c       0x20 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_udivsi3.o)
+ .debug_frame   0x0000215c       0x20 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_divsi3.o)
+ .debug_frame   0x0000217c       0x2c e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_fixunsdfsi.o)
+ .debug_frame   0x000021a8       0x3c e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(adddf3.o)
+ .debug_frame   0x000021e4       0x3c e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(divdf3.o)
+ .debug_frame   0x00002220       0x38 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(eqdf2.o)
+ .debug_frame   0x00002258       0x38 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(gedf2.o)
+ .debug_frame   0x00002290       0x38 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(ledf2.o)
+ .debug_frame   0x000022c8       0x3c e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(muldf3.o)
+ .debug_frame   0x00002304       0x38 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(subdf3.o)
+ .debug_frame   0x0000233c       0x2c e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(unorddf2.o)
+ .debug_frame   0x00002368       0x2c e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(fixdfsi.o)
+ .debug_frame   0x00002394       0x2c e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(floatsidf.o)
+ .debug_frame   0x000023c0       0x2c e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(floatunsidf.o)
+ .debug_frame   0x000023ec       0x20 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-errno.o)
+ .debug_frame   0x0000240c       0x28 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-exit.o)
+ .debug_frame   0x00002434       0x2c e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-init.o)
+ .debug_frame   0x00002460       0x28 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-memcpy-stub.o)
+ .debug_frame   0x00002488       0x20 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-memset.o)
+ .debug_frame   0x000024a8       0x20 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-strchr.o)
+ .debug_frame   0x000024c8       0x20 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-strcmp.o)
+ .debug_frame   0x000024e8       0x2c e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-strncpy.o)
+ .debug_frame   0x00002514       0x48 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-strtok_r.o)
+ .debug_frame   0x0000255c       0x48 e:/acads/uwm/psoc creator/4.4/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-strtol.o)
 
-.debug_str      0x00000000     0x2f9f
+.debug_str      0x00000000     0x2f90
  *(.debug_str)
- .debug_str     0x00000000      0x6bd .\CortexM0\ARM_GCC_541\Debug\main.o
-                                0x7c6 (size before relaxing)
- .debug_str     0x000006bd       0xcf .\CortexM0\ARM_GCC_541\Debug\sanitize.o
+ .debug_str     0x00000000      0x682 .\CortexM0\ARM_GCC_541\Debug\main.o
+                                0x778 (size before relaxing)
+ .debug_str     0x00000682       0xcf .\CortexM0\ARM_GCC_541\Debug\sanitize.o
                                 0x291 (size before relaxing)
- .debug_str     0x0000078c      0x22d .\CortexM0\ARM_GCC_541\Debug\algorithm.o
+ .debug_str     0x00000751      0x259 .\CortexM0\ARM_GCC_541\Debug\algorithm.o
                                 0x461 (size before relaxing)
- .debug_str     0x000009b9       0x8e .\CortexM0\ARM_GCC_541\Debug\cordic.o
+ .debug_str     0x000009aa       0x8e .\CortexM0\ARM_GCC_541\Debug\cordic.o
                                 0x236 (size before relaxing)
- .debug_str     0x00000a47       0xbc .\CortexM0\ARM_GCC_541\Debug\cyfitter_cfg.o
+ .debug_str     0x00000a38       0xbc .\CortexM0\ARM_GCC_541\Debug\cyfitter_cfg.o
                                 0x258 (size before relaxing)
- .debug_str     0x00000b03       0x59 .\CortexM0\ARM_GCC_541\Debug\cymetadata.o
+ .debug_str     0x00000af4       0x59 .\CortexM0\ARM_GCC_541\Debug\cymetadata.o
                                 0x1c1 (size before relaxing)
- .debug_str     0x00000b5c      0x135 .\CortexM0\ARM_GCC_541\Debug\Cm0Start.o
+ .debug_str     0x00000b4d      0x135 .\CortexM0\ARM_GCC_541\Debug\Cm0Start.o
                                 0x2fa (size before relaxing)
- .debug_str     0x00000c91       0x9e .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED4.o)
+ .debug_str     0x00000c82       0x9e .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED4.o)
                                 0x228 (size before relaxing)
- .debug_str     0x00000d2f       0x75 .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED3.o)
+ .debug_str     0x00000d20       0x75 .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED3.o)
                                 0x228 (size before relaxing)
- .debug_str     0x00000da4       0x75 .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED2.o)
+ .debug_str     0x00000d95       0x75 .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED2.o)
                                 0x228 (size before relaxing)
- .debug_str     0x00000e19       0x75 .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED1.o)
+ .debug_str     0x00000e0a       0x75 .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED1.o)
                                 0x228 (size before relaxing)
- .debug_str     0x00000e8e       0x75 .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED0.o)
+ .debug_str     0x00000e7f       0x75 .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED0.o)
                                 0x228 (size before relaxing)
- .debug_str     0x00000f03       0x75 .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED5.o)
+ .debug_str     0x00000ef4       0x75 .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED5.o)
                                 0x228 (size before relaxing)
- .debug_str     0x00000f78      0x60b .\CortexM0\ARM_GCC_541\Debug\PathController.a(CyLib.o)
+ .debug_str     0x00000f69      0x60b .\CortexM0\ARM_GCC_541\Debug\PathController.a(CyLib.o)
                                 0x7f6 (size before relaxing)
- .debug_str     0x00001583      0x6da .\CortexM0\ARM_GCC_541\Debug\PathController.a(CyLFClk.o)
+ .debug_str     0x00001574      0x6da .\CortexM0\ARM_GCC_541\Debug\PathController.a(CyLFClk.o)
                                 0x916 (size before relaxing)
- .debug_str     0x00001c5d      0x185 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG.o)
+ .debug_str     0x00001c4e      0x185 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG.o)
                                 0x34d (size before relaxing)
- .debug_str     0x00001de2      0x141 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG_SPI_UART.o)
+ .debug_str     0x00001dd3      0x141 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG_SPI_UART.o)
                                 0x2ef (size before relaxing)
- .debug_str     0x00001f23      0x1c6 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG_UART.o)
+ .debug_str     0x00001f14      0x1c6 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG_UART.o)
                                 0x444 (size before relaxing)
- .debug_str     0x000020e9      0x183 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG_SCB_IRQ.o)
+ .debug_str     0x000020da      0x183 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG_SCB_IRQ.o)
                                 0x4f2 (size before relaxing)
- .debug_str     0x0000226c       0x75 .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED6.o)
+ .debug_str     0x0000225d       0x75 .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED6.o)
                                 0x228 (size before relaxing)
- .debug_str     0x000022e1       0xf4 .\CortexM0\ARM_GCC_541\Debug\PathController.a(WDT_ISR.o)
+ .debug_str     0x000022d2       0xf4 .\CortexM0\ARM_GCC_541\Debug\PathController.a(WDT_ISR.o)
                                 0x481 (size before relaxing)
- .debug_str     0x000023d5      0x164 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS.o)
+ .debug_str     0x000023c6      0x164 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS.o)
                                 0x34d (size before relaxing)
- .debug_str     0x00002539      0x1af .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS_UART.o)
+ .debug_str     0x0000252a      0x1af .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS_UART.o)
                                 0x444 (size before relaxing)
- .debug_str     0x000026e8      0x154 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC.o)
+ .debug_str     0x000026d9      0x154 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC.o)
                                 0x33c (size before relaxing)
- .debug_str     0x0000283c      0x10c .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC_SPI_UART.o)
+ .debug_str     0x0000282d      0x10c .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC_SPI_UART.o)
                                 0x2e5 (size before relaxing)
- .debug_str     0x00002948      0x14b .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC_UART.o)
+ .debug_str     0x00002939      0x14b .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC_UART.o)
                                 0x430 (size before relaxing)
- .debug_str     0x00002a93      0x169 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS_SCB_IRQ.o)
+ .debug_str     0x00002a84      0x169 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS_SCB_IRQ.o)
                                 0x4f2 (size before relaxing)
- .debug_str     0x00002bfc      0x15c .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC_SCB_IRQ.o)
+ .debug_str     0x00002bed      0x15c .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC_SCB_IRQ.o)
                                 0x4e2 (size before relaxing)
- .debug_str     0x00002d58       0xa0 .\CortexM0\ARM_GCC_541\Debug\PathController.a(CyFlash.o)
+ .debug_str     0x00002d49       0xa0 .\CortexM0\ARM_GCC_541\Debug\PathController.a(CyFlash.o)
                                 0x2a9 (size before relaxing)
- .debug_str     0x00002df8       0x45 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG_SPI_UART_INT.o)
+ .debug_str     0x00002de9       0x45 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG_SPI_UART_INT.o)
                                 0x1e1 (size before relaxing)
- .debug_str     0x00002e3d       0xda .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS_SPI_UART.o)
+ .debug_str     0x00002e2e       0xda .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS_SPI_UART.o)
                                 0x2ef (size before relaxing)
- .debug_str     0x00002f17       0x45 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS_SPI_UART_INT.o)
+ .debug_str     0x00002f08       0x45 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS_SPI_UART_INT.o)
                                 0x1e1 (size before relaxing)
- .debug_str     0x00002f5c       0x43 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC_SPI_UART_INT.o)
+ .debug_str     0x00002f4d       0x43 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC_SPI_UART_INT.o)
                                 0x1de (size before relaxing)
 
-.debug_loc      0x00000000     0x3b95
+.debug_loc      0x00000000     0x3b57
  *(.debug_loc)
- .debug_loc     0x00000000      0x6c4 .\CortexM0\ARM_GCC_541\Debug\main.o
- .debug_loc     0x000006c4      0x20e .\CortexM0\ARM_GCC_541\Debug\sanitize.o
- .debug_loc     0x000008d2      0x42a .\CortexM0\ARM_GCC_541\Debug\algorithm.o
- .debug_loc     0x00000cfc      0x413 .\CortexM0\ARM_GCC_541\Debug\cordic.o
- .debug_loc     0x0000110f       0xa9 .\CortexM0\ARM_GCC_541\Debug\cyfitter_cfg.o
- .debug_loc     0x000011b8      0x14f .\CortexM0\ARM_GCC_541\Debug\Cm0Start.o
- .debug_loc     0x00001307       0xa2 .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED4.o)
- .debug_loc     0x000013a9       0xa2 .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED3.o)
- .debug_loc     0x0000144b       0xa2 .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED2.o)
- .debug_loc     0x000014ed       0xa2 .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED1.o)
- .debug_loc     0x0000158f       0xa2 .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED0.o)
- .debug_loc     0x00001631       0x81 .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED5.o)
- .debug_loc     0x000016b2      0x81c .\CortexM0\ARM_GCC_541\Debug\PathController.a(CyLib.o)
- .debug_loc     0x00001ece      0xdb7 .\CortexM0\ARM_GCC_541\Debug\PathController.a(CyLFClk.o)
- .debug_loc     0x00002c85       0x7e .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG.o)
- .debug_loc     0x00002d03       0x96 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG_SPI_UART.o)
- .debug_loc     0x00002d99      0x223 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG_UART.o)
- .debug_loc     0x00002fbc       0xeb .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG_SCB_IRQ.o)
- .debug_loc     0x000030a7       0xa2 .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED6.o)
- .debug_loc     0x00003149       0xa0 .\CortexM0\ARM_GCC_541\Debug\PathController.a(WDT_ISR.o)
- .debug_loc     0x000031e9       0x7e .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS.o)
- .debug_loc     0x00003267      0x223 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS_UART.o)
- .debug_loc     0x0000348a       0x7e .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC.o)
- .debug_loc     0x00003508       0x96 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC_SPI_UART.o)
- .debug_loc     0x0000359e      0x223 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC_UART.o)
- .debug_loc     0x000037c1       0xf6 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS_SCB_IRQ.o)
- .debug_loc     0x000038b7       0xe8 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC_SCB_IRQ.o)
- .debug_loc     0x0000399f      0x160 .\CortexM0\ARM_GCC_541\Debug\PathController.a(CyFlash.o)
- .debug_loc     0x00003aff       0x96 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS_SPI_UART.o)
+ .debug_loc     0x00000000      0x685 .\CortexM0\ARM_GCC_541\Debug\main.o
+ .debug_loc     0x00000685      0x20e .\CortexM0\ARM_GCC_541\Debug\sanitize.o
+ .debug_loc     0x00000893      0x42a .\CortexM0\ARM_GCC_541\Debug\algorithm.o
+ .debug_loc     0x00000cbd      0x413 .\CortexM0\ARM_GCC_541\Debug\cordic.o
+ .debug_loc     0x000010d0       0xa9 .\CortexM0\ARM_GCC_541\Debug\cyfitter_cfg.o
+ .debug_loc     0x00001179      0x14f .\CortexM0\ARM_GCC_541\Debug\Cm0Start.o
+ .debug_loc     0x000012c8       0xa2 .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED4.o)
+ .debug_loc     0x0000136a       0xa2 .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED3.o)
+ .debug_loc     0x0000140c       0xa2 .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED2.o)
+ .debug_loc     0x000014ae       0xa2 .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED1.o)
+ .debug_loc     0x00001550       0xa2 .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED0.o)
+ .debug_loc     0x000015f2       0x81 .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED5.o)
+ .debug_loc     0x00001673      0x81c .\CortexM0\ARM_GCC_541\Debug\PathController.a(CyLib.o)
+ .debug_loc     0x00001e8f      0xdb7 .\CortexM0\ARM_GCC_541\Debug\PathController.a(CyLFClk.o)
+ .debug_loc     0x00002c46       0x7e .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG.o)
+ .debug_loc     0x00002cc4       0x96 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG_SPI_UART.o)
+ .debug_loc     0x00002d5a      0x223 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG_UART.o)
+ .debug_loc     0x00002f7d       0xeb .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG_SCB_IRQ.o)
+ .debug_loc     0x00003068       0xa2 .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED6.o)
+ .debug_loc     0x0000310a       0xa0 .\CortexM0\ARM_GCC_541\Debug\PathController.a(WDT_ISR.o)
+ .debug_loc     0x000031aa       0x7e .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS.o)
+ .debug_loc     0x00003228      0x223 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS_UART.o)
+ .debug_loc     0x0000344b       0x7e .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC.o)
+ .debug_loc     0x000034c9       0x96 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC_SPI_UART.o)
+ .debug_loc     0x0000355f      0x223 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC_UART.o)
+ .debug_loc     0x00003782       0xf6 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS_SCB_IRQ.o)
+ .debug_loc     0x00003878       0xe9 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC_SCB_IRQ.o)
+ .debug_loc     0x00003961      0x160 .\CortexM0\ARM_GCC_541\Debug\PathController.a(CyFlash.o)
+ .debug_loc     0x00003ac1       0x96 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS_SPI_UART.o)
 
 .debug_macinfo
  *(.debug_macinfo)
 
-.debug_ranges   0x00000000      0xbf8
+.debug_ranges   0x00000000      0xbc8
  *(.debug_ranges)
- .debug_ranges  0x00000000       0xc8 .\CortexM0\ARM_GCC_541\Debug\main.o
- .debug_ranges  0x000000c8       0x18 .\CortexM0\ARM_GCC_541\Debug\sanitize.o
- .debug_ranges  0x000000e0       0x28 .\CortexM0\ARM_GCC_541\Debug\algorithm.o
- .debug_ranges  0x00000108       0x28 .\CortexM0\ARM_GCC_541\Debug\cordic.o
- .debug_ranges  0x00000130       0x28 .\CortexM0\ARM_GCC_541\Debug\cyfitter_cfg.o
- .debug_ranges  0x00000158       0x38 .\CortexM0\ARM_GCC_541\Debug\Cm0Start.o
- .debug_ranges  0x00000190       0x38 .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED4.o)
- .debug_ranges  0x000001c8       0x38 .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED3.o)
- .debug_ranges  0x00000200       0x38 .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED2.o)
- .debug_ranges  0x00000238       0x38 .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED1.o)
- .debug_ranges  0x00000270       0x38 .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED0.o)
- .debug_ranges  0x000002a8       0x38 .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED5.o)
- .debug_ranges  0x000002e0      0x1b8 .\CortexM0\ARM_GCC_541\Debug\PathController.a(CyLib.o)
- .debug_ranges  0x00000498      0x178 .\CortexM0\ARM_GCC_541\Debug\PathController.a(CyLFClk.o)
- .debug_ranges  0x00000610       0x58 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG.o)
- .debug_ranges  0x00000668       0x50 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG_SPI_UART.o)
- .debug_ranges  0x000006b8       0x80 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG_UART.o)
- .debug_ranges  0x00000738       0x70 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG_SCB_IRQ.o)
- .debug_ranges  0x000007a8       0x38 .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED6.o)
- .debug_ranges  0x000007e0       0x70 .\CortexM0\ARM_GCC_541\Debug\PathController.a(WDT_ISR.o)
- .debug_ranges  0x00000850       0x58 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS.o)
- .debug_ranges  0x000008a8       0x80 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS_UART.o)
- .debug_ranges  0x00000928       0x58 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC.o)
- .debug_ranges  0x00000980       0x50 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC_SPI_UART.o)
- .debug_ranges  0x000009d0       0x80 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC_UART.o)
- .debug_ranges  0x00000a50       0x70 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS_SCB_IRQ.o)
- .debug_ranges  0x00000ac0       0x88 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC_SCB_IRQ.o)
- .debug_ranges  0x00000b48       0x30 .\CortexM0\ARM_GCC_541\Debug\PathController.a(CyFlash.o)
- .debug_ranges  0x00000b78       0x10 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG_SPI_UART_INT.o)
- .debug_ranges  0x00000b88       0x50 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS_SPI_UART.o)
- .debug_ranges  0x00000bd8       0x10 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS_SPI_UART_INT.o)
- .debug_ranges  0x00000be8       0x10 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC_SPI_UART_INT.o)
+ .debug_ranges  0x00000000       0xb0 .\CortexM0\ARM_GCC_541\Debug\main.o
+ .debug_ranges  0x000000b0       0x18 .\CortexM0\ARM_GCC_541\Debug\sanitize.o
+ .debug_ranges  0x000000c8       0x28 .\CortexM0\ARM_GCC_541\Debug\algorithm.o
+ .debug_ranges  0x000000f0       0x28 .\CortexM0\ARM_GCC_541\Debug\cordic.o
+ .debug_ranges  0x00000118       0x28 .\CortexM0\ARM_GCC_541\Debug\cyfitter_cfg.o
+ .debug_ranges  0x00000140       0x38 .\CortexM0\ARM_GCC_541\Debug\Cm0Start.o
+ .debug_ranges  0x00000178       0x38 .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED4.o)
+ .debug_ranges  0x000001b0       0x38 .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED3.o)
+ .debug_ranges  0x000001e8       0x38 .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED2.o)
+ .debug_ranges  0x00000220       0x38 .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED1.o)
+ .debug_ranges  0x00000258       0x38 .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED0.o)
+ .debug_ranges  0x00000290       0x38 .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED5.o)
+ .debug_ranges  0x000002c8      0x1b8 .\CortexM0\ARM_GCC_541\Debug\PathController.a(CyLib.o)
+ .debug_ranges  0x00000480      0x178 .\CortexM0\ARM_GCC_541\Debug\PathController.a(CyLFClk.o)
+ .debug_ranges  0x000005f8       0x58 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG.o)
+ .debug_ranges  0x00000650       0x50 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG_SPI_UART.o)
+ .debug_ranges  0x000006a0       0x80 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG_UART.o)
+ .debug_ranges  0x00000720       0x70 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG_SCB_IRQ.o)
+ .debug_ranges  0x00000790       0x38 .\CortexM0\ARM_GCC_541\Debug\PathController.a(LED6.o)
+ .debug_ranges  0x000007c8       0x70 .\CortexM0\ARM_GCC_541\Debug\PathController.a(WDT_ISR.o)
+ .debug_ranges  0x00000838       0x58 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS.o)
+ .debug_ranges  0x00000890       0x80 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS_UART.o)
+ .debug_ranges  0x00000910       0x58 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC.o)
+ .debug_ranges  0x00000968       0x50 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC_SPI_UART.o)
+ .debug_ranges  0x000009b8       0x80 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC_UART.o)
+ .debug_ranges  0x00000a38       0x70 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS_SCB_IRQ.o)
+ .debug_ranges  0x00000aa8       0x70 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC_SCB_IRQ.o)
+ .debug_ranges  0x00000b18       0x30 .\CortexM0\ARM_GCC_541\Debug\PathController.a(CyFlash.o)
+ .debug_ranges  0x00000b48       0x10 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_DBG_SPI_UART_INT.o)
+ .debug_ranges  0x00000b58       0x50 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS_SPI_UART.o)
+ .debug_ranges  0x00000ba8       0x10 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_GPS_SPI_UART_INT.o)
+ .debug_ranges  0x00000bb8       0x10 .\CortexM0\ARM_GCC_541\Debug\PathController.a(UART_FC_SPI_UART_INT.o)
 
 .comment        0x00000000       0x6e
  .comment       0x00000000       0x6e .\CortexM0\ARM_GCC_541\Debug\main.o

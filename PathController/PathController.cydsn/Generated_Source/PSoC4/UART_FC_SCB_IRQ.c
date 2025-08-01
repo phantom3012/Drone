@@ -169,34 +169,43 @@ CY_ISR(UART_FC_SCB_IRQ_Interrupt)
     uint8_t buff_depth,x;
     
     buff_depth = UART_FC_SpiUartGetRxBufferSize();
-    
+
     for (x=0; x<buff_depth; x++)
-      rx_bytes_FC_buff[num_rx_bytes_FC_buff++] = UART_FC_UartGetByte();
+      rx_bytes_FC[num_rx_bytes_FC++] = UART_FC_UartGetByte();
     
     UART_FC_ClearRxInterruptSource(0xFF);
 
-    if (rx_bytes_FC_buff[num_rx_bytes_FC_buff-1]==0x0D) {             // if it was a carriage return
-        for(uint8_t i=0; i<5; i++){
-            rx_bytes_FC[i] = rx_bytes_FC_buff[i];
-        }
-        rx_bytes_FC[5] = '\0';
-        num_rx_bytes_FC = 6;
-        num_rx_bytes_FC_buff = 0;
+    if (num_rx_bytes_FC==6) {             // packets from FC are always 5 in length
         enqueue_task(FC_PCKT_PROC,2);
+        num_rx_bytes_FC = 0;
+        for (uint8_t i = 0; i < num_rx_bytes_FC; i++){
+            rx_bytes_FC[i] = 0;
+        }
     }
-    
-    // if (num_rx_bytes_FC==6) {             // packets from FC are always 5 in length (appending \0 for debug purposes)
-    //     rx_bytes_FC[num_rx_bytes_FC-1] = '\0';
-    //     enqueue_task(FC_PCKT_PROC,2);
-    //     num_rx_bytes_FC = 0;
-    // } else {
-    //     for(uint8_t i=5; i<num_rx_bytes_FC; i++){
-    //         rx_bytes_FC[i] = '\0';
-    //     }
-    //     enqueue_task(FC_PCKT_PROC,2);
-    //     num_rx_bytes_FC = 0;
-    // }
-    /* `#END` */
+
+    //if (rx_bytes_FC_buff[num_rx_bytes_FC_buff-1]==0x0D) {             // if it was a carriage return
+        //for(uint8_t i=0; i<5; i++)
+            //rx_bytes_FC[i] = rx_bytes_FC_buff[i];
+        //rx_bytes_FC[5] = '\0';
+        //num_rx_bytes_FC = 5;
+        //num_rx_bytes_FC_buff = 0;
+        //enqueue_task(FC_PCKT_PROC,2);
+       // num_rx_bytes_FC = 0;
+        //num_rx_bytes_FC_buff = 0;
+        //}
+
+        // if (num_rx_bytes_FC==6) {             // packets from FC are always 5 in length (appending \0 for debug purposes)
+        //     rx_bytes_FC[num_rx_bytes_FC-1] = '\0';
+        //     enqueue_task(FC_PCKT_PROC,2);
+        //     num_rx_bytes_FC = 0;
+        // } else {
+        //     for(uint8_t i=5; i<num_rx_bytes_FC; i++){
+        //         rx_bytes_FC[i] = '\0';
+        //     }
+        //     enqueue_task(FC_PCKT_PROC,2);
+        //     num_rx_bytes_FC = 0;
+        // }
+        /* `#END` */
 }
 
 

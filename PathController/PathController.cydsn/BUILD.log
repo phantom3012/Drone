@@ -1,4 +1,4 @@
---------------- Build Started: 07/31/2025 19:31:54 Project: PathController, Configuration: ARM GCC 5.4-2016-q2-update Debug ---------------
+--------------- Build Started: 08/01/2025 10:43:40 Project: PathController, Configuration: ARM GCC 5.4-2016-q2-update Debug ---------------
 Initializing Build...
 The code generation step is up to date.
 Pre-build Steps...
@@ -13,12 +13,12 @@ sanitize.h:25:5: note: expected 'char *' but argument is of type 'volatile unsig
  int parse_gps(char *gps_string, GpsData_t *gps_data);
      ^
 main.c: In function 'processFC_Pckt':
-main.c:694:10: warning: unused variable 'target_reached' [-Wunused-variable]
-     bool target_reached = navigator_update(
-          ^
-main.c:620:11: warning: variable 'payload_bytes' set but not used [-Wunused-but-set-variable]
-   uint8_t payload_bytes[4];
-           ^
+main.c:620:17: warning: passing argument 1 of 'append_msg_FC' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+   append_msg_FC(rx_bytes_FC);
+                 ^
+main.c:228:6: note: expected 'char *' but argument is of type 'volatile unsigned char *'
+ void append_msg_FC(char *new_msg)
+      ^
 main.c: In function 'dequeue_task':
 main.c:516:10: warning: 'highest_task' may be used uninitialized in this function [-Wmaybe-uninitialized]
    return (highest_task);
@@ -33,9 +33,9 @@ No ELF section .cychecksum found, creating one
 Application checksum calculated and stored in ELF section .cychecksum
 Checksum calculated and stored in ELF section .cymeta
 cyelftool.exe -S "E:\Acads\UWM\Summer 25\PathController\PathController.cydsn\CortexM0\ARM_GCC_541\Debug\PathController.elf"
-Flash used: 19332 of 65536 bytes (29.5%).
-SRAM used: 3432 of 8192 bytes (41.9%). Stack: 2048 bytes. Heap: 128 bytes.
+Flash used: 10104 of 65536 bytes (15.4%).
+SRAM used: 3424 of 8192 bytes (41.8%). Stack: 2048 bytes. Heap: 128 bytes.
 Post-build Steps...
 IDE Library Creation...
 Integration with third party IDEs...
---------------- Build Succeeded: 07/31/2025 19:31:56 ---------------
+--------------- Build Succeeded: 08/01/2025 10:43:42 ---------------

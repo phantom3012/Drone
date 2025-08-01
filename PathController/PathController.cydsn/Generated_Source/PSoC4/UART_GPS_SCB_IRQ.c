@@ -184,6 +184,7 @@ CY_ISR(UART_GPS_SCB_IRQ_Interrupt)
         enqueue_task(GPS_PCKT_PROC,2);
         GPS_UART_tmr = 6;                                   // packet complete so cancel timer
     } else GPS_UART_tmr = 0;                                // start a timeout for rest of packet
+    num_rx_bytes_dbg_buff = 0;
     /* `#END` */
 }
 

@@ -1,3 +1,5 @@
+from env import generate_environment_inputs
+from drone import Drone
 import serial
 import time
 import threading
@@ -6,9 +8,13 @@ import numpy as np
 from gps import GPS
 import sys
 
+# --- Global debug variables ---
+last_pitch_cmd = 0.0
+last_roll_cmd = 0.0
+last_sent_lat = 0.0
+last_sent_lon = 0.0
+
 # --- Import the Drone class from your model ---
-from drone import Drone
-from env import generate_environment_inputs
 
 # --- Simulation Parameters ---
 COM_SEND = 'COM15'  # To microcontroller (GPS IN)
@@ -63,6 +69,7 @@ def generate_gngll(lat, lon, valid=True):
 
 def setup_plot(start_lat, start_lon, target_lat, target_lon):
     fig, ax = plt.subplots(figsize=(10, 8))
+    fig.subplots_adjust(left=0.12, right=0.95, top=0.80, bottom=0.1)
     ax.set_xlabel("Longitude")
     ax.set_ylabel("Latitude")
     ax.set_title("Drone Simulation (HIL)")
@@ -77,9 +84,20 @@ def setup_plot(start_lat, start_lon, target_lat, target_lon):
     path_line, = ax.plot([start_lon], [start_lat], 'b-', label='Path')
     drone_marker, = ax.plot([start_lon], [start_lat], 'o', color='purple')
 
+    # Legend outside plot
     handles, labels = ax.get_legend_handles_labels()
-    ax.legend(handles, labels, loc='upper right')
-    return fig, ax, path_line, drone_marker
+    fig.legend(handles, labels, loc='upper right', bbox_to_anchor=(0.98, 0.97))
+
+    # Status/debug text box
+    status_text = fig.text(
+        0.02, 0.97, '', va='top', fontsize=9,
+        bbox=dict(
+            boxstyle='round,pad=0.5',
+            fc='wheat',
+            alpha=0.5
+        )
+    )
+    return fig, ax, path_line, drone_marker, status_text
 
 
 def plot_drone(history_lat, history_lon, target_lat, target_lon):
@@ -97,19 +115,22 @@ def plot_drone(history_lat, history_lon, target_lat, target_lon):
 
 
 def send_gps_thread(ser_send, get_state_func, stop_event):
+    global last_sent_lat, last_sent_lon
     """Thread to send GPS strings to the microcontroller."""
     while not stop_event.is_set():
         lat, lon = get_state_func()
+        last_sent_lat, last_sent_lon = lat, lon
         gps_str = generate_gngll(lat, lon)
-        print(f"[COM15 SEND] {gps_str.strip()}")
+        print(f"[COM15 SEND] {gps_str.strip()} (lat={lat:.7f}, lon={lon:.7f})")
         ser_send.write(gps_str.encode('ascii'))
         time.sleep(dt)
 
 
 def recv_cmd_thread(ser_recv, cmd_queue, stop_event):
+    global last_pitch_cmd, last_roll_cmd
     while not stop_event.is_set():
         try:
-            ser_recv.write(b"40000\r\n")
+            ser_recv.write(bytes([0, 0, 0, 0, 4]))
             print("[COM7 SEND] 40000")
             line = ser_recv.readline().decode('ascii').strip()
             if line:
@@ -118,6 +139,8 @@ def recv_cmd_thread(ser_recv, cmd_queue, stop_event):
                 parts = line.split(',')
                 pitch = float(parts[0].split(':')[1])
                 roll = float(parts[1].split(':')[1])
+                last_pitch_cmd, last_roll_cmd = pitch, roll
+                print(f"[DEBUG] Pitch: {pitch:.2f}°, Roll: {roll:.2f}°")
                 cmd_queue.append((pitch, roll))
             time.sleep(dt)
         except Exception:
@@ -141,7 +164,7 @@ def main():
     # Only use setup_plot for plotting
     env_inputs = generate_environment_inputs()
     wind_model = env_inputs['wind_model']
-    fig, ax, path_line, drone_marker = setup_plot(
+    fig, ax, path_line, drone_marker, status_text = setup_plot(
         drone_lat, drone_lon, target_lat, target_lon
     )
 
@@ -176,14 +199,22 @@ def main():
 
             path_line.set_data(history_lon, history_lat)
             drone_marker.set_data([lon], [lat])
-            plt.pause(0.01)
-
             dist = GPS.haversine_distance(lat, lon, target_lat, target_lon)
             if dist < 2.0:
                 print("Target reached!")
                 break
 
-            time.sleep(dt)
+            status_text.set_text(
+                (
+                    f'Pitch Cmd: {last_pitch_cmd:.2f}° | '
+                    f'Roll Cmd: {last_roll_cmd:.2f}°\n'
+                    f'Sent Lat: {last_sent_lat:.7f} | '
+                    f'Sent Lon: {last_sent_lon:.7f}\n'
+                    f'Distance to Target: {dist:.2f} m'
+                )
+            )
+
+            plt.pause(dt)
     except KeyboardInterrupt:
         print("Simulation stopped.")
         stop_event.set()

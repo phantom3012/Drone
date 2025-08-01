@@ -49,7 +49,7 @@ volatile unsigned char rx_bytes_gps_buff[72];
 volatile uint8_t num_rx_bytes_gps;
 volatile uint8_t num_rx_bytes_gps_buff;
 volatile unsigned char rx_bytes_FC[6];         // global to pass back received byte
-volatile unsigned char rx_bytes_FC_buff[6];
+volatile unsigned char rx_bytes_FC_buff[5];
 volatile uint8_t num_rx_bytes_FC_buff;
 volatile uint8_t num_rx_bytes_FC;
 volatile uint8_t GPS_UART_tmr;

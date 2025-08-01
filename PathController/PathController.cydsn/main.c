@@ -568,7 +568,7 @@ void LED_display(uint8_t LEDs)
 
 void processDbgCmd(void)
 {
-  // append_msg_FC(rx_bytes_dbg);
+  //append_msg_FC(rx_bytes_dbg);
 
   parse_gps(rx_bytes_dbg, &gps_data);
 
@@ -616,114 +616,125 @@ void processFC_Pckt(void)
   // cancel_GP_timer(TIMER1);
   // append_msg("Cancelled timer1");
 
+  
+  append_msg_FC(rx_bytes_FC);
+
   uint8_t packet_type = 0x00;
   uint8_t payload_bytes[4];
-  for (uint8_t i = 0; i < num_rx_bytes_FC - 1; i++)
+
+  packet_type = rx_bytes_FC[0]-'0';
+  for (uint8_t i = 0; i < 5; i++)
   {
-    append_char_FC(rx_bytes_FC[i]);
-    uint8_t value = rx_bytes_FC[i] - '0';
-    //append_num32_FC(value);
-    //append_msg_FC("\n");
-    if (value < 0 || value > 9)
+    payload_bytes[i] = rx_bytes_FC[i + 1]-'0';
+  }
+    // for (uint8_t i = 0; i < num_rx_bytes_FC; i++)
+    // {
+    //   //append_char_FC(rx_bytes_FC[i]);
+    //   uint8_t value = rx_bytes_FC[i];
+    //   //append_num32_FC(value);
+    //   //append_msg_FC("\n");
+    //   if (value < 0 || value > 9)
+    //   {
+    //     append_msg_FC("Unreal_FC");
+    //     return;
+    //   }
+    //   else
+    //   {
+    //     if (i == 0)
+    //     {
+    //       packet_type = value;
+    //     }
+    //     else
+    //     {
+    //       payload_bytes[i - 1] = value;
+    //     }
+    //   }
+    // }
+    append_msg_FC("\n-------packet type:");
+    append_num32_FC(packet_type);
+    append_msg_FC("\n");
+    append_num32_FC(payload_bytes[0]);
+    append_num32_FC(payload_bytes[1]);
+    append_num32_FC(payload_bytes[2]);
+    append_num32_FC(payload_bytes[3]);
+    append_msg_FC("--------------\n");
+
+    /*switch (packet_type)
     {
-      append_msg_FC("Unreal_FC");
-      return;
-    }
-    else
-    {
-      if (i == 0)
+      case 0x01:
       {
-        packet_type = value;
+        // Pilot control (learn attitude vs direction)
       }
-      else
+      break;
+      case 0x02:
       {
-        payload_bytes[i - 1] = value;
+        // recheck attitude vs direction (pass bearing to virus/initalize navigation)
       }
-    }
-  }
-  /*append_num32_FC(payload_bytes[0]);
-  append_num32_FC(payload_bytes[1]);
-  append_num32_FC(payload_bytes[2]);
-  append_num32_FC(payload_bytes[3]);*/
+      break; 
+      case 0x03:
+      {
+        // try to hover with home coords (gather last pitch and roll commands and start virus to hover over current position)
+        // wait to start the navigation till you have a lock on the gps coords
+      }
+      break;
+      case 0x04:
+      {
+        // Check if coords are set
+        if (coords.lat == 0.0 && coords.lon == 0.0)
+        {
+          append_msg_FC("Coords not set or invalid GPS\n");
+        }
+        // append_msg_FC("lat: ");
+        // append_float_FC(coords.lat, 6);
+        // append_msg_FC("\nlon: ");
+        // append_float_FC(coords.lon, 6);
+        // append_msg_FC("\n");
 
-  switch (packet_type)
-  {
-  case 0x01:
-  {
-    // Pilot control (learn attitude vs direction)
-  }
-  break;
-  case 0x02:
-  {
-    // recheck attitude vs direction (pass bearing to virus/initalize navigation)
-  }
-  break;
-  case 0x03:
-  {
-    // try to hover with home coords (gather last pitch and roll commands and start virus to hover over current position)
-    // wait to start the navigation till you have a lock on the gps coords
-  }
-  break;
-  case 0x04:
-  {
-    // Check if coords are set
-    if (coords.lat == 0.0 && coords.lon == 0.0)
-    {
-      append_msg_FC("Coords not set or invalid GPS\n");
-    }
-    /*append_msg_FC("lat: ");
-    append_float_FC(coords.lat, 6);
-    append_msg_FC("\nlon: ");
-    append_float_FC(coords.lon, 6);
-    append_msg_FC("\n");*/
+        double pitch_cmd;
+        double roll_cmd;
+        // stop algorithm if started and restart to navigate home
+        // reset/re-initalize the navigation and set target coords as selected home position (have a global default home coords)
+        navigator_init(
+            &virus,
+            TARGET_LAT,
+            TARGET_LON,
+            0.6,
+            15.0,
+            15.0,
+            5.0);
 
-    double pitch_cmd;
-    double roll_cmd;
-    // stop algorithm if started and restart to navigate home
-    // reset/re-initalize the navigation and set target coords as selected home position (have a global default home coords)
-    navigator_init(
-      &virus,
-      TARGET_LAT,
-      TARGET_LON,
-      0.6,
-      15.0,
-      15.0,
-      5.0);
-    append_msg_FC("Reached case 4!");
+        bool target_reached = navigator_update(
+            &virus,
+            coords,
+            0.0, // heading to be updated after calculation (case 1)
+            DT_S,
+            &pitch_cmd,
+            &roll_cmd);
+        append_msg_FC("PITCH:");
+        append_float_FC(pitch_cmd, 6);
+        append_msg_FC(",ROLL:");
+        append_float_FC(roll_cmd, 6);
+      }
+      break;
+      case 0x05:
+      {
+        // stop algorithm and give pilot back the control
+      }
+      break;
+      default:
+      {
+        append_msg_FC("\n[ERROR]Unknown_packet_type\n");
+        return;
+      }
+      break;
+    }*/
 
-    bool target_reached = navigator_update(
-      &virus,
-      coords,
-      0.0, //heading to be updated after calculation (case 1)
-      DT_S,
-      &pitch_cmd,
-      &roll_cmd);
-    append_msg_FC("PITCH:");
-    append_float_FC(pitch_cmd,6);
-    append_msg_FC(",ROLL:");
-    append_float_FC(roll_cmd, 6);
-    
-  }
-  break;
-  case 0x05:
-  {
-    // stop algorithm and give pilot back the control
-  }
-  break;
-  default:
-  {
-    append_msg_FC("[ERROR]Unknown_packet_type");
-    return;
-  }
-  break;
-  }
-
-  /*for (uint8_t i = 0; i < num_rx_bytes_FC; i++) {
-      fc_msg[fc_msg_ptr_head] = rx_bytes_FC[i];
-      fc_msg_ptr_head = ((fc_msg_ptr_head+1)&0x00FF);       // modulo 256
-  }
-  num_rx_bytes_FC = 0;
-  display_msg_FC();*/
+  // for (uint8_t i = 0; i < num_rx_bytes_FC; i++) {
+  //     fc_msg[fc_msg_ptr_head] = rx_bytes_FC[i];
+  //     fc_msg_ptr_head = ((fc_msg_ptr_head+1)&0x00FF);       // modulo 256
+  // }
+  // num_rx_bytes_FC = 0;
+  // display_msg_FC();
 }
 
 void processGPS_Pckt(void)
