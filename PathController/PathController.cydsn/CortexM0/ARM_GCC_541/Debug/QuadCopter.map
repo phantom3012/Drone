@@ -1,0 +1,2599 @@
+Archive member included to satisfy reference by file (symbol)
+
+.\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED4.o)
+                              .\CortexM0\ARM_GCC_541\Debug\main.o (LED4_Write)
+.\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED3.o)
+                              .\CortexM0\ARM_GCC_541\Debug\main.o (LED3_Write)
+.\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED2.o)
+                              .\CortexM0\ARM_GCC_541\Debug\main.o (LED2_Write)
+.\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED1.o)
+                              .\CortexM0\ARM_GCC_541\Debug\main.o (LED1_Write)
+.\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED0.o)
+                              .\CortexM0\ARM_GCC_541\Debug\main.o (LED0_Write)
+.\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(InertINT.o)
+                              .\CortexM0\ARM_GCC_541\Debug\main.o (InertINT_Read)
+.\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(GyroISR.o)
+                              .\CortexM0\ARM_GCC_541\Debug\main.o (GyroISR_SetPriority)
+.\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(GyroSS_n.o)
+                              .\CortexM0\ARM_GCC_541\Debug\main.o (GyroSS_n_Write)
+.\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE.o)
+                              .\CortexM0\ARM_GCC_541\Debug\main.o (UART_BLE_Start)
+.\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_SPI_UART.o)
+                              .\CortexM0\ARM_GCC_541\Debug\main.o (UART_BLE_SpiUartWriteTxData)
+.\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_UART.o)
+                              .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE.o) (UART_BLE_UartInit)
+.\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(MagSS_n.o)
+                              .\CortexM0\ARM_GCC_541\Debug\main.o (MagSS_n_Write)
+.\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED5.o)
+                              .\CortexM0\ARM_GCC_541\Debug\main.o (LED5_Write)
+.\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR.o)
+                              .\CortexM0\ARM_GCC_541\Debug\main.o (UART_LiDAR_Start)
+.\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_UART.o)
+                              .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR.o) (UART_LiDAR_UartInit)
+.\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_SCB_IRQ.o)
+                              .\CortexM0\ARM_GCC_541\Debug\main.o (UART_BLE_SCB_IRQ_Start)
+.\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_SCB_IRQ.o)
+                              .\CortexM0\ARM_GCC_541\Debug\main.o (UART_LiDAR_SCB_IRQ_Start)
+.\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLib.o)
+                              .\CortexM0\ARM_GCC_541\Debug\cyfitter_cfg.o (CyIntEnable)
+.\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLFClk.o)
+                              .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLib.o) (CySysClkWcoEnabled)
+.\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(A2D.o)
+                              .\CortexM0\ARM_GCC_541\Debug\main.o (A2D_Start)
+.\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(A2D_INT.o)
+                              .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(A2D.o) (A2D_ISR)
+.\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED6.o)
+                              .\CortexM0\ARM_GCC_541\Debug\main.o (LED6_Write)
+.\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(FRNT_ESC.o)
+                              .\CortexM0\ARM_GCC_541\Debug\main.o (FRNT_ESC_WriteCompare)
+.\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(BCK_ESC.o)
+                              .\CortexM0\ARM_GCC_541\Debug\main.o (BCK_ESC_WriteCompare)
+.\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LFT_ESC.o)
+                              .\CortexM0\ARM_GCC_541\Debug\main.o (LFT_ESC_WriteCompare)
+.\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(RGHT_ESC.o)
+                              .\CortexM0\ARM_GCC_541\Debug\main.o (RGHT_ESC_WriteCompare)
+.\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(SWWDT.o)
+                              .\CortexM0\ARM_GCC_541\Debug\main.o (SWWDT_Start)
+.\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(WDT_ISR.o)
+                              .\CortexM0\ARM_GCC_541\Debug\main.o (WDT_ISR_Start)
+.\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyBootAsmGnu.o)
+                              .\CortexM0\ARM_GCC_541\Debug\main.o (CyDelayCycles)
+.\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_SPI_UART_INT.o)
+                              .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_UART.o) (UART_BLE_SPI_UART_ISR)
+.\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_SPI_UART.o)
+                              .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_UART.o) (UART_LiDAR_SpiUartReadRxData)
+.\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_SPI_UART_INT.o)
+                              .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_UART.o) (UART_LiDAR_SPI_UART_ISR)
+.\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyFlash.o)
+                              .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLib.o) (CySysFlashSetWaitCycles)
+c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_udivsi3.o)
+                              .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLib.o) (__aeabi_uidiv)
+c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_divsi3.o)
+                              .\CortexM0\ARM_GCC_541\Debug\main.o (__aeabi_idiv)
+c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_dvmd_tls.o)
+                              c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_udivsi3.o) (__aeabi_idiv0)
+c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_aeabi_ldivmod.o)
+                              .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(A2D.o) (__aeabi_ldivmod)
+c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_muldi3.o)
+                              .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(A2D.o) (__aeabi_lmul)
+c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(bpabi.o)
+                              c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_aeabi_ldivmod.o) (__gnu_ldivmod_helper)
+c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(divsf3.o)
+                              .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(A2D.o) (__aeabi_fdiv)
+c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(mulsf3.o)
+                              .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(A2D.o) (__aeabi_fmul)
+c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(floatsisf.o)
+                              .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(A2D.o) (__aeabi_i2f)
+c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_clzsi2.o)
+                              c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(divsf3.o) (__clzsi2)
+c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_divdi3.o)
+                              c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(bpabi.o) (__divdi3)
+c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_clzdi2.o)
+                              c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_divdi3.o) (__clzdi2)
+c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-errno.o)
+                              .\CortexM0\ARM_GCC_541\Debug\Cm0Start.o (__errno)
+c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-exit.o)
+                              c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m/crt0.o (exit)
+c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-impure.o)
+                              c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-exit.o) (_global_impure_ptr)
+c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-init.o)
+                              c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m/crt0.o (__libc_init_array)
+c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-memcpy-stub.o)
+                              .\CortexM0\ARM_GCC_541\Debug\main.o (memcpy)
+c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-memset.o)
+                              c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m/crt0.o (memset)
+c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-strncmp.o)
+                              .\CortexM0\ARM_GCC_541\Debug\main.o (strncmp)
+
+Allocating common symbols
+Common symbol       size              file
+
+lft_spd             0x2               .\CortexM0\ARM_GCC_541\Debug\main.o
+yaw_rt_avg          0x2               .\CortexM0\ARM_GCC_541\Debug\main.o
+pitch_rt_last       0x2               .\CortexM0\ARM_GCC_541\Debug\main.o
+num_rx_bytes_dbg_buff
+                    0x1               .\CortexM0\ARM_GCC_541\Debug\main.o
+avg_smpl_cnt        0x2               .\CortexM0\ARM_GCC_541\Debug\main.o
+elevationErr        0x2               .\CortexM0\ARM_GCC_541\Debug\main.o
+YMAG_min            0x2               .\CortexM0\ARM_GCC_541\Debug\main.o
+pitch_rt            0x2               .\CortexM0\ARM_GCC_541\Debug\main.o
+auto_elevation      0x1               .\CortexM0\ARM_GCC_541\Debug\main.o
+AX_accum            0x4               .\CortexM0\ARM_GCC_541\Debug\main.o
+num_rx_bytes_dbg    0x1               .\CortexM0\ARM_GCC_541\Debug\main.o
+rx_bytes_dbg        0x8               .\CortexM0\ARM_GCC_541\Debug\main.o
+yaw_accum           0x4               .\CortexM0\ARM_GCC_541\Debug\main.o
+num_filt_rates      0x1               .\CortexM0\ARM_GCC_541\Debug\main.o
+XMAG_avg            0x2               .\CortexM0\ARM_GCC_541\Debug\main.o
+XMAG_accum          0x4               .\CortexM0\ARM_GCC_541\Debug\main.o
+rx_bytes_lidar      0x10              .\CortexM0\ARM_GCC_541\Debug\main.o
+LIDAR_UART_tmr      0x1               .\CortexM0\ARM_GCC_541\Debug\main.o
+num_rx_bytes_ble_buff
+                    0x1               .\CortexM0\ARM_GCC_541\Debug\main.o
+thrust_auto         0x2               .\CortexM0\ARM_GCC_541\Debug\main.o
+XMAG_min            0x2               .\CortexM0\ARM_GCC_541\Debug\main.o
+yaw_desired         0x2               .\CortexM0\ARM_GCC_541\Debug\main.o
+roll_rt             0x2               .\CortexM0\ARM_GCC_541\Debug\main.o
+pitch_rt_raw        0x2               .\CortexM0\ARM_GCC_541\Debug\main.o
+frnt_spd            0x2               .\CortexM0\ARM_GCC_541\Debug\main.o
+debug_msg           0x100             .\CortexM0\ARM_GCC_541\Debug\main.o
+Acc_avg_ptr         0x1               .\CortexM0\ARM_GCC_541\Debug\main.o
+A2D_countsPer10Volt
+                    0x8               .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(A2D.o)
+rx_bytes_lidar_buff
+                    0x10              .\CortexM0\ARM_GCC_541\Debug\main.o
+pitch_desired       0x2               .\CortexM0\ARM_GCC_541\Debug\main.o
+AY                  0x2               .\CortexM0\ARM_GCC_541\Debug\main.o
+yaw_rt_last         0x2               .\CortexM0\ARM_GCC_541\Debug\main.o
+num_rx_bytes_ble    0x1               .\CortexM0\ARM_GCC_541\Debug\main.o
+yaw_fuse            0x2               .\CortexM0\ARM_GCC_541\Debug\main.o
+thrust_tare         0x2               .\CortexM0\ARM_GCC_541\Debug\main.o
+elevationErr_last   0x2               .\CortexM0\ARM_GCC_541\Debug\main.o
+amp                 0x2               .\CortexM0\ARM_GCC_541\Debug\main.o
+AY_accum            0x4               .\CortexM0\ARM_GCC_541\Debug\main.o
+pitch_fuse          0x2               .\CortexM0\ARM_GCC_541\Debug\main.o
+num_tasks           0x1               .\CortexM0\ARM_GCC_541\Debug\main.o
+roll_desired        0x2               .\CortexM0\ARM_GCC_541\Debug\main.o
+bck_spd             0x2               .\CortexM0\ARM_GCC_541\Debug\main.o
+YMAG_max            0x2               .\CortexM0\ARM_GCC_541\Debug\main.o
+GP_ticks            0x2               .\CortexM0\ARM_GCC_541\Debug\main.o
+GP_evt              0x1               .\CortexM0\ARM_GCC_541\Debug\main.o
+BLE_UART_tmr        0x1               .\CortexM0\ARM_GCC_541\Debug\main.o
+task_queue          0xa               .\CortexM0\ARM_GCC_541\Debug\main.o
+YMAG                0x2               .\CortexM0\ARM_GCC_541\Debug\main.o
+desiredElevation    0x2               .\CortexM0\ARM_GCC_541\Debug\main.o
+elev_adj_dec        0x1               .\CortexM0\ARM_GCC_541\Debug\main.o
+rx_bytes_dbg_buff   0x8               .\CortexM0\ARM_GCC_541\Debug\main.o
+SPI_resp            0xe               .\CortexM0\ARM_GCC_541\Debug\main.o
+roll_fuse           0x2               .\CortexM0\ARM_GCC_541\Debug\main.o
+elevation           0x2               .\CortexM0\ARM_GCC_541\Debug\main.o
+roll_rt_last        0x2               .\CortexM0\ARM_GCC_541\Debug\main.o
+roll_rt_avg         0x2               .\CortexM0\ARM_GCC_541\Debug\main.o
+roll_rt_raw         0x2               .\CortexM0\ARM_GCC_541\Debug\main.o
+A2D_offset          0x4               .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(A2D.o)
+SPI_cmd             0xe               .\CortexM0\ARM_GCC_541\Debug\main.o
+XMAG                0x2               .\CortexM0\ARM_GCC_541\Debug\main.o
+YMAG_avg            0x2               .\CortexM0\ARM_GCC_541\Debug\main.o
+roll_accum          0x4               .\CortexM0\ARM_GCC_541\Debug\main.o
+Acc_q_full          0x1               .\CortexM0\ARM_GCC_541\Debug\main.o
+yaw_rt_raw          0x2               .\CortexM0\ARM_GCC_541\Debug\main.o
+num_MAG_readings    0x2               .\CortexM0\ARM_GCC_541\Debug\main.o
+pitch_accum         0x4               .\CortexM0\ARM_GCC_541\Debug\main.o
+thrust              0x2               .\CortexM0\ARM_GCC_541\Debug\main.o
+pitch_rt_avg        0x2               .\CortexM0\ARM_GCC_541\Debug\main.o
+rght_spd            0x2               .\CortexM0\ARM_GCC_541\Debug\main.o
+rx_bytes_ble_buff   0x8               .\CortexM0\ARM_GCC_541\Debug\main.o
+sec                 0x2               .\CortexM0\ARM_GCC_541\Debug\main.o
+missed_gyros        0x1               .\CortexM0\ARM_GCC_541\Debug\main.o
+D_term_thrust       0x2               .\CortexM0\ARM_GCC_541\Debug\main.o
+YMAG_accum          0x4               .\CortexM0\ARM_GCC_541\Debug\main.o
+rx_bytes_ble        0x8               .\CortexM0\ARM_GCC_541\Debug\main.o
+GP_timer            0x14              .\CortexM0\ARM_GCC_541\Debug\main.o
+AXq                 0x10              .\CortexM0\ARM_GCC_541\Debug\main.o
+auto_elevation_triggered
+                    0x1               .\CortexM0\ARM_GCC_541\Debug\main.o
+P_term_thrust       0x2               .\CortexM0\ARM_GCC_541\Debug\main.o
+AYq                 0x10              .\CortexM0\ARM_GCC_541\Debug\main.o
+XMAG_max            0x2               .\CortexM0\ARM_GCC_541\Debug\main.o
+num_rx_bytes_lidar_buff
+                    0x1               .\CortexM0\ARM_GCC_541\Debug\main.o
+AX                  0x2               .\CortexM0\ARM_GCC_541\Debug\main.o
+num_rx_bytes_lidar  0x1               .\CortexM0\ARM_GCC_541\Debug\main.o
+yaw_rt              0x2               .\CortexM0\ARM_GCC_541\Debug\main.o
+
+Discarded input sections
+
+ .text          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m/crti.o
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m/crti.o
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m/crti.o
+ .data          0x00000000        0x4 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m/crtbegin.o
+ .text          0x00000000       0x78 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m/crt0.o
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m/crt0.o
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m/crt0.o
+ .ARM.extab     0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m/crt0.o
+ .ARM.exidx     0x00000000        0x8 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m/crt0.o
+ .text          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\main.o
+ .data          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\main.o
+ .text.append_char
+                0x00000000       0x1c .\CortexM0\ARM_GCC_541\Debug\main.o
+ .text.append_num32
+                0x00000000       0xb0 .\CortexM0\ARM_GCC_541\Debug\main.o
+ .text.processCmd
+                0x00000000       0x34 .\CortexM0\ARM_GCC_541\Debug\main.o
+ .text          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\cyfitter_cfg.o
+ .data          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\cyfitter_cfg.o
+ .bss           0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\cyfitter_cfg.o
+ .text          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\cymetadata.o
+ .data          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\cymetadata.o
+ .bss           0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\cymetadata.o
+ .text          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\Cm0Start.o
+ .data          0x00000000        0x4 .\CortexM0\ARM_GCC_541\Debug\Cm0Start.o
+ .bss           0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\Cm0Start.o
+ .text._exit    0x00000000        0xc .\CortexM0\ARM_GCC_541\Debug\Cm0Start.o
+ .text._sbrk    0x00000000       0x30 .\CortexM0\ARM_GCC_541\Debug\Cm0Start.o
+ .text          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED4.o)
+ .data          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED4.o)
+ .bss           0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED4.o)
+ .text.LED4_SetDriveMode
+                0x00000000       0x18 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED4.o)
+ .text.LED4_Read
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED4.o)
+ .text.LED4_ReadDataReg
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED4.o)
+ .text.LED4_SetInterruptMode
+                0x00000000       0x14 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED4.o)
+ .text.LED4_ClearInterrupt
+                0x00000000       0x14 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED4.o)
+ .text          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED3.o)
+ .data          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED3.o)
+ .bss           0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED3.o)
+ .text.LED3_SetDriveMode
+                0x00000000       0x18 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED3.o)
+ .text.LED3_Read
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED3.o)
+ .text.LED3_ReadDataReg
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED3.o)
+ .text.LED3_SetInterruptMode
+                0x00000000       0x14 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED3.o)
+ .text.LED3_ClearInterrupt
+                0x00000000       0x14 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED3.o)
+ .text          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED2.o)
+ .data          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED2.o)
+ .bss           0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED2.o)
+ .text.LED2_SetDriveMode
+                0x00000000       0x18 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED2.o)
+ .text.LED2_Read
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED2.o)
+ .text.LED2_ReadDataReg
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED2.o)
+ .text.LED2_SetInterruptMode
+                0x00000000       0x14 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED2.o)
+ .text.LED2_ClearInterrupt
+                0x00000000       0x14 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED2.o)
+ .text          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED1.o)
+ .data          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED1.o)
+ .bss           0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED1.o)
+ .text.LED1_SetDriveMode
+                0x00000000       0x14 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED1.o)
+ .text.LED1_Read
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED1.o)
+ .text.LED1_ReadDataReg
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED1.o)
+ .text.LED1_SetInterruptMode
+                0x00000000       0x14 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED1.o)
+ .text.LED1_ClearInterrupt
+                0x00000000       0x14 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED1.o)
+ .text          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED0.o)
+ .data          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED0.o)
+ .bss           0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED0.o)
+ .text.LED0_SetDriveMode
+                0x00000000       0x14 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED0.o)
+ .text.LED0_Read
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED0.o)
+ .text.LED0_ReadDataReg
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED0.o)
+ .text.LED0_SetInterruptMode
+                0x00000000       0x14 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED0.o)
+ .text.LED0_ClearInterrupt
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED0.o)
+ .text          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(InertINT.o)
+ .data          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(InertINT.o)
+ .bss           0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(InertINT.o)
+ .text.InertINT_SetDriveMode
+                0x00000000       0x18 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(InertINT.o)
+ .text.InertINT_Write
+                0x00000000       0x18 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(InertINT.o)
+ .text.InertINT_ReadDataReg
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(InertINT.o)
+ .text.InertINT_SetInterruptMode
+                0x00000000       0x14 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(InertINT.o)
+ .text.InertINT_ClearInterrupt
+                0x00000000       0x14 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(InertINT.o)
+ .text          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(GyroISR.o)
+ .data          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(GyroISR.o)
+ .bss           0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(GyroISR.o)
+ .text.GyroISR_GetVector
+                0x00000000        0xc .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(GyroISR.o)
+ .text.GyroISR_GetPriority
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(GyroISR.o)
+ .text.GyroISR_GetState
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(GyroISR.o)
+ .text.GyroISR_StartEx
+                0x00000000       0x1c .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(GyroISR.o)
+ .text.GyroISR_Stop
+                0x00000000       0x14 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(GyroISR.o)
+ .text.GyroISR_SetPending
+                0x00000000        0xc .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(GyroISR.o)
+ .text          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(GyroSS_n.o)
+ .data          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(GyroSS_n.o)
+ .bss           0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(GyroSS_n.o)
+ .text.GyroSS_n_SetDriveMode
+                0x00000000       0x18 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(GyroSS_n.o)
+ .text.GyroSS_n_Read
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(GyroSS_n.o)
+ .text.GyroSS_n_ReadDataReg
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(GyroSS_n.o)
+ .text.GyroSS_n_SetInterruptMode
+                0x00000000       0x14 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(GyroSS_n.o)
+ .text.GyroSS_n_ClearInterrupt
+                0x00000000       0x14 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(GyroSS_n.o)
+ .text          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE.o)
+ .data          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE.o)
+ .text.UART_BLE_ScbModeStop
+                0x00000000        0x8 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE.o)
+ .text.UART_BLE_Stop
+                0x00000000       0x2c .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE.o)
+ .text.UART_BLE_SetRxFifoLevel
+                0x00000000       0x14 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE.o)
+ .text.UART_BLE_SetTxFifoLevel
+                0x00000000       0x14 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE.o)
+ .text.UART_BLE_SetCustomInterruptHandler
+                0x00000000        0xc .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE.o)
+ .text          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_SPI_UART.o)
+ .data          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_SPI_UART.o)
+ .bss           0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_SPI_UART.o)
+ .text.UART_BLE_SpiUartClearRxBuffer
+                0x00000000       0x20 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_SPI_UART.o)
+ .text.UART_BLE_SpiUartPutArray
+                0x00000000       0x18 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_SPI_UART.o)
+ .text.UART_BLE_SpiUartGetTxBufferSize
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_SPI_UART.o)
+ .text.UART_BLE_SpiUartClearTxBuffer
+                0x00000000       0x20 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_SPI_UART.o)
+ .text.UART_BLE_SpiUartDisableIntRx
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_SPI_UART.o)
+ .text.UART_BLE_SpiUartDisableIntTx
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_SPI_UART.o)
+ .text          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_UART.o)
+ .data          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_UART.o)
+ .bss           0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_UART.o)
+ .text.UART_BLE_UartStop
+                0x00000000       0x28 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_UART.o)
+ .text.UART_BLE_UartSetRxAddress
+                0x00000000       0x14 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_UART.o)
+ .text.UART_BLE_UartSetRxAddressMask
+                0x00000000       0x18 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_UART.o)
+ .text.UART_BLE_UartGetChar
+                0x00000000       0x2c .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_UART.o)
+ .text.UART_BLE_UartSetRtsPolarity
+                0x00000000       0x28 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_UART.o)
+ .text.UART_BLE_UartSetRtsFifoLevel
+                0x00000000       0x14 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_UART.o)
+ .text.UART_BLE_UartPutString
+                0x00000000       0x18 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_UART.o)
+ .text.UART_BLE_UartPutCRLF
+                0x00000000       0x14 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_UART.o)
+ .text.UART_BLE_UartEnableCts
+                0x00000000       0x14 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_UART.o)
+ .text.UART_BLE_UartDisableCts
+                0x00000000       0x14 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_UART.o)
+ .text.UART_BLE_UartSetCtsPolarity
+                0x00000000       0x28 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_UART.o)
+ .text.UART_BLE_UartSendBreakBlocking
+                0x00000000       0x58 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_UART.o)
+ .text          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(MagSS_n.o)
+ .data          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(MagSS_n.o)
+ .bss           0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(MagSS_n.o)
+ .text.MagSS_n_SetDriveMode
+                0x00000000       0x18 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(MagSS_n.o)
+ .text.MagSS_n_Read
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(MagSS_n.o)
+ .text.MagSS_n_ReadDataReg
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(MagSS_n.o)
+ .text.MagSS_n_SetInterruptMode
+                0x00000000       0x14 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(MagSS_n.o)
+ .text.MagSS_n_ClearInterrupt
+                0x00000000       0x14 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(MagSS_n.o)
+ .text          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED5.o)
+ .data          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED5.o)
+ .bss           0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED5.o)
+ .text.LED5_SetDriveMode
+                0x00000000       0x18 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED5.o)
+ .text.LED5_Read
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED5.o)
+ .text.LED5_ReadDataReg
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED5.o)
+ .text.LED5_SetInterruptMode
+                0x00000000       0x14 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED5.o)
+ .text.LED5_ClearInterrupt
+                0x00000000       0x14 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED5.o)
+ .text          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR.o)
+ .data          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR.o)
+ .text.UART_LiDAR_ScbModeStop
+                0x00000000        0x8 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR.o)
+ .text.UART_LiDAR_Stop
+                0x00000000       0x2c .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR.o)
+ .text.UART_LiDAR_SetRxFifoLevel
+                0x00000000       0x14 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR.o)
+ .text.UART_LiDAR_SetTxFifoLevel
+                0x00000000       0x14 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR.o)
+ .text.UART_LiDAR_SetCustomInterruptHandler
+                0x00000000        0xc .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR.o)
+ .text          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_UART.o)
+ .data          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_UART.o)
+ .bss           0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_UART.o)
+ .text.UART_LiDAR_UartStop
+                0x00000000       0x28 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_UART.o)
+ .text.UART_LiDAR_UartSetRxAddress
+                0x00000000       0x14 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_UART.o)
+ .text.UART_LiDAR_UartSetRxAddressMask
+                0x00000000       0x18 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_UART.o)
+ .text.UART_LiDAR_UartGetChar
+                0x00000000       0x2c .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_UART.o)
+ .text.UART_LiDAR_UartSetRtsPolarity
+                0x00000000       0x28 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_UART.o)
+ .text.UART_LiDAR_UartSetRtsFifoLevel
+                0x00000000       0x14 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_UART.o)
+ .text.UART_LiDAR_UartPutString
+                0x00000000       0x18 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_UART.o)
+ .text.UART_LiDAR_UartPutCRLF
+                0x00000000       0x14 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_UART.o)
+ .text.UART_LiDAR_UartEnableCts
+                0x00000000       0x14 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_UART.o)
+ .text.UART_LiDAR_UartDisableCts
+                0x00000000       0x14 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_UART.o)
+ .text.UART_LiDAR_UartSetCtsPolarity
+                0x00000000       0x28 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_UART.o)
+ .text.UART_LiDAR_UartSendBreakBlocking
+                0x00000000       0x58 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_UART.o)
+ .text          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_SCB_IRQ.o)
+ .data          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_SCB_IRQ.o)
+ .bss           0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_SCB_IRQ.o)
+ .text.UART_BLE_SCB_IRQ_GetVector
+                0x00000000        0xc .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_SCB_IRQ.o)
+ .text.UART_BLE_SCB_IRQ_GetPriority
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_SCB_IRQ.o)
+ .text.UART_BLE_SCB_IRQ_GetState
+                0x00000000       0x14 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_SCB_IRQ.o)
+ .text.UART_BLE_SCB_IRQ_StartEx
+                0x00000000       0x1c .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_SCB_IRQ.o)
+ .text.UART_BLE_SCB_IRQ_Stop
+                0x00000000       0x14 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_SCB_IRQ.o)
+ .text.UART_BLE_SCB_IRQ_SetPending
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_SCB_IRQ.o)
+ .text.UART_BLE_SCB_IRQ_ClearPending
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_SCB_IRQ.o)
+ .text          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_SCB_IRQ.o)
+ .data          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_SCB_IRQ.o)
+ .bss           0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_SCB_IRQ.o)
+ .text.UART_LiDAR_SCB_IRQ_GetVector
+                0x00000000        0xc .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_SCB_IRQ.o)
+ .text.UART_LiDAR_SCB_IRQ_GetPriority
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_SCB_IRQ.o)
+ .text.UART_LiDAR_SCB_IRQ_GetState
+                0x00000000       0x14 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_SCB_IRQ.o)
+ .text.UART_LiDAR_SCB_IRQ_StartEx
+                0x00000000       0x1c .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_SCB_IRQ.o)
+ .text.UART_LiDAR_SCB_IRQ_Stop
+                0x00000000       0x14 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_SCB_IRQ.o)
+ .text.UART_LiDAR_SCB_IRQ_SetPending
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_SCB_IRQ.o)
+ .text.UART_LiDAR_SCB_IRQ_ClearPending
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_SCB_IRQ.o)
+ .text          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLib.o)
+ .bss           0x00000000       0x18 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLib.o)
+ .text.CySysClkImoStart
+                0x00000000       0x14 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLib.o)
+ .text.CySysClkImoStop
+                0x00000000       0x18 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLib.o)
+ .text.CySysClkWriteHfclkDirect
+                0x00000000       0x20 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLib.o)
+ .text.CySysEnablePumpClock
+                0x00000000       0x38 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLib.o)
+ .text.CySysClkGetSysclkSource
+                0x00000000       0x1c .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLib.o)
+ .text.CySysClkWriteSysclkDiv
+                0x00000000       0x30 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLib.o)
+ .text.CySysLvdDisable
+                0x00000000       0x20 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLib.o)
+ .text.CySysLvdGetInterruptSource
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLib.o)
+ .text.CySysLvdClearInterrupt
+                0x00000000        0xc .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLib.o)
+ .text.CySysGetResetReason
+                0x00000000       0x14 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLib.o)
+ .text.CyDisableInts
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLib.o)
+ .text.CyEnableInts
+                0x00000000        0xc .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLib.o)
+ .text.CyIntGetState
+                0x00000000       0x18 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLib.o)
+ .text.CyIntSetPending
+                0x00000000       0x14 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLib.o)
+ .text.CyIntClearPending
+                0x00000000       0x14 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLib.o)
+ .text.CyIntSetSysVector
+                0x00000000       0x20 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLib.o)
+ .text.CyIntGetSysVector
+                0x00000000       0x1c .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLib.o)
+ .text.CyIntGetVector
+                0x00000000       0x20 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLib.o)
+ .text.CyIntGetPriority
+                0x00000000       0x2c .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLib.o)
+ .text.CySoftwareReset
+                0x00000000       0x18 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLib.o)
+ .text.CySysLvdEnable
+                0x00000000       0x44 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLib.o)
+ .text.CyDelayFreq
+                0x00000000       0x4c .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLib.o)
+ .text.CySysTickStop
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLib.o)
+ .text.CySysTickEnableInterrupt
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLib.o)
+ .text.CySysTickEnable
+                0x00000000       0x18 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLib.o)
+ .text.CySysTickDisableInterrupt
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLib.o)
+ .text.CySysTickSetReload
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLib.o)
+ .text.CySysTickGetReload
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLib.o)
+ .text.CySysTickGetValue
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLib.o)
+ .text.CySysTickSetClockSource
+                0x00000000       0x20 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLib.o)
+ .text.CySysTickGetClockSource
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLib.o)
+ .text.CySysTickGetCountFlag
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLib.o)
+ .text.CySysTickServiceCallbacks
+                0x00000000       0x28 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLib.o)
+ .text.CySysTickClear
+                0x00000000        0xc .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLib.o)
+ .text.CySysTickInit
+                0x00000000       0x44 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLib.o)
+ .text.CySysTickStart
+                0x00000000       0x20 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLib.o)
+ .text.CySysTickSetCallback
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLib.o)
+ .text.CySysTickGetCallback
+                0x00000000        0xc .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLib.o)
+ .text.CyGetUniqueId
+                0x00000000       0x70 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLib.o)
+ .text.CySysSetRamAccessArbPriority
+                0x00000000       0x20 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLib.o)
+ .text.CySysSetFlashAccessArbPriority
+                0x00000000       0x20 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLib.o)
+ .text.CySysSetDmacAccessArbPriority
+                0x00000000       0x20 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLib.o)
+ .text.CySysSetPeripheralAccessArbPriority
+                0x00000000       0x68 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLib.o)
+ .text          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLFClk.o)
+ .text.CySysClkIloEnabled
+                0x00000000       0x14 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLFClk.o)
+ .text.CySysClkGetLfclkSource
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLFClk.o)
+ .text.CySysClkIloStart
+                0x00000000       0x14 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLFClk.o)
+ .text.CySysClkIloStartMeasurement
+                0x00000000       0x5c .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLFClk.o)
+ .text.CySysClkIloStopMeasurement
+                0x00000000       0x14 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLFClk.o)
+ .text.CySysClkIloCompensate
+                0x00000000      0x104 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLFClk.o)
+ .text.CySysClkIloUpdateTrimReg
+                0x00000000       0xa8 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLFClk.o)
+ .text.CySysClkIloTrim
+                0x00000000       0xd8 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLFClk.o)
+ .text.CySysClkIloRestoreFactoryTrim
+                0x00000000       0x30 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLFClk.o)
+ .text.CySysClkWcoStart
+                0x00000000       0x40 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLFClk.o)
+ .text.CySysClkWcoSetPowerMode
+                0x00000000       0x4c .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLFClk.o)
+ .text.CySysClkWcoClockOutSelect
+                0x00000000       0x2c .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLFClk.o)
+ .text.CySysWdtGetEnabledStatus
+                0x00000000       0x24 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLFClk.o)
+ .text.CySysWdtSetMode
+                0x00000000       0x38 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLFClk.o)
+ .text.CySysClkLfclkPosedgeRestore
+                0x00000000       0x2c .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLFClk.o)
+ .text.CySysWdtGetMode
+                0x00000000       0x14 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLFClk.o)
+ .text.CySysWdtSetClearOnMatch
+                0x00000000       0x34 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLFClk.o)
+ .text.CySysWdtGetClearOnMatch
+                0x00000000       0x24 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLFClk.o)
+ .text.CySysWdtEnable
+                0x00000000       0x3c .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLFClk.o)
+ .text.CySysWdtDisable
+                0x00000000       0x44 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLFClk.o)
+ .text.CySysWdtSetCascade
+                0x00000000       0x34 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLFClk.o)
+ .text.CySysWdtGetCascade
+                0x00000000       0x14 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLFClk.o)
+ .text.CySysWdtSetMatch
+                0x00000000       0x54 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLFClk.o)
+ .text.CySysWdtSetToggleBit
+                0x00000000       0x30 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLFClk.o)
+ .text.CySysWdtGetToggleBit
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLFClk.o)
+ .text.CySysWdtGetMatch
+                0x00000000       0x20 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLFClk.o)
+ .text.CySysWdtGetCount
+                0x00000000       0x3c .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLFClk.o)
+ .text.CySysClkLfclkPosedgeCatch
+                0x00000000       0x74 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLFClk.o)
+ .text.CySysClkIloStop
+                0x00000000       0x4c .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLFClk.o)
+ .text.CySysClkSetLfclkSource
+                0x00000000       0x38 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLFClk.o)
+ .text.CySysClkWcoStop
+                0x00000000       0x48 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLFClk.o)
+ .text.CySysWdtGetInterruptSource
+                0x00000000       0x14 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLFClk.o)
+ .text.CySysWdtResetCounters
+                0x00000000       0x20 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLFClk.o)
+ .text.CySysWdtSetInterruptCallback
+                0x00000000       0x20 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLFClk.o)
+ .text.CySysWdtGetInterruptCallback
+                0x00000000       0x20 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLFClk.o)
+ .text.CySysWdtEnableCounterIsr
+                0x00000000       0x34 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLFClk.o)
+ .text.CySysWdtDisableCounterIsr
+                0x00000000       0x28 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLFClk.o)
+ .text.CySysWatchdogFeed
+                0x00000000       0x60 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLFClk.o)
+ .text.CySysTimerDelayUntilMatch
+                0x00000000       0x6c .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLFClk.o)
+ .text.CySysTimerDelay
+                0x00000000       0x3c .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLFClk.o)
+ .rodata        0x00000000        0xc .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLFClk.o)
+ .text          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(A2D.o)
+ .data          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(A2D.o)
+ .text.A2D_Stop
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(A2D.o)
+ .text.A2D_StopConvert
+                0x00000000       0x14 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(A2D.o)
+ .text.A2D_IsEndConversion
+                0x00000000       0x28 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(A2D.o)
+ .text.A2D_GetResult16
+                0x00000000       0x2c .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(A2D.o)
+ .text.A2D_SetChanMask
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(A2D.o)
+ .text.A2D_SetLowLimit
+                0x00000000       0x1c .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(A2D.o)
+ .text.A2D_SetHighLimit
+                0x00000000       0x18 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(A2D.o)
+ .text.A2D_SetLimitMask
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(A2D.o)
+ .text.A2D_SetSatMask
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(A2D.o)
+ .text.A2D_SetOffset
+                0x00000000       0x1c .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(A2D.o)
+ .text.A2D_SetGain
+                0x00000000       0x1c .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(A2D.o)
+ .text.A2D_CountsTo_mVolts
+                0x00000000       0x74 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(A2D.o)
+ .text.A2D_CountsTo_uVolts
+                0x00000000       0x58 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(A2D.o)
+ .text.A2D_CountsTo_Volts
+                0x00000000       0x60 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(A2D.o)
+ .text          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(A2D_INT.o)
+ .data          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(A2D_INT.o)
+ .bss           0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(A2D_INT.o)
+ .text          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED6.o)
+ .data          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED6.o)
+ .bss           0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED6.o)
+ .text.LED6_SetDriveMode
+                0x00000000       0x18 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED6.o)
+ .text.LED6_Read
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED6.o)
+ .text.LED6_ReadDataReg
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED6.o)
+ .text.LED6_SetInterruptMode
+                0x00000000       0x14 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED6.o)
+ .text.LED6_ClearInterrupt
+                0x00000000       0x14 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED6.o)
+ .text          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(FRNT_ESC.o)
+ .data          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(FRNT_ESC.o)
+ .text.FRNT_ESC_Stop
+                0x00000000       0x1c .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(FRNT_ESC.o)
+ .text.FRNT_ESC_SetMode
+                0x00000000       0x28 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(FRNT_ESC.o)
+ .text.FRNT_ESC_SetQDMode
+                0x00000000       0x28 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(FRNT_ESC.o)
+ .text.FRNT_ESC_SetPrescaler
+                0x00000000       0x28 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(FRNT_ESC.o)
+ .text.FRNT_ESC_SetOneShot
+                0x00000000       0x30 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(FRNT_ESC.o)
+ .text.FRNT_ESC_SetPWMMode
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(FRNT_ESC.o)
+ .text.FRNT_ESC_SetPWMSyncKill
+                0x00000000       0x28 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(FRNT_ESC.o)
+ .text.FRNT_ESC_SetPWMStopOnKill
+                0x00000000       0x28 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(FRNT_ESC.o)
+ .text.FRNT_ESC_SetPWMDeadTime
+                0x00000000       0x2c .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(FRNT_ESC.o)
+ .text.FRNT_ESC_SetPWMInvert
+                0x00000000       0x28 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(FRNT_ESC.o)
+ .text.FRNT_ESC_ReadCounter
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(FRNT_ESC.o)
+ .text.FRNT_ESC_SetCounterMode
+                0x00000000       0x28 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(FRNT_ESC.o)
+ .text.FRNT_ESC_ReadPeriod
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(FRNT_ESC.o)
+ .text.FRNT_ESC_SetCompareSwap
+                0x00000000       0x24 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(FRNT_ESC.o)
+ .text.FRNT_ESC_WritePeriodBuf
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(FRNT_ESC.o)
+ .text.FRNT_ESC_ReadPeriodBuf
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(FRNT_ESC.o)
+ .text.FRNT_ESC_SetPeriodSwap
+                0x00000000       0x28 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(FRNT_ESC.o)
+ .text.FRNT_ESC_ReadCompare
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(FRNT_ESC.o)
+ .text.FRNT_ESC_WriteCompareBuf
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(FRNT_ESC.o)
+ .text.FRNT_ESC_ReadCompareBuf
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(FRNT_ESC.o)
+ .text.FRNT_ESC_ReadCapture
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(FRNT_ESC.o)
+ .text.FRNT_ESC_ReadCaptureBuf
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(FRNT_ESC.o)
+ .text.FRNT_ESC_SetCaptureMode
+                0x00000000       0x24 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(FRNT_ESC.o)
+ .text.FRNT_ESC_SetReloadMode
+                0x00000000       0x24 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(FRNT_ESC.o)
+ .text.FRNT_ESC_SetStartMode
+                0x00000000       0x28 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(FRNT_ESC.o)
+ .text.FRNT_ESC_SetStopMode
+                0x00000000       0x24 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(FRNT_ESC.o)
+ .text.FRNT_ESC_SetCountMode
+                0x00000000       0x24 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(FRNT_ESC.o)
+ .text.FRNT_ESC_ReadStatus
+                0x00000000       0x14 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(FRNT_ESC.o)
+ .text.FRNT_ESC_GetInterruptSourceMasked
+                0x00000000        0xc .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(FRNT_ESC.o)
+ .text.FRNT_ESC_GetInterruptSource
+                0x00000000        0xc .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(FRNT_ESC.o)
+ .text.FRNT_ESC_ClearInterrupt
+                0x00000000        0xc .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(FRNT_ESC.o)
+ .text.FRNT_ESC_SetInterrupt
+                0x00000000        0xc .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(FRNT_ESC.o)
+ .text          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(BCK_ESC.o)
+ .data          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(BCK_ESC.o)
+ .text.BCK_ESC_Stop
+                0x00000000       0x1c .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(BCK_ESC.o)
+ .text.BCK_ESC_SetMode
+                0x00000000       0x28 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(BCK_ESC.o)
+ .text.BCK_ESC_SetQDMode
+                0x00000000       0x28 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(BCK_ESC.o)
+ .text.BCK_ESC_SetPrescaler
+                0x00000000       0x28 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(BCK_ESC.o)
+ .text.BCK_ESC_SetOneShot
+                0x00000000       0x30 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(BCK_ESC.o)
+ .text.BCK_ESC_SetPWMMode
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(BCK_ESC.o)
+ .text.BCK_ESC_SetPWMSyncKill
+                0x00000000       0x28 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(BCK_ESC.o)
+ .text.BCK_ESC_SetPWMStopOnKill
+                0x00000000       0x28 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(BCK_ESC.o)
+ .text.BCK_ESC_SetPWMDeadTime
+                0x00000000       0x2c .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(BCK_ESC.o)
+ .text.BCK_ESC_SetPWMInvert
+                0x00000000       0x28 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(BCK_ESC.o)
+ .text.BCK_ESC_ReadCounter
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(BCK_ESC.o)
+ .text.BCK_ESC_SetCounterMode
+                0x00000000       0x28 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(BCK_ESC.o)
+ .text.BCK_ESC_ReadPeriod
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(BCK_ESC.o)
+ .text.BCK_ESC_SetCompareSwap
+                0x00000000       0x24 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(BCK_ESC.o)
+ .text.BCK_ESC_WritePeriodBuf
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(BCK_ESC.o)
+ .text.BCK_ESC_ReadPeriodBuf
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(BCK_ESC.o)
+ .text.BCK_ESC_SetPeriodSwap
+                0x00000000       0x28 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(BCK_ESC.o)
+ .text.BCK_ESC_ReadCompare
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(BCK_ESC.o)
+ .text.BCK_ESC_WriteCompareBuf
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(BCK_ESC.o)
+ .text.BCK_ESC_ReadCompareBuf
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(BCK_ESC.o)
+ .text.BCK_ESC_ReadCapture
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(BCK_ESC.o)
+ .text.BCK_ESC_ReadCaptureBuf
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(BCK_ESC.o)
+ .text.BCK_ESC_SetCaptureMode
+                0x00000000       0x24 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(BCK_ESC.o)
+ .text.BCK_ESC_SetReloadMode
+                0x00000000       0x24 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(BCK_ESC.o)
+ .text.BCK_ESC_SetStartMode
+                0x00000000       0x28 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(BCK_ESC.o)
+ .text.BCK_ESC_SetStopMode
+                0x00000000       0x24 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(BCK_ESC.o)
+ .text.BCK_ESC_SetCountMode
+                0x00000000       0x24 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(BCK_ESC.o)
+ .text.BCK_ESC_ReadStatus
+                0x00000000       0x14 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(BCK_ESC.o)
+ .text.BCK_ESC_GetInterruptSourceMasked
+                0x00000000        0xc .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(BCK_ESC.o)
+ .text.BCK_ESC_GetInterruptSource
+                0x00000000        0xc .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(BCK_ESC.o)
+ .text.BCK_ESC_ClearInterrupt
+                0x00000000        0xc .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(BCK_ESC.o)
+ .text.BCK_ESC_SetInterrupt
+                0x00000000        0xc .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(BCK_ESC.o)
+ .text          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LFT_ESC.o)
+ .data          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LFT_ESC.o)
+ .text.LFT_ESC_Stop
+                0x00000000       0x1c .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LFT_ESC.o)
+ .text.LFT_ESC_SetMode
+                0x00000000       0x28 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LFT_ESC.o)
+ .text.LFT_ESC_SetQDMode
+                0x00000000       0x28 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LFT_ESC.o)
+ .text.LFT_ESC_SetPrescaler
+                0x00000000       0x28 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LFT_ESC.o)
+ .text.LFT_ESC_SetOneShot
+                0x00000000       0x30 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LFT_ESC.o)
+ .text.LFT_ESC_SetPWMMode
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LFT_ESC.o)
+ .text.LFT_ESC_SetPWMSyncKill
+                0x00000000       0x28 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LFT_ESC.o)
+ .text.LFT_ESC_SetPWMStopOnKill
+                0x00000000       0x28 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LFT_ESC.o)
+ .text.LFT_ESC_SetPWMDeadTime
+                0x00000000       0x2c .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LFT_ESC.o)
+ .text.LFT_ESC_SetPWMInvert
+                0x00000000       0x28 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LFT_ESC.o)
+ .text.LFT_ESC_ReadCounter
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LFT_ESC.o)
+ .text.LFT_ESC_SetCounterMode
+                0x00000000       0x28 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LFT_ESC.o)
+ .text.LFT_ESC_ReadPeriod
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LFT_ESC.o)
+ .text.LFT_ESC_SetCompareSwap
+                0x00000000       0x24 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LFT_ESC.o)
+ .text.LFT_ESC_WritePeriodBuf
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LFT_ESC.o)
+ .text.LFT_ESC_ReadPeriodBuf
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LFT_ESC.o)
+ .text.LFT_ESC_SetPeriodSwap
+                0x00000000       0x28 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LFT_ESC.o)
+ .text.LFT_ESC_ReadCompare
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LFT_ESC.o)
+ .text.LFT_ESC_WriteCompareBuf
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LFT_ESC.o)
+ .text.LFT_ESC_ReadCompareBuf
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LFT_ESC.o)
+ .text.LFT_ESC_ReadCapture
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LFT_ESC.o)
+ .text.LFT_ESC_ReadCaptureBuf
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LFT_ESC.o)
+ .text.LFT_ESC_SetCaptureMode
+                0x00000000       0x24 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LFT_ESC.o)
+ .text.LFT_ESC_SetReloadMode
+                0x00000000       0x24 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LFT_ESC.o)
+ .text.LFT_ESC_SetStartMode
+                0x00000000       0x28 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LFT_ESC.o)
+ .text.LFT_ESC_SetStopMode
+                0x00000000       0x24 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LFT_ESC.o)
+ .text.LFT_ESC_SetCountMode
+                0x00000000       0x24 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LFT_ESC.o)
+ .text.LFT_ESC_ReadStatus
+                0x00000000       0x14 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LFT_ESC.o)
+ .text.LFT_ESC_GetInterruptSourceMasked
+                0x00000000        0xc .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LFT_ESC.o)
+ .text.LFT_ESC_GetInterruptSource
+                0x00000000        0xc .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LFT_ESC.o)
+ .text.LFT_ESC_ClearInterrupt
+                0x00000000        0xc .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LFT_ESC.o)
+ .text.LFT_ESC_SetInterrupt
+                0x00000000        0xc .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LFT_ESC.o)
+ .text          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(RGHT_ESC.o)
+ .data          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(RGHT_ESC.o)
+ .text.RGHT_ESC_Stop
+                0x00000000       0x1c .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(RGHT_ESC.o)
+ .text.RGHT_ESC_SetMode
+                0x00000000       0x28 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(RGHT_ESC.o)
+ .text.RGHT_ESC_SetQDMode
+                0x00000000       0x28 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(RGHT_ESC.o)
+ .text.RGHT_ESC_SetPrescaler
+                0x00000000       0x28 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(RGHT_ESC.o)
+ .text.RGHT_ESC_SetOneShot
+                0x00000000       0x30 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(RGHT_ESC.o)
+ .text.RGHT_ESC_SetPWMMode
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(RGHT_ESC.o)
+ .text.RGHT_ESC_SetPWMSyncKill
+                0x00000000       0x28 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(RGHT_ESC.o)
+ .text.RGHT_ESC_SetPWMStopOnKill
+                0x00000000       0x28 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(RGHT_ESC.o)
+ .text.RGHT_ESC_SetPWMDeadTime
+                0x00000000       0x2c .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(RGHT_ESC.o)
+ .text.RGHT_ESC_SetPWMInvert
+                0x00000000       0x28 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(RGHT_ESC.o)
+ .text.RGHT_ESC_ReadCounter
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(RGHT_ESC.o)
+ .text.RGHT_ESC_SetCounterMode
+                0x00000000       0x28 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(RGHT_ESC.o)
+ .text.RGHT_ESC_ReadPeriod
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(RGHT_ESC.o)
+ .text.RGHT_ESC_SetCompareSwap
+                0x00000000       0x24 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(RGHT_ESC.o)
+ .text.RGHT_ESC_WritePeriodBuf
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(RGHT_ESC.o)
+ .text.RGHT_ESC_ReadPeriodBuf
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(RGHT_ESC.o)
+ .text.RGHT_ESC_SetPeriodSwap
+                0x00000000       0x28 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(RGHT_ESC.o)
+ .text.RGHT_ESC_ReadCompare
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(RGHT_ESC.o)
+ .text.RGHT_ESC_WriteCompareBuf
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(RGHT_ESC.o)
+ .text.RGHT_ESC_ReadCompareBuf
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(RGHT_ESC.o)
+ .text.RGHT_ESC_ReadCapture
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(RGHT_ESC.o)
+ .text.RGHT_ESC_ReadCaptureBuf
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(RGHT_ESC.o)
+ .text.RGHT_ESC_SetCaptureMode
+                0x00000000       0x24 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(RGHT_ESC.o)
+ .text.RGHT_ESC_SetReloadMode
+                0x00000000       0x24 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(RGHT_ESC.o)
+ .text.RGHT_ESC_SetStartMode
+                0x00000000       0x28 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(RGHT_ESC.o)
+ .text.RGHT_ESC_SetStopMode
+                0x00000000       0x24 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(RGHT_ESC.o)
+ .text.RGHT_ESC_SetCountMode
+                0x00000000       0x24 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(RGHT_ESC.o)
+ .text.RGHT_ESC_ReadStatus
+                0x00000000       0x14 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(RGHT_ESC.o)
+ .text.RGHT_ESC_GetInterruptSourceMasked
+                0x00000000        0xc .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(RGHT_ESC.o)
+ .text.RGHT_ESC_GetInterruptSource
+                0x00000000        0xc .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(RGHT_ESC.o)
+ .text.RGHT_ESC_ClearInterrupt
+                0x00000000        0xc .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(RGHT_ESC.o)
+ .text.RGHT_ESC_SetInterrupt
+                0x00000000        0xc .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(RGHT_ESC.o)
+ .text          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(SWWDT.o)
+ .data          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(SWWDT.o)
+ .text.SWWDT_Stop
+                0x00000000       0x1c .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(SWWDT.o)
+ .text.SWWDT_SetMode
+                0x00000000       0x28 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(SWWDT.o)
+ .text.SWWDT_SetQDMode
+                0x00000000       0x28 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(SWWDT.o)
+ .text.SWWDT_SetPrescaler
+                0x00000000       0x28 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(SWWDT.o)
+ .text.SWWDT_SetOneShot
+                0x00000000       0x30 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(SWWDT.o)
+ .text.SWWDT_SetPWMMode
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(SWWDT.o)
+ .text.SWWDT_SetPWMSyncKill
+                0x00000000       0x28 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(SWWDT.o)
+ .text.SWWDT_SetPWMStopOnKill
+                0x00000000       0x28 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(SWWDT.o)
+ .text.SWWDT_SetPWMDeadTime
+                0x00000000       0x2c .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(SWWDT.o)
+ .text.SWWDT_SetPWMInvert
+                0x00000000       0x28 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(SWWDT.o)
+ .text.SWWDT_ReadCounter
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(SWWDT.o)
+ .text.SWWDT_SetCounterMode
+                0x00000000       0x28 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(SWWDT.o)
+ .text.SWWDT_ReadPeriod
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(SWWDT.o)
+ .text.SWWDT_SetCompareSwap
+                0x00000000       0x24 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(SWWDT.o)
+ .text.SWWDT_WritePeriodBuf
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(SWWDT.o)
+ .text.SWWDT_ReadPeriodBuf
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(SWWDT.o)
+ .text.SWWDT_SetPeriodSwap
+                0x00000000       0x28 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(SWWDT.o)
+ .text.SWWDT_WriteCompare
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(SWWDT.o)
+ .text.SWWDT_ReadCompare
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(SWWDT.o)
+ .text.SWWDT_WriteCompareBuf
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(SWWDT.o)
+ .text.SWWDT_ReadCompareBuf
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(SWWDT.o)
+ .text.SWWDT_ReadCapture
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(SWWDT.o)
+ .text.SWWDT_ReadCaptureBuf
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(SWWDT.o)
+ .text.SWWDT_SetCaptureMode
+                0x00000000       0x24 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(SWWDT.o)
+ .text.SWWDT_SetReloadMode
+                0x00000000       0x24 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(SWWDT.o)
+ .text.SWWDT_SetStartMode
+                0x00000000       0x28 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(SWWDT.o)
+ .text.SWWDT_SetStopMode
+                0x00000000       0x24 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(SWWDT.o)
+ .text.SWWDT_SetCountMode
+                0x00000000       0x24 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(SWWDT.o)
+ .text.SWWDT_ReadStatus
+                0x00000000       0x14 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(SWWDT.o)
+ .text.SWWDT_GetInterruptSourceMasked
+                0x00000000        0xc .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(SWWDT.o)
+ .text.SWWDT_GetInterruptSource
+                0x00000000        0xc .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(SWWDT.o)
+ .text.SWWDT_ClearInterrupt
+                0x00000000        0xc .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(SWWDT.o)
+ .text.SWWDT_SetInterrupt
+                0x00000000        0xc .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(SWWDT.o)
+ .text          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(WDT_ISR.o)
+ .data          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(WDT_ISR.o)
+ .bss           0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(WDT_ISR.o)
+ .text.WDT_ISR_GetVector
+                0x00000000        0xc .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(WDT_ISR.o)
+ .text.WDT_ISR_GetPriority
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(WDT_ISR.o)
+ .text.WDT_ISR_GetState
+                0x00000000       0x14 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(WDT_ISR.o)
+ .text.WDT_ISR_StartEx
+                0x00000000       0x1c .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(WDT_ISR.o)
+ .text.WDT_ISR_Stop
+                0x00000000       0x14 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(WDT_ISR.o)
+ .text.WDT_ISR_SetPending
+                0x00000000        0xc .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(WDT_ISR.o)
+ .data          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyBootAsmGnu.o)
+ .bss           0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyBootAsmGnu.o)
+ .text          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_SPI_UART_INT.o)
+ .data          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_SPI_UART_INT.o)
+ .bss           0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_SPI_UART_INT.o)
+ .text          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_SPI_UART.o)
+ .data          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_SPI_UART.o)
+ .bss           0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_SPI_UART.o)
+ .text.UART_LiDAR_SpiUartClearRxBuffer
+                0x00000000       0x20 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_SPI_UART.o)
+ .text.UART_LiDAR_SpiUartWriteTxData
+                0x00000000       0x1c .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_SPI_UART.o)
+ .text.UART_LiDAR_SpiUartPutArray
+                0x00000000       0x18 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_SPI_UART.o)
+ .text.UART_LiDAR_SpiUartGetTxBufferSize
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_SPI_UART.o)
+ .text.UART_LiDAR_SpiUartClearTxBuffer
+                0x00000000       0x20 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_SPI_UART.o)
+ .text.UART_LiDAR_SpiUartDisableIntRx
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_SPI_UART.o)
+ .text.UART_LiDAR_SpiUartDisableIntTx
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_SPI_UART.o)
+ .text          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_SPI_UART_INT.o)
+ .data          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_SPI_UART_INT.o)
+ .bss           0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_SPI_UART_INT.o)
+ .text          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyFlash.o)
+ .data          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyFlash.o)
+ .bss           0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyFlash.o)
+ .text.CySysFlashClockBackup
+                0x00000000        0x4 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyFlash.o)
+ .text.CySysFlashClockRestore
+                0x00000000        0x4 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyFlash.o)
+ .text.CySysFlashWriteRow
+                0x00000000      0x120 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyFlash.o)
+ .text.CySysSFlashWriteUserRow
+                0x00000000      0x110 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyFlash.o)
+ .text          0x00000000      0x114 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_udivsi3.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_udivsi3.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_udivsi3.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_divsi3.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_divsi3.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_dvmd_tls.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_dvmd_tls.o)
+ .text          0x00000000       0x48 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_aeabi_ldivmod.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_aeabi_ldivmod.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_aeabi_ldivmod.o)
+ .text          0x00000000       0x58 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_muldi3.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_muldi3.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_muldi3.o)
+ .text          0x00000000       0x38 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(bpabi.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(bpabi.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(bpabi.o)
+ .text          0x00000000      0x234 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(divsf3.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(divsf3.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(divsf3.o)
+ .rodata        0x00000000       0x80 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(divsf3.o)
+ .text          0x00000000      0x228 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(mulsf3.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(mulsf3.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(mulsf3.o)
+ .rodata        0x00000000       0x40 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(mulsf3.o)
+ .text          0x00000000       0x90 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(floatsisf.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(floatsisf.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(floatsisf.o)
+ .text          0x00000000       0x3c c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_clzsi2.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_clzsi2.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_clzsi2.o)
+ .text          0x00000000      0x1bc c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_divdi3.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_divdi3.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_divdi3.o)
+ .ARM.extab     0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_divdi3.o)
+ .ARM.exidx     0x00000000        0x8 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_divdi3.o)
+ .text          0x00000000       0x18 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_clzdi2.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_clzdi2.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_clzdi2.o)
+ .text          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-errno.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-errno.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-errno.o)
+ .text          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-exit.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-exit.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-exit.o)
+ .text.exit     0x00000000       0x2c c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-exit.o)
+ .text          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-impure.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-impure.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-impure.o)
+ .rodata._global_impure_ptr
+                0x00000000        0x4 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-impure.o)
+ .text          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-init.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-init.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-init.o)
+ .text          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-memcpy-stub.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-memcpy-stub.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-memcpy-stub.o)
+ .text          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-memset.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-memset.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-memset.o)
+ .text          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-strncmp.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-strncmp.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-strncmp.o)
+ .text.strncmp  0x00000000       0x24 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-strncmp.o)
+ .text          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m/crtend.o
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m/crtend.o
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m/crtend.o
+ .text          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m/crtn.o
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m/crtn.o
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m/crtn.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+rom              0x00000000         0x00010000         xr
+ram              0x20000000         0x00002000         xrw
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+LOAD c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m/crti.o
+LOAD c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m/crtbegin.o
+LOAD c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m/crt0.o
+START GROUP
+LOAD .\CortexM0\ARM_GCC_541\Debug\main.o
+LOAD .\CortexM0\ARM_GCC_541\Debug\cyfitter_cfg.o
+LOAD .\CortexM0\ARM_GCC_541\Debug\cymetadata.o
+LOAD .\CortexM0\ARM_GCC_541\Debug\Cm0Start.o
+LOAD .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a
+END GROUP
+START GROUP
+LOAD c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a
+LOAD c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a
+LOAD c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libc_nano.a
+END GROUP
+START GROUP
+LOAD c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a
+LOAD c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libc_nano.a
+END GROUP
+LOAD c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m/crtend.o
+LOAD c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m/crtn.o
+START GROUP
+LOAD c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a
+LOAD c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libc.a
+LOAD c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libnosys.a
+END GROUP
+                0x00000000                CY_APPL_ORIGIN = 0x0
+                0x00000080                CY_FLASH_ROW_SIZE = 0x80
+                0x00000001                CY_APPL_NUM = 0x1
+                0x00000001                CY_APPL_MAX = 0x1
+                0x00000040                CY_METADATA_SIZE = 0x40
+                0x00000000                CY_APPL_LOADABLE = 0x0
+                0x00000000                CY_CHECKSUM_EXCLUDE_SIZE = ALIGN (0x0, CY_FLASH_ROW_SIZE)
+                0x00000000                CY_APP_FOR_STACK_AND_COPIER = 0x0
+                [!provide]                PROVIDE (__cy_heap_start, _end)
+                0x00000001                PROVIDE (__cy_region_num, ((__cy_regions_end - __cy_regions) / 0x10))
+                0x20002000                PROVIDE (__cy_stack, (ORIGIN (ram) + LENGTH (ram)))
+                [!provide]                PROVIDE (__cy_heap_end, (__cy_stack - 0x800))
+
+.cybootloader   0x00000000        0x0
+ *(.cybootloader)
+                0x00000000                appl1_start = CY_APPL_ORIGIN?CY_APPL_ORIGIN:ALIGN (CY_FLASH_ROW_SIZE)
+                0x00007f80                appl2_start = (appl1_start + ALIGN ((((LENGTH (rom) - appl1_start) - (0x2 * CY_FLASH_ROW_SIZE)) / 0x2), CY_FLASH_ROW_SIZE))
+                0x00000000                appl_start = (CY_APPL_NUM == 0x1)?appl1_start:appl2_start
+                0x00000001                cy_project_type_bootloader = (appl_start == 0x0)?0x1:0x0
+                0x00000000                cy_project_type_app_for_stack_and_copier = (CY_APP_FOR_STACK_AND_COPIER == 0x1)?0x1:0x0
+
+.text           0x00000000     0x2aca
+ CREATE_OBJECT_SYMBOLS
+                0x00000000                PROVIDE (__cy_interrupt_vector, RomVectors)
+ *(.romvectors)
+ .romvectors    0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\Cm0Start.o
+                0x00000000                RomVectors
+                0x00000001                ASSERT ((. != __cy_interrupt_vector), No interrupt vector)
+                0x00000001                ASSERT (CY_APPL_ORIGIN?(SIZEOF (.cybootloader) <= CY_APPL_ORIGIN):0x1, Wrong image location)
+                0x00000010                PROVIDE (__cy_reset, Reset)
+ *(.text.Reset)
+ .text.Reset    0x00000010        0x8 .\CortexM0\ARM_GCC_541\Debug\Cm0Start.o
+                0x00000010                Reset
+                0x00000001                ASSERT ((. != __cy_reset), No reset code)
+ *(.psocinit)
+ .psocinit      0x00000018      0x260 .\CortexM0\ARM_GCC_541\Debug\cyfitter_cfg.o
+                0x00000124                cyfitter_cfg
+                0x00000278                . = MAX (., 0x100)
+ *(.text .text.* .gnu.linkonce.t.*)
+ .text          0x00000278       0x60 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m/crtbegin.o
+ .text.display_msg
+                0x000002d8       0x2c .\CortexM0\ARM_GCC_541\Debug\main.o
+                0x000002d8                display_msg
+ .text.append_msg
+                0x00000304       0x28 .\CortexM0\ARM_GCC_541\Debug\main.o
+                0x00000304                append_msg
+ .text.append_num16
+                0x0000032c       0x94 .\CortexM0\ARM_GCC_541\Debug\main.o
+                0x0000032c                append_num16
+ .text.set_GP_timer
+                0x000003c0       0x64 .\CortexM0\ARM_GCC_541\Debug\main.o
+                0x000003c0                set_GP_timer
+ .text.cancel_GP_timer
+                0x00000424       0x78 .\CortexM0\ARM_GCC_541\Debug\main.o
+                0x00000424                cancel_GP_timer
+ .text.enqueue_task
+                0x0000049c       0x44 .\CortexM0\ARM_GCC_541\Debug\main.o
+                0x0000049c                enqueue_task
+ .text.dequeue_task
+                0x000004e0       0x8c .\CortexM0\ARM_GCC_541\Debug\main.o
+                0x000004e0                dequeue_task
+ .text.LED_display
+                0x0000056c       0x84 .\CortexM0\ARM_GCC_541\Debug\main.o
+                0x0000056c                LED_display
+ .text.init_periphs
+                0x000005f0       0x44 .\CortexM0\ARM_GCC_541\Debug\main.o
+                0x000005f0                init_periphs
+ .text.SPI_trans
+                0x00000634       0xcc .\CortexM0\ARM_GCC_541\Debug\main.o
+                0x00000634                SPI_trans
+ .text.gyroInit
+                0x00000700       0x5c .\CortexM0\ARM_GCC_541\Debug\main.o
+                0x00000700                gyroInit
+ .text.gyroRead
+                0x0000075c       0xec .\CortexM0\ARM_GCC_541\Debug\main.o
+                0x0000075c                gyroRead
+ .text.magInit  0x00000848       0x40 .\CortexM0\ARM_GCC_541\Debug\main.o
+                0x00000848                magInit
+ .text.magRead  0x00000888       0x64 .\CortexM0\ARM_GCC_541\Debug\main.o
+                0x00000888                magRead
+ .text.fuseMag  0x000008ec       0x5c .\CortexM0\ARM_GCC_541\Debug\main.o
+                0x000008ec                fuseMag
+ .text.shutDwn  0x00000948       0x30 .\CortexM0\ARM_GCC_541\Debug\main.o
+                0x00000948                shutDwn
+ .text.process_GP_timer_evt
+                0x00000978       0xf8 .\CortexM0\ARM_GCC_541\Debug\main.o
+                0x00000978                process_GP_timer_evt
+ .text.fusion   0x00000a70      0x19c .\CortexM0\ARM_GCC_541\Debug\main.o
+                0x00000a70                fusion
+ .text.computePD
+                0x00000c0c      0x1a8 .\CortexM0\ARM_GCC_541\Debug\main.o
+                0x00000c0c                computePD
+ .text.processBLE_cmd
+                0x00000db4      0x17c .\CortexM0\ARM_GCC_541\Debug\main.o
+                0x00000db4                processBLE_cmd
+ .text.thrustPID
+                0x00000f30       0xcc .\CortexM0\ARM_GCC_541\Debug\main.o
+                0x00000f30                thrustPID
+ .text.main     0x00000ffc      0x4f4 .\CortexM0\ARM_GCC_541\Debug\main.o
+                0x00000ffc                main
+ .text.cfg_write_bytes32
+                0x000014f0       0x34 .\CortexM0\ARM_GCC_541\Debug\cyfitter_cfg.o
+ .text.CYMEMZERO
+                0x00001524        0xc .\CortexM0\ARM_GCC_541\Debug\cyfitter_cfg.o
+ .text.SetAnalogRoutingPumps
+                0x00001530       0x20 .\CortexM0\ARM_GCC_541\Debug\cyfitter_cfg.o
+                0x00001530                SetAnalogRoutingPumps
+ .text.AnalogSetDefault
+                0x00001550       0x44 .\CortexM0\ARM_GCC_541\Debug\cyfitter_cfg.o
+ .text.IntDefaultHandler
+                0x00001594       0x10 .\CortexM0\ARM_GCC_541\Debug\Cm0Start.o
+                0x00001594                IntDefaultHandler
+ .text.Start_c  0x000015a4       0x48 .\CortexM0\ARM_GCC_541\Debug\Cm0Start.o
+                0x000015a4                Start_c
+ .text.initialize_psoc
+                0x000015ec       0x4c .\CortexM0\ARM_GCC_541\Debug\Cm0Start.o
+                0x000015ec                initialize_psoc
+ .text.LED4_Write
+                0x00001638       0x18 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED4.o)
+                0x00001638                LED4_Write
+ .text.LED3_Write
+                0x00001650       0x18 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED3.o)
+                0x00001650                LED3_Write
+ .text.LED2_Write
+                0x00001668       0x18 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED2.o)
+                0x00001668                LED2_Write
+ .text.LED1_Write
+                0x00001680       0x18 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED1.o)
+                0x00001680                LED1_Write
+ .text.LED0_Write
+                0x00001698       0x18 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED0.o)
+                0x00001698                LED0_Write
+ .text.InertINT_Read
+                0x000016b0       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(InertINT.o)
+                0x000016b0                InertINT_Read
+ .text.GyroISR_SetVector
+                0x000016c0        0xc .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(GyroISR.o)
+                0x000016c0                GyroISR_SetVector
+ .text.GyroISR_SetPriority
+                0x000016cc       0x20 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(GyroISR.o)
+                0x000016cc                GyroISR_SetPriority
+ .text.GyroISR_Enable
+                0x000016ec        0xc .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(GyroISR.o)
+                0x000016ec                GyroISR_Enable
+ .text.GyroISR_Disable
+                0x000016f8        0xc .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(GyroISR.o)
+                0x000016f8                GyroISR_Disable
+ .text.GyroISR_Start
+                0x00001704       0x1c .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(GyroISR.o)
+                0x00001704                GyroISR_Start
+ .text.GyroISR_ClearPending
+                0x00001720        0xc .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(GyroISR.o)
+                0x00001720                GyroISR_ClearPending
+ .text.GyroISR_Interrupt
+                0x0000172c       0x24 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(GyroISR.o)
+                0x0000172c                GyroISR_Interrupt
+ .text.GyroSS_n_Write
+                0x00001750       0x18 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(GyroSS_n.o)
+                0x00001750                GyroSS_n_Write
+ .text.UART_BLE_ScbEnableIntr
+                0x00001768        0xc .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE.o)
+ .text.UART_BLE_ScbModePostEnable
+                0x00001774        0x8 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE.o)
+ .text.UART_BLE_Init
+                0x0000177c        0x8 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE.o)
+                0x0000177c                UART_BLE_Init
+ .text.UART_BLE_Enable
+                0x00001784       0x1c .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE.o)
+                0x00001784                UART_BLE_Enable
+ .text.UART_BLE_Start
+                0x000017a0       0x20 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE.o)
+                0x000017a0                UART_BLE_Start
+ .text.UART_BLE_SpiUartReadRxData
+                0x000017c0        0xc .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_SPI_UART.o)
+                0x000017c0                UART_BLE_SpiUartReadRxData
+ .text.UART_BLE_SpiUartGetRxBufferSize
+                0x000017cc       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_SPI_UART.o)
+                0x000017cc                UART_BLE_SpiUartGetRxBufferSize
+ .text.UART_BLE_SpiUartWriteTxData
+                0x000017dc       0x1c .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_SPI_UART.o)
+                0x000017dc                UART_BLE_SpiUartWriteTxData
+ .text.UART_BLE_UartInit
+                0x000017f8       0xc4 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_UART.o)
+                0x000017f8                UART_BLE_UartInit
+ .text.UART_BLE_UartPostEnable
+                0x000018bc       0x24 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_UART.o)
+                0x000018bc                UART_BLE_UartPostEnable
+ .text.UART_BLE_UartGetByte
+                0x000018e0       0x34 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_UART.o)
+                0x000018e0                UART_BLE_UartGetByte
+ .text.MagSS_n_Write
+                0x00001914       0x18 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(MagSS_n.o)
+                0x00001914                MagSS_n_Write
+ .text.LED5_Write
+                0x0000192c       0x18 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED5.o)
+                0x0000192c                LED5_Write
+ .text.UART_LiDAR_ScbEnableIntr
+                0x00001944        0xc .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR.o)
+ .text.UART_LiDAR_ScbModePostEnable
+                0x00001950        0x8 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR.o)
+ .text.UART_LiDAR_Init
+                0x00001958        0x8 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR.o)
+                0x00001958                UART_LiDAR_Init
+ .text.UART_LiDAR_Enable
+                0x00001960       0x1c .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR.o)
+                0x00001960                UART_LiDAR_Enable
+ .text.UART_LiDAR_Start
+                0x0000197c       0x20 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR.o)
+                0x0000197c                UART_LiDAR_Start
+ .text.UART_LiDAR_UartInit
+                0x0000199c       0xc4 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_UART.o)
+                0x0000199c                UART_LiDAR_UartInit
+ .text.UART_LiDAR_UartPostEnable
+                0x00001a60       0x24 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_UART.o)
+                0x00001a60                UART_LiDAR_UartPostEnable
+ .text.UART_LiDAR_UartGetByte
+                0x00001a84       0x34 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_UART.o)
+                0x00001a84                UART_LiDAR_UartGetByte
+ .text.UART_BLE_SCB_IRQ_Interrupt
+                0x00001ab8       0x94 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_SCB_IRQ.o)
+                0x00001ab8                UART_BLE_SCB_IRQ_Interrupt
+ .text.UART_BLE_SCB_IRQ_SetVector
+                0x00001b4c        0xc .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_SCB_IRQ.o)
+                0x00001b4c                UART_BLE_SCB_IRQ_SetVector
+ .text.UART_BLE_SCB_IRQ_SetPriority
+                0x00001b58       0x20 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_SCB_IRQ.o)
+                0x00001b58                UART_BLE_SCB_IRQ_SetPriority
+ .text.UART_BLE_SCB_IRQ_Enable
+                0x00001b78       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_SCB_IRQ.o)
+                0x00001b78                UART_BLE_SCB_IRQ_Enable
+ .text.UART_BLE_SCB_IRQ_Disable
+                0x00001b88       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_SCB_IRQ.o)
+                0x00001b88                UART_BLE_SCB_IRQ_Disable
+ .text.UART_BLE_SCB_IRQ_Start
+                0x00001b98       0x1c .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_SCB_IRQ.o)
+                0x00001b98                UART_BLE_SCB_IRQ_Start
+ .text.UART_LiDAR_SCB_IRQ_Interrupt
+                0x00001bb4       0x94 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_SCB_IRQ.o)
+                0x00001bb4                UART_LiDAR_SCB_IRQ_Interrupt
+ .text.UART_LiDAR_SCB_IRQ_SetVector
+                0x00001c48        0xc .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_SCB_IRQ.o)
+                0x00001c48                UART_LiDAR_SCB_IRQ_SetVector
+ .text.UART_LiDAR_SCB_IRQ_SetPriority
+                0x00001c54       0x24 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_SCB_IRQ.o)
+                0x00001c54                UART_LiDAR_SCB_IRQ_SetPriority
+ .text.UART_LiDAR_SCB_IRQ_Enable
+                0x00001c78       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_SCB_IRQ.o)
+                0x00001c78                UART_LiDAR_SCB_IRQ_Enable
+ .text.UART_LiDAR_SCB_IRQ_Disable
+                0x00001c88       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_SCB_IRQ.o)
+                0x00001c88                UART_LiDAR_SCB_IRQ_Disable
+ .text.UART_LiDAR_SCB_IRQ_Start
+                0x00001c98       0x1c .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_SCB_IRQ.o)
+                0x00001c98                UART_LiDAR_SCB_IRQ_Start
+ .text.CySysClkImoDisableWcoLock
+                0x00001cb4       0x54 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLib.o)
+                0x00001cb4                CySysClkImoDisableWcoLock
+ .text.CySysClkImoGetWcoLock
+                0x00001d08       0x14 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLib.o)
+                0x00001d08                CySysClkImoGetWcoLock
+ .text.CyIntEnable
+                0x00001d1c       0x14 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLib.o)
+                0x00001d1c                CyIntEnable
+ .text.CyIntDisable
+                0x00001d30       0x14 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLib.o)
+                0x00001d30                CyIntDisable
+ .text.CyHalt   0x00001d44        0x4 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLib.o)
+                0x00001d44                CyHalt
+ .text.CyIntSetVector
+                0x00001d48       0x24 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLib.o)
+                0x00001d48                CyIntSetVector
+ .text.CyIntSetPriority
+                0x00001d6c       0x4c .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLib.o)
+                0x00001d6c                CyIntSetPriority
+ .text.CyDelay  0x00001db8       0x30 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLib.o)
+                0x00001db8                CyDelay
+ .text.CySysClkImoEnableWcoLock
+                0x00001de8       0xf4 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLib.o)
+                0x00001de8                CySysClkImoEnableWcoLock
+ .text.CySysClkWriteImoFreq
+                0x00001edc       0x80 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLib.o)
+                0x00001edc                CySysClkWriteImoFreq
+ .text.CyDelayUs
+                0x00001f5c       0x14 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLib.o)
+                0x00001f5c                CyDelayUs
+ .text.CySysWdtLocked
+                0x00001f70       0x14 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLFClk.o)
+ .text.CySysClkWcoEnabled
+                0x00001f84       0x14 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLFClk.o)
+                0x00001f84                CySysClkWcoEnabled
+ .text.CySysWdtLock
+                0x00001f98       0x1c .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLFClk.o)
+                0x00001f98                CySysWdtLock
+ .text.CySysWdtUnlock
+                0x00001fb4       0x30 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLFClk.o)
+                0x00001fb4                CySysWdtUnlock
+ .text.CySysWdtClearInterrupt
+                0x00001fe4       0x4c .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLFClk.o)
+                0x00001fe4                CySysWdtClearInterrupt
+ .text.CySysWdtIsr
+                0x00002030       0xa4 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLFClk.o)
+                0x00002030                CySysWdtIsr
+ .text.A2D_Init
+                0x000020d4      0x184 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(A2D.o)
+                0x000020d4                A2D_Init
+ .text.A2D_Enable
+                0x00002258       0x30 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(A2D.o)
+                0x00002258                A2D_Enable
+ .text.A2D_Start
+                0x00002288       0x20 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(A2D.o)
+                0x00002288                A2D_Start
+ .text.A2D_StartConvert
+                0x000022a8       0x14 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(A2D.o)
+                0x000022a8                A2D_StartConvert
+ .text.A2D_ISR  0x000022bc        0xc .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(A2D_INT.o)
+                0x000022bc                A2D_ISR
+ .text.LED6_Write
+                0x000022c8       0x18 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED6.o)
+                0x000022c8                LED6_Write
+ .text.FRNT_ESC_WriteCounter
+                0x000022e0       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(FRNT_ESC.o)
+                0x000022e0                FRNT_ESC_WriteCounter
+ .text.FRNT_ESC_WritePeriod
+                0x000022f0       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(FRNT_ESC.o)
+                0x000022f0                FRNT_ESC_WritePeriod
+ .text.FRNT_ESC_WriteCompare
+                0x00002300       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(FRNT_ESC.o)
+                0x00002300                FRNT_ESC_WriteCompare
+ .text.FRNT_ESC_TriggerCommand
+                0x00002310       0x1c .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(FRNT_ESC.o)
+                0x00002310                FRNT_ESC_TriggerCommand
+ .text.FRNT_ESC_Enable
+                0x0000232c       0x24 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(FRNT_ESC.o)
+                0x0000232c                FRNT_ESC_Enable
+ .text.FRNT_ESC_SetInterruptMode
+                0x00002350        0xc .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(FRNT_ESC.o)
+                0x00002350                FRNT_ESC_SetInterruptMode
+ .text.FRNT_ESC_Init
+                0x0000235c       0x48 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(FRNT_ESC.o)
+                0x0000235c                FRNT_ESC_Init
+ .text.FRNT_ESC_Start
+                0x000023a4       0x20 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(FRNT_ESC.o)
+                0x000023a4                FRNT_ESC_Start
+ .text.BCK_ESC_WriteCounter
+                0x000023c4       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(BCK_ESC.o)
+                0x000023c4                BCK_ESC_WriteCounter
+ .text.BCK_ESC_WritePeriod
+                0x000023d4       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(BCK_ESC.o)
+                0x000023d4                BCK_ESC_WritePeriod
+ .text.BCK_ESC_WriteCompare
+                0x000023e4       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(BCK_ESC.o)
+                0x000023e4                BCK_ESC_WriteCompare
+ .text.BCK_ESC_TriggerCommand
+                0x000023f4       0x1c .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(BCK_ESC.o)
+                0x000023f4                BCK_ESC_TriggerCommand
+ .text.BCK_ESC_Enable
+                0x00002410       0x24 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(BCK_ESC.o)
+                0x00002410                BCK_ESC_Enable
+ .text.BCK_ESC_SetInterruptMode
+                0x00002434        0xc .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(BCK_ESC.o)
+                0x00002434                BCK_ESC_SetInterruptMode
+ .text.BCK_ESC_Init
+                0x00002440       0x48 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(BCK_ESC.o)
+                0x00002440                BCK_ESC_Init
+ .text.BCK_ESC_Start
+                0x00002488       0x20 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(BCK_ESC.o)
+                0x00002488                BCK_ESC_Start
+ .text.LFT_ESC_WriteCounter
+                0x000024a8       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LFT_ESC.o)
+                0x000024a8                LFT_ESC_WriteCounter
+ .text.LFT_ESC_WritePeriod
+                0x000024b8       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LFT_ESC.o)
+                0x000024b8                LFT_ESC_WritePeriod
+ .text.LFT_ESC_WriteCompare
+                0x000024c8       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LFT_ESC.o)
+                0x000024c8                LFT_ESC_WriteCompare
+ .text.LFT_ESC_TriggerCommand
+                0x000024d8       0x1c .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LFT_ESC.o)
+                0x000024d8                LFT_ESC_TriggerCommand
+ .text.LFT_ESC_Enable
+                0x000024f4       0x24 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LFT_ESC.o)
+                0x000024f4                LFT_ESC_Enable
+ .text.LFT_ESC_SetInterruptMode
+                0x00002518        0xc .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LFT_ESC.o)
+                0x00002518                LFT_ESC_SetInterruptMode
+ .text.LFT_ESC_Init
+                0x00002524       0x48 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LFT_ESC.o)
+                0x00002524                LFT_ESC_Init
+ .text.LFT_ESC_Start
+                0x0000256c       0x20 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LFT_ESC.o)
+                0x0000256c                LFT_ESC_Start
+ .text.RGHT_ESC_WriteCounter
+                0x0000258c       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(RGHT_ESC.o)
+                0x0000258c                RGHT_ESC_WriteCounter
+ .text.RGHT_ESC_WritePeriod
+                0x0000259c       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(RGHT_ESC.o)
+                0x0000259c                RGHT_ESC_WritePeriod
+ .text.RGHT_ESC_WriteCompare
+                0x000025ac       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(RGHT_ESC.o)
+                0x000025ac                RGHT_ESC_WriteCompare
+ .text.RGHT_ESC_TriggerCommand
+                0x000025bc       0x1c .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(RGHT_ESC.o)
+                0x000025bc                RGHT_ESC_TriggerCommand
+ .text.RGHT_ESC_Enable
+                0x000025d8       0x24 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(RGHT_ESC.o)
+                0x000025d8                RGHT_ESC_Enable
+ .text.RGHT_ESC_SetInterruptMode
+                0x000025fc        0xc .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(RGHT_ESC.o)
+                0x000025fc                RGHT_ESC_SetInterruptMode
+ .text.RGHT_ESC_Init
+                0x00002608       0x48 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(RGHT_ESC.o)
+                0x00002608                RGHT_ESC_Init
+ .text.RGHT_ESC_Start
+                0x00002650       0x20 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(RGHT_ESC.o)
+                0x00002650                RGHT_ESC_Start
+ .text.SWWDT_WriteCounter
+                0x00002670       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(SWWDT.o)
+                0x00002670                SWWDT_WriteCounter
+ .text.SWWDT_WritePeriod
+                0x00002680       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(SWWDT.o)
+                0x00002680                SWWDT_WritePeriod
+ .text.SWWDT_TriggerCommand
+                0x00002690       0x1c .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(SWWDT.o)
+                0x00002690                SWWDT_TriggerCommand
+ .text.SWWDT_Enable
+                0x000026ac       0x24 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(SWWDT.o)
+                0x000026ac                SWWDT_Enable
+ .text.SWWDT_SetInterruptMode
+                0x000026d0        0xc .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(SWWDT.o)
+                0x000026d0                SWWDT_SetInterruptMode
+ .text.SWWDT_Init
+                0x000026dc       0x30 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(SWWDT.o)
+                0x000026dc                SWWDT_Init
+ .text.SWWDT_Start
+                0x0000270c       0x20 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(SWWDT.o)
+                0x0000270c                SWWDT_Start
+ .text.WDT_ISR_SetVector
+                0x0000272c        0xc .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(WDT_ISR.o)
+                0x0000272c                WDT_ISR_SetVector
+ .text.WDT_ISR_SetPriority
+                0x00002738       0x24 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(WDT_ISR.o)
+                0x00002738                WDT_ISR_SetPriority
+ .text.WDT_ISR_Enable
+                0x0000275c        0xc .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(WDT_ISR.o)
+                0x0000275c                WDT_ISR_Enable
+ .text.WDT_ISR_Disable
+                0x00002768        0xc .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(WDT_ISR.o)
+                0x00002768                WDT_ISR_Disable
+ .text.WDT_ISR_Start
+                0x00002774       0x1c .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(WDT_ISR.o)
+                0x00002774                WDT_ISR_Start
+ .text.WDT_ISR_ClearPending
+                0x00002790        0xc .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(WDT_ISR.o)
+                0x00002790                WDT_ISR_ClearPending
+ .text.WDT_ISR_Interrupt
+                0x0000279c       0x24 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(WDT_ISR.o)
+                0x0000279c                WDT_ISR_Interrupt
+ .text          0x000027c0       0x20 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyBootAsmGnu.o)
+                0x000027c0                CyDelayCycles
+                0x000027d2                CyEnterCriticalSection
+                0x000027da                CyExitCriticalSection
+ .text.UART_BLE_SPI_UART_ISR
+                0x000027e0       0x14 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_SPI_UART_INT.o)
+                0x000027e0                UART_BLE_SPI_UART_ISR
+ .text.UART_LiDAR_SpiUartReadRxData
+                0x000027f4        0xc .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_SPI_UART.o)
+                0x000027f4                UART_LiDAR_SpiUartReadRxData
+ .text.UART_LiDAR_SpiUartGetRxBufferSize
+                0x00002800       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_SPI_UART.o)
+                0x00002800                UART_LiDAR_SpiUartGetRxBufferSize
+ .text.UART_LiDAR_SPI_UART_ISR
+                0x00002810       0x14 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_SPI_UART_INT.o)
+                0x00002810                UART_LiDAR_SPI_UART_ISR
+ .text.CySysFlashSetWaitCycles
+                0x00002824       0x54 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyFlash.o)
+                0x00002824                CySysFlashSetWaitCycles
+ .text          0x00002878      0x1d4 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_divsi3.o)
+                0x00002878                __divsi3
+                0x00002878                __aeabi_idiv
+                0x00002a44                __aeabi_idivmod
+ .text          0x00002a4c        0x4 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_dvmd_tls.o)
+                0x00002a4c                __aeabi_idiv0
+                0x00002a4c                __aeabi_ldiv0
+ .text.__errno  0x00002a50        0xc c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-errno.o)
+                0x00002a50                __errno
+ .text.__libc_init_array
+                0x00002a5c       0x4c c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-init.o)
+                0x00002a5c                __libc_init_array
+ .text.memcpy   0x00002aa8       0x12 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-memcpy-stub.o)
+                0x00002aa8                memcpy
+ .text.memset   0x00002aba       0x10 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-memset.o)
+                0x00002aba                memset
+ *(.plt)
+ *(.gnu.warning)
+ *(.glue_7t)
+ .glue_7t       0x00002aca        0x0 linker stubs
+ *(.glue_7)
+ .glue_7        0x00002aca        0x0 linker stubs
+ *(.vfp11_veneer)
+ .vfp11_veneer  0x00002aca        0x0 linker stubs
+ *(.bootloader)
+ *(.ARM.extab* .gnu.linkonce.armextab.*)
+ *(.gcc_except_table)
+
+.v4_bx          0x00002acc        0x0
+ .v4_bx         0x00002acc        0x0 linker stubs
+
+.iplt           0x00002acc        0x0
+ .iplt          0x00002acc        0x0 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m/crtbegin.o
+
+.eh_frame_hdr
+ *(.eh_frame_hdr)
+
+.eh_frame       0x00002acc        0x4
+ *(.eh_frame)
+ .eh_frame      0x00002acc        0x0 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m/crtbegin.o
+ .eh_frame      0x00002acc        0x4 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m/crtend.o
+                [!provide]                PROVIDE (__exidx_start, .)
+
+.ARM.exidx
+ *(.ARM.exidx* .gnu.linkonce.armexidx.*)
+                0x00002ad0                __exidx_end = .
+
+.rodata         0x00002ad0      0x1e8
+ *(.rodata .rodata.* .gnu.linkonce.r.*)
+ .rodata        0x00002ad0       0x3c .\CortexM0\ARM_GCC_541\Debug\main.o
+ .rodata.str1.4
+                0x00002b0c       0xf8 .\CortexM0\ARM_GCC_541\Debug\main.o
+                                 0xfa (size before relaxing)
+ .rodata        0x00002c04       0x44 .\CortexM0\ARM_GCC_541\Debug\cyfitter_cfg.o
+ .rodata        0x00002c48       0x2e .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLib.o)
+                0x00002c48                cyImoFreqMhz2Reg
+ *fill*         0x00002c76        0x2 
+ .rodata        0x00002c78        0xa .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(A2D.o)
+ .rodata.str1.1
+                0x00002c82        0x2 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-impure.o)
+                0x00002c84                . = ALIGN (0x4)
+ *(.init)
+ .init          0x00002c84        0x4 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m/crti.o
+                0x00002c84                _init
+ .init          0x00002c88        0x8 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m/crtn.o
+                0x00002c90                . = ALIGN (0x4)
+                0x00002c90                __preinit_array_start = .
+ *(.preinit_array)
+                0x00002c90                __preinit_array_end = .
+                0x00002c90                . = ALIGN (0x4)
+                0x00002c90                __init_array_start = .
+ *(SORT(.init_array.*))
+ *(.init_array)
+ .init_array    0x00002c90        0x4 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m/crtbegin.o
+ .init_array    0x00002c94        0x4 .\CortexM0\ARM_GCC_541\Debug\Cm0Start.o
+                0x00002c98                __init_array_end = .
+                0x00002c98                . = ALIGN (0x4)
+ *(.fini)
+ .fini          0x00002c98        0x4 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m/crti.o
+                0x00002c98                _fini
+ .fini          0x00002c9c        0x8 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m/crtn.o
+                0x00002ca4                . = ALIGN (0x4)
+                0x00002ca4                __fini_array_start = .
+ *(.fini_array)
+ .fini_array    0x00002ca4        0x4 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m/crtbegin.o
+ *(SORT(.fini_array.*))
+                0x00002ca8                __fini_array_end = .
+                0x00002ca8                . = ALIGN (0x4)
+ *crtbegin.o(.ctors)
+ *(EXCLUDE_FILE(*crtend.o) .ctors)
+ *(SORT(.ctors.*))
+ *crtend.o(.ctors)
+                0x00002ca8                . = ALIGN (0x4)
+ *crtbegin.o(.dtors)
+ *(EXCLUDE_FILE(*crtend.o) .dtors)
+ *(SORT(.dtors.*))
+ *crtend.o(.dtors)
+                0x00002ca8                . = ALIGN (0x4)
+                0x00002ca8                __cy_regions = .
+                0x00002ca8        0x4 LONG 0x2cb8 __cy_region_init_ram
+                0x00002cac        0x4 LONG 0x200000c0 __cy_region_start_data
+                0x00002cb0        0x4 LONG 0x88 __cy_region_init_size_ram
+                0x00002cb4        0x4 LONG 0x2b8 __cy_region_zero_size_ram
+                0x00002cb8                __cy_regions_end = .
+                0x00002cb8                . = ALIGN (0x8)
+                0x00002cb8                _etext = .
+
+.cy_checksum_exclude
+                0x00002cb8        0x0
+ *(.cy_checksum_exclude)
+
+.ramvectors     0x20000000       0xc0
+                0x20000000                __cy_region_start_ram = .
+ *(.ramvectors)
+ .ramvectors    0x20000000       0xc0 .\CortexM0\ARM_GCC_541\Debug\Cm0Start.o
+                0x20000000                CyRamVectors
+
+.noinit
+ *(.noinit)
+
+.data           0x200000c0       0x88 load address 0x00002cb8
+                0x200000c0                __cy_region_start_data = .
+ *(.jcr)
+ .jcr           0x200000c0        0x0 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m/crtbegin.o
+ .jcr           0x200000c0        0x4 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m/crtend.o
+ *(.got.plt)
+ *(.got)
+ *(.shdata)
+ *(.data .data.* .gnu.linkonce.d.*)
+ .data          0x200000c4       0x14 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLib.o)
+                0x200000c4                CySysClkPumpConfig
+                0x200000c8                cydelay32kMs
+                0x200000cc                cydelayFreqKhz
+                0x200000d0                cydelayFreqMhz
+                0x200000d4                cydelayFreqHz
+ .data          0x200000d8        0x8 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLFClk.o)
+ .data.impure_data
+                0x200000e0       0x60 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-impure.o)
+ .data._impure_ptr
+                0x20000140        0x4 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-impure.o)
+                0x20000140                _impure_ptr
+                0x20000148                . = ALIGN (0x8)
+ *fill*         0x20000144        0x4 
+ *(.ram)
+                0x20000148                _edata = .
+
+.igot.plt       0x20000148        0x0 load address 0x00002d40
+ .igot.plt      0x20000148        0x0 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m/crtbegin.o
+
+.bss            0x20000148      0x2b8 load address 0x00002d40
+                0x20000148                PROVIDE (__bss_start__, .)
+ *(.shbss)
+ *(.bss .bss.* .gnu.linkonce.b.*)
+ .bss           0x20000148       0x1c c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m/crtbegin.o
+ .bss           0x20000164        0x4 .\CortexM0\ARM_GCC_541\Debug\main.o
+                0x20000164                msg_ptr_tail
+                0x20000165                msg_ptr_head
+                0x20000166                num_GP_timers
+ .bss           0x20000168        0xa .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE.o)
+                0x20000168                UART_BLE_initVar
+                0x2000016c                UART_BLE_customIntrHandler
+                0x20000170                UART_BLE_IntrTxMask
+ *fill*         0x20000172        0x2 
+ .bss           0x20000174        0xa .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR.o)
+                0x20000174                UART_LiDAR_initVar
+                0x20000178                UART_LiDAR_customIntrHandler
+                0x2000017c                UART_LiDAR_IntrTxMask
+ *fill*         0x2000017e        0x2 
+ .bss           0x20000180       0x28 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLFClk.o)
+ .bss           0x200001a8        0x1 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(A2D.o)
+                0x200001a8                A2D_initVar
+ .bss           0x200001a9        0x1 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(FRNT_ESC.o)
+                0x200001a9                FRNT_ESC_initVar
+ .bss           0x200001aa        0x1 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(BCK_ESC.o)
+                0x200001aa                BCK_ESC_initVar
+ .bss           0x200001ab        0x1 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LFT_ESC.o)
+                0x200001ab                LFT_ESC_initVar
+ .bss           0x200001ac        0x1 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(RGHT_ESC.o)
+                0x200001ac                RGHT_ESC_initVar
+ .bss           0x200001ad        0x1 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(SWWDT.o)
+                0x200001ad                SWWDT_initVar
+ *(COMMON)
+ *fill*         0x200001ae        0x2 
+ COMMON         0x200001b0      0x242 .\CortexM0\ARM_GCC_541\Debug\main.o
+                0x200001b0                lft_spd
+                0x200001b2                yaw_rt_avg
+                0x200001b4                pitch_rt_last
+                0x200001b6                num_rx_bytes_dbg_buff
+                0x200001b8                avg_smpl_cnt
+                0x200001ba                elevationErr
+                0x200001bc                YMAG_min
+                0x200001be                pitch_rt
+                0x200001c0                auto_elevation
+                0x200001c4                AX_accum
+                0x200001c8                num_rx_bytes_dbg
+                0x200001cc                rx_bytes_dbg
+                0x200001d4                yaw_accum
+                0x200001d8                num_filt_rates
+                0x200001da                XMAG_avg
+                0x200001dc                XMAG_accum
+                0x200001e0                rx_bytes_lidar
+                0x200001f0                LIDAR_UART_tmr
+                0x200001f1                num_rx_bytes_ble_buff
+                0x200001f2                thrust_auto
+                0x200001f4                XMAG_min
+                0x200001f6                yaw_desired
+                0x200001f8                roll_rt
+                0x200001fa                pitch_rt_raw
+                0x200001fc                frnt_spd
+                0x20000200                debug_msg
+                0x20000300                Acc_avg_ptr
+                0x20000304                rx_bytes_lidar_buff
+                0x20000314                pitch_desired
+                0x20000316                AY
+                0x20000318                yaw_rt_last
+                0x2000031a                num_rx_bytes_ble
+                0x2000031c                yaw_fuse
+                0x2000031e                thrust_tare
+                0x20000320                elevationErr_last
+                0x20000322                amp
+                0x20000324                AY_accum
+                0x20000328                pitch_fuse
+                0x2000032a                num_tasks
+                0x2000032c                roll_desired
+                0x2000032e                bck_spd
+                0x20000330                YMAG_max
+                0x20000332                GP_ticks
+                0x20000334                GP_evt
+                0x20000335                BLE_UART_tmr
+                0x20000338                task_queue
+                0x20000342                YMAG
+                0x20000344                desiredElevation
+                0x20000346                elev_adj_dec
+                0x20000348                rx_bytes_dbg_buff
+                0x20000350                SPI_resp
+                0x2000035e                roll_fuse
+                0x20000360                elevation
+                0x20000362                roll_rt_last
+                0x20000364                roll_rt_avg
+                0x20000366                roll_rt_raw
+                0x20000368                SPI_cmd
+                0x20000376                XMAG
+                0x20000378                YMAG_avg
+                0x2000037c                roll_accum
+                0x20000380                Acc_q_full
+                0x20000382                yaw_rt_raw
+                0x20000384                num_MAG_readings
+                0x20000388                pitch_accum
+                0x2000038c                thrust
+                0x2000038e                pitch_rt_avg
+                0x20000390                rght_spd
+                0x20000394                rx_bytes_ble_buff
+                0x2000039c                sec
+                0x2000039e                missed_gyros
+                0x200003a0                D_term_thrust
+                0x200003a4                YMAG_accum
+                0x200003a8                rx_bytes_ble
+                0x200003b0                GP_timer
+                0x200003c4                AXq
+                0x200003d4                auto_elevation_triggered
+                0x200003d6                P_term_thrust
+                0x200003d8                AYq
+                0x200003e8                XMAG_max
+                0x200003ea                num_rx_bytes_lidar_buff
+                0x200003ec                AX
+                0x200003ee                num_rx_bytes_lidar
+                0x200003f0                yaw_rt
+ *fill*         0x200003f2        0x2 
+ COMMON         0x200003f4        0xc .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(A2D.o)
+                0x200003f4                A2D_countsPer10Volt
+                0x200003fc                A2D_offset
+                0x20000400                . = ALIGN (0x8)
+ *(.ram.b)
+                0x20000400                _end = .
+                0x20000400                __end = .
+                0x20000400                PROVIDE (end, .)
+                0x20000400                PROVIDE (__bss_end__, .)
+                0x00002cb8                __cy_region_init_ram = LOADADDR (.data)
+                0x00000088                __cy_region_init_size_ram = (_edata - ADDR (.data))
+                0x000002b8                __cy_region_zero_size_ram = (_end - _edata)
+
+.heap           0x20000400       0x80 load address 0x00002d40
+                0x20000400                . = _end
+                0x20000480                . = (. + 0x80)
+ *fill*         0x20000400       0x80 
+                0x20000480                __cy_heap_limit = .
+
+.stack          0x20001800      0x800
+                0x20001800                __cy_stack_limit = .
+                0x20002000                . = (. + 0x800)
+ *fill*         0x20001800      0x800 
+                0x00000001                ASSERT ((__cy_stack_limit >= __cy_heap_limit), region RAM overflowed with stack)
+                0x00000000                cy_checksum_exclude_size = (CY_APPL_LOADABLE == 0x1)?SIZEOF (.cy_checksum_exclude):0x0
+                0x00000001                ASSERT ((cy_checksum_exclude_size <= CY_CHECKSUM_EXCLUDE_SIZE), CY_BOOT: Section .cy_checksum_exclude size exceedes specified limit.)
+                0x0000ffc0                cyloadermeta_start = (cy_project_type_bootloader || cy_project_type_app_for_stack_and_copier)?(LENGTH (rom) - CY_METADATA_SIZE):0xf0000000
+
+.cyloadermeta
+ *(.cyloadermeta)
+                0x0000ffc0                cyloadablemeta_start = cy_project_type_app_for_stack_and_copier?((LENGTH (rom) - CY_FLASH_ROW_SIZE) - CY_METADATA_SIZE):((LENGTH (rom) - (CY_FLASH_ROW_SIZE * (CY_APPL_NUM - 0x1))) - CY_METADATA_SIZE)
+
+.cyloadablemeta
+ *(.cyloadablemeta)
+
+.cyflashprotect
+                0x90400000       0x40
+ *(.cyflashprotect)
+ .cyflashprotect
+                0x90400000       0x40 .\CortexM0\ARM_GCC_541\Debug\cymetadata.o
+                0x90400000                cy_meta_flashprotect
+
+.cymeta         0x90500000        0xc
+ *(.cymeta)
+ .cymeta        0x90500000        0xc .\CortexM0\ARM_GCC_541\Debug\cymetadata.o
+                0x90500000                cy_metadata
+
+.cychipprotect  0x90600000        0x1
+ *(.cychipprotect)
+ .cychipprotect
+                0x90600000        0x1 .\CortexM0\ARM_GCC_541\Debug\cymetadata.o
+                0x90600000                cy_meta_chipprotect
+
+.rel.dyn        0x00002d40        0x0 load address 0x90600004
+ .rel.iplt      0x00002d40        0x0 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m/crtbegin.o
+
+.stab
+ *(.stab)
+
+.stabstr
+ *(.stabstr)
+
+.debug
+ *(.debug)
+
+.line
+ *(.line)
+
+.debug_srcinfo
+ *(.debug_srcinfo)
+
+.debug_sfnames
+ *(.debug_sfnames)
+
+.debug_aranges  0x00000000     0x1478
+ *(.debug_aranges)
+ .debug_aranges
+                0x00000000       0xe0 .\CortexM0\ARM_GCC_541\Debug\main.o
+ .debug_aranges
+                0x000000e0       0x48 .\CortexM0\ARM_GCC_541\Debug\cyfitter_cfg.o
+ .debug_aranges
+                0x00000128       0x18 .\CortexM0\ARM_GCC_541\Debug\cymetadata.o
+ .debug_aranges
+                0x00000140       0x48 .\CortexM0\ARM_GCC_541\Debug\Cm0Start.o
+ .debug_aranges
+                0x00000188       0x48 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED4.o)
+ .debug_aranges
+                0x000001d0       0x48 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED3.o)
+ .debug_aranges
+                0x00000218       0x48 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED2.o)
+ .debug_aranges
+                0x00000260       0x48 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED1.o)
+ .debug_aranges
+                0x000002a8       0x48 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED0.o)
+ .debug_aranges
+                0x000002f0       0x48 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(InertINT.o)
+ .debug_aranges
+                0x00000338       0x80 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(GyroISR.o)
+ .debug_aranges
+                0x000003b8       0x48 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(GyroSS_n.o)
+ .debug_aranges
+                0x00000400       0x68 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE.o)
+ .debug_aranges
+                0x00000468       0x60 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_SPI_UART.o)
+ .debug_aranges
+                0x000004c8       0x90 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_UART.o)
+ .debug_aranges
+                0x00000558       0x48 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(MagSS_n.o)
+ .debug_aranges
+                0x000005a0       0x48 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED5.o)
+ .debug_aranges
+                0x000005e8       0x68 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR.o)
+ .debug_aranges
+                0x00000650       0x90 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_UART.o)
+ .debug_aranges
+                0x000006e0       0x80 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_SCB_IRQ.o)
+ .debug_aranges
+                0x00000760       0x80 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_SCB_IRQ.o)
+ .debug_aranges
+                0x000007e0      0x1c8 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLib.o)
+ .debug_aranges
+                0x000009a8      0x188 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLFClk.o)
+ .debug_aranges
+                0x00000b30       0xa8 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(A2D.o)
+ .debug_aranges
+                0x00000bd8       0x20 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(A2D_INT.o)
+ .debug_aranges
+                0x00000bf8       0x48 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED6.o)
+ .debug_aranges
+                0x00000c40      0x158 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(FRNT_ESC.o)
+ .debug_aranges
+                0x00000d98      0x158 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(BCK_ESC.o)
+ .debug_aranges
+                0x00000ef0      0x158 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LFT_ESC.o)
+ .debug_aranges
+                0x00001048      0x158 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(RGHT_ESC.o)
+ .debug_aranges
+                0x000011a0      0x158 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(SWWDT.o)
+ .debug_aranges
+                0x000012f8       0x80 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(WDT_ISR.o)
+ .debug_aranges
+                0x00001378       0x20 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyBootAsmGnu.o)
+ .debug_aranges
+                0x00001398       0x20 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_SPI_UART_INT.o)
+ .debug_aranges
+                0x000013b8       0x60 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_SPI_UART.o)
+ .debug_aranges
+                0x00001418       0x20 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_SPI_UART_INT.o)
+ .debug_aranges
+                0x00001438       0x40 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyFlash.o)
+
+.debug_pubnames
+ *(.debug_pubnames)
+
+.debug_info     0x00000000     0xaf74
+ *(.debug_info .gnu.linkonce.wi.*)
+ .debug_info    0x00000000     0x1a4a .\CortexM0\ARM_GCC_541\Debug\main.o
+ .debug_info    0x00001a4a      0x405 .\CortexM0\ARM_GCC_541\Debug\cyfitter_cfg.o
+ .debug_info    0x00001e4f       0xf8 .\CortexM0\ARM_GCC_541\Debug\cymetadata.o
+ .debug_info    0x00001f47      0x3a2 .\CortexM0\ARM_GCC_541\Debug\Cm0Start.o
+ .debug_info    0x000022e9      0x19d .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED4.o)
+ .debug_info    0x00002486      0x19d .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED3.o)
+ .debug_info    0x00002623      0x19d .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED2.o)
+ .debug_info    0x000027c0      0x19d .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED1.o)
+ .debug_info    0x0000295d      0x19b .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED0.o)
+ .debug_info    0x00002af8      0x19d .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(InertINT.o)
+ .debug_info    0x00002c95      0x4c8 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(GyroISR.o)
+ .debug_info    0x0000315d      0x19d .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(GyroSS_n.o)
+ .debug_info    0x000032fa      0x2e9 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE.o)
+ .debug_info    0x000035e3      0x220 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_SPI_UART.o)
+ .debug_info    0x00003803      0x421 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_UART.o)
+ .debug_info    0x00003c24      0x19d .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(MagSS_n.o)
+ .debug_info    0x00003dc1      0x19d .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED5.o)
+ .debug_info    0x00003f5e      0x2e9 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR.o)
+ .debug_info    0x00004247      0x421 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_UART.o)
+ .debug_info    0x00004668      0x501 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_SCB_IRQ.o)
+ .debug_info    0x00004b69      0x501 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_SCB_IRQ.o)
+ .debug_info    0x0000506a      0xd40 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLib.o)
+ .debug_info    0x00005daa     0x1058 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLFClk.o)
+ .debug_info    0x00006e02      0x5a5 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(A2D.o)
+ .debug_info    0x000073a7       0xcb .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(A2D_INT.o)
+ .debug_info    0x00007472      0x19d .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED6.o)
+ .debug_info    0x0000760f      0x909 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(FRNT_ESC.o)
+ .debug_info    0x00007f18      0x909 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(BCK_ESC.o)
+ .debug_info    0x00008821      0x90a .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LFT_ESC.o)
+ .debug_info    0x0000912b      0x909 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(RGHT_ESC.o)
+ .debug_info    0x00009a34      0x8f6 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(SWWDT.o)
+ .debug_info    0x0000a32a      0x4c8 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(WDT_ISR.o)
+ .debug_info    0x0000a7f2       0x96 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyBootAsmGnu.o)
+ .debug_info    0x0000a888       0xbe .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_SPI_UART_INT.o)
+ .debug_info    0x0000a946      0x220 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_SPI_UART.o)
+ .debug_info    0x0000ab66       0xbe .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_SPI_UART_INT.o)
+ .debug_info    0x0000ac24      0x350 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyFlash.o)
+
+.debug_abbrev   0x00000000     0x2b41
+ *(.debug_abbrev)
+ .debug_abbrev  0x00000000      0x24d .\CortexM0\ARM_GCC_541\Debug\main.o
+ .debug_abbrev  0x0000024d      0x1cf .\CortexM0\ARM_GCC_541\Debug\cyfitter_cfg.o
+ .debug_abbrev  0x0000041c       0x5d .\CortexM0\ARM_GCC_541\Debug\cymetadata.o
+ .debug_abbrev  0x00000479      0x1d7 .\CortexM0\ARM_GCC_541\Debug\Cm0Start.o
+ .debug_abbrev  0x00000650       0xc8 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED4.o)
+ .debug_abbrev  0x00000718       0xc8 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED3.o)
+ .debug_abbrev  0x000007e0       0xc8 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED2.o)
+ .debug_abbrev  0x000008a8       0xc8 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED1.o)
+ .debug_abbrev  0x00000970       0xc8 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED0.o)
+ .debug_abbrev  0x00000a38       0xc8 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(InertINT.o)
+ .debug_abbrev  0x00000b00      0x1c3 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(GyroISR.o)
+ .debug_abbrev  0x00000cc3       0xc8 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(GyroSS_n.o)
+ .debug_abbrev  0x00000d8b      0x118 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE.o)
+ .debug_abbrev  0x00000ea3      0x14f .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_SPI_UART.o)
+ .debug_abbrev  0x00000ff2      0x145 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_UART.o)
+ .debug_abbrev  0x00001137       0xc8 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(MagSS_n.o)
+ .debug_abbrev  0x000011ff       0xc8 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED5.o)
+ .debug_abbrev  0x000012c7      0x118 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR.o)
+ .debug_abbrev  0x000013df      0x145 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_UART.o)
+ .debug_abbrev  0x00001524      0x1fd .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_SCB_IRQ.o)
+ .debug_abbrev  0x00001721      0x1fd .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_SCB_IRQ.o)
+ .debug_abbrev  0x0000191e      0x20b .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLib.o)
+ .debug_abbrev  0x00001b29      0x248 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLFClk.o)
+ .debug_abbrev  0x00001d71      0x19e .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(A2D.o)
+ .debug_abbrev  0x00001f0f       0x65 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(A2D_INT.o)
+ .debug_abbrev  0x00001f74       0xc8 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED6.o)
+ .debug_abbrev  0x0000203c      0x119 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(FRNT_ESC.o)
+ .debug_abbrev  0x00002155      0x119 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(BCK_ESC.o)
+ .debug_abbrev  0x0000226e      0x119 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LFT_ESC.o)
+ .debug_abbrev  0x00002387      0x119 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(RGHT_ESC.o)
+ .debug_abbrev  0x000024a0      0x119 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(SWWDT.o)
+ .debug_abbrev  0x000025b9      0x1c3 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(WDT_ISR.o)
+ .debug_abbrev  0x0000277c       0x14 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyBootAsmGnu.o)
+ .debug_abbrev  0x00002790       0x70 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_SPI_UART_INT.o)
+ .debug_abbrev  0x00002800      0x14f .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_SPI_UART.o)
+ .debug_abbrev  0x0000294f       0x70 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_SPI_UART_INT.o)
+ .debug_abbrev  0x000029bf      0x182 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyFlash.o)
+
+.debug_line     0x00000000     0x4a0a
+ *(.debug_line)
+ .debug_line    0x00000000      0x832 .\CortexM0\ARM_GCC_541\Debug\main.o
+ .debug_line    0x00000832      0x1ad .\CortexM0\ARM_GCC_541\Debug\cyfitter_cfg.o
+ .debug_line    0x000009df      0x141 .\CortexM0\ARM_GCC_541\Debug\cymetadata.o
+ .debug_line    0x00000b20      0x236 .\CortexM0\ARM_GCC_541\Debug\Cm0Start.o
+ .debug_line    0x00000d56       0xbc .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED4.o)
+ .debug_line    0x00000e12       0xbc .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED3.o)
+ .debug_line    0x00000ece       0xbc .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED2.o)
+ .debug_line    0x00000f8a       0xbc .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED1.o)
+ .debug_line    0x00001046       0xbb .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED0.o)
+ .debug_line    0x00001101       0xc0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(InertINT.o)
+ .debug_line    0x000011c1      0x261 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(GyroISR.o)
+ .debug_line    0x00001422       0xc0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(GyroSS_n.o)
+ .debug_line    0x000014e2      0x144 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE.o)
+ .debug_line    0x00001626      0x11e .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_SPI_UART.o)
+ .debug_line    0x00001744      0x1e9 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_UART.o)
+ .debug_line    0x0000192d       0xbf .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(MagSS_n.o)
+ .debug_line    0x000019ec       0xbc .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED5.o)
+ .debug_line    0x00001aa8      0x148 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR.o)
+ .debug_line    0x00001bf0      0x1ef .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_UART.o)
+ .debug_line    0x00001ddf      0x2b0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_SCB_IRQ.o)
+ .debug_line    0x0000208f      0x2b4 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_SCB_IRQ.o)
+ .debug_line    0x00002343      0x563 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLib.o)
+ .debug_line    0x000028a6      0x5d1 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLFClk.o)
+ .debug_line    0x00002e77      0x292 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(A2D.o)
+ .debug_line    0x00003109       0x62 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(A2D_INT.o)
+ .debug_line    0x0000316b       0xbc .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED6.o)
+ .debug_line    0x00003227      0x381 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(FRNT_ESC.o)
+ .debug_line    0x000035a8      0x380 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(BCK_ESC.o)
+ .debug_line    0x00003928      0x380 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LFT_ESC.o)
+ .debug_line    0x00003ca8      0x381 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(RGHT_ESC.o)
+ .debug_line    0x00004029      0x379 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(SWWDT.o)
+ .debug_line    0x000043a2      0x25f .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(WDT_ISR.o)
+ .debug_line    0x00004601       0x68 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyBootAsmGnu.o)
+ .debug_line    0x00004669       0x85 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_SPI_UART_INT.o)
+ .debug_line    0x000046ee      0x120 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_SPI_UART.o)
+ .debug_line    0x0000480e       0x89 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_SPI_UART_INT.o)
+ .debug_line    0x00004897      0x173 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyFlash.o)
+
+.debug_frame    0x00000000     0x33fc
+ *(.debug_frame)
+ .debug_frame   0x00000000      0x330 .\CortexM0\ARM_GCC_541\Debug\main.o
+ .debug_frame   0x00000330       0xb8 .\CortexM0\ARM_GCC_541\Debug\cyfitter_cfg.o
+ .debug_frame   0x000003e8       0xbc .\CortexM0\ARM_GCC_541\Debug\Cm0Start.o
+ .debug_frame   0x000004a4       0x70 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED4.o)
+ .debug_frame   0x00000514       0x70 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED3.o)
+ .debug_frame   0x00000584       0x70 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED2.o)
+ .debug_frame   0x000005f4       0x70 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED1.o)
+ .debug_frame   0x00000664       0x70 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED0.o)
+ .debug_frame   0x000006d4       0x70 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(InertINT.o)
+ .debug_frame   0x00000744      0x11c .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(GyroISR.o)
+ .debug_frame   0x00000860       0x70 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(GyroSS_n.o)
+ .debug_frame   0x000008d0      0x104 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE.o)
+ .debug_frame   0x000009d4       0xb0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_SPI_UART.o)
+ .debug_frame   0x00000a84      0x154 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_UART.o)
+ .debug_frame   0x00000bd8       0x70 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(MagSS_n.o)
+ .debug_frame   0x00000c48       0x70 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED5.o)
+ .debug_frame   0x00000cb8      0x104 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR.o)
+ .debug_frame   0x00000dbc      0x154 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_UART.o)
+ .debug_frame   0x00000f10      0x120 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_SCB_IRQ.o)
+ .debug_frame   0x00001030      0x120 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_SCB_IRQ.o)
+ .debug_frame   0x00001150      0x48c .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLib.o)
+ .debug_frame   0x000015dc      0x4a4 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLFClk.o)
+ .debug_frame   0x00001a80      0x1b0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(A2D.o)
+ .debug_frame   0x00001c30       0x20 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(A2D_INT.o)
+ .debug_frame   0x00001c50       0x70 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED6.o)
+ .debug_frame   0x00001cc0      0x3a0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(FRNT_ESC.o)
+ .debug_frame   0x00002060      0x3a0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(BCK_ESC.o)
+ .debug_frame   0x00002400      0x3a0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LFT_ESC.o)
+ .debug_frame   0x000027a0      0x3a0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(RGHT_ESC.o)
+ .debug_frame   0x00002b40      0x3a0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(SWWDT.o)
+ .debug_frame   0x00002ee0      0x11c .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(WDT_ISR.o)
+ .debug_frame   0x00002ffc       0x2c .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_SPI_UART_INT.o)
+ .debug_frame   0x00003028       0xb0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_SPI_UART.o)
+ .debug_frame   0x000030d8       0x2c .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_SPI_UART_INT.o)
+ .debug_frame   0x00003104       0x90 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyFlash.o)
+ .debug_frame   0x00003194       0x20 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_udivsi3.o)
+ .debug_frame   0x000031b4       0x20 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_divsi3.o)
+ .debug_frame   0x000031d4       0x34 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_muldi3.o)
+ .debug_frame   0x00003208       0x30 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(bpabi.o)
+ .debug_frame   0x00003238       0x3c c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(divsf3.o)
+ .debug_frame   0x00003274       0x38 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(mulsf3.o)
+ .debug_frame   0x000032ac       0x2c c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(floatsisf.o)
+ .debug_frame   0x000032d8       0x3c c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_divdi3.o)
+ .debug_frame   0x00003314       0x20 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-errno.o)
+ .debug_frame   0x00003334       0x28 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-exit.o)
+ .debug_frame   0x0000335c       0x2c c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-init.o)
+ .debug_frame   0x00003388       0x28 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-memcpy-stub.o)
+ .debug_frame   0x000033b0       0x20 c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-memset.o)
+ .debug_frame   0x000033d0       0x2c c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-strncmp.o)
+
+.debug_str      0x00000000     0x4147
+ *(.debug_str)
+ .debug_str     0x00000000      0xa58 .\CortexM0\ARM_GCC_541\Debug\main.o
+                                0xb7c (size before relaxing)
+ .debug_str     0x00000a58      0x138 .\CortexM0\ARM_GCC_541\Debug\cyfitter_cfg.o
+                                0x303 (size before relaxing)
+ .debug_str     0x00000b90       0x59 .\CortexM0\ARM_GCC_541\Debug\cymetadata.o
+                                0x1ce (size before relaxing)
+ .debug_str     0x00000be9      0x13a .\CortexM0\ARM_GCC_541\Debug\Cm0Start.o
+                                0x307 (size before relaxing)
+ .debug_str     0x00000d23       0x9e .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED4.o)
+                                0x235 (size before relaxing)
+ .debug_str     0x00000dc1       0x75 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED3.o)
+                                0x235 (size before relaxing)
+ .debug_str     0x00000e36       0x75 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED2.o)
+                                0x235 (size before relaxing)
+ .debug_str     0x00000eab       0x75 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED1.o)
+                                0x235 (size before relaxing)
+ .debug_str     0x00000f20       0x75 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED0.o)
+                                0x235 (size before relaxing)
+ .debug_str     0x00000f95       0x8e .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(InertINT.o)
+                                0x251 (size before relaxing)
+ .debug_str     0x00001023      0x116 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(GyroISR.o)
+                                0x471 (size before relaxing)
+ .debug_str     0x00001139       0x8d .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(GyroSS_n.o)
+                                0x251 (size before relaxing)
+ .debug_str     0x000011c6      0x1a4 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE.o)
+                                0x35a (size before relaxing)
+ .debug_str     0x0000136a      0x141 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_SPI_UART.o)
+                                0x2fc (size before relaxing)
+ .debug_str     0x000014ab      0x1de .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_UART.o)
+                                0x451 (size before relaxing)
+ .debug_str     0x00001689       0x87 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(MagSS_n.o)
+                                0x24a (size before relaxing)
+ .debug_str     0x00001710       0x75 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED5.o)
+                                0x235 (size before relaxing)
+ .debug_str     0x00001785      0x184 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR.o)
+                                0x37c (size before relaxing)
+ .debug_str     0x00001909      0x1cf .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_UART.o)
+                                0x479 (size before relaxing)
+ .debug_str     0x00001ad8      0x174 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_SCB_IRQ.o)
+                                0x52f (size before relaxing)
+ .debug_str     0x00001c4c      0x183 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_SCB_IRQ.o)
+                                0x54f (size before relaxing)
+ .debug_str     0x00001dcf      0x58e .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLib.o)
+                                0x803 (size before relaxing)
+ .debug_str     0x0000235d      0x6e2 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLFClk.o)
+                                0x923 (size before relaxing)
+ .debug_str     0x00002a3f      0x1ca .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(A2D.o)
+                                0x3de (size before relaxing)
+ .debug_str     0x00002c09       0x35 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(A2D_INT.o)
+                                0x1c3 (size before relaxing)
+ .debug_str     0x00002c3e       0x75 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED6.o)
+                                0x235 (size before relaxing)
+ .debug_str     0x00002cb3      0x43f .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(FRNT_ESC.o)
+                                0x635 (size before relaxing)
+ .debug_str     0x000030f2      0x358 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(BCK_ESC.o)
+                                0x60b (size before relaxing)
+ .debug_str     0x0000344a      0x358 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LFT_ESC.o)
+                                0x60b (size before relaxing)
+ .debug_str     0x000037a2      0x380 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(RGHT_ESC.o)
+                                0x635 (size before relaxing)
+ .debug_str     0x00003b22      0x31b .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(SWWDT.o)
+                                0x5b7 (size before relaxing)
+ .debug_str     0x00003e3d       0xf4 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(WDT_ISR.o)
+                                0x471 (size before relaxing)
+ .debug_str     0x00003f31       0x45 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_SPI_UART_INT.o)
+                                0x1ee (size before relaxing)
+ .debug_str     0x00003f76       0xe8 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_SPI_UART.o)
+                                0x310 (size before relaxing)
+ .debug_str     0x0000405e       0x49 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_SPI_UART_INT.o)
+                                0x1f4 (size before relaxing)
+ .debug_str     0x000040a7       0xa0 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyFlash.o)
+                                0x2b6 (size before relaxing)
+
+.debug_loc      0x00000000     0x559e
+ *(.debug_loc)
+ .debug_loc     0x00000000      0xd45 .\CortexM0\ARM_GCC_541\Debug\main.o
+ .debug_loc     0x00000d45      0x136 .\CortexM0\ARM_GCC_541\Debug\cyfitter_cfg.o
+ .debug_loc     0x00000e7b      0x14f .\CortexM0\ARM_GCC_541\Debug\Cm0Start.o
+ .debug_loc     0x00000fca       0xa2 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED4.o)
+ .debug_loc     0x0000106c       0xa2 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED3.o)
+ .debug_loc     0x0000110e       0xa2 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED2.o)
+ .debug_loc     0x000011b0       0xa2 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED1.o)
+ .debug_loc     0x00001252       0x81 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED0.o)
+ .debug_loc     0x000012d3       0xa2 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(InertINT.o)
+ .debug_loc     0x00001375       0x82 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(GyroISR.o)
+ .debug_loc     0x000013f7       0xa2 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(GyroSS_n.o)
+ .debug_loc     0x00001499       0x7e .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE.o)
+ .debug_loc     0x00001517       0x96 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_SPI_UART.o)
+ .debug_loc     0x000015ad      0x223 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_UART.o)
+ .debug_loc     0x000017d0       0xa2 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(MagSS_n.o)
+ .debug_loc     0x00001872       0xa2 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED5.o)
+ .debug_loc     0x00001914       0x7e .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR.o)
+ .debug_loc     0x00001992      0x223 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_UART.o)
+ .debug_loc     0x00001bb5       0xdf .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_SCB_IRQ.o)
+ .debug_loc     0x00001c94       0xdf .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_SCB_IRQ.o)
+ .debug_loc     0x00001d73      0x81c .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLib.o)
+ .debug_loc     0x0000258f      0xdb7 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLFClk.o)
+ .debug_loc     0x00003346      0x4db .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(A2D.o)
+ .debug_loc     0x00003821       0xa2 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED6.o)
+ .debug_loc     0x000038c3      0x547 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(FRNT_ESC.o)
+ .debug_loc     0x00003e0a      0x547 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(BCK_ESC.o)
+ .debug_loc     0x00004351      0x547 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LFT_ESC.o)
+ .debug_loc     0x00004898      0x547 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(RGHT_ESC.o)
+ .debug_loc     0x00004ddf      0x547 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(SWWDT.o)
+ .debug_loc     0x00005326       0x82 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(WDT_ISR.o)
+ .debug_loc     0x000053a8       0x96 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_SPI_UART.o)
+ .debug_loc     0x0000543e      0x160 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyFlash.o)
+
+.debug_macinfo
+ *(.debug_macinfo)
+
+.debug_ranges   0x00000000     0x1210
+ *(.debug_ranges)
+ .debug_ranges  0x00000000       0xd0 .\CortexM0\ARM_GCC_541\Debug\main.o
+ .debug_ranges  0x000000d0       0x38 .\CortexM0\ARM_GCC_541\Debug\cyfitter_cfg.o
+ .debug_ranges  0x00000108       0x38 .\CortexM0\ARM_GCC_541\Debug\Cm0Start.o
+ .debug_ranges  0x00000140       0x38 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED4.o)
+ .debug_ranges  0x00000178       0x38 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED3.o)
+ .debug_ranges  0x000001b0       0x38 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED2.o)
+ .debug_ranges  0x000001e8       0x38 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED1.o)
+ .debug_ranges  0x00000220       0x38 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED0.o)
+ .debug_ranges  0x00000258       0x38 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(InertINT.o)
+ .debug_ranges  0x00000290       0x70 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(GyroISR.o)
+ .debug_ranges  0x00000300       0x38 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(GyroSS_n.o)
+ .debug_ranges  0x00000338       0x58 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE.o)
+ .debug_ranges  0x00000390       0x50 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_SPI_UART.o)
+ .debug_ranges  0x000003e0       0x80 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_UART.o)
+ .debug_ranges  0x00000460       0x38 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(MagSS_n.o)
+ .debug_ranges  0x00000498       0x38 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED5.o)
+ .debug_ranges  0x000004d0       0x58 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR.o)
+ .debug_ranges  0x00000528       0x80 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_UART.o)
+ .debug_ranges  0x000005a8       0x70 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_SCB_IRQ.o)
+ .debug_ranges  0x00000618       0x70 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_SCB_IRQ.o)
+ .debug_ranges  0x00000688      0x1b8 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLib.o)
+ .debug_ranges  0x00000840      0x178 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLFClk.o)
+ .debug_ranges  0x000009b8       0x98 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(A2D.o)
+ .debug_ranges  0x00000a50       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(A2D_INT.o)
+ .debug_ranges  0x00000a60       0x38 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED6.o)
+ .debug_ranges  0x00000a98      0x148 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(FRNT_ESC.o)
+ .debug_ranges  0x00000be0      0x148 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(BCK_ESC.o)
+ .debug_ranges  0x00000d28      0x148 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LFT_ESC.o)
+ .debug_ranges  0x00000e70      0x148 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(RGHT_ESC.o)
+ .debug_ranges  0x00000fb8      0x148 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(SWWDT.o)
+ .debug_ranges  0x00001100       0x70 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(WDT_ISR.o)
+ .debug_ranges  0x00001170       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_SPI_UART_INT.o)
+ .debug_ranges  0x00001180       0x50 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_SPI_UART.o)
+ .debug_ranges  0x000011d0       0x10 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_SPI_UART_INT.o)
+ .debug_ranges  0x000011e0       0x30 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyFlash.o)
+
+.comment        0x00000000       0x6e
+ .comment       0x00000000       0x6e .\CortexM0\ARM_GCC_541\Debug\main.o
+                                 0x6f (size before relaxing)
+ .comment       0x0000006e       0x6f .\CortexM0\ARM_GCC_541\Debug\cyfitter_cfg.o
+ .comment       0x0000006e       0x6f .\CortexM0\ARM_GCC_541\Debug\cymetadata.o
+ .comment       0x0000006e       0x6f .\CortexM0\ARM_GCC_541\Debug\Cm0Start.o
+ .comment       0x0000006e       0x6f .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED4.o)
+ .comment       0x0000006e       0x6f .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED3.o)
+ .comment       0x0000006e       0x6f .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED2.o)
+ .comment       0x0000006e       0x6f .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED1.o)
+ .comment       0x0000006e       0x6f .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED0.o)
+ .comment       0x0000006e       0x6f .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(InertINT.o)
+ .comment       0x0000006e       0x6f .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(GyroISR.o)
+ .comment       0x0000006e       0x6f .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(GyroSS_n.o)
+ .comment       0x0000006e       0x6f .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE.o)
+ .comment       0x0000006e       0x6f .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_SPI_UART.o)
+ .comment       0x0000006e       0x6f .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_UART.o)
+ .comment       0x0000006e       0x6f .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(MagSS_n.o)
+ .comment       0x0000006e       0x6f .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED5.o)
+ .comment       0x0000006e       0x6f .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR.o)
+ .comment       0x0000006e       0x6f .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_UART.o)
+ .comment       0x0000006e       0x6f .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_SCB_IRQ.o)
+ .comment       0x0000006e       0x6f .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_SCB_IRQ.o)
+ .comment       0x0000006e       0x6f .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLib.o)
+ .comment       0x0000006e       0x6f .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLFClk.o)
+ .comment       0x0000006e       0x6f .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(A2D.o)
+ .comment       0x0000006e       0x6f .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(A2D_INT.o)
+ .comment       0x0000006e       0x6f .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED6.o)
+ .comment       0x0000006e       0x6f .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(FRNT_ESC.o)
+ .comment       0x0000006e       0x6f .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(BCK_ESC.o)
+ .comment       0x0000006e       0x6f .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LFT_ESC.o)
+ .comment       0x0000006e       0x6f .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(RGHT_ESC.o)
+ .comment       0x0000006e       0x6f .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(SWWDT.o)
+ .comment       0x0000006e       0x6f .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(WDT_ISR.o)
+ .comment       0x0000006e       0x6f .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_SPI_UART_INT.o)
+ .comment       0x0000006e       0x6f .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_SPI_UART.o)
+ .comment       0x0000006e       0x6f .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_SPI_UART_INT.o)
+ .comment       0x0000006e       0x6f .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyFlash.o)
+
+.debug_weaknames
+ *(.debug_weaknames)
+
+.debug_funcnames
+ *(.debug_funcnames)
+
+.debug_typenames
+ *(.debug_typenames)
+
+.debug_varnames
+ *(.debug_varnames)
+
+.note.gnu.arm.ident
+ *(.note.gnu.arm.ident)
+
+.ARM.attributes
+                0x00000000       0x28
+ *(.ARM.attributes)
+ .ARM.attributes
+                0x00000000       0x1e c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m/crti.o
+ .ARM.attributes
+                0x0000001e       0x2c c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m/crtbegin.o
+ .ARM.attributes
+                0x0000004a       0x1b c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m/crt0.o
+ .ARM.attributes
+                0x00000065       0x31 .\CortexM0\ARM_GCC_541\Debug\main.o
+ .ARM.attributes
+                0x00000096       0x31 .\CortexM0\ARM_GCC_541\Debug\cyfitter_cfg.o
+ .ARM.attributes
+                0x000000c7       0x31 .\CortexM0\ARM_GCC_541\Debug\cymetadata.o
+ .ARM.attributes
+                0x000000f8       0x31 .\CortexM0\ARM_GCC_541\Debug\Cm0Start.o
+ .ARM.attributes
+                0x00000129       0x31 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED4.o)
+ .ARM.attributes
+                0x0000015a       0x31 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED3.o)
+ .ARM.attributes
+                0x0000018b       0x31 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED2.o)
+ .ARM.attributes
+                0x000001bc       0x31 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED1.o)
+ .ARM.attributes
+                0x000001ed       0x31 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED0.o)
+ .ARM.attributes
+                0x0000021e       0x31 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(InertINT.o)
+ .ARM.attributes
+                0x0000024f       0x31 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(GyroISR.o)
+ .ARM.attributes
+                0x00000280       0x31 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(GyroSS_n.o)
+ .ARM.attributes
+                0x000002b1       0x31 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE.o)
+ .ARM.attributes
+                0x000002e2       0x31 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_SPI_UART.o)
+ .ARM.attributes
+                0x00000313       0x31 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_UART.o)
+ .ARM.attributes
+                0x00000344       0x31 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(MagSS_n.o)
+ .ARM.attributes
+                0x00000375       0x31 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED5.o)
+ .ARM.attributes
+                0x000003a6       0x31 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR.o)
+ .ARM.attributes
+                0x000003d7       0x31 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_UART.o)
+ .ARM.attributes
+                0x00000408       0x31 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_SCB_IRQ.o)
+ .ARM.attributes
+                0x00000439       0x31 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_SCB_IRQ.o)
+ .ARM.attributes
+                0x0000046a       0x31 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLib.o)
+ .ARM.attributes
+                0x0000049b       0x31 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyLFClk.o)
+ .ARM.attributes
+                0x000004cc       0x31 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(A2D.o)
+ .ARM.attributes
+                0x000004fd       0x31 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(A2D_INT.o)
+ .ARM.attributes
+                0x0000052e       0x31 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LED6.o)
+ .ARM.attributes
+                0x0000055f       0x31 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(FRNT_ESC.o)
+ .ARM.attributes
+                0x00000590       0x31 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(BCK_ESC.o)
+ .ARM.attributes
+                0x000005c1       0x31 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(LFT_ESC.o)
+ .ARM.attributes
+                0x000005f2       0x31 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(RGHT_ESC.o)
+ .ARM.attributes
+                0x00000623       0x31 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(SWWDT.o)
+ .ARM.attributes
+                0x00000654       0x31 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(WDT_ISR.o)
+ .ARM.attributes
+                0x00000685       0x21 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyBootAsmGnu.o)
+ .ARM.attributes
+                0x000006a6       0x31 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_BLE_SPI_UART_INT.o)
+ .ARM.attributes
+                0x000006d7       0x31 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_SPI_UART.o)
+ .ARM.attributes
+                0x00000708       0x31 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(UART_LiDAR_SPI_UART_INT.o)
+ .ARM.attributes
+                0x00000739       0x31 .\CortexM0\ARM_GCC_541\Debug\QuadCopter.a(CyFlash.o)
+ .ARM.attributes
+                0x0000076a       0x1e c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_udivsi3.o)
+ .ARM.attributes
+                0x00000788       0x1e c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_divsi3.o)
+ .ARM.attributes
+                0x000007a6       0x1e c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_dvmd_tls.o)
+ .ARM.attributes
+                0x000007c4       0x1e c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_aeabi_ldivmod.o)
+ .ARM.attributes
+                0x000007e2       0x2c c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_muldi3.o)
+ .ARM.attributes
+                0x0000080e       0x2c c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(bpabi.o)
+ .ARM.attributes
+                0x0000083a       0x2c c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(divsf3.o)
+ .ARM.attributes
+                0x00000866       0x2c c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(mulsf3.o)
+ .ARM.attributes
+                0x00000892       0x2c c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(floatsisf.o)
+ .ARM.attributes
+                0x000008be       0x1e c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_clzsi2.o)
+ .ARM.attributes
+                0x000008dc       0x2c c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_divdi3.o)
+ .ARM.attributes
+                0x00000908       0x1e c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_clzdi2.o)
+ .ARM.attributes
+                0x00000926       0x2c c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-errno.o)
+ .ARM.attributes
+                0x00000952       0x2c c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-exit.o)
+ .ARM.attributes
+                0x0000097e       0x2c c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-impure.o)
+ .ARM.attributes
+                0x000009aa       0x2c c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-init.o)
+ .ARM.attributes
+                0x000009d6       0x2c c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-memcpy-stub.o)
+ .ARM.attributes
+                0x00000a02       0x2c c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-memset.o)
+ .ARM.attributes
+                0x00000a2e       0x2c c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-strncmp.o)
+ .ARM.attributes
+                0x00000a5a       0x2c c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m/crtend.o
+ .ARM.attributes
+                0x00000a86       0x1e c:/program files (x86)/cypress/psoc creator/4.3/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m/crtn.o
+
+/DISCARD/
+ *(.note.GNU-stack)
+OUTPUT(C:\Users\EricHoffman\Documents\PSoC Creator\QuadCopter\QuadCopter.cydsn\CortexM0\ARM_GCC_541\Debug\QuadCopter.elf elf32-littlearm)

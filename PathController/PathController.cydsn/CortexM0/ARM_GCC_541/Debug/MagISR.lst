@@ -1,0 +1,2718 @@
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccMMoPqP.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m0
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 0
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"MagISR.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.MagISR_SetVector,"ax",%progbits
+  20              		.align	2
+  21              		.global	MagISR_SetVector
+  22              		.code	16
+  23              		.thumb_func
+  24              		.type	MagISR_SetVector, %function
+  25              	MagISR_SetVector:
+  26              	.LFB5:
+  27              		.file 1 "Generated_Source\\PSoC4\\MagISR.c"
+   1:Generated_Source\PSoC4/MagISR.c **** /*******************************************************************************
+   2:Generated_Source\PSoC4/MagISR.c **** * File Name: MagISR.c  
+   3:Generated_Source\PSoC4/MagISR.c **** * Version 1.70
+   4:Generated_Source\PSoC4/MagISR.c **** *
+   5:Generated_Source\PSoC4/MagISR.c **** *  Description:
+   6:Generated_Source\PSoC4/MagISR.c **** *   API for controlling the state of an interrupt.
+   7:Generated_Source\PSoC4/MagISR.c **** *
+   8:Generated_Source\PSoC4/MagISR.c **** *
+   9:Generated_Source\PSoC4/MagISR.c **** *  Note:
+  10:Generated_Source\PSoC4/MagISR.c **** *
+  11:Generated_Source\PSoC4/MagISR.c **** ********************************************************************************
+  12:Generated_Source\PSoC4/MagISR.c **** * Copyright 2008-2015, Cypress Semiconductor Corporation.  All rights reserved.
+  13:Generated_Source\PSoC4/MagISR.c **** * You may use this file only in accordance with the license, terms, conditions, 
+  14:Generated_Source\PSoC4/MagISR.c **** * disclaimers, and limitations in the end user license agreement accompanying 
+  15:Generated_Source\PSoC4/MagISR.c **** * the software package with which this file was provided.
+  16:Generated_Source\PSoC4/MagISR.c **** *******************************************************************************/
+  17:Generated_Source\PSoC4/MagISR.c **** 
+  18:Generated_Source\PSoC4/MagISR.c **** 
+  19:Generated_Source\PSoC4/MagISR.c **** #include <cydevice_trm.h>
+  20:Generated_Source\PSoC4/MagISR.c **** #include <CyLib.h>
+  21:Generated_Source\PSoC4/MagISR.c **** #include <MagISR.h>
+  22:Generated_Source\PSoC4/MagISR.c **** #include "cyapicallbacks.h"
+  23:Generated_Source\PSoC4/MagISR.c **** 
+  24:Generated_Source\PSoC4/MagISR.c **** #if !defined(MagISR__REMOVED) /* Check for removal by optimization */
+  25:Generated_Source\PSoC4/MagISR.c **** 
+  26:Generated_Source\PSoC4/MagISR.c **** /*******************************************************************************
+  27:Generated_Source\PSoC4/MagISR.c **** *  Place your includes, defines and code here 
+  28:Generated_Source\PSoC4/MagISR.c **** ********************************************************************************/
+  29:Generated_Source\PSoC4/MagISR.c **** /* `#START MagISR_intc` */
+  30:Generated_Source\PSoC4/MagISR.c ****     #include "main.h"
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccMMoPqP.s 			page 2
+
+
+  31:Generated_Source\PSoC4/MagISR.c **** /* `#END` */
+  32:Generated_Source\PSoC4/MagISR.c **** 
+  33:Generated_Source\PSoC4/MagISR.c **** extern cyisraddress CyRamVectors[CYINT_IRQ_BASE + CY_NUM_INTERRUPTS];
+  34:Generated_Source\PSoC4/MagISR.c **** 
+  35:Generated_Source\PSoC4/MagISR.c **** /* Declared in startup, used to set unused interrupts to. */
+  36:Generated_Source\PSoC4/MagISR.c **** CY_ISR_PROTO(IntDefaultHandler);
+  37:Generated_Source\PSoC4/MagISR.c **** 
+  38:Generated_Source\PSoC4/MagISR.c **** 
+  39:Generated_Source\PSoC4/MagISR.c **** /*******************************************************************************
+  40:Generated_Source\PSoC4/MagISR.c **** * Function Name: MagISR_Start
+  41:Generated_Source\PSoC4/MagISR.c **** ********************************************************************************
+  42:Generated_Source\PSoC4/MagISR.c **** *
+  43:Generated_Source\PSoC4/MagISR.c **** * Summary:
+  44:Generated_Source\PSoC4/MagISR.c **** *  Set up the interrupt and enable it. This function disables the interrupt, 
+  45:Generated_Source\PSoC4/MagISR.c **** *  sets the default interrupt vector, sets the priority from the value in the
+  46:Generated_Source\PSoC4/MagISR.c **** *  Design Wide Resources Interrupt Editor, then enables the interrupt to the 
+  47:Generated_Source\PSoC4/MagISR.c **** *  interrupt controller.
+  48:Generated_Source\PSoC4/MagISR.c **** *
+  49:Generated_Source\PSoC4/MagISR.c **** * Parameters:  
+  50:Generated_Source\PSoC4/MagISR.c **** *   None
+  51:Generated_Source\PSoC4/MagISR.c **** *
+  52:Generated_Source\PSoC4/MagISR.c **** * Return:
+  53:Generated_Source\PSoC4/MagISR.c **** *   None
+  54:Generated_Source\PSoC4/MagISR.c **** *
+  55:Generated_Source\PSoC4/MagISR.c **** *******************************************************************************/
+  56:Generated_Source\PSoC4/MagISR.c **** void MagISR_Start(void)
+  57:Generated_Source\PSoC4/MagISR.c **** {
+  58:Generated_Source\PSoC4/MagISR.c ****     /* For all we know the interrupt is active. */
+  59:Generated_Source\PSoC4/MagISR.c ****     MagISR_Disable();
+  60:Generated_Source\PSoC4/MagISR.c **** 
+  61:Generated_Source\PSoC4/MagISR.c ****     /* Set the ISR to point to the MagISR Interrupt. */
+  62:Generated_Source\PSoC4/MagISR.c ****     MagISR_SetVector(&MagISR_Interrupt);
+  63:Generated_Source\PSoC4/MagISR.c **** 
+  64:Generated_Source\PSoC4/MagISR.c ****     /* Set the priority. */
+  65:Generated_Source\PSoC4/MagISR.c ****     MagISR_SetPriority((uint8)MagISR_INTC_PRIOR_NUMBER);
+  66:Generated_Source\PSoC4/MagISR.c **** 
+  67:Generated_Source\PSoC4/MagISR.c ****     /* Enable it. */
+  68:Generated_Source\PSoC4/MagISR.c ****     MagISR_Enable();
+  69:Generated_Source\PSoC4/MagISR.c **** }
+  70:Generated_Source\PSoC4/MagISR.c **** 
+  71:Generated_Source\PSoC4/MagISR.c **** 
+  72:Generated_Source\PSoC4/MagISR.c **** /*******************************************************************************
+  73:Generated_Source\PSoC4/MagISR.c **** * Function Name: MagISR_StartEx
+  74:Generated_Source\PSoC4/MagISR.c **** ********************************************************************************
+  75:Generated_Source\PSoC4/MagISR.c **** *
+  76:Generated_Source\PSoC4/MagISR.c **** * Summary:
+  77:Generated_Source\PSoC4/MagISR.c **** *  Sets up the interrupt and enables it. This function disables the interrupt,
+  78:Generated_Source\PSoC4/MagISR.c **** *  sets the interrupt vector based on the address passed in, sets the priority 
+  79:Generated_Source\PSoC4/MagISR.c **** *  from the value in the Design Wide Resources Interrupt Editor, then enables 
+  80:Generated_Source\PSoC4/MagISR.c **** *  the interrupt to the interrupt controller.
+  81:Generated_Source\PSoC4/MagISR.c **** *  
+  82:Generated_Source\PSoC4/MagISR.c **** *  When defining ISR functions, the CY_ISR and CY_ISR_PROTO macros should be 
+  83:Generated_Source\PSoC4/MagISR.c **** *  used to provide consistent definition across compilers:
+  84:Generated_Source\PSoC4/MagISR.c **** *  
+  85:Generated_Source\PSoC4/MagISR.c **** *  Function definition example:
+  86:Generated_Source\PSoC4/MagISR.c **** *   CY_ISR(MyISR)
+  87:Generated_Source\PSoC4/MagISR.c **** *   {
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccMMoPqP.s 			page 3
+
+
+  88:Generated_Source\PSoC4/MagISR.c **** *   }
+  89:Generated_Source\PSoC4/MagISR.c **** *   Function prototype example:
+  90:Generated_Source\PSoC4/MagISR.c **** *   CY_ISR_PROTO(MyISR);
+  91:Generated_Source\PSoC4/MagISR.c **** *
+  92:Generated_Source\PSoC4/MagISR.c **** * Parameters:  
+  93:Generated_Source\PSoC4/MagISR.c **** *   address: Address of the ISR to set in the interrupt vector table.
+  94:Generated_Source\PSoC4/MagISR.c **** *
+  95:Generated_Source\PSoC4/MagISR.c **** * Return:
+  96:Generated_Source\PSoC4/MagISR.c **** *   None
+  97:Generated_Source\PSoC4/MagISR.c **** *
+  98:Generated_Source\PSoC4/MagISR.c **** *******************************************************************************/
+  99:Generated_Source\PSoC4/MagISR.c **** void MagISR_StartEx(cyisraddress address)
+ 100:Generated_Source\PSoC4/MagISR.c **** {
+ 101:Generated_Source\PSoC4/MagISR.c ****     /* For all we know the interrupt is active. */
+ 102:Generated_Source\PSoC4/MagISR.c ****     MagISR_Disable();
+ 103:Generated_Source\PSoC4/MagISR.c **** 
+ 104:Generated_Source\PSoC4/MagISR.c ****     /* Set the ISR to point to the MagISR Interrupt. */
+ 105:Generated_Source\PSoC4/MagISR.c ****     MagISR_SetVector(address);
+ 106:Generated_Source\PSoC4/MagISR.c **** 
+ 107:Generated_Source\PSoC4/MagISR.c ****     /* Set the priority. */
+ 108:Generated_Source\PSoC4/MagISR.c ****     MagISR_SetPriority((uint8)MagISR_INTC_PRIOR_NUMBER);
+ 109:Generated_Source\PSoC4/MagISR.c **** 
+ 110:Generated_Source\PSoC4/MagISR.c ****     /* Enable it. */
+ 111:Generated_Source\PSoC4/MagISR.c ****     MagISR_Enable();
+ 112:Generated_Source\PSoC4/MagISR.c **** }
+ 113:Generated_Source\PSoC4/MagISR.c **** 
+ 114:Generated_Source\PSoC4/MagISR.c **** 
+ 115:Generated_Source\PSoC4/MagISR.c **** /*******************************************************************************
+ 116:Generated_Source\PSoC4/MagISR.c **** * Function Name: MagISR_Stop
+ 117:Generated_Source\PSoC4/MagISR.c **** ********************************************************************************
+ 118:Generated_Source\PSoC4/MagISR.c **** *
+ 119:Generated_Source\PSoC4/MagISR.c **** * Summary:
+ 120:Generated_Source\PSoC4/MagISR.c **** *   Disables and removes the interrupt.
+ 121:Generated_Source\PSoC4/MagISR.c **** *
+ 122:Generated_Source\PSoC4/MagISR.c **** * Parameters:  
+ 123:Generated_Source\PSoC4/MagISR.c **** *   None
+ 124:Generated_Source\PSoC4/MagISR.c **** *
+ 125:Generated_Source\PSoC4/MagISR.c **** * Return:
+ 126:Generated_Source\PSoC4/MagISR.c **** *   None
+ 127:Generated_Source\PSoC4/MagISR.c **** *
+ 128:Generated_Source\PSoC4/MagISR.c **** *******************************************************************************/
+ 129:Generated_Source\PSoC4/MagISR.c **** void MagISR_Stop(void)
+ 130:Generated_Source\PSoC4/MagISR.c **** {
+ 131:Generated_Source\PSoC4/MagISR.c ****     /* Disable this interrupt. */
+ 132:Generated_Source\PSoC4/MagISR.c ****     MagISR_Disable();
+ 133:Generated_Source\PSoC4/MagISR.c **** 
+ 134:Generated_Source\PSoC4/MagISR.c ****     /* Set the ISR to point to the passive one. */
+ 135:Generated_Source\PSoC4/MagISR.c ****     MagISR_SetVector(&IntDefaultHandler);
+ 136:Generated_Source\PSoC4/MagISR.c **** }
+ 137:Generated_Source\PSoC4/MagISR.c **** 
+ 138:Generated_Source\PSoC4/MagISR.c **** 
+ 139:Generated_Source\PSoC4/MagISR.c **** /*******************************************************************************
+ 140:Generated_Source\PSoC4/MagISR.c **** * Function Name: MagISR_Interrupt
+ 141:Generated_Source\PSoC4/MagISR.c **** ********************************************************************************
+ 142:Generated_Source\PSoC4/MagISR.c **** *
+ 143:Generated_Source\PSoC4/MagISR.c **** * Summary:
+ 144:Generated_Source\PSoC4/MagISR.c **** *   The default Interrupt Service Routine for MagISR.
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccMMoPqP.s 			page 4
+
+
+ 145:Generated_Source\PSoC4/MagISR.c **** *
+ 146:Generated_Source\PSoC4/MagISR.c **** *   Add custom code between the START and END comments to keep the next version
+ 147:Generated_Source\PSoC4/MagISR.c **** *   of this file from over-writing your code.
+ 148:Generated_Source\PSoC4/MagISR.c **** *
+ 149:Generated_Source\PSoC4/MagISR.c **** *   Note You may use either the default ISR by using this API, or you may define
+ 150:Generated_Source\PSoC4/MagISR.c **** *   your own separate ISR through ISR_StartEx().
+ 151:Generated_Source\PSoC4/MagISR.c **** *
+ 152:Generated_Source\PSoC4/MagISR.c **** * Parameters:  
+ 153:Generated_Source\PSoC4/MagISR.c **** *   None
+ 154:Generated_Source\PSoC4/MagISR.c **** *
+ 155:Generated_Source\PSoC4/MagISR.c **** * Return:
+ 156:Generated_Source\PSoC4/MagISR.c **** *   None
+ 157:Generated_Source\PSoC4/MagISR.c **** *
+ 158:Generated_Source\PSoC4/MagISR.c **** *******************************************************************************/
+ 159:Generated_Source\PSoC4/MagISR.c **** CY_ISR(MagISR_Interrupt)
+ 160:Generated_Source\PSoC4/MagISR.c **** {
+ 161:Generated_Source\PSoC4/MagISR.c ****     #ifdef MagISR_INTERRUPT_INTERRUPT_CALLBACK
+ 162:Generated_Source\PSoC4/MagISR.c ****         MagISR_Interrupt_InterruptCallback();
+ 163:Generated_Source\PSoC4/MagISR.c ****     #endif /* MagISR_INTERRUPT_INTERRUPT_CALLBACK */ 
+ 164:Generated_Source\PSoC4/MagISR.c **** 
+ 165:Generated_Source\PSoC4/MagISR.c ****     /*  Place your Interrupt code here. */
+ 166:Generated_Source\PSoC4/MagISR.c ****     /* `#START MagISR_Interrupt` */
+ 167:Generated_Source\PSoC4/MagISR.c ****     if (num_tasks<5) { enqueue_task(MAG_READ,0x02); }
+ 168:Generated_Source\PSoC4/MagISR.c ****     
+ 169:Generated_Source\PSoC4/MagISR.c ****     MagISR_ClearPending();
+ 170:Generated_Source\PSoC4/MagISR.c ****     
+ 171:Generated_Source\PSoC4/MagISR.c ****     /* `#END` */
+ 172:Generated_Source\PSoC4/MagISR.c **** }
+ 173:Generated_Source\PSoC4/MagISR.c **** 
+ 174:Generated_Source\PSoC4/MagISR.c **** 
+ 175:Generated_Source\PSoC4/MagISR.c **** /*******************************************************************************
+ 176:Generated_Source\PSoC4/MagISR.c **** * Function Name: MagISR_SetVector
+ 177:Generated_Source\PSoC4/MagISR.c **** ********************************************************************************
+ 178:Generated_Source\PSoC4/MagISR.c **** *
+ 179:Generated_Source\PSoC4/MagISR.c **** * Summary:
+ 180:Generated_Source\PSoC4/MagISR.c **** *   Change the ISR vector for the Interrupt. Note calling MagISR_Start
+ 181:Generated_Source\PSoC4/MagISR.c **** *   will override any effect this method would have had. To set the vector 
+ 182:Generated_Source\PSoC4/MagISR.c **** *   before the component has been started use MagISR_StartEx instead.
+ 183:Generated_Source\PSoC4/MagISR.c **** * 
+ 184:Generated_Source\PSoC4/MagISR.c **** *   When defining ISR functions, the CY_ISR and CY_ISR_PROTO macros should be 
+ 185:Generated_Source\PSoC4/MagISR.c **** *   used to provide consistent definition across compilers:
+ 186:Generated_Source\PSoC4/MagISR.c **** *
+ 187:Generated_Source\PSoC4/MagISR.c **** *   Function definition example:
+ 188:Generated_Source\PSoC4/MagISR.c **** *   CY_ISR(MyISR)
+ 189:Generated_Source\PSoC4/MagISR.c **** *   {
+ 190:Generated_Source\PSoC4/MagISR.c **** *   }
+ 191:Generated_Source\PSoC4/MagISR.c **** *
+ 192:Generated_Source\PSoC4/MagISR.c **** *   Function prototype example:
+ 193:Generated_Source\PSoC4/MagISR.c **** *     CY_ISR_PROTO(MyISR);
+ 194:Generated_Source\PSoC4/MagISR.c **** *
+ 195:Generated_Source\PSoC4/MagISR.c **** * Parameters:
+ 196:Generated_Source\PSoC4/MagISR.c **** *   address: Address of the ISR to set in the interrupt vector table.
+ 197:Generated_Source\PSoC4/MagISR.c **** *
+ 198:Generated_Source\PSoC4/MagISR.c **** * Return:
+ 199:Generated_Source\PSoC4/MagISR.c **** *   None
+ 200:Generated_Source\PSoC4/MagISR.c **** *
+ 201:Generated_Source\PSoC4/MagISR.c **** *******************************************************************************/
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccMMoPqP.s 			page 5
+
+
+ 202:Generated_Source\PSoC4/MagISR.c **** void MagISR_SetVector(cyisraddress address)
+ 203:Generated_Source\PSoC4/MagISR.c **** {
+  28              		.loc 1 203 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              		@ link register save eliminated.
+  33              	.LVL0:
+ 204:Generated_Source\PSoC4/MagISR.c ****     CyRamVectors[CYINT_IRQ_BASE + MagISR__INTC_NUMBER] = address;
+  34              		.loc 1 204 0
+  35 0000 014B     		ldr	r3, .L2
+  36 0002 9864     		str	r0, [r3, #72]
+ 205:Generated_Source\PSoC4/MagISR.c **** }
+  37              		.loc 1 205 0
+  38              		@ sp needed
+  39 0004 7047     		bx	lr
+  40              	.L3:
+  41 0006 C046     		.align	2
+  42              	.L2:
+  43 0008 00000000 		.word	CyRamVectors
+  44              		.cfi_endproc
+  45              	.LFE5:
+  46              		.size	MagISR_SetVector, .-MagISR_SetVector
+  47              		.section	.text.MagISR_GetVector,"ax",%progbits
+  48              		.align	2
+  49              		.global	MagISR_GetVector
+  50              		.code	16
+  51              		.thumb_func
+  52              		.type	MagISR_GetVector, %function
+  53              	MagISR_GetVector:
+  54              	.LFB6:
+ 206:Generated_Source\PSoC4/MagISR.c **** 
+ 207:Generated_Source\PSoC4/MagISR.c **** 
+ 208:Generated_Source\PSoC4/MagISR.c **** /*******************************************************************************
+ 209:Generated_Source\PSoC4/MagISR.c **** * Function Name: MagISR_GetVector
+ 210:Generated_Source\PSoC4/MagISR.c **** ********************************************************************************
+ 211:Generated_Source\PSoC4/MagISR.c **** *
+ 212:Generated_Source\PSoC4/MagISR.c **** * Summary:
+ 213:Generated_Source\PSoC4/MagISR.c **** *   Gets the "address" of the current ISR vector for the Interrupt.
+ 214:Generated_Source\PSoC4/MagISR.c **** *
+ 215:Generated_Source\PSoC4/MagISR.c **** * Parameters:
+ 216:Generated_Source\PSoC4/MagISR.c **** *   None
+ 217:Generated_Source\PSoC4/MagISR.c **** *
+ 218:Generated_Source\PSoC4/MagISR.c **** * Return:
+ 219:Generated_Source\PSoC4/MagISR.c **** *   Address of the ISR in the interrupt vector table.
+ 220:Generated_Source\PSoC4/MagISR.c **** *
+ 221:Generated_Source\PSoC4/MagISR.c **** *******************************************************************************/
+ 222:Generated_Source\PSoC4/MagISR.c **** cyisraddress MagISR_GetVector(void)
+ 223:Generated_Source\PSoC4/MagISR.c **** {
+  55              		.loc 1 223 0
+  56              		.cfi_startproc
+  57              		@ args = 0, pretend = 0, frame = 0
+  58              		@ frame_needed = 0, uses_anonymous_args = 0
+  59              		@ link register save eliminated.
+ 224:Generated_Source\PSoC4/MagISR.c ****     return CyRamVectors[CYINT_IRQ_BASE + MagISR__INTC_NUMBER];
+  60              		.loc 1 224 0
+  61 0000 014B     		ldr	r3, .L5
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccMMoPqP.s 			page 6
+
+
+  62 0002 986C     		ldr	r0, [r3, #72]
+ 225:Generated_Source\PSoC4/MagISR.c **** }
+  63              		.loc 1 225 0
+  64              		@ sp needed
+  65 0004 7047     		bx	lr
+  66              	.L6:
+  67 0006 C046     		.align	2
+  68              	.L5:
+  69 0008 00000000 		.word	CyRamVectors
+  70              		.cfi_endproc
+  71              	.LFE6:
+  72              		.size	MagISR_GetVector, .-MagISR_GetVector
+  73              		.section	.text.MagISR_SetPriority,"ax",%progbits
+  74              		.align	2
+  75              		.global	MagISR_SetPriority
+  76              		.code	16
+  77              		.thumb_func
+  78              		.type	MagISR_SetPriority, %function
+  79              	MagISR_SetPriority:
+  80              	.LFB7:
+ 226:Generated_Source\PSoC4/MagISR.c **** 
+ 227:Generated_Source\PSoC4/MagISR.c **** 
+ 228:Generated_Source\PSoC4/MagISR.c **** /*******************************************************************************
+ 229:Generated_Source\PSoC4/MagISR.c **** * Function Name: MagISR_SetPriority
+ 230:Generated_Source\PSoC4/MagISR.c **** ********************************************************************************
+ 231:Generated_Source\PSoC4/MagISR.c **** *
+ 232:Generated_Source\PSoC4/MagISR.c **** * Summary:
+ 233:Generated_Source\PSoC4/MagISR.c **** *   Sets the Priority of the Interrupt. 
+ 234:Generated_Source\PSoC4/MagISR.c **** *
+ 235:Generated_Source\PSoC4/MagISR.c **** *   Note calling MagISR_Start or MagISR_StartEx will 
+ 236:Generated_Source\PSoC4/MagISR.c **** *   override any effect this API would have had. This API should only be called
+ 237:Generated_Source\PSoC4/MagISR.c **** *   after MagISR_Start or MagISR_StartEx has been called. 
+ 238:Generated_Source\PSoC4/MagISR.c **** *   To set the initial priority for the component, use the Design-Wide Resources
+ 239:Generated_Source\PSoC4/MagISR.c **** *   Interrupt Editor.
+ 240:Generated_Source\PSoC4/MagISR.c **** *
+ 241:Generated_Source\PSoC4/MagISR.c **** *   Note This API has no effect on Non-maskable interrupt NMI).
+ 242:Generated_Source\PSoC4/MagISR.c **** *
+ 243:Generated_Source\PSoC4/MagISR.c **** * Parameters:
+ 244:Generated_Source\PSoC4/MagISR.c **** *   priority: Priority of the interrupt, 0 being the highest priority
+ 245:Generated_Source\PSoC4/MagISR.c **** *             PSoC 3 and PSoC 5LP: Priority is from 0 to 7.
+ 246:Generated_Source\PSoC4/MagISR.c **** *             PSoC 4: Priority is from 0 to 3.
+ 247:Generated_Source\PSoC4/MagISR.c **** *
+ 248:Generated_Source\PSoC4/MagISR.c **** * Return:
+ 249:Generated_Source\PSoC4/MagISR.c **** *   None
+ 250:Generated_Source\PSoC4/MagISR.c **** *
+ 251:Generated_Source\PSoC4/MagISR.c **** *******************************************************************************/
+ 252:Generated_Source\PSoC4/MagISR.c **** void MagISR_SetPriority(uint8 priority)
+ 253:Generated_Source\PSoC4/MagISR.c **** {
+  81              		.loc 1 253 0
+  82              		.cfi_startproc
+  83              		@ args = 0, pretend = 0, frame = 0
+  84              		@ frame_needed = 0, uses_anonymous_args = 0
+  85              	.LVL1:
+  86 0000 10B5     		push	{r4, lr}
+  87              		.cfi_def_cfa_offset 8
+  88              		.cfi_offset 4, -8
+  89              		.cfi_offset 14, -4
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccMMoPqP.s 			page 7
+
+
+  90 0002 0400     		movs	r4, r0
+  91              	.LVL2:
+ 254:Generated_Source\PSoC4/MagISR.c **** 	uint8 interruptState;
+ 255:Generated_Source\PSoC4/MagISR.c ****     uint32 priorityOffset = ((MagISR__INTC_NUMBER % 4u) * 8u) + 6u;
+ 256:Generated_Source\PSoC4/MagISR.c ****     
+ 257:Generated_Source\PSoC4/MagISR.c **** 	interruptState = CyEnterCriticalSection();
+  92              		.loc 1 257 0
+  93 0004 FFF7FEFF 		bl	CyEnterCriticalSection
+  94              	.LVL3:
+ 258:Generated_Source\PSoC4/MagISR.c ****     *MagISR_INTC_PRIOR = (*MagISR_INTC_PRIOR & (uint32)(~MagISR__INTC_PRIOR_MASK)) |
+  95              		.loc 1 258 0
+  96 0008 044A     		ldr	r2, .L8
+  97 000a 1168     		ldr	r1, [r2]
+  98 000c 044B     		ldr	r3, .L8+4
+  99 000e 0B40     		ands	r3, r1
+ 259:Generated_Source\PSoC4/MagISR.c ****                                     ((uint32)priority << priorityOffset);
+ 100              		.loc 1 259 0
+ 101 0010 A405     		lsls	r4, r4, #22
+ 258:Generated_Source\PSoC4/MagISR.c ****     *MagISR_INTC_PRIOR = (*MagISR_INTC_PRIOR & (uint32)(~MagISR__INTC_PRIOR_MASK)) |
+ 102              		.loc 1 258 0
+ 103 0012 1C43     		orrs	r4, r3
+ 104 0014 1460     		str	r4, [r2]
+ 260:Generated_Source\PSoC4/MagISR.c **** 	CyExitCriticalSection(interruptState);
+ 105              		.loc 1 260 0
+ 106 0016 FFF7FEFF 		bl	CyExitCriticalSection
+ 107              	.LVL4:
+ 261:Generated_Source\PSoC4/MagISR.c **** }
+ 108              		.loc 1 261 0
+ 109              		@ sp needed
+ 110 001a 10BD     		pop	{r4, pc}
+ 111              	.L9:
+ 112              		.align	2
+ 113              	.L8:
+ 114 001c 00E400E0 		.word	-536812544
+ 115 0020 FFFF3FFF 		.word	-12582913
+ 116              		.cfi_endproc
+ 117              	.LFE7:
+ 118              		.size	MagISR_SetPriority, .-MagISR_SetPriority
+ 119              		.section	.text.MagISR_GetPriority,"ax",%progbits
+ 120              		.align	2
+ 121              		.global	MagISR_GetPriority
+ 122              		.code	16
+ 123              		.thumb_func
+ 124              		.type	MagISR_GetPriority, %function
+ 125              	MagISR_GetPriority:
+ 126              	.LFB8:
+ 262:Generated_Source\PSoC4/MagISR.c **** 
+ 263:Generated_Source\PSoC4/MagISR.c **** 
+ 264:Generated_Source\PSoC4/MagISR.c **** /*******************************************************************************
+ 265:Generated_Source\PSoC4/MagISR.c **** * Function Name: MagISR_GetPriority
+ 266:Generated_Source\PSoC4/MagISR.c **** ********************************************************************************
+ 267:Generated_Source\PSoC4/MagISR.c **** *
+ 268:Generated_Source\PSoC4/MagISR.c **** * Summary:
+ 269:Generated_Source\PSoC4/MagISR.c **** *   Gets the Priority of the Interrupt.
+ 270:Generated_Source\PSoC4/MagISR.c **** *
+ 271:Generated_Source\PSoC4/MagISR.c **** * Parameters:
+ 272:Generated_Source\PSoC4/MagISR.c **** *   None
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccMMoPqP.s 			page 8
+
+
+ 273:Generated_Source\PSoC4/MagISR.c **** *
+ 274:Generated_Source\PSoC4/MagISR.c **** * Return:
+ 275:Generated_Source\PSoC4/MagISR.c **** *   Priority of the interrupt, 0 being the highest priority
+ 276:Generated_Source\PSoC4/MagISR.c **** *    PSoC 3 and PSoC 5LP: Priority is from 0 to 7.
+ 277:Generated_Source\PSoC4/MagISR.c **** *    PSoC 4: Priority is from 0 to 3.
+ 278:Generated_Source\PSoC4/MagISR.c **** *
+ 279:Generated_Source\PSoC4/MagISR.c **** *******************************************************************************/
+ 280:Generated_Source\PSoC4/MagISR.c **** uint8 MagISR_GetPriority(void)
+ 281:Generated_Source\PSoC4/MagISR.c **** {
+ 127              		.loc 1 281 0
+ 128              		.cfi_startproc
+ 129              		@ args = 0, pretend = 0, frame = 0
+ 130              		@ frame_needed = 0, uses_anonymous_args = 0
+ 131              		@ link register save eliminated.
+ 132              	.LVL5:
+ 282:Generated_Source\PSoC4/MagISR.c ****     uint32 priority;
+ 283:Generated_Source\PSoC4/MagISR.c **** 	uint32 priorityOffset = ((MagISR__INTC_NUMBER % 4u) * 8u) + 6u;
+ 284:Generated_Source\PSoC4/MagISR.c **** 
+ 285:Generated_Source\PSoC4/MagISR.c ****     priority = (*MagISR_INTC_PRIOR & MagISR__INTC_PRIOR_MASK) >> priorityOffset;
+ 133              		.loc 1 285 0
+ 134 0000 024B     		ldr	r3, .L11
+ 135 0002 1868     		ldr	r0, [r3]
+ 136 0004 800D     		lsrs	r0, r0, #22
+ 137              	.LVL6:
+ 286:Generated_Source\PSoC4/MagISR.c **** 
+ 287:Generated_Source\PSoC4/MagISR.c ****     return (uint8)priority;
+ 138              		.loc 1 287 0
+ 139 0006 0323     		movs	r3, #3
+ 140 0008 1840     		ands	r0, r3
+ 141              	.LVL7:
+ 288:Generated_Source\PSoC4/MagISR.c **** }
+ 142              		.loc 1 288 0
+ 143              		@ sp needed
+ 144 000a 7047     		bx	lr
+ 145              	.L12:
+ 146              		.align	2
+ 147              	.L11:
+ 148 000c 00E400E0 		.word	-536812544
+ 149              		.cfi_endproc
+ 150              	.LFE8:
+ 151              		.size	MagISR_GetPriority, .-MagISR_GetPriority
+ 152              		.section	.text.MagISR_Enable,"ax",%progbits
+ 153              		.align	2
+ 154              		.global	MagISR_Enable
+ 155              		.code	16
+ 156              		.thumb_func
+ 157              		.type	MagISR_Enable, %function
+ 158              	MagISR_Enable:
+ 159              	.LFB9:
+ 289:Generated_Source\PSoC4/MagISR.c **** 
+ 290:Generated_Source\PSoC4/MagISR.c **** 
+ 291:Generated_Source\PSoC4/MagISR.c **** /*******************************************************************************
+ 292:Generated_Source\PSoC4/MagISR.c **** * Function Name: MagISR_Enable
+ 293:Generated_Source\PSoC4/MagISR.c **** ********************************************************************************
+ 294:Generated_Source\PSoC4/MagISR.c **** *
+ 295:Generated_Source\PSoC4/MagISR.c **** * Summary:
+ 296:Generated_Source\PSoC4/MagISR.c **** *   Enables the interrupt to the interrupt controller. Do not call this function
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccMMoPqP.s 			page 9
+
+
+ 297:Generated_Source\PSoC4/MagISR.c **** *   unless ISR_Start() has been called or the functionality of the ISR_Start() 
+ 298:Generated_Source\PSoC4/MagISR.c **** *   function, which sets the vector and the priority, has been called.
+ 299:Generated_Source\PSoC4/MagISR.c **** *
+ 300:Generated_Source\PSoC4/MagISR.c **** * Parameters:
+ 301:Generated_Source\PSoC4/MagISR.c **** *   None
+ 302:Generated_Source\PSoC4/MagISR.c **** *
+ 303:Generated_Source\PSoC4/MagISR.c **** * Return:
+ 304:Generated_Source\PSoC4/MagISR.c **** *   None
+ 305:Generated_Source\PSoC4/MagISR.c **** *
+ 306:Generated_Source\PSoC4/MagISR.c **** *******************************************************************************/
+ 307:Generated_Source\PSoC4/MagISR.c **** void MagISR_Enable(void)
+ 308:Generated_Source\PSoC4/MagISR.c **** {
+ 160              		.loc 1 308 0
+ 161              		.cfi_startproc
+ 162              		@ args = 0, pretend = 0, frame = 0
+ 163              		@ frame_needed = 0, uses_anonymous_args = 0
+ 164              		@ link register save eliminated.
+ 309:Generated_Source\PSoC4/MagISR.c ****     /* Enable the general interrupt. */
+ 310:Generated_Source\PSoC4/MagISR.c ****     *MagISR_INTC_SET_EN = MagISR__INTC_MASK;
+ 165              		.loc 1 310 0
+ 166 0000 0422     		movs	r2, #4
+ 167 0002 014B     		ldr	r3, .L14
+ 168 0004 1A60     		str	r2, [r3]
+ 311:Generated_Source\PSoC4/MagISR.c **** }
+ 169              		.loc 1 311 0
+ 170              		@ sp needed
+ 171 0006 7047     		bx	lr
+ 172              	.L15:
+ 173              		.align	2
+ 174              	.L14:
+ 175 0008 00E100E0 		.word	-536813312
+ 176              		.cfi_endproc
+ 177              	.LFE9:
+ 178              		.size	MagISR_Enable, .-MagISR_Enable
+ 179              		.section	.text.MagISR_GetState,"ax",%progbits
+ 180              		.align	2
+ 181              		.global	MagISR_GetState
+ 182              		.code	16
+ 183              		.thumb_func
+ 184              		.type	MagISR_GetState, %function
+ 185              	MagISR_GetState:
+ 186              	.LFB10:
+ 312:Generated_Source\PSoC4/MagISR.c **** 
+ 313:Generated_Source\PSoC4/MagISR.c **** 
+ 314:Generated_Source\PSoC4/MagISR.c **** /*******************************************************************************
+ 315:Generated_Source\PSoC4/MagISR.c **** * Function Name: MagISR_GetState
+ 316:Generated_Source\PSoC4/MagISR.c **** ********************************************************************************
+ 317:Generated_Source\PSoC4/MagISR.c **** *
+ 318:Generated_Source\PSoC4/MagISR.c **** * Summary:
+ 319:Generated_Source\PSoC4/MagISR.c **** *   Gets the state (enabled, disabled) of the Interrupt.
+ 320:Generated_Source\PSoC4/MagISR.c **** *
+ 321:Generated_Source\PSoC4/MagISR.c **** * Parameters:
+ 322:Generated_Source\PSoC4/MagISR.c **** *   None
+ 323:Generated_Source\PSoC4/MagISR.c **** *
+ 324:Generated_Source\PSoC4/MagISR.c **** * Return:
+ 325:Generated_Source\PSoC4/MagISR.c **** *   1 if enabled, 0 if disabled.
+ 326:Generated_Source\PSoC4/MagISR.c **** *
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccMMoPqP.s 			page 10
+
+
+ 327:Generated_Source\PSoC4/MagISR.c **** *******************************************************************************/
+ 328:Generated_Source\PSoC4/MagISR.c **** uint8 MagISR_GetState(void)
+ 329:Generated_Source\PSoC4/MagISR.c **** {
+ 187              		.loc 1 329 0
+ 188              		.cfi_startproc
+ 189              		@ args = 0, pretend = 0, frame = 0
+ 190              		@ frame_needed = 0, uses_anonymous_args = 0
+ 191              		@ link register save eliminated.
+ 330:Generated_Source\PSoC4/MagISR.c ****     /* Get the state of the general interrupt. */
+ 331:Generated_Source\PSoC4/MagISR.c ****     return ((*MagISR_INTC_SET_EN & (uint32)MagISR__INTC_MASK) != 0u) ? 1u:0u;
+ 192              		.loc 1 331 0
+ 193 0000 034B     		ldr	r3, .L19
+ 194 0002 1B68     		ldr	r3, [r3]
+ 195 0004 5B07     		lsls	r3, r3, #29
+ 196 0006 01D5     		bpl	.L18
+ 197 0008 0120     		movs	r0, #1
+ 198 000a 00E0     		b	.L17
+ 199              	.L18:
+ 200 000c 0020     		movs	r0, #0
+ 201              	.L17:
+ 332:Generated_Source\PSoC4/MagISR.c **** }
+ 202              		.loc 1 332 0 discriminator 4
+ 203              		@ sp needed
+ 204 000e 7047     		bx	lr
+ 205              	.L20:
+ 206              		.align	2
+ 207              	.L19:
+ 208 0010 00E100E0 		.word	-536813312
+ 209              		.cfi_endproc
+ 210              	.LFE10:
+ 211              		.size	MagISR_GetState, .-MagISR_GetState
+ 212              		.section	.text.MagISR_Disable,"ax",%progbits
+ 213              		.align	2
+ 214              		.global	MagISR_Disable
+ 215              		.code	16
+ 216              		.thumb_func
+ 217              		.type	MagISR_Disable, %function
+ 218              	MagISR_Disable:
+ 219              	.LFB11:
+ 333:Generated_Source\PSoC4/MagISR.c **** 
+ 334:Generated_Source\PSoC4/MagISR.c **** 
+ 335:Generated_Source\PSoC4/MagISR.c **** /*******************************************************************************
+ 336:Generated_Source\PSoC4/MagISR.c **** * Function Name: MagISR_Disable
+ 337:Generated_Source\PSoC4/MagISR.c **** ********************************************************************************
+ 338:Generated_Source\PSoC4/MagISR.c **** *
+ 339:Generated_Source\PSoC4/MagISR.c **** * Summary:
+ 340:Generated_Source\PSoC4/MagISR.c **** *   Disables the Interrupt in the interrupt controller.
+ 341:Generated_Source\PSoC4/MagISR.c **** *
+ 342:Generated_Source\PSoC4/MagISR.c **** * Parameters:
+ 343:Generated_Source\PSoC4/MagISR.c **** *   None
+ 344:Generated_Source\PSoC4/MagISR.c **** *
+ 345:Generated_Source\PSoC4/MagISR.c **** * Return:
+ 346:Generated_Source\PSoC4/MagISR.c **** *   None
+ 347:Generated_Source\PSoC4/MagISR.c **** *
+ 348:Generated_Source\PSoC4/MagISR.c **** *******************************************************************************/
+ 349:Generated_Source\PSoC4/MagISR.c **** void MagISR_Disable(void)
+ 350:Generated_Source\PSoC4/MagISR.c **** {
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccMMoPqP.s 			page 11
+
+
+ 220              		.loc 1 350 0
+ 221              		.cfi_startproc
+ 222              		@ args = 0, pretend = 0, frame = 0
+ 223              		@ frame_needed = 0, uses_anonymous_args = 0
+ 224              		@ link register save eliminated.
+ 351:Generated_Source\PSoC4/MagISR.c ****     /* Disable the general interrupt. */
+ 352:Generated_Source\PSoC4/MagISR.c ****     *MagISR_INTC_CLR_EN = MagISR__INTC_MASK;
+ 225              		.loc 1 352 0
+ 226 0000 0422     		movs	r2, #4
+ 227 0002 014B     		ldr	r3, .L22
+ 228 0004 1A60     		str	r2, [r3]
+ 353:Generated_Source\PSoC4/MagISR.c **** }
+ 229              		.loc 1 353 0
+ 230              		@ sp needed
+ 231 0006 7047     		bx	lr
+ 232              	.L23:
+ 233              		.align	2
+ 234              	.L22:
+ 235 0008 80E100E0 		.word	-536813184
+ 236              		.cfi_endproc
+ 237              	.LFE11:
+ 238              		.size	MagISR_Disable, .-MagISR_Disable
+ 239              		.section	.text.MagISR_Start,"ax",%progbits
+ 240              		.align	2
+ 241              		.global	MagISR_Start
+ 242              		.code	16
+ 243              		.thumb_func
+ 244              		.type	MagISR_Start, %function
+ 245              	MagISR_Start:
+ 246              	.LFB1:
+  57:Generated_Source\PSoC4/MagISR.c ****     /* For all we know the interrupt is active. */
+ 247              		.loc 1 57 0
+ 248              		.cfi_startproc
+ 249              		@ args = 0, pretend = 0, frame = 0
+ 250              		@ frame_needed = 0, uses_anonymous_args = 0
+ 251 0000 10B5     		push	{r4, lr}
+ 252              		.cfi_def_cfa_offset 8
+ 253              		.cfi_offset 4, -8
+ 254              		.cfi_offset 14, -4
+  59:Generated_Source\PSoC4/MagISR.c **** 
+ 255              		.loc 1 59 0
+ 256 0002 FFF7FEFF 		bl	MagISR_Disable
+ 257              	.LVL8:
+  62:Generated_Source\PSoC4/MagISR.c **** 
+ 258              		.loc 1 62 0
+ 259 0006 0448     		ldr	r0, .L25
+ 260 0008 FFF7FEFF 		bl	MagISR_SetVector
+ 261              	.LVL9:
+  65:Generated_Source\PSoC4/MagISR.c **** 
+ 262              		.loc 1 65 0
+ 263 000c 0320     		movs	r0, #3
+ 264 000e FFF7FEFF 		bl	MagISR_SetPriority
+ 265              	.LVL10:
+  68:Generated_Source\PSoC4/MagISR.c **** }
+ 266              		.loc 1 68 0
+ 267 0012 FFF7FEFF 		bl	MagISR_Enable
+ 268              	.LVL11:
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccMMoPqP.s 			page 12
+
+
+  69:Generated_Source\PSoC4/MagISR.c **** 
+ 269              		.loc 1 69 0
+ 270              		@ sp needed
+ 271 0016 10BD     		pop	{r4, pc}
+ 272              	.L26:
+ 273              		.align	2
+ 274              	.L25:
+ 275 0018 00000000 		.word	MagISR_Interrupt
+ 276              		.cfi_endproc
+ 277              	.LFE1:
+ 278              		.size	MagISR_Start, .-MagISR_Start
+ 279              		.section	.text.MagISR_StartEx,"ax",%progbits
+ 280              		.align	2
+ 281              		.global	MagISR_StartEx
+ 282              		.code	16
+ 283              		.thumb_func
+ 284              		.type	MagISR_StartEx, %function
+ 285              	MagISR_StartEx:
+ 286              	.LFB2:
+ 100:Generated_Source\PSoC4/MagISR.c ****     /* For all we know the interrupt is active. */
+ 287              		.loc 1 100 0
+ 288              		.cfi_startproc
+ 289              		@ args = 0, pretend = 0, frame = 0
+ 290              		@ frame_needed = 0, uses_anonymous_args = 0
+ 291              	.LVL12:
+ 292 0000 10B5     		push	{r4, lr}
+ 293              		.cfi_def_cfa_offset 8
+ 294              		.cfi_offset 4, -8
+ 295              		.cfi_offset 14, -4
+ 296 0002 0400     		movs	r4, r0
+ 102:Generated_Source\PSoC4/MagISR.c **** 
+ 297              		.loc 1 102 0
+ 298 0004 FFF7FEFF 		bl	MagISR_Disable
+ 299              	.LVL13:
+ 105:Generated_Source\PSoC4/MagISR.c **** 
+ 300              		.loc 1 105 0
+ 301 0008 2000     		movs	r0, r4
+ 302 000a FFF7FEFF 		bl	MagISR_SetVector
+ 303              	.LVL14:
+ 108:Generated_Source\PSoC4/MagISR.c **** 
+ 304              		.loc 1 108 0
+ 305 000e 0320     		movs	r0, #3
+ 306 0010 FFF7FEFF 		bl	MagISR_SetPriority
+ 307              	.LVL15:
+ 111:Generated_Source\PSoC4/MagISR.c **** }
+ 308              		.loc 1 111 0
+ 309 0014 FFF7FEFF 		bl	MagISR_Enable
+ 310              	.LVL16:
+ 112:Generated_Source\PSoC4/MagISR.c **** 
+ 311              		.loc 1 112 0
+ 312              		@ sp needed
+ 313              	.LVL17:
+ 314 0018 10BD     		pop	{r4, pc}
+ 315              		.cfi_endproc
+ 316              	.LFE2:
+ 317              		.size	MagISR_StartEx, .-MagISR_StartEx
+ 318 001a C046     		.section	.text.MagISR_Stop,"ax",%progbits
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccMMoPqP.s 			page 13
+
+
+ 319              		.align	2
+ 320              		.global	MagISR_Stop
+ 321              		.code	16
+ 322              		.thumb_func
+ 323              		.type	MagISR_Stop, %function
+ 324              	MagISR_Stop:
+ 325              	.LFB3:
+ 130:Generated_Source\PSoC4/MagISR.c ****     /* Disable this interrupt. */
+ 326              		.loc 1 130 0
+ 327              		.cfi_startproc
+ 328              		@ args = 0, pretend = 0, frame = 0
+ 329              		@ frame_needed = 0, uses_anonymous_args = 0
+ 330 0000 10B5     		push	{r4, lr}
+ 331              		.cfi_def_cfa_offset 8
+ 332              		.cfi_offset 4, -8
+ 333              		.cfi_offset 14, -4
+ 132:Generated_Source\PSoC4/MagISR.c **** 
+ 334              		.loc 1 132 0
+ 335 0002 FFF7FEFF 		bl	MagISR_Disable
+ 336              	.LVL18:
+ 135:Generated_Source\PSoC4/MagISR.c **** }
+ 337              		.loc 1 135 0
+ 338 0006 0248     		ldr	r0, .L29
+ 339 0008 FFF7FEFF 		bl	MagISR_SetVector
+ 340              	.LVL19:
+ 136:Generated_Source\PSoC4/MagISR.c **** 
+ 341              		.loc 1 136 0
+ 342              		@ sp needed
+ 343 000c 10BD     		pop	{r4, pc}
+ 344              	.L30:
+ 345 000e C046     		.align	2
+ 346              	.L29:
+ 347 0010 00000000 		.word	IntDefaultHandler
+ 348              		.cfi_endproc
+ 349              	.LFE3:
+ 350              		.size	MagISR_Stop, .-MagISR_Stop
+ 351              		.section	.text.MagISR_SetPending,"ax",%progbits
+ 352              		.align	2
+ 353              		.global	MagISR_SetPending
+ 354              		.code	16
+ 355              		.thumb_func
+ 356              		.type	MagISR_SetPending, %function
+ 357              	MagISR_SetPending:
+ 358              	.LFB12:
+ 354:Generated_Source\PSoC4/MagISR.c **** 
+ 355:Generated_Source\PSoC4/MagISR.c **** 
+ 356:Generated_Source\PSoC4/MagISR.c **** /*******************************************************************************
+ 357:Generated_Source\PSoC4/MagISR.c **** * Function Name: MagISR_SetPending
+ 358:Generated_Source\PSoC4/MagISR.c **** ********************************************************************************
+ 359:Generated_Source\PSoC4/MagISR.c **** *
+ 360:Generated_Source\PSoC4/MagISR.c **** * Summary:
+ 361:Generated_Source\PSoC4/MagISR.c **** *   Causes the Interrupt to enter the pending state, a software method of
+ 362:Generated_Source\PSoC4/MagISR.c **** *   generating the interrupt.
+ 363:Generated_Source\PSoC4/MagISR.c **** *
+ 364:Generated_Source\PSoC4/MagISR.c **** * Parameters:
+ 365:Generated_Source\PSoC4/MagISR.c **** *   None
+ 366:Generated_Source\PSoC4/MagISR.c **** *
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccMMoPqP.s 			page 14
+
+
+ 367:Generated_Source\PSoC4/MagISR.c **** * Return:
+ 368:Generated_Source\PSoC4/MagISR.c **** *   None
+ 369:Generated_Source\PSoC4/MagISR.c **** *
+ 370:Generated_Source\PSoC4/MagISR.c **** * Side Effects:
+ 371:Generated_Source\PSoC4/MagISR.c **** *   If interrupts are enabled and the interrupt is set up properly, the ISR is
+ 372:Generated_Source\PSoC4/MagISR.c **** *   entered (depending on the priority of this interrupt and other pending 
+ 373:Generated_Source\PSoC4/MagISR.c **** *   interrupts).
+ 374:Generated_Source\PSoC4/MagISR.c **** *
+ 375:Generated_Source\PSoC4/MagISR.c **** *******************************************************************************/
+ 376:Generated_Source\PSoC4/MagISR.c **** void MagISR_SetPending(void)
+ 377:Generated_Source\PSoC4/MagISR.c **** {
+ 359              		.loc 1 377 0
+ 360              		.cfi_startproc
+ 361              		@ args = 0, pretend = 0, frame = 0
+ 362              		@ frame_needed = 0, uses_anonymous_args = 0
+ 363              		@ link register save eliminated.
+ 378:Generated_Source\PSoC4/MagISR.c ****     *MagISR_INTC_SET_PD = MagISR__INTC_MASK;
+ 364              		.loc 1 378 0
+ 365 0000 0422     		movs	r2, #4
+ 366 0002 014B     		ldr	r3, .L32
+ 367 0004 1A60     		str	r2, [r3]
+ 379:Generated_Source\PSoC4/MagISR.c **** }
+ 368              		.loc 1 379 0
+ 369              		@ sp needed
+ 370 0006 7047     		bx	lr
+ 371              	.L33:
+ 372              		.align	2
+ 373              	.L32:
+ 374 0008 00E200E0 		.word	-536813056
+ 375              		.cfi_endproc
+ 376              	.LFE12:
+ 377              		.size	MagISR_SetPending, .-MagISR_SetPending
+ 378              		.section	.text.MagISR_ClearPending,"ax",%progbits
+ 379              		.align	2
+ 380              		.global	MagISR_ClearPending
+ 381              		.code	16
+ 382              		.thumb_func
+ 383              		.type	MagISR_ClearPending, %function
+ 384              	MagISR_ClearPending:
+ 385              	.LFB13:
+ 380:Generated_Source\PSoC4/MagISR.c **** 
+ 381:Generated_Source\PSoC4/MagISR.c **** 
+ 382:Generated_Source\PSoC4/MagISR.c **** /*******************************************************************************
+ 383:Generated_Source\PSoC4/MagISR.c **** * Function Name: MagISR_ClearPending
+ 384:Generated_Source\PSoC4/MagISR.c **** ********************************************************************************
+ 385:Generated_Source\PSoC4/MagISR.c **** *
+ 386:Generated_Source\PSoC4/MagISR.c **** * Summary:
+ 387:Generated_Source\PSoC4/MagISR.c **** *   Clears a pending interrupt in the interrupt controller.
+ 388:Generated_Source\PSoC4/MagISR.c **** *
+ 389:Generated_Source\PSoC4/MagISR.c **** *   Note Some interrupt sources are clear-on-read and require the block 
+ 390:Generated_Source\PSoC4/MagISR.c **** *   interrupt/status register to be read/cleared with the appropriate block API 
+ 391:Generated_Source\PSoC4/MagISR.c **** *   (GPIO, UART, and so on). Otherwise the ISR will continue to remain in 
+ 392:Generated_Source\PSoC4/MagISR.c **** *   pending state even though the interrupt itself is cleared using this API.
+ 393:Generated_Source\PSoC4/MagISR.c **** *
+ 394:Generated_Source\PSoC4/MagISR.c **** * Parameters:
+ 395:Generated_Source\PSoC4/MagISR.c **** *   None
+ 396:Generated_Source\PSoC4/MagISR.c **** *
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccMMoPqP.s 			page 15
+
+
+ 397:Generated_Source\PSoC4/MagISR.c **** * Return:
+ 398:Generated_Source\PSoC4/MagISR.c **** *   None
+ 399:Generated_Source\PSoC4/MagISR.c **** *
+ 400:Generated_Source\PSoC4/MagISR.c **** *******************************************************************************/
+ 401:Generated_Source\PSoC4/MagISR.c **** void MagISR_ClearPending(void)
+ 402:Generated_Source\PSoC4/MagISR.c **** {
+ 386              		.loc 1 402 0
+ 387              		.cfi_startproc
+ 388              		@ args = 0, pretend = 0, frame = 0
+ 389              		@ frame_needed = 0, uses_anonymous_args = 0
+ 390              		@ link register save eliminated.
+ 403:Generated_Source\PSoC4/MagISR.c ****     *MagISR_INTC_CLR_PD = MagISR__INTC_MASK;
+ 391              		.loc 1 403 0
+ 392 0000 0422     		movs	r2, #4
+ 393 0002 014B     		ldr	r3, .L35
+ 394 0004 1A60     		str	r2, [r3]
+ 404:Generated_Source\PSoC4/MagISR.c **** }
+ 395              		.loc 1 404 0
+ 396              		@ sp needed
+ 397 0006 7047     		bx	lr
+ 398              	.L36:
+ 399              		.align	2
+ 400              	.L35:
+ 401 0008 80E200E0 		.word	-536812928
+ 402              		.cfi_endproc
+ 403              	.LFE13:
+ 404              		.size	MagISR_ClearPending, .-MagISR_ClearPending
+ 405              		.section	.text.MagISR_Interrupt,"ax",%progbits
+ 406              		.align	2
+ 407              		.global	MagISR_Interrupt
+ 408              		.code	16
+ 409              		.thumb_func
+ 410              		.type	MagISR_Interrupt, %function
+ 411              	MagISR_Interrupt:
+ 412              	.LFB4:
+ 160:Generated_Source\PSoC4/MagISR.c ****     #ifdef MagISR_INTERRUPT_INTERRUPT_CALLBACK
+ 413              		.loc 1 160 0
+ 414              		.cfi_startproc
+ 415              		@ args = 0, pretend = 0, frame = 0
+ 416              		@ frame_needed = 0, uses_anonymous_args = 0
+ 417 0000 10B5     		push	{r4, lr}
+ 418              		.cfi_def_cfa_offset 8
+ 419              		.cfi_offset 4, -8
+ 420              		.cfi_offset 14, -4
+ 167:Generated_Source\PSoC4/MagISR.c ****     
+ 421              		.loc 1 167 0
+ 422 0002 064B     		ldr	r3, .L39
+ 423 0004 1B78     		ldrb	r3, [r3]
+ 424 0006 DBB2     		uxtb	r3, r3
+ 425 0008 042B     		cmp	r3, #4
+ 426 000a 03D8     		bhi	.L38
+ 167:Generated_Source\PSoC4/MagISR.c ****     
+ 427              		.loc 1 167 0 is_stmt 0 discriminator 1
+ 428 000c 0221     		movs	r1, #2
+ 429 000e 0520     		movs	r0, #5
+ 430 0010 FFF7FEFF 		bl	enqueue_task
+ 431              	.LVL20:
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccMMoPqP.s 			page 16
+
+
+ 432              	.L38:
+ 169:Generated_Source\PSoC4/MagISR.c ****     
+ 433              		.loc 1 169 0 is_stmt 1
+ 434 0014 FFF7FEFF 		bl	MagISR_ClearPending
+ 435              	.LVL21:
+ 172:Generated_Source\PSoC4/MagISR.c **** 
+ 436              		.loc 1 172 0
+ 437              		@ sp needed
+ 438 0018 10BD     		pop	{r4, pc}
+ 439              	.L40:
+ 440 001a C046     		.align	2
+ 441              	.L39:
+ 442 001c 00000000 		.word	num_tasks
+ 443              		.cfi_endproc
+ 444              	.LFE4:
+ 445              		.size	MagISR_Interrupt, .-MagISR_Interrupt
+ 446              		.comm	slider_pos_last,1,1
+ 447              		.comm	run_mode,1,1
+ 448              		.comm	Init_heading,2,2
+ 449              		.comm	Max_Lidar,2,2
+ 450              		.comm	Batt_volt,2,2
+ 451              		.comm	ESC_curr,2,2
+ 452              		.comm	motor_toggles,2,2
+ 453              		.comm	num_tasks,1,1
+ 454              		.comm	num_rx_bytes_lidar_buff,1,1
+ 455              		.comm	num_rx_bytes_lidar,1,1
+ 456              		.comm	LIDAR_UART_tmr,1,1
+ 457              		.comm	rx_bytes_lidar_buff,16,4
+ 458              		.comm	rx_bytes_lidar,16,4
+ 459              		.comm	num_rx_bytes_ble_buff,1,1
+ 460              		.comm	num_rx_bytes_ble,1,1
+ 461              		.comm	BLE_UART_tmr,1,1
+ 462              		.comm	rx_bytes_ble_buff,8,4
+ 463              		.comm	rx_bytes_ble,8,4
+ 464              		.comm	num_rx_bytes_dbg_buff,1,1
+ 465              		.comm	num_rx_bytes_dbg,1,1
+ 466              		.comm	rx_bytes_dbg_buff,8,4
+ 467              		.comm	rx_bytes_dbg,8,4
+ 468              		.text
+ 469              	.Letext0:
+ 470              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.3\\psoc creator\\import\\gnu\\arm\\5.4.
+ 471              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.3\\psoc creator\\import\\gnu\\arm\\5.4.
+ 472              		.file 4 "Generated_Source\\PSoC4/cytypes.h"
+ 473              		.file 5 "./main.h"
+ 474              		.file 6 "Generated_Source\\PSoC4/CyLib.h"
+ 475              		.section	.debug_info,"",%progbits
+ 476              	.Ldebug_info0:
+ 477 0000 E3050000 		.4byte	0x5e3
+ 478 0004 0400     		.2byte	0x4
+ 479 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 480 000a 04       		.byte	0x4
+ 481 000b 01       		.uleb128 0x1
+ 482 000c 6E000000 		.4byte	.LASF80
+ 483 0010 0C       		.byte	0xc
+ 484 0011 06020000 		.4byte	.LASF81
+ 485 0015 40040000 		.4byte	.LASF82
+ 486 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccMMoPqP.s 			page 17
+
+
+ 487 001d 00000000 		.4byte	0
+ 488 0021 00000000 		.4byte	.Ldebug_line0
+ 489 0025 02       		.uleb128 0x2
+ 490 0026 01       		.byte	0x1
+ 491 0027 06       		.byte	0x6
+ 492 0028 63010000 		.4byte	.LASF0
+ 493 002c 03       		.uleb128 0x3
+ 494 002d 29000000 		.4byte	.LASF2
+ 495 0031 02       		.byte	0x2
+ 496 0032 1D       		.byte	0x1d
+ 497 0033 37000000 		.4byte	0x37
+ 498 0037 02       		.uleb128 0x2
+ 499 0038 01       		.byte	0x1
+ 500 0039 08       		.byte	0x8
+ 501 003a DA030000 		.4byte	.LASF1
+ 502 003e 03       		.uleb128 0x3
+ 503 003f EF010000 		.4byte	.LASF3
+ 504 0043 02       		.byte	0x2
+ 505 0044 29       		.byte	0x29
+ 506 0045 49000000 		.4byte	0x49
+ 507 0049 02       		.uleb128 0x2
+ 508 004a 02       		.byte	0x2
+ 509 004b 05       		.byte	0x5
+ 510 004c 06040000 		.4byte	.LASF4
+ 511 0050 03       		.uleb128 0x3
+ 512 0051 C5040000 		.4byte	.LASF5
+ 513 0055 02       		.byte	0x2
+ 514 0056 2B       		.byte	0x2b
+ 515 0057 5B000000 		.4byte	0x5b
+ 516 005b 02       		.uleb128 0x2
+ 517 005c 02       		.byte	0x2
+ 518 005d 07       		.byte	0x7
+ 519 005e E6020000 		.4byte	.LASF6
+ 520 0062 02       		.uleb128 0x2
+ 521 0063 04       		.byte	0x4
+ 522 0064 05       		.byte	0x5
+ 523 0065 80010000 		.4byte	.LASF7
+ 524 0069 02       		.uleb128 0x2
+ 525 006a 04       		.byte	0x4
+ 526 006b 07       		.byte	0x7
+ 527 006c 6F020000 		.4byte	.LASF8
+ 528 0070 02       		.uleb128 0x2
+ 529 0071 08       		.byte	0x8
+ 530 0072 05       		.byte	0x5
+ 531 0073 55010000 		.4byte	.LASF9
+ 532 0077 02       		.uleb128 0x2
+ 533 0078 08       		.byte	0x8
+ 534 0079 07       		.byte	0x7
+ 535 007a FC000000 		.4byte	.LASF10
+ 536 007e 04       		.uleb128 0x4
+ 537 007f 04       		.byte	0x4
+ 538 0080 05       		.byte	0x5
+ 539 0081 696E7400 		.ascii	"int\000"
+ 540 0085 02       		.uleb128 0x2
+ 541 0086 04       		.byte	0x4
+ 542 0087 07       		.byte	0x7
+ 543 0088 3E020000 		.4byte	.LASF11
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccMMoPqP.s 			page 18
+
+
+ 544 008c 03       		.uleb128 0x3
+ 545 008d F8040000 		.4byte	.LASF12
+ 546 0091 03       		.byte	0x3
+ 547 0092 18       		.byte	0x18
+ 548 0093 2C000000 		.4byte	0x2c
+ 549 0097 03       		.uleb128 0x3
+ 550 0098 4D010000 		.4byte	.LASF13
+ 551 009c 03       		.byte	0x3
+ 552 009d 20       		.byte	0x20
+ 553 009e 3E000000 		.4byte	0x3e
+ 554 00a2 03       		.uleb128 0x3
+ 555 00a3 9B010000 		.4byte	.LASF14
+ 556 00a7 03       		.byte	0x3
+ 557 00a8 24       		.byte	0x24
+ 558 00a9 50000000 		.4byte	0x50
+ 559 00ad 05       		.uleb128 0x5
+ 560 00ae 95010000 		.4byte	.LASF15
+ 561 00b2 04       		.byte	0x4
+ 562 00b3 F701     		.2byte	0x1f7
+ 563 00b5 37000000 		.4byte	0x37
+ 564 00b9 05       		.uleb128 0x5
+ 565 00ba C6010000 		.4byte	.LASF16
+ 566 00be 04       		.byte	0x4
+ 567 00bf F901     		.2byte	0x1f9
+ 568 00c1 69000000 		.4byte	0x69
+ 569 00c5 02       		.uleb128 0x2
+ 570 00c6 04       		.byte	0x4
+ 571 00c7 04       		.byte	0x4
+ 572 00c8 AF030000 		.4byte	.LASF17
+ 573 00cc 02       		.uleb128 0x2
+ 574 00cd 08       		.byte	0x8
+ 575 00ce 04       		.byte	0x4
+ 576 00cf A4010000 		.4byte	.LASF18
+ 577 00d3 02       		.uleb128 0x2
+ 578 00d4 01       		.byte	0x1
+ 579 00d5 08       		.byte	0x8
+ 580 00d6 98040000 		.4byte	.LASF19
+ 581 00da 05       		.uleb128 0x5
+ 582 00db 1F030000 		.4byte	.LASF20
+ 583 00df 04       		.byte	0x4
+ 584 00e0 A302     		.2byte	0x2a3
+ 585 00e2 E6000000 		.4byte	0xe6
+ 586 00e6 06       		.uleb128 0x6
+ 587 00e7 B9000000 		.4byte	0xb9
+ 588 00eb 05       		.uleb128 0x5
+ 589 00ec AE040000 		.4byte	.LASF21
+ 590 00f0 04       		.byte	0x4
+ 591 00f1 B302     		.2byte	0x2b3
+ 592 00f3 F7000000 		.4byte	0xf7
+ 593 00f7 07       		.uleb128 0x7
+ 594 00f8 04       		.byte	0x4
+ 595 00f9 FD000000 		.4byte	0xfd
+ 596 00fd 08       		.uleb128 0x8
+ 597 00fe 02       		.uleb128 0x2
+ 598 00ff 08       		.byte	0x8
+ 599 0100 04       		.byte	0x4
+ 600 0101 56030000 		.4byte	.LASF22
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccMMoPqP.s 			page 19
+
+
+ 601 0105 02       		.uleb128 0x2
+ 602 0106 04       		.byte	0x4
+ 603 0107 07       		.byte	0x7
+ 604 0108 4D030000 		.4byte	.LASF23
+ 605 010c 09       		.uleb128 0x9
+ 606 010d 01       		.byte	0x1
+ 607 010e 37000000 		.4byte	0x37
+ 608 0112 05       		.byte	0x5
+ 609 0113 13       		.byte	0x13
+ 610 0114 43010000 		.4byte	0x143
+ 611 0118 0A       		.uleb128 0xa
+ 612 0119 D0020000 		.4byte	.LASF24
+ 613 011d 00       		.byte	0
+ 614 011e 0A       		.uleb128 0xa
+ 615 011f 1D040000 		.4byte	.LASF25
+ 616 0123 01       		.byte	0x1
+ 617 0124 0A       		.uleb128 0xa
+ 618 0125 F9010000 		.4byte	.LASF26
+ 619 0129 02       		.byte	0x2
+ 620 012a 0A       		.uleb128 0xa
+ 621 012b 89030000 		.4byte	.LASF27
+ 622 012f 03       		.byte	0x3
+ 623 0130 0A       		.uleb128 0xa
+ 624 0131 E8030000 		.4byte	.LASF28
+ 625 0135 04       		.byte	0x4
+ 626 0136 0A       		.uleb128 0xa
+ 627 0137 81020000 		.4byte	.LASF29
+ 628 013b 05       		.byte	0x5
+ 629 013c 0A       		.uleb128 0xa
+ 630 013d 21050000 		.4byte	.LASF30
+ 631 0141 06       		.byte	0x6
+ 632 0142 00       		.byte	0
+ 633 0143 09       		.uleb128 0x9
+ 634 0144 01       		.byte	0x1
+ 635 0145 37000000 		.4byte	0x37
+ 636 0149 05       		.byte	0x5
+ 637 014a 27       		.byte	0x27
+ 638 014b 74010000 		.4byte	0x174
+ 639 014f 0B       		.uleb128 0xb
+ 640 0150 4F464600 		.ascii	"OFF\000"
+ 641 0154 00       		.byte	0
+ 642 0155 0A       		.uleb128 0xa
+ 643 0156 27040000 		.4byte	.LASF31
+ 644 015a 01       		.byte	0x1
+ 645 015b 0B       		.uleb128 0xb
+ 646 015c 43414C00 		.ascii	"CAL\000"
+ 647 0160 02       		.byte	0x2
+ 648 0161 0A       		.uleb128 0xa
+ 649 0162 39030000 		.4byte	.LASF32
+ 650 0166 03       		.byte	0x3
+ 651 0167 0B       		.uleb128 0xb
+ 652 0168 52554E00 		.ascii	"RUN\000"
+ 653 016c 04       		.byte	0x4
+ 654 016d 0A       		.uleb128 0xa
+ 655 016e 43030000 		.4byte	.LASF33
+ 656 0172 05       		.byte	0x5
+ 657 0173 00       		.byte	0
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccMMoPqP.s 			page 20
+
+
+ 658 0174 03       		.uleb128 0x3
+ 659 0175 DF040000 		.4byte	.LASF34
+ 660 0179 05       		.byte	0x5
+ 661 017a 27       		.byte	0x27
+ 662 017b 43010000 		.4byte	0x143
+ 663 017f 09       		.uleb128 0x9
+ 664 0180 01       		.byte	0x1
+ 665 0181 37000000 		.4byte	0x37
+ 666 0185 05       		.byte	0x5
+ 667 0186 2A       		.byte	0x2a
+ 668 0187 9E010000 		.4byte	0x19e
+ 669 018b 0B       		.uleb128 0xb
+ 670 018c 4C4F5700 		.ascii	"LOW\000"
+ 671 0190 00       		.byte	0
+ 672 0191 0A       		.uleb128 0xa
+ 673 0192 E7010000 		.4byte	.LASF35
+ 674 0196 01       		.byte	0x1
+ 675 0197 0A       		.uleb128 0xa
+ 676 0198 EA040000 		.4byte	.LASF36
+ 677 019c 02       		.byte	0x2
+ 678 019d 00       		.byte	0
+ 679 019e 03       		.uleb128 0x3
+ 680 019f B5030000 		.4byte	.LASF37
+ 681 01a3 05       		.byte	0x5
+ 682 01a4 2A       		.byte	0x2a
+ 683 01a5 7F010000 		.4byte	0x17f
+ 684 01a9 0C       		.uleb128 0xc
+ 685 01aa 6F010000 		.4byte	.LASF38
+ 686 01ae 01       		.byte	0x1
+ 687 01af CA       		.byte	0xca
+ 688 01b0 00000000 		.4byte	.LFB5
+ 689 01b4 0C000000 		.4byte	.LFE5-.LFB5
+ 690 01b8 01       		.uleb128 0x1
+ 691 01b9 9C       		.byte	0x9c
+ 692 01ba CC010000 		.4byte	0x1cc
+ 693 01be 0D       		.uleb128 0xd
+ 694 01bf 62030000 		.4byte	.LASF40
+ 695 01c3 01       		.byte	0x1
+ 696 01c4 CA       		.byte	0xca
+ 697 01c5 EB000000 		.4byte	0xeb
+ 698 01c9 01       		.uleb128 0x1
+ 699 01ca 50       		.byte	0x50
+ 700 01cb 00       		.byte	0
+ 701 01cc 0E       		.uleb128 0xe
+ 702 01cd BF020000 		.4byte	.LASF44
+ 703 01d1 01       		.byte	0x1
+ 704 01d2 DE       		.byte	0xde
+ 705 01d3 EB000000 		.4byte	0xeb
+ 706 01d7 00000000 		.4byte	.LFB6
+ 707 01db 0C000000 		.4byte	.LFE6-.LFB6
+ 708 01df 01       		.uleb128 0x1
+ 709 01e0 9C       		.byte	0x9c
+ 710 01e1 0C       		.uleb128 0xc
+ 711 01e2 5C020000 		.4byte	.LASF39
+ 712 01e6 01       		.byte	0x1
+ 713 01e7 FC       		.byte	0xfc
+ 714 01e8 00000000 		.4byte	.LFB7
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccMMoPqP.s 			page 21
+
+
+ 715 01ec 24000000 		.4byte	.LFE7-.LFB7
+ 716 01f0 01       		.uleb128 0x1
+ 717 01f1 9C       		.byte	0x9c
+ 718 01f2 33020000 		.4byte	0x233
+ 719 01f6 0F       		.uleb128 0xf
+ 720 01f7 F9020000 		.4byte	.LASF41
+ 721 01fb 01       		.byte	0x1
+ 722 01fc FC       		.byte	0xfc
+ 723 01fd AD000000 		.4byte	0xad
+ 724 0201 00000000 		.4byte	.LLST0
+ 725 0205 10       		.uleb128 0x10
+ 726 0206 99020000 		.4byte	.LASF42
+ 727 020a 01       		.byte	0x1
+ 728 020b FE       		.byte	0xfe
+ 729 020c AD000000 		.4byte	0xad
+ 730 0210 21000000 		.4byte	.LLST1
+ 731 0214 11       		.uleb128 0x11
+ 732 0215 31010000 		.4byte	.LASF43
+ 733 0219 01       		.byte	0x1
+ 734 021a FF       		.byte	0xff
+ 735 021b B9000000 		.4byte	0xb9
+ 736 021f 16       		.byte	0x16
+ 737 0220 12       		.uleb128 0x12
+ 738 0221 08000000 		.4byte	.LVL3
+ 739 0225 C5050000 		.4byte	0x5c5
+ 740 0229 12       		.uleb128 0x12
+ 741 022a 1A000000 		.4byte	.LVL4
+ 742 022e D0050000 		.4byte	0x5d0
+ 743 0232 00       		.byte	0
+ 744 0233 13       		.uleb128 0x13
+ 745 0234 5B000000 		.4byte	.LASF83
+ 746 0238 01       		.byte	0x1
+ 747 0239 1801     		.2byte	0x118
+ 748 023b AD000000 		.4byte	0xad
+ 749 023f 00000000 		.4byte	.LFB8
+ 750 0243 10000000 		.4byte	.LFE8-.LFB8
+ 751 0247 01       		.uleb128 0x1
+ 752 0248 9C       		.byte	0x9c
+ 753 0249 6B020000 		.4byte	0x26b
+ 754 024d 14       		.uleb128 0x14
+ 755 024e F9020000 		.4byte	.LASF41
+ 756 0252 01       		.byte	0x1
+ 757 0253 1A01     		.2byte	0x11a
+ 758 0255 B9000000 		.4byte	0xb9
+ 759 0259 34000000 		.4byte	.LLST2
+ 760 025d 15       		.uleb128 0x15
+ 761 025e 31010000 		.4byte	.LASF43
+ 762 0262 01       		.byte	0x1
+ 763 0263 1B01     		.2byte	0x11b
+ 764 0265 B9000000 		.4byte	0xb9
+ 765 0269 16       		.byte	0x16
+ 766 026a 00       		.byte	0
+ 767 026b 16       		.uleb128 0x16
+ 768 026c 26020000 		.4byte	.LASF46
+ 769 0270 01       		.byte	0x1
+ 770 0271 3301     		.2byte	0x133
+ 771 0273 00000000 		.4byte	.LFB9
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccMMoPqP.s 			page 22
+
+
+ 772 0277 0C000000 		.4byte	.LFE9-.LFB9
+ 773 027b 01       		.uleb128 0x1
+ 774 027c 9C       		.byte	0x9c
+ 775 027d 17       		.uleb128 0x17
+ 776 027e 02030000 		.4byte	.LASF45
+ 777 0282 01       		.byte	0x1
+ 778 0283 4801     		.2byte	0x148
+ 779 0285 AD000000 		.4byte	0xad
+ 780 0289 00000000 		.4byte	.LFB10
+ 781 028d 14000000 		.4byte	.LFE10-.LFB10
+ 782 0291 01       		.uleb128 0x1
+ 783 0292 9C       		.byte	0x9c
+ 784 0293 16       		.uleb128 0x16
+ 785 0294 8A020000 		.4byte	.LASF47
+ 786 0298 01       		.byte	0x1
+ 787 0299 5D01     		.2byte	0x15d
+ 788 029b 00000000 		.4byte	.LFB11
+ 789 029f 0C000000 		.4byte	.LFE11-.LFB11
+ 790 02a3 01       		.uleb128 0x1
+ 791 02a4 9C       		.byte	0x9c
+ 792 02a5 0C       		.uleb128 0xc
+ 793 02a6 33040000 		.4byte	.LASF48
+ 794 02aa 01       		.byte	0x1
+ 795 02ab 38       		.byte	0x38
+ 796 02ac 00000000 		.4byte	.LFB1
+ 797 02b0 1C000000 		.4byte	.LFE1-.LFB1
+ 798 02b4 01       		.uleb128 0x1
+ 799 02b5 9C       		.byte	0x9c
+ 800 02b6 F7020000 		.4byte	0x2f7
+ 801 02ba 12       		.uleb128 0x12
+ 802 02bb 06000000 		.4byte	.LVL8
+ 803 02bf 93020000 		.4byte	0x293
+ 804 02c3 18       		.uleb128 0x18
+ 805 02c4 0C000000 		.4byte	.LVL9
+ 806 02c8 A9010000 		.4byte	0x1a9
+ 807 02cc DA020000 		.4byte	0x2da
+ 808 02d0 19       		.uleb128 0x19
+ 809 02d1 01       		.uleb128 0x1
+ 810 02d2 50       		.byte	0x50
+ 811 02d3 05       		.uleb128 0x5
+ 812 02d4 03       		.byte	0x3
+ 813 02d5 00000000 		.4byte	MagISR_Interrupt
+ 814 02d9 00       		.byte	0
+ 815 02da 18       		.uleb128 0x18
+ 816 02db 12000000 		.4byte	.LVL10
+ 817 02df E1010000 		.4byte	0x1e1
+ 818 02e3 ED020000 		.4byte	0x2ed
+ 819 02e7 19       		.uleb128 0x19
+ 820 02e8 01       		.uleb128 0x1
+ 821 02e9 50       		.byte	0x50
+ 822 02ea 01       		.uleb128 0x1
+ 823 02eb 33       		.byte	0x33
+ 824 02ec 00       		.byte	0
+ 825 02ed 12       		.uleb128 0x12
+ 826 02ee 16000000 		.4byte	.LVL11
+ 827 02f2 6B020000 		.4byte	0x26b
+ 828 02f6 00       		.byte	0
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccMMoPqP.s 			page 23
+
+
+ 829 02f7 0C       		.uleb128 0xc
+ 830 02f8 13010000 		.4byte	.LASF49
+ 831 02fc 01       		.byte	0x1
+ 832 02fd 63       		.byte	0x63
+ 833 02fe 00000000 		.4byte	.LFB2
+ 834 0302 1A000000 		.4byte	.LFE2-.LFB2
+ 835 0306 01       		.uleb128 0x1
+ 836 0307 9C       		.byte	0x9c
+ 837 0308 55030000 		.4byte	0x355
+ 838 030c 0F       		.uleb128 0xf
+ 839 030d 62030000 		.4byte	.LASF40
+ 840 0311 01       		.byte	0x1
+ 841 0312 63       		.byte	0x63
+ 842 0313 EB000000 		.4byte	0xeb
+ 843 0317 56000000 		.4byte	.LLST3
+ 844 031b 12       		.uleb128 0x12
+ 845 031c 08000000 		.4byte	.LVL13
+ 846 0320 93020000 		.4byte	0x293
+ 847 0324 18       		.uleb128 0x18
+ 848 0325 0E000000 		.4byte	.LVL14
+ 849 0329 A9010000 		.4byte	0x1a9
+ 850 032d 38030000 		.4byte	0x338
+ 851 0331 19       		.uleb128 0x19
+ 852 0332 01       		.uleb128 0x1
+ 853 0333 50       		.byte	0x50
+ 854 0334 02       		.uleb128 0x2
+ 855 0335 74       		.byte	0x74
+ 856 0336 00       		.sleb128 0
+ 857 0337 00       		.byte	0
+ 858 0338 18       		.uleb128 0x18
+ 859 0339 14000000 		.4byte	.LVL15
+ 860 033d E1010000 		.4byte	0x1e1
+ 861 0341 4B030000 		.4byte	0x34b
+ 862 0345 19       		.uleb128 0x19
+ 863 0346 01       		.uleb128 0x1
+ 864 0347 50       		.byte	0x50
+ 865 0348 01       		.uleb128 0x1
+ 866 0349 33       		.byte	0x33
+ 867 034a 00       		.byte	0
+ 868 034b 12       		.uleb128 0x12
+ 869 034c 18000000 		.4byte	.LVL16
+ 870 0350 6B020000 		.4byte	0x26b
+ 871 0354 00       		.byte	0
+ 872 0355 0C       		.uleb128 0xc
+ 873 0356 89010000 		.4byte	.LASF50
+ 874 035a 01       		.byte	0x1
+ 875 035b 81       		.byte	0x81
+ 876 035c 00000000 		.4byte	.LFB3
+ 877 0360 14000000 		.4byte	.LFE3-.LFB3
+ 878 0364 01       		.uleb128 0x1
+ 879 0365 9C       		.byte	0x9c
+ 880 0366 7D030000 		.4byte	0x37d
+ 881 036a 12       		.uleb128 0x12
+ 882 036b 06000000 		.4byte	.LVL18
+ 883 036f 93020000 		.4byte	0x293
+ 884 0373 12       		.uleb128 0x12
+ 885 0374 0C000000 		.4byte	.LVL19
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccMMoPqP.s 			page 24
+
+
+ 886 0378 A9010000 		.4byte	0x1a9
+ 887 037c 00       		.byte	0
+ 888 037d 16       		.uleb128 0x16
+ 889 037e B4010000 		.4byte	.LASF51
+ 890 0382 01       		.byte	0x1
+ 891 0383 7801     		.2byte	0x178
+ 892 0385 00000000 		.4byte	.LFB12
+ 893 0389 0C000000 		.4byte	.LFE12-.LFB12
+ 894 038d 01       		.uleb128 0x1
+ 895 038e 9C       		.byte	0x9c
+ 896 038f 16       		.uleb128 0x16
+ 897 0390 25030000 		.4byte	.LASF52
+ 898 0394 01       		.byte	0x1
+ 899 0395 9101     		.2byte	0x191
+ 900 0397 00000000 		.4byte	.LFB13
+ 901 039b 0C000000 		.4byte	.LFE13-.LFB13
+ 902 039f 01       		.uleb128 0x1
+ 903 03a0 9C       		.byte	0x9c
+ 904 03a1 0C       		.uleb128 0xc
+ 905 03a2 9D040000 		.4byte	.LASF53
+ 906 03a6 01       		.byte	0x1
+ 907 03a7 9F       		.byte	0x9f
+ 908 03a8 00000000 		.4byte	.LFB4
+ 909 03ac 20000000 		.4byte	.LFE4-.LFB4
+ 910 03b0 01       		.uleb128 0x1
+ 911 03b1 9C       		.byte	0x9c
+ 912 03b2 D8030000 		.4byte	0x3d8
+ 913 03b6 18       		.uleb128 0x18
+ 914 03b7 14000000 		.4byte	.LVL20
+ 915 03bb DB050000 		.4byte	0x5db
+ 916 03bf CE030000 		.4byte	0x3ce
+ 917 03c3 19       		.uleb128 0x19
+ 918 03c4 01       		.uleb128 0x1
+ 919 03c5 50       		.byte	0x50
+ 920 03c6 01       		.uleb128 0x1
+ 921 03c7 35       		.byte	0x35
+ 922 03c8 19       		.uleb128 0x19
+ 923 03c9 01       		.uleb128 0x1
+ 924 03ca 51       		.byte	0x51
+ 925 03cb 01       		.uleb128 0x1
+ 926 03cc 32       		.byte	0x32
+ 927 03cd 00       		.byte	0
+ 928 03ce 12       		.uleb128 0x12
+ 929 03cf 18000000 		.4byte	.LVL21
+ 930 03d3 8F030000 		.4byte	0x38f
+ 931 03d7 00       		.byte	0
+ 932 03d8 1A       		.uleb128 0x1a
+ 933 03d9 E8030000 		.4byte	0x3e8
+ 934 03dd E8030000 		.4byte	0x3e8
+ 935 03e1 1B       		.uleb128 0x1b
+ 936 03e2 05010000 		.4byte	0x105
+ 937 03e6 07       		.byte	0x7
+ 938 03e7 00       		.byte	0
+ 939 03e8 06       		.uleb128 0x6
+ 940 03e9 37000000 		.4byte	0x37
+ 941 03ed 1C       		.uleb128 0x1c
+ 942 03ee 12030000 		.4byte	.LASF54
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccMMoPqP.s 			page 25
+
+
+ 943 03f2 05       		.byte	0x5
+ 944 03f3 30       		.byte	0x30
+ 945 03f4 FE030000 		.4byte	0x3fe
+ 946 03f8 05       		.uleb128 0x5
+ 947 03f9 03       		.byte	0x3
+ 948 03fa 00000000 		.4byte	rx_bytes_dbg
+ 949 03fe 06       		.uleb128 0x6
+ 950 03ff D8030000 		.4byte	0x3d8
+ 951 0403 1C       		.uleb128 0x1c
+ 952 0404 33000000 		.4byte	.LASF55
+ 953 0408 05       		.byte	0x5
+ 954 0409 31       		.byte	0x31
+ 955 040a 14040000 		.4byte	0x414
+ 956 040e 05       		.uleb128 0x5
+ 957 040f 03       		.byte	0x3
+ 958 0410 00000000 		.4byte	rx_bytes_dbg_buff
+ 959 0414 06       		.uleb128 0x6
+ 960 0415 D8030000 		.4byte	0x3d8
+ 961 0419 1C       		.uleb128 0x1c
+ 962 041a F5030000 		.4byte	.LASF56
+ 963 041e 05       		.byte	0x5
+ 964 041f 32       		.byte	0x32
+ 965 0420 2A040000 		.4byte	0x42a
+ 966 0424 05       		.uleb128 0x5
+ 967 0425 03       		.byte	0x3
+ 968 0426 00000000 		.4byte	num_rx_bytes_dbg
+ 969 042a 06       		.uleb128 0x6
+ 970 042b 8C000000 		.4byte	0x8c
+ 971 042f 1C       		.uleb128 0x1c
+ 972 0430 99030000 		.4byte	.LASF57
+ 973 0434 05       		.byte	0x5
+ 974 0435 33       		.byte	0x33
+ 975 0436 2A040000 		.4byte	0x42a
+ 976 043a 05       		.uleb128 0x5
+ 977 043b 03       		.byte	0x3
+ 978 043c 00000000 		.4byte	num_rx_bytes_dbg_buff
+ 979 0440 1C       		.uleb128 0x1c
+ 980 0441 40010000 		.4byte	.LASF58
+ 981 0445 05       		.byte	0x5
+ 982 0446 34       		.byte	0x34
+ 983 0447 51040000 		.4byte	0x451
+ 984 044b 05       		.uleb128 0x5
+ 985 044c 03       		.byte	0x3
+ 986 044d 00000000 		.4byte	rx_bytes_ble
+ 987 0451 06       		.uleb128 0x6
+ 988 0452 D8030000 		.4byte	0x3d8
+ 989 0456 1C       		.uleb128 0x1c
+ 990 0457 77030000 		.4byte	.LASF59
+ 991 045b 05       		.byte	0x5
+ 992 045c 35       		.byte	0x35
+ 993 045d 67040000 		.4byte	0x467
+ 994 0461 05       		.uleb128 0x5
+ 995 0462 03       		.byte	0x3
+ 996 0463 00000000 		.4byte	rx_bytes_ble_buff
+ 997 0467 06       		.uleb128 0x6
+ 998 0468 D8030000 		.4byte	0x3d8
+ 999 046c 1C       		.uleb128 0x1c
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccMMoPqP.s 			page 26
+
+
+ 1000 046d 6A030000 		.4byte	.LASF60
+ 1001 0471 05       		.byte	0x5
+ 1002 0472 36       		.byte	0x36
+ 1003 0473 2A040000 		.4byte	0x42a
+ 1004 0477 05       		.uleb128 0x5
+ 1005 0478 03       		.byte	0x3
+ 1006 0479 00000000 		.4byte	BLE_UART_tmr
+ 1007 047d 1C       		.uleb128 0x1c
+ 1008 047e 4B020000 		.4byte	.LASF61
+ 1009 0482 05       		.byte	0x5
+ 1010 0483 37       		.byte	0x37
+ 1011 0484 2A040000 		.4byte	0x42a
+ 1012 0488 05       		.uleb128 0x5
+ 1013 0489 03       		.byte	0x3
+ 1014 048a 00000000 		.4byte	num_rx_bytes_ble
+ 1015 048e 1C       		.uleb128 0x1c
+ 1016 048f 45000000 		.4byte	.LASF62
+ 1017 0493 05       		.byte	0x5
+ 1018 0494 38       		.byte	0x38
+ 1019 0495 2A040000 		.4byte	0x42a
+ 1020 0499 05       		.uleb128 0x5
+ 1021 049a 03       		.byte	0x3
+ 1022 049b 00000000 		.4byte	num_rx_bytes_ble_buff
+ 1023 049f 1A       		.uleb128 0x1a
+ 1024 04a0 E8030000 		.4byte	0x3e8
+ 1025 04a4 AF040000 		.4byte	0x4af
+ 1026 04a8 1B       		.uleb128 0x1b
+ 1027 04a9 05010000 		.4byte	0x105
+ 1028 04ad 0F       		.byte	0xf
+ 1029 04ae 00       		.byte	0
+ 1030 04af 1C       		.uleb128 0x1c
+ 1031 04b0 22010000 		.4byte	.LASF63
+ 1032 04b4 05       		.byte	0x5
+ 1033 04b5 39       		.byte	0x39
+ 1034 04b6 C0040000 		.4byte	0x4c0
+ 1035 04ba 05       		.uleb128 0x5
+ 1036 04bb 03       		.byte	0x3
+ 1037 04bc 00000000 		.4byte	rx_bytes_lidar
+ 1038 04c0 06       		.uleb128 0x6
+ 1039 04c1 9F040000 		.4byte	0x49f
+ 1040 04c5 1C       		.uleb128 0x1c
+ 1041 04c6 0D050000 		.4byte	.LASF64
+ 1042 04ca 05       		.byte	0x5
+ 1043 04cb 3A       		.byte	0x3a
+ 1044 04cc D6040000 		.4byte	0x4d6
+ 1045 04d0 05       		.uleb128 0x5
+ 1046 04d1 03       		.byte	0x3
+ 1047 04d2 00000000 		.4byte	rx_bytes_lidar_buff
+ 1048 04d6 06       		.uleb128 0x6
+ 1049 04d7 9F040000 		.4byte	0x49f
+ 1050 04db 1C       		.uleb128 0x1c
+ 1051 04dc D0040000 		.4byte	.LASF65
+ 1052 04e0 05       		.byte	0x5
+ 1053 04e1 3B       		.byte	0x3b
+ 1054 04e2 2A040000 		.4byte	0x42a
+ 1055 04e6 05       		.uleb128 0x5
+ 1056 04e7 03       		.byte	0x3
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccMMoPqP.s 			page 27
+
+
+ 1057 04e8 00000000 		.4byte	LIDAR_UART_tmr
+ 1058 04ec 1C       		.uleb128 0x1c
+ 1059 04ed 16000000 		.4byte	.LASF66
+ 1060 04f1 05       		.byte	0x5
+ 1061 04f2 3C       		.byte	0x3c
+ 1062 04f3 2A040000 		.4byte	0x42a
+ 1063 04f7 05       		.uleb128 0x5
+ 1064 04f8 03       		.byte	0x3
+ 1065 04f9 00000000 		.4byte	num_rx_bytes_lidar
+ 1066 04fd 1C       		.uleb128 0x1c
+ 1067 04fe C2030000 		.4byte	.LASF67
+ 1068 0502 05       		.byte	0x5
+ 1069 0503 3D       		.byte	0x3d
+ 1070 0504 2A040000 		.4byte	0x42a
+ 1071 0508 05       		.uleb128 0x5
+ 1072 0509 03       		.byte	0x3
+ 1073 050a 00000000 		.4byte	num_rx_bytes_lidar_buff
+ 1074 050e 1C       		.uleb128 0x1c
+ 1075 050f BB040000 		.4byte	.LASF68
+ 1076 0513 05       		.byte	0x5
+ 1077 0514 3E       		.byte	0x3e
+ 1078 0515 2A040000 		.4byte	0x42a
+ 1079 0519 05       		.uleb128 0x5
+ 1080 051a 03       		.byte	0x3
+ 1081 051b 00000000 		.4byte	num_tasks
+ 1082 051f 1C       		.uleb128 0x1c
+ 1083 0520 8A040000 		.4byte	.LASF69
+ 1084 0524 05       		.byte	0x5
+ 1085 0525 3F       		.byte	0x3f
+ 1086 0526 30050000 		.4byte	0x530
+ 1087 052a 05       		.uleb128 0x5
+ 1088 052b 03       		.byte	0x3
+ 1089 052c 00000000 		.4byte	motor_toggles
+ 1090 0530 06       		.uleb128 0x6
+ 1091 0531 A2000000 		.4byte	0xa2
+ 1092 0535 1C       		.uleb128 0x1c
+ 1093 0536 AB010000 		.4byte	.LASF70
+ 1094 053a 05       		.byte	0x5
+ 1095 053b 40       		.byte	0x40
+ 1096 053c 46050000 		.4byte	0x546
+ 1097 0540 05       		.uleb128 0x5
+ 1098 0541 03       		.byte	0x3
+ 1099 0542 00000000 		.4byte	ESC_curr
+ 1100 0546 06       		.uleb128 0x6
+ 1101 0547 97000000 		.4byte	0x97
+ 1102 054b 1C       		.uleb128 0x1c
+ 1103 054c CD010000 		.4byte	.LASF71
+ 1104 0550 05       		.byte	0x5
+ 1105 0551 41       		.byte	0x41
+ 1106 0552 46050000 		.4byte	0x546
+ 1107 0556 05       		.uleb128 0x5
+ 1108 0557 03       		.byte	0x3
+ 1109 0558 00000000 		.4byte	Batt_volt
+ 1110 055c 1C       		.uleb128 0x1c
+ 1111 055d 34020000 		.4byte	.LASF72
+ 1112 0561 05       		.byte	0x5
+ 1113 0562 42       		.byte	0x42
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccMMoPqP.s 			page 28
+
+
+ 1114 0563 46050000 		.4byte	0x546
+ 1115 0567 05       		.uleb128 0x5
+ 1116 0568 03       		.byte	0x3
+ 1117 0569 00000000 		.4byte	Max_Lidar
+ 1118 056d 1C       		.uleb128 0x1c
+ 1119 056e 00050000 		.4byte	.LASF73
+ 1120 0572 05       		.byte	0x5
+ 1121 0573 43       		.byte	0x43
+ 1122 0574 46050000 		.4byte	0x546
+ 1123 0578 05       		.uleb128 0x5
+ 1124 0579 03       		.byte	0x3
+ 1125 057a 00000000 		.4byte	Init_heading
+ 1126 057e 1C       		.uleb128 0x1c
+ 1127 057f EF040000 		.4byte	.LASF74
+ 1128 0583 05       		.byte	0x5
+ 1129 0584 44       		.byte	0x44
+ 1130 0585 8F050000 		.4byte	0x58f
+ 1131 0589 05       		.uleb128 0x5
+ 1132 058a 03       		.byte	0x3
+ 1133 058b 00000000 		.4byte	run_mode
+ 1134 058f 06       		.uleb128 0x6
+ 1135 0590 74010000 		.4byte	0x174
+ 1136 0594 1C       		.uleb128 0x1c
+ 1137 0595 D7010000 		.4byte	.LASF75
+ 1138 0599 05       		.byte	0x5
+ 1139 059a 45       		.byte	0x45
+ 1140 059b A5050000 		.4byte	0x5a5
+ 1141 059f 05       		.uleb128 0x5
+ 1142 05a0 03       		.byte	0x3
+ 1143 05a1 00000000 		.4byte	slider_pos_last
+ 1144 05a5 06       		.uleb128 0x6
+ 1145 05a6 9E010000 		.4byte	0x19e
+ 1146 05aa 1A       		.uleb128 0x1a
+ 1147 05ab EB000000 		.4byte	0xeb
+ 1148 05af BA050000 		.4byte	0x5ba
+ 1149 05b3 1B       		.uleb128 0x1b
+ 1150 05b4 05010000 		.4byte	0x105
+ 1151 05b8 2F       		.byte	0x2f
+ 1152 05b9 00       		.byte	0
+ 1153 05ba 1D       		.uleb128 0x1d
+ 1154 05bb 10040000 		.4byte	.LASF76
+ 1155 05bf 01       		.byte	0x1
+ 1156 05c0 21       		.byte	0x21
+ 1157 05c1 AA050000 		.4byte	0x5aa
+ 1158 05c5 1E       		.uleb128 0x1e
+ 1159 05c6 A8020000 		.4byte	.LASF77
+ 1160 05ca A8020000 		.4byte	.LASF77
+ 1161 05ce 06       		.byte	0x6
+ 1162 05cf F8       		.byte	0xf8
+ 1163 05d0 1E       		.uleb128 0x1e
+ 1164 05d1 00000000 		.4byte	.LASF78
+ 1165 05d5 00000000 		.4byte	.LASF78
+ 1166 05d9 06       		.byte	0x6
+ 1167 05da F9       		.byte	0xf9
+ 1168 05db 1E       		.uleb128 0x1e
+ 1169 05dc D9020000 		.4byte	.LASF79
+ 1170 05e0 D9020000 		.4byte	.LASF79
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccMMoPqP.s 			page 29
+
+
+ 1171 05e4 05       		.byte	0x5
+ 1172 05e5 54       		.byte	0x54
+ 1173 05e6 00       		.byte	0
+ 1174              		.section	.debug_abbrev,"",%progbits
+ 1175              	.Ldebug_abbrev0:
+ 1176 0000 01       		.uleb128 0x1
+ 1177 0001 11       		.uleb128 0x11
+ 1178 0002 01       		.byte	0x1
+ 1179 0003 25       		.uleb128 0x25
+ 1180 0004 0E       		.uleb128 0xe
+ 1181 0005 13       		.uleb128 0x13
+ 1182 0006 0B       		.uleb128 0xb
+ 1183 0007 03       		.uleb128 0x3
+ 1184 0008 0E       		.uleb128 0xe
+ 1185 0009 1B       		.uleb128 0x1b
+ 1186 000a 0E       		.uleb128 0xe
+ 1187 000b 55       		.uleb128 0x55
+ 1188 000c 17       		.uleb128 0x17
+ 1189 000d 11       		.uleb128 0x11
+ 1190 000e 01       		.uleb128 0x1
+ 1191 000f 10       		.uleb128 0x10
+ 1192 0010 17       		.uleb128 0x17
+ 1193 0011 00       		.byte	0
+ 1194 0012 00       		.byte	0
+ 1195 0013 02       		.uleb128 0x2
+ 1196 0014 24       		.uleb128 0x24
+ 1197 0015 00       		.byte	0
+ 1198 0016 0B       		.uleb128 0xb
+ 1199 0017 0B       		.uleb128 0xb
+ 1200 0018 3E       		.uleb128 0x3e
+ 1201 0019 0B       		.uleb128 0xb
+ 1202 001a 03       		.uleb128 0x3
+ 1203 001b 0E       		.uleb128 0xe
+ 1204 001c 00       		.byte	0
+ 1205 001d 00       		.byte	0
+ 1206 001e 03       		.uleb128 0x3
+ 1207 001f 16       		.uleb128 0x16
+ 1208 0020 00       		.byte	0
+ 1209 0021 03       		.uleb128 0x3
+ 1210 0022 0E       		.uleb128 0xe
+ 1211 0023 3A       		.uleb128 0x3a
+ 1212 0024 0B       		.uleb128 0xb
+ 1213 0025 3B       		.uleb128 0x3b
+ 1214 0026 0B       		.uleb128 0xb
+ 1215 0027 49       		.uleb128 0x49
+ 1216 0028 13       		.uleb128 0x13
+ 1217 0029 00       		.byte	0
+ 1218 002a 00       		.byte	0
+ 1219 002b 04       		.uleb128 0x4
+ 1220 002c 24       		.uleb128 0x24
+ 1221 002d 00       		.byte	0
+ 1222 002e 0B       		.uleb128 0xb
+ 1223 002f 0B       		.uleb128 0xb
+ 1224 0030 3E       		.uleb128 0x3e
+ 1225 0031 0B       		.uleb128 0xb
+ 1226 0032 03       		.uleb128 0x3
+ 1227 0033 08       		.uleb128 0x8
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccMMoPqP.s 			page 30
+
+
+ 1228 0034 00       		.byte	0
+ 1229 0035 00       		.byte	0
+ 1230 0036 05       		.uleb128 0x5
+ 1231 0037 16       		.uleb128 0x16
+ 1232 0038 00       		.byte	0
+ 1233 0039 03       		.uleb128 0x3
+ 1234 003a 0E       		.uleb128 0xe
+ 1235 003b 3A       		.uleb128 0x3a
+ 1236 003c 0B       		.uleb128 0xb
+ 1237 003d 3B       		.uleb128 0x3b
+ 1238 003e 05       		.uleb128 0x5
+ 1239 003f 49       		.uleb128 0x49
+ 1240 0040 13       		.uleb128 0x13
+ 1241 0041 00       		.byte	0
+ 1242 0042 00       		.byte	0
+ 1243 0043 06       		.uleb128 0x6
+ 1244 0044 35       		.uleb128 0x35
+ 1245 0045 00       		.byte	0
+ 1246 0046 49       		.uleb128 0x49
+ 1247 0047 13       		.uleb128 0x13
+ 1248 0048 00       		.byte	0
+ 1249 0049 00       		.byte	0
+ 1250 004a 07       		.uleb128 0x7
+ 1251 004b 0F       		.uleb128 0xf
+ 1252 004c 00       		.byte	0
+ 1253 004d 0B       		.uleb128 0xb
+ 1254 004e 0B       		.uleb128 0xb
+ 1255 004f 49       		.uleb128 0x49
+ 1256 0050 13       		.uleb128 0x13
+ 1257 0051 00       		.byte	0
+ 1258 0052 00       		.byte	0
+ 1259 0053 08       		.uleb128 0x8
+ 1260 0054 15       		.uleb128 0x15
+ 1261 0055 00       		.byte	0
+ 1262 0056 27       		.uleb128 0x27
+ 1263 0057 19       		.uleb128 0x19
+ 1264 0058 00       		.byte	0
+ 1265 0059 00       		.byte	0
+ 1266 005a 09       		.uleb128 0x9
+ 1267 005b 04       		.uleb128 0x4
+ 1268 005c 01       		.byte	0x1
+ 1269 005d 0B       		.uleb128 0xb
+ 1270 005e 0B       		.uleb128 0xb
+ 1271 005f 49       		.uleb128 0x49
+ 1272 0060 13       		.uleb128 0x13
+ 1273 0061 3A       		.uleb128 0x3a
+ 1274 0062 0B       		.uleb128 0xb
+ 1275 0063 3B       		.uleb128 0x3b
+ 1276 0064 0B       		.uleb128 0xb
+ 1277 0065 01       		.uleb128 0x1
+ 1278 0066 13       		.uleb128 0x13
+ 1279 0067 00       		.byte	0
+ 1280 0068 00       		.byte	0
+ 1281 0069 0A       		.uleb128 0xa
+ 1282 006a 28       		.uleb128 0x28
+ 1283 006b 00       		.byte	0
+ 1284 006c 03       		.uleb128 0x3
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccMMoPqP.s 			page 31
+
+
+ 1285 006d 0E       		.uleb128 0xe
+ 1286 006e 1C       		.uleb128 0x1c
+ 1287 006f 0B       		.uleb128 0xb
+ 1288 0070 00       		.byte	0
+ 1289 0071 00       		.byte	0
+ 1290 0072 0B       		.uleb128 0xb
+ 1291 0073 28       		.uleb128 0x28
+ 1292 0074 00       		.byte	0
+ 1293 0075 03       		.uleb128 0x3
+ 1294 0076 08       		.uleb128 0x8
+ 1295 0077 1C       		.uleb128 0x1c
+ 1296 0078 0B       		.uleb128 0xb
+ 1297 0079 00       		.byte	0
+ 1298 007a 00       		.byte	0
+ 1299 007b 0C       		.uleb128 0xc
+ 1300 007c 2E       		.uleb128 0x2e
+ 1301 007d 01       		.byte	0x1
+ 1302 007e 3F       		.uleb128 0x3f
+ 1303 007f 19       		.uleb128 0x19
+ 1304 0080 03       		.uleb128 0x3
+ 1305 0081 0E       		.uleb128 0xe
+ 1306 0082 3A       		.uleb128 0x3a
+ 1307 0083 0B       		.uleb128 0xb
+ 1308 0084 3B       		.uleb128 0x3b
+ 1309 0085 0B       		.uleb128 0xb
+ 1310 0086 27       		.uleb128 0x27
+ 1311 0087 19       		.uleb128 0x19
+ 1312 0088 11       		.uleb128 0x11
+ 1313 0089 01       		.uleb128 0x1
+ 1314 008a 12       		.uleb128 0x12
+ 1315 008b 06       		.uleb128 0x6
+ 1316 008c 40       		.uleb128 0x40
+ 1317 008d 18       		.uleb128 0x18
+ 1318 008e 9742     		.uleb128 0x2117
+ 1319 0090 19       		.uleb128 0x19
+ 1320 0091 01       		.uleb128 0x1
+ 1321 0092 13       		.uleb128 0x13
+ 1322 0093 00       		.byte	0
+ 1323 0094 00       		.byte	0
+ 1324 0095 0D       		.uleb128 0xd
+ 1325 0096 05       		.uleb128 0x5
+ 1326 0097 00       		.byte	0
+ 1327 0098 03       		.uleb128 0x3
+ 1328 0099 0E       		.uleb128 0xe
+ 1329 009a 3A       		.uleb128 0x3a
+ 1330 009b 0B       		.uleb128 0xb
+ 1331 009c 3B       		.uleb128 0x3b
+ 1332 009d 0B       		.uleb128 0xb
+ 1333 009e 49       		.uleb128 0x49
+ 1334 009f 13       		.uleb128 0x13
+ 1335 00a0 02       		.uleb128 0x2
+ 1336 00a1 18       		.uleb128 0x18
+ 1337 00a2 00       		.byte	0
+ 1338 00a3 00       		.byte	0
+ 1339 00a4 0E       		.uleb128 0xe
+ 1340 00a5 2E       		.uleb128 0x2e
+ 1341 00a6 00       		.byte	0
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccMMoPqP.s 			page 32
+
+
+ 1342 00a7 3F       		.uleb128 0x3f
+ 1343 00a8 19       		.uleb128 0x19
+ 1344 00a9 03       		.uleb128 0x3
+ 1345 00aa 0E       		.uleb128 0xe
+ 1346 00ab 3A       		.uleb128 0x3a
+ 1347 00ac 0B       		.uleb128 0xb
+ 1348 00ad 3B       		.uleb128 0x3b
+ 1349 00ae 0B       		.uleb128 0xb
+ 1350 00af 27       		.uleb128 0x27
+ 1351 00b0 19       		.uleb128 0x19
+ 1352 00b1 49       		.uleb128 0x49
+ 1353 00b2 13       		.uleb128 0x13
+ 1354 00b3 11       		.uleb128 0x11
+ 1355 00b4 01       		.uleb128 0x1
+ 1356 00b5 12       		.uleb128 0x12
+ 1357 00b6 06       		.uleb128 0x6
+ 1358 00b7 40       		.uleb128 0x40
+ 1359 00b8 18       		.uleb128 0x18
+ 1360 00b9 9742     		.uleb128 0x2117
+ 1361 00bb 19       		.uleb128 0x19
+ 1362 00bc 00       		.byte	0
+ 1363 00bd 00       		.byte	0
+ 1364 00be 0F       		.uleb128 0xf
+ 1365 00bf 05       		.uleb128 0x5
+ 1366 00c0 00       		.byte	0
+ 1367 00c1 03       		.uleb128 0x3
+ 1368 00c2 0E       		.uleb128 0xe
+ 1369 00c3 3A       		.uleb128 0x3a
+ 1370 00c4 0B       		.uleb128 0xb
+ 1371 00c5 3B       		.uleb128 0x3b
+ 1372 00c6 0B       		.uleb128 0xb
+ 1373 00c7 49       		.uleb128 0x49
+ 1374 00c8 13       		.uleb128 0x13
+ 1375 00c9 02       		.uleb128 0x2
+ 1376 00ca 17       		.uleb128 0x17
+ 1377 00cb 00       		.byte	0
+ 1378 00cc 00       		.byte	0
+ 1379 00cd 10       		.uleb128 0x10
+ 1380 00ce 34       		.uleb128 0x34
+ 1381 00cf 00       		.byte	0
+ 1382 00d0 03       		.uleb128 0x3
+ 1383 00d1 0E       		.uleb128 0xe
+ 1384 00d2 3A       		.uleb128 0x3a
+ 1385 00d3 0B       		.uleb128 0xb
+ 1386 00d4 3B       		.uleb128 0x3b
+ 1387 00d5 0B       		.uleb128 0xb
+ 1388 00d6 49       		.uleb128 0x49
+ 1389 00d7 13       		.uleb128 0x13
+ 1390 00d8 02       		.uleb128 0x2
+ 1391 00d9 17       		.uleb128 0x17
+ 1392 00da 00       		.byte	0
+ 1393 00db 00       		.byte	0
+ 1394 00dc 11       		.uleb128 0x11
+ 1395 00dd 34       		.uleb128 0x34
+ 1396 00de 00       		.byte	0
+ 1397 00df 03       		.uleb128 0x3
+ 1398 00e0 0E       		.uleb128 0xe
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccMMoPqP.s 			page 33
+
+
+ 1399 00e1 3A       		.uleb128 0x3a
+ 1400 00e2 0B       		.uleb128 0xb
+ 1401 00e3 3B       		.uleb128 0x3b
+ 1402 00e4 0B       		.uleb128 0xb
+ 1403 00e5 49       		.uleb128 0x49
+ 1404 00e6 13       		.uleb128 0x13
+ 1405 00e7 1C       		.uleb128 0x1c
+ 1406 00e8 0B       		.uleb128 0xb
+ 1407 00e9 00       		.byte	0
+ 1408 00ea 00       		.byte	0
+ 1409 00eb 12       		.uleb128 0x12
+ 1410 00ec 898201   		.uleb128 0x4109
+ 1411 00ef 00       		.byte	0
+ 1412 00f0 11       		.uleb128 0x11
+ 1413 00f1 01       		.uleb128 0x1
+ 1414 00f2 31       		.uleb128 0x31
+ 1415 00f3 13       		.uleb128 0x13
+ 1416 00f4 00       		.byte	0
+ 1417 00f5 00       		.byte	0
+ 1418 00f6 13       		.uleb128 0x13
+ 1419 00f7 2E       		.uleb128 0x2e
+ 1420 00f8 01       		.byte	0x1
+ 1421 00f9 3F       		.uleb128 0x3f
+ 1422 00fa 19       		.uleb128 0x19
+ 1423 00fb 03       		.uleb128 0x3
+ 1424 00fc 0E       		.uleb128 0xe
+ 1425 00fd 3A       		.uleb128 0x3a
+ 1426 00fe 0B       		.uleb128 0xb
+ 1427 00ff 3B       		.uleb128 0x3b
+ 1428 0100 05       		.uleb128 0x5
+ 1429 0101 27       		.uleb128 0x27
+ 1430 0102 19       		.uleb128 0x19
+ 1431 0103 49       		.uleb128 0x49
+ 1432 0104 13       		.uleb128 0x13
+ 1433 0105 11       		.uleb128 0x11
+ 1434 0106 01       		.uleb128 0x1
+ 1435 0107 12       		.uleb128 0x12
+ 1436 0108 06       		.uleb128 0x6
+ 1437 0109 40       		.uleb128 0x40
+ 1438 010a 18       		.uleb128 0x18
+ 1439 010b 9742     		.uleb128 0x2117
+ 1440 010d 19       		.uleb128 0x19
+ 1441 010e 01       		.uleb128 0x1
+ 1442 010f 13       		.uleb128 0x13
+ 1443 0110 00       		.byte	0
+ 1444 0111 00       		.byte	0
+ 1445 0112 14       		.uleb128 0x14
+ 1446 0113 34       		.uleb128 0x34
+ 1447 0114 00       		.byte	0
+ 1448 0115 03       		.uleb128 0x3
+ 1449 0116 0E       		.uleb128 0xe
+ 1450 0117 3A       		.uleb128 0x3a
+ 1451 0118 0B       		.uleb128 0xb
+ 1452 0119 3B       		.uleb128 0x3b
+ 1453 011a 05       		.uleb128 0x5
+ 1454 011b 49       		.uleb128 0x49
+ 1455 011c 13       		.uleb128 0x13
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccMMoPqP.s 			page 34
+
+
+ 1456 011d 02       		.uleb128 0x2
+ 1457 011e 17       		.uleb128 0x17
+ 1458 011f 00       		.byte	0
+ 1459 0120 00       		.byte	0
+ 1460 0121 15       		.uleb128 0x15
+ 1461 0122 34       		.uleb128 0x34
+ 1462 0123 00       		.byte	0
+ 1463 0124 03       		.uleb128 0x3
+ 1464 0125 0E       		.uleb128 0xe
+ 1465 0126 3A       		.uleb128 0x3a
+ 1466 0127 0B       		.uleb128 0xb
+ 1467 0128 3B       		.uleb128 0x3b
+ 1468 0129 05       		.uleb128 0x5
+ 1469 012a 49       		.uleb128 0x49
+ 1470 012b 13       		.uleb128 0x13
+ 1471 012c 1C       		.uleb128 0x1c
+ 1472 012d 0B       		.uleb128 0xb
+ 1473 012e 00       		.byte	0
+ 1474 012f 00       		.byte	0
+ 1475 0130 16       		.uleb128 0x16
+ 1476 0131 2E       		.uleb128 0x2e
+ 1477 0132 00       		.byte	0
+ 1478 0133 3F       		.uleb128 0x3f
+ 1479 0134 19       		.uleb128 0x19
+ 1480 0135 03       		.uleb128 0x3
+ 1481 0136 0E       		.uleb128 0xe
+ 1482 0137 3A       		.uleb128 0x3a
+ 1483 0138 0B       		.uleb128 0xb
+ 1484 0139 3B       		.uleb128 0x3b
+ 1485 013a 05       		.uleb128 0x5
+ 1486 013b 27       		.uleb128 0x27
+ 1487 013c 19       		.uleb128 0x19
+ 1488 013d 11       		.uleb128 0x11
+ 1489 013e 01       		.uleb128 0x1
+ 1490 013f 12       		.uleb128 0x12
+ 1491 0140 06       		.uleb128 0x6
+ 1492 0141 40       		.uleb128 0x40
+ 1493 0142 18       		.uleb128 0x18
+ 1494 0143 9742     		.uleb128 0x2117
+ 1495 0145 19       		.uleb128 0x19
+ 1496 0146 00       		.byte	0
+ 1497 0147 00       		.byte	0
+ 1498 0148 17       		.uleb128 0x17
+ 1499 0149 2E       		.uleb128 0x2e
+ 1500 014a 00       		.byte	0
+ 1501 014b 3F       		.uleb128 0x3f
+ 1502 014c 19       		.uleb128 0x19
+ 1503 014d 03       		.uleb128 0x3
+ 1504 014e 0E       		.uleb128 0xe
+ 1505 014f 3A       		.uleb128 0x3a
+ 1506 0150 0B       		.uleb128 0xb
+ 1507 0151 3B       		.uleb128 0x3b
+ 1508 0152 05       		.uleb128 0x5
+ 1509 0153 27       		.uleb128 0x27
+ 1510 0154 19       		.uleb128 0x19
+ 1511 0155 49       		.uleb128 0x49
+ 1512 0156 13       		.uleb128 0x13
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccMMoPqP.s 			page 35
+
+
+ 1513 0157 11       		.uleb128 0x11
+ 1514 0158 01       		.uleb128 0x1
+ 1515 0159 12       		.uleb128 0x12
+ 1516 015a 06       		.uleb128 0x6
+ 1517 015b 40       		.uleb128 0x40
+ 1518 015c 18       		.uleb128 0x18
+ 1519 015d 9742     		.uleb128 0x2117
+ 1520 015f 19       		.uleb128 0x19
+ 1521 0160 00       		.byte	0
+ 1522 0161 00       		.byte	0
+ 1523 0162 18       		.uleb128 0x18
+ 1524 0163 898201   		.uleb128 0x4109
+ 1525 0166 01       		.byte	0x1
+ 1526 0167 11       		.uleb128 0x11
+ 1527 0168 01       		.uleb128 0x1
+ 1528 0169 31       		.uleb128 0x31
+ 1529 016a 13       		.uleb128 0x13
+ 1530 016b 01       		.uleb128 0x1
+ 1531 016c 13       		.uleb128 0x13
+ 1532 016d 00       		.byte	0
+ 1533 016e 00       		.byte	0
+ 1534 016f 19       		.uleb128 0x19
+ 1535 0170 8A8201   		.uleb128 0x410a
+ 1536 0173 00       		.byte	0
+ 1537 0174 02       		.uleb128 0x2
+ 1538 0175 18       		.uleb128 0x18
+ 1539 0176 9142     		.uleb128 0x2111
+ 1540 0178 18       		.uleb128 0x18
+ 1541 0179 00       		.byte	0
+ 1542 017a 00       		.byte	0
+ 1543 017b 1A       		.uleb128 0x1a
+ 1544 017c 01       		.uleb128 0x1
+ 1545 017d 01       		.byte	0x1
+ 1546 017e 49       		.uleb128 0x49
+ 1547 017f 13       		.uleb128 0x13
+ 1548 0180 01       		.uleb128 0x1
+ 1549 0181 13       		.uleb128 0x13
+ 1550 0182 00       		.byte	0
+ 1551 0183 00       		.byte	0
+ 1552 0184 1B       		.uleb128 0x1b
+ 1553 0185 21       		.uleb128 0x21
+ 1554 0186 00       		.byte	0
+ 1555 0187 49       		.uleb128 0x49
+ 1556 0188 13       		.uleb128 0x13
+ 1557 0189 2F       		.uleb128 0x2f
+ 1558 018a 0B       		.uleb128 0xb
+ 1559 018b 00       		.byte	0
+ 1560 018c 00       		.byte	0
+ 1561 018d 1C       		.uleb128 0x1c
+ 1562 018e 34       		.uleb128 0x34
+ 1563 018f 00       		.byte	0
+ 1564 0190 03       		.uleb128 0x3
+ 1565 0191 0E       		.uleb128 0xe
+ 1566 0192 3A       		.uleb128 0x3a
+ 1567 0193 0B       		.uleb128 0xb
+ 1568 0194 3B       		.uleb128 0x3b
+ 1569 0195 0B       		.uleb128 0xb
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccMMoPqP.s 			page 36
+
+
+ 1570 0196 49       		.uleb128 0x49
+ 1571 0197 13       		.uleb128 0x13
+ 1572 0198 3F       		.uleb128 0x3f
+ 1573 0199 19       		.uleb128 0x19
+ 1574 019a 02       		.uleb128 0x2
+ 1575 019b 18       		.uleb128 0x18
+ 1576 019c 00       		.byte	0
+ 1577 019d 00       		.byte	0
+ 1578 019e 1D       		.uleb128 0x1d
+ 1579 019f 34       		.uleb128 0x34
+ 1580 01a0 00       		.byte	0
+ 1581 01a1 03       		.uleb128 0x3
+ 1582 01a2 0E       		.uleb128 0xe
+ 1583 01a3 3A       		.uleb128 0x3a
+ 1584 01a4 0B       		.uleb128 0xb
+ 1585 01a5 3B       		.uleb128 0x3b
+ 1586 01a6 0B       		.uleb128 0xb
+ 1587 01a7 49       		.uleb128 0x49
+ 1588 01a8 13       		.uleb128 0x13
+ 1589 01a9 3F       		.uleb128 0x3f
+ 1590 01aa 19       		.uleb128 0x19
+ 1591 01ab 3C       		.uleb128 0x3c
+ 1592 01ac 19       		.uleb128 0x19
+ 1593 01ad 00       		.byte	0
+ 1594 01ae 00       		.byte	0
+ 1595 01af 1E       		.uleb128 0x1e
+ 1596 01b0 2E       		.uleb128 0x2e
+ 1597 01b1 00       		.byte	0
+ 1598 01b2 3F       		.uleb128 0x3f
+ 1599 01b3 19       		.uleb128 0x19
+ 1600 01b4 3C       		.uleb128 0x3c
+ 1601 01b5 19       		.uleb128 0x19
+ 1602 01b6 6E       		.uleb128 0x6e
+ 1603 01b7 0E       		.uleb128 0xe
+ 1604 01b8 03       		.uleb128 0x3
+ 1605 01b9 0E       		.uleb128 0xe
+ 1606 01ba 3A       		.uleb128 0x3a
+ 1607 01bb 0B       		.uleb128 0xb
+ 1608 01bc 3B       		.uleb128 0x3b
+ 1609 01bd 0B       		.uleb128 0xb
+ 1610 01be 00       		.byte	0
+ 1611 01bf 00       		.byte	0
+ 1612 01c0 00       		.byte	0
+ 1613              		.section	.debug_loc,"",%progbits
+ 1614              	.Ldebug_loc0:
+ 1615              	.LLST0:
+ 1616 0000 00000000 		.4byte	.LVL1
+ 1617 0004 07000000 		.4byte	.LVL3-1
+ 1618 0008 0100     		.2byte	0x1
+ 1619 000a 50       		.byte	0x50
+ 1620 000b 07000000 		.4byte	.LVL3-1
+ 1621 000f 24000000 		.4byte	.LFE7
+ 1622 0013 0400     		.2byte	0x4
+ 1623 0015 F3       		.byte	0xf3
+ 1624 0016 01       		.uleb128 0x1
+ 1625 0017 50       		.byte	0x50
+ 1626 0018 9F       		.byte	0x9f
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccMMoPqP.s 			page 37
+
+
+ 1627 0019 00000000 		.4byte	0
+ 1628 001d 00000000 		.4byte	0
+ 1629              	.LLST1:
+ 1630 0021 08000000 		.4byte	.LVL3
+ 1631 0025 19000000 		.4byte	.LVL4-1
+ 1632 0029 0100     		.2byte	0x1
+ 1633 002b 50       		.byte	0x50
+ 1634 002c 00000000 		.4byte	0
+ 1635 0030 00000000 		.4byte	0
+ 1636              	.LLST2:
+ 1637 0034 06000000 		.4byte	.LVL6
+ 1638 0038 0A000000 		.4byte	.LVL7
+ 1639 003c 0500     		.2byte	0x5
+ 1640 003e 70       		.byte	0x70
+ 1641 003f 00       		.sleb128 0
+ 1642 0040 33       		.byte	0x33
+ 1643 0041 1A       		.byte	0x1a
+ 1644 0042 9F       		.byte	0x9f
+ 1645 0043 0A000000 		.4byte	.LVL7
+ 1646 0047 10000000 		.4byte	.LFE8
+ 1647 004b 0100     		.2byte	0x1
+ 1648 004d 50       		.byte	0x50
+ 1649 004e 00000000 		.4byte	0
+ 1650 0052 00000000 		.4byte	0
+ 1651              	.LLST3:
+ 1652 0056 00000000 		.4byte	.LVL12
+ 1653 005a 07000000 		.4byte	.LVL13-1
+ 1654 005e 0100     		.2byte	0x1
+ 1655 0060 50       		.byte	0x50
+ 1656 0061 07000000 		.4byte	.LVL13-1
+ 1657 0065 18000000 		.4byte	.LVL17
+ 1658 0069 0100     		.2byte	0x1
+ 1659 006b 54       		.byte	0x54
+ 1660 006c 18000000 		.4byte	.LVL17
+ 1661 0070 1A000000 		.4byte	.LFE2
+ 1662 0074 0400     		.2byte	0x4
+ 1663 0076 F3       		.byte	0xf3
+ 1664 0077 01       		.uleb128 0x1
+ 1665 0078 50       		.byte	0x50
+ 1666 0079 9F       		.byte	0x9f
+ 1667 007a 00000000 		.4byte	0
+ 1668 007e 00000000 		.4byte	0
+ 1669              		.section	.debug_aranges,"",%progbits
+ 1670 0000 7C000000 		.4byte	0x7c
+ 1671 0004 0200     		.2byte	0x2
+ 1672 0006 00000000 		.4byte	.Ldebug_info0
+ 1673 000a 04       		.byte	0x4
+ 1674 000b 00       		.byte	0
+ 1675 000c 0000     		.2byte	0
+ 1676 000e 0000     		.2byte	0
+ 1677 0010 00000000 		.4byte	.LFB5
+ 1678 0014 0C000000 		.4byte	.LFE5-.LFB5
+ 1679 0018 00000000 		.4byte	.LFB6
+ 1680 001c 0C000000 		.4byte	.LFE6-.LFB6
+ 1681 0020 00000000 		.4byte	.LFB7
+ 1682 0024 24000000 		.4byte	.LFE7-.LFB7
+ 1683 0028 00000000 		.4byte	.LFB8
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccMMoPqP.s 			page 38
+
+
+ 1684 002c 10000000 		.4byte	.LFE8-.LFB8
+ 1685 0030 00000000 		.4byte	.LFB9
+ 1686 0034 0C000000 		.4byte	.LFE9-.LFB9
+ 1687 0038 00000000 		.4byte	.LFB10
+ 1688 003c 14000000 		.4byte	.LFE10-.LFB10
+ 1689 0040 00000000 		.4byte	.LFB11
+ 1690 0044 0C000000 		.4byte	.LFE11-.LFB11
+ 1691 0048 00000000 		.4byte	.LFB1
+ 1692 004c 1C000000 		.4byte	.LFE1-.LFB1
+ 1693 0050 00000000 		.4byte	.LFB2
+ 1694 0054 1A000000 		.4byte	.LFE2-.LFB2
+ 1695 0058 00000000 		.4byte	.LFB3
+ 1696 005c 14000000 		.4byte	.LFE3-.LFB3
+ 1697 0060 00000000 		.4byte	.LFB12
+ 1698 0064 0C000000 		.4byte	.LFE12-.LFB12
+ 1699 0068 00000000 		.4byte	.LFB13
+ 1700 006c 0C000000 		.4byte	.LFE13-.LFB13
+ 1701 0070 00000000 		.4byte	.LFB4
+ 1702 0074 20000000 		.4byte	.LFE4-.LFB4
+ 1703 0078 00000000 		.4byte	0
+ 1704 007c 00000000 		.4byte	0
+ 1705              		.section	.debug_ranges,"",%progbits
+ 1706              	.Ldebug_ranges0:
+ 1707 0000 00000000 		.4byte	.LFB5
+ 1708 0004 0C000000 		.4byte	.LFE5
+ 1709 0008 00000000 		.4byte	.LFB6
+ 1710 000c 0C000000 		.4byte	.LFE6
+ 1711 0010 00000000 		.4byte	.LFB7
+ 1712 0014 24000000 		.4byte	.LFE7
+ 1713 0018 00000000 		.4byte	.LFB8
+ 1714 001c 10000000 		.4byte	.LFE8
+ 1715 0020 00000000 		.4byte	.LFB9
+ 1716 0024 0C000000 		.4byte	.LFE9
+ 1717 0028 00000000 		.4byte	.LFB10
+ 1718 002c 14000000 		.4byte	.LFE10
+ 1719 0030 00000000 		.4byte	.LFB11
+ 1720 0034 0C000000 		.4byte	.LFE11
+ 1721 0038 00000000 		.4byte	.LFB1
+ 1722 003c 1C000000 		.4byte	.LFE1
+ 1723 0040 00000000 		.4byte	.LFB2
+ 1724 0044 1A000000 		.4byte	.LFE2
+ 1725 0048 00000000 		.4byte	.LFB3
+ 1726 004c 14000000 		.4byte	.LFE3
+ 1727 0050 00000000 		.4byte	.LFB12
+ 1728 0054 0C000000 		.4byte	.LFE12
+ 1729 0058 00000000 		.4byte	.LFB13
+ 1730 005c 0C000000 		.4byte	.LFE13
+ 1731 0060 00000000 		.4byte	.LFB4
+ 1732 0064 20000000 		.4byte	.LFE4
+ 1733 0068 00000000 		.4byte	0
+ 1734 006c 00000000 		.4byte	0
+ 1735              		.section	.debug_line,"",%progbits
+ 1736              	.Ldebug_line0:
+ 1737 0000 5E020000 		.section	.debug_str,"MS",%progbits,1
+ 1737      02005701 
+ 1737      00000201 
+ 1737      FB0E0D00 
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccMMoPqP.s 			page 39
+
+
+ 1737      01010101 
+ 1738              	.LASF78:
+ 1739 0000 43794578 		.ascii	"CyExitCriticalSection\000"
+ 1739      69744372 
+ 1739      69746963 
+ 1739      616C5365 
+ 1739      6374696F 
+ 1740              	.LASF66:
+ 1741 0016 6E756D5F 		.ascii	"num_rx_bytes_lidar\000"
+ 1741      72785F62 
+ 1741      79746573 
+ 1741      5F6C6964 
+ 1741      617200
+ 1742              	.LASF2:
+ 1743 0029 5F5F7569 		.ascii	"__uint8_t\000"
+ 1743      6E74385F 
+ 1743      7400
+ 1744              	.LASF55:
+ 1745 0033 72785F62 		.ascii	"rx_bytes_dbg_buff\000"
+ 1745      79746573 
+ 1745      5F646267 
+ 1745      5F627566 
+ 1745      6600
+ 1746              	.LASF62:
+ 1747 0045 6E756D5F 		.ascii	"num_rx_bytes_ble_buff\000"
+ 1747      72785F62 
+ 1747      79746573 
+ 1747      5F626C65 
+ 1747      5F627566 
+ 1748              	.LASF83:
+ 1749 005b 4D616749 		.ascii	"MagISR_GetPriority\000"
+ 1749      53525F47 
+ 1749      65745072 
+ 1749      696F7269 
+ 1749      747900
+ 1750              	.LASF80:
+ 1751 006e 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 1751      43313120 
+ 1751      352E342E 
+ 1751      31203230 
+ 1751      31363036 
+ 1752 00a1 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m0 -mthumb -g -O"
+ 1752      20726576 
+ 1752      6973696F 
+ 1752      6E203233 
+ 1752      37373135 
+ 1753 00d4 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 1753      66756E63 
+ 1753      74696F6E 
+ 1753      2D736563 
+ 1753      74696F6E 
+ 1754              	.LASF10:
+ 1755 00fc 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1755      206C6F6E 
+ 1755      6720756E 
+ 1755      7369676E 
+ 1755      65642069 
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccMMoPqP.s 			page 40
+
+
+ 1756              	.LASF49:
+ 1757 0113 4D616749 		.ascii	"MagISR_StartEx\000"
+ 1757      53525F53 
+ 1757      74617274 
+ 1757      457800
+ 1758              	.LASF63:
+ 1759 0122 72785F62 		.ascii	"rx_bytes_lidar\000"
+ 1759      79746573 
+ 1759      5F6C6964 
+ 1759      617200
+ 1760              	.LASF43:
+ 1761 0131 7072696F 		.ascii	"priorityOffset\000"
+ 1761      72697479 
+ 1761      4F666673 
+ 1761      657400
+ 1762              	.LASF58:
+ 1763 0140 72785F62 		.ascii	"rx_bytes_ble\000"
+ 1763      79746573 
+ 1763      5F626C65 
+ 1763      00
+ 1764              	.LASF13:
+ 1765 014d 696E7431 		.ascii	"int16_t\000"
+ 1765      365F7400 
+ 1766              	.LASF9:
+ 1767 0155 6C6F6E67 		.ascii	"long long int\000"
+ 1767      206C6F6E 
+ 1767      6720696E 
+ 1767      7400
+ 1768              	.LASF0:
+ 1769 0163 7369676E 		.ascii	"signed char\000"
+ 1769      65642063 
+ 1769      68617200 
+ 1770              	.LASF38:
+ 1771 016f 4D616749 		.ascii	"MagISR_SetVector\000"
+ 1771      53525F53 
+ 1771      65745665 
+ 1771      63746F72 
+ 1771      00
+ 1772              	.LASF7:
+ 1773 0180 6C6F6E67 		.ascii	"long int\000"
+ 1773      20696E74 
+ 1773      00
+ 1774              	.LASF50:
+ 1775 0189 4D616749 		.ascii	"MagISR_Stop\000"
+ 1775      53525F53 
+ 1775      746F7000 
+ 1776              	.LASF15:
+ 1777 0195 75696E74 		.ascii	"uint8\000"
+ 1777      3800
+ 1778              	.LASF14:
+ 1779 019b 75696E74 		.ascii	"uint16_t\000"
+ 1779      31365F74 
+ 1779      00
+ 1780              	.LASF18:
+ 1781 01a4 646F7562 		.ascii	"double\000"
+ 1781      6C6500
+ 1782              	.LASF70:
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccMMoPqP.s 			page 41
+
+
+ 1783 01ab 4553435F 		.ascii	"ESC_curr\000"
+ 1783      63757272 
+ 1783      00
+ 1784              	.LASF51:
+ 1785 01b4 4D616749 		.ascii	"MagISR_SetPending\000"
+ 1785      53525F53 
+ 1785      65745065 
+ 1785      6E64696E 
+ 1785      6700
+ 1786              	.LASF16:
+ 1787 01c6 75696E74 		.ascii	"uint32\000"
+ 1787      333200
+ 1788              	.LASF71:
+ 1789 01cd 42617474 		.ascii	"Batt_volt\000"
+ 1789      5F766F6C 
+ 1789      7400
+ 1790              	.LASF75:
+ 1791 01d7 736C6964 		.ascii	"slider_pos_last\000"
+ 1791      65725F70 
+ 1791      6F735F6C 
+ 1791      61737400 
+ 1792              	.LASF35:
+ 1793 01e7 4E455554 		.ascii	"NEUTRAL\000"
+ 1793      52414C00 
+ 1794              	.LASF3:
+ 1795 01ef 5F5F696E 		.ascii	"__int16_t\000"
+ 1795      7431365F 
+ 1795      7400
+ 1796              	.LASF26:
+ 1797 01f9 424C455F 		.ascii	"BLE_CMD_PROC\000"
+ 1797      434D445F 
+ 1797      50524F43 
+ 1797      00
+ 1798              	.LASF81:
+ 1799 0206 47656E65 		.ascii	"Generated_Source\\PSoC4\\MagISR.c\000"
+ 1799      72617465 
+ 1799      645F536F 
+ 1799      75726365 
+ 1799      5C50536F 
+ 1800              	.LASF46:
+ 1801 0226 4D616749 		.ascii	"MagISR_Enable\000"
+ 1801      53525F45 
+ 1801      6E61626C 
+ 1801      6500
+ 1802              	.LASF72:
+ 1803 0234 4D61785F 		.ascii	"Max_Lidar\000"
+ 1803      4C696461 
+ 1803      7200
+ 1804              	.LASF11:
+ 1805 023e 756E7369 		.ascii	"unsigned int\000"
+ 1805      676E6564 
+ 1805      20696E74 
+ 1805      00
+ 1806              	.LASF61:
+ 1807 024b 6E756D5F 		.ascii	"num_rx_bytes_ble\000"
+ 1807      72785F62 
+ 1807      79746573 
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccMMoPqP.s 			page 42
+
+
+ 1807      5F626C65 
+ 1807      00
+ 1808              	.LASF39:
+ 1809 025c 4D616749 		.ascii	"MagISR_SetPriority\000"
+ 1809      53525F53 
+ 1809      65745072 
+ 1809      696F7269 
+ 1809      747900
+ 1810              	.LASF8:
+ 1811 026f 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1811      20756E73 
+ 1811      69676E65 
+ 1811      6420696E 
+ 1811      7400
+ 1812              	.LASF29:
+ 1813 0281 4D41475F 		.ascii	"MAG_READ\000"
+ 1813      52454144 
+ 1813      00
+ 1814              	.LASF47:
+ 1815 028a 4D616749 		.ascii	"MagISR_Disable\000"
+ 1815      53525F44 
+ 1815      69736162 
+ 1815      6C6500
+ 1816              	.LASF42:
+ 1817 0299 696E7465 		.ascii	"interruptState\000"
+ 1817      72727570 
+ 1817      74537461 
+ 1817      746500
+ 1818              	.LASF77:
+ 1819 02a8 4379456E 		.ascii	"CyEnterCriticalSection\000"
+ 1819      74657243 
+ 1819      72697469 
+ 1819      63616C53 
+ 1819      65637469 
+ 1820              	.LASF44:
+ 1821 02bf 4D616749 		.ascii	"MagISR_GetVector\000"
+ 1821      53525F47 
+ 1821      65745665 
+ 1821      63746F72 
+ 1821      00
+ 1822              	.LASF24:
+ 1823 02d0 544D525F 		.ascii	"TMR_UPDT\000"
+ 1823      55504454 
+ 1823      00
+ 1824              	.LASF79:
+ 1825 02d9 656E7175 		.ascii	"enqueue_task\000"
+ 1825      6575655F 
+ 1825      7461736B 
+ 1825      00
+ 1826              	.LASF6:
+ 1827 02e6 73686F72 		.ascii	"short unsigned int\000"
+ 1827      7420756E 
+ 1827      7369676E 
+ 1827      65642069 
+ 1827      6E7400
+ 1828              	.LASF41:
+ 1829 02f9 7072696F 		.ascii	"priority\000"
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccMMoPqP.s 			page 43
+
+
+ 1829      72697479 
+ 1829      00
+ 1830              	.LASF45:
+ 1831 0302 4D616749 		.ascii	"MagISR_GetState\000"
+ 1831      53525F47 
+ 1831      65745374 
+ 1831      61746500 
+ 1832              	.LASF54:
+ 1833 0312 72785F62 		.ascii	"rx_bytes_dbg\000"
+ 1833      79746573 
+ 1833      5F646267 
+ 1833      00
+ 1834              	.LASF20:
+ 1835 031f 72656733 		.ascii	"reg32\000"
+ 1835      3200
+ 1836              	.LASF52:
+ 1837 0325 4D616749 		.ascii	"MagISR_ClearPending\000"
+ 1837      53525F43 
+ 1837      6C656172 
+ 1837      50656E64 
+ 1837      696E6700 
+ 1838              	.LASF32:
+ 1839 0339 43414C5F 		.ascii	"CAL_FINAL\000"
+ 1839      46494E41 
+ 1839      4C00
+ 1840              	.LASF33:
+ 1841 0343 454D4552 		.ascii	"EMER_LAND\000"
+ 1841      5F4C414E 
+ 1841      4400
+ 1842              	.LASF23:
+ 1843 034d 73697A65 		.ascii	"sizetype\000"
+ 1843      74797065 
+ 1843      00
+ 1844              	.LASF22:
+ 1845 0356 6C6F6E67 		.ascii	"long double\000"
+ 1845      20646F75 
+ 1845      626C6500 
+ 1846              	.LASF40:
+ 1847 0362 61646472 		.ascii	"address\000"
+ 1847      65737300 
+ 1848              	.LASF60:
+ 1849 036a 424C455F 		.ascii	"BLE_UART_tmr\000"
+ 1849      55415254 
+ 1849      5F746D72 
+ 1849      00
+ 1850              	.LASF59:
+ 1851 0377 72785F62 		.ascii	"rx_bytes_ble_buff\000"
+ 1851      79746573 
+ 1851      5F626C65 
+ 1851      5F627566 
+ 1851      6600
+ 1852              	.LASF27:
+ 1853 0389 4C494441 		.ascii	"LIDAR_PCKT_PROC\000"
+ 1853      525F5043 
+ 1853      4B545F50 
+ 1853      524F4300 
+ 1854              	.LASF57:
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccMMoPqP.s 			page 44
+
+
+ 1855 0399 6E756D5F 		.ascii	"num_rx_bytes_dbg_buff\000"
+ 1855      72785F62 
+ 1855      79746573 
+ 1855      5F646267 
+ 1855      5F627566 
+ 1856              	.LASF17:
+ 1857 03af 666C6F61 		.ascii	"float\000"
+ 1857      7400
+ 1858              	.LASF37:
+ 1859 03b5 736C6964 		.ascii	"slider_pos_t\000"
+ 1859      65725F70 
+ 1859      6F735F74 
+ 1859      00
+ 1860              	.LASF67:
+ 1861 03c2 6E756D5F 		.ascii	"num_rx_bytes_lidar_buff\000"
+ 1861      72785F62 
+ 1861      79746573 
+ 1861      5F6C6964 
+ 1861      61725F62 
+ 1862              	.LASF1:
+ 1863 03da 756E7369 		.ascii	"unsigned char\000"
+ 1863      676E6564 
+ 1863      20636861 
+ 1863      7200
+ 1864              	.LASF28:
+ 1865 03e8 4442475F 		.ascii	"DBG_CMD_PROC\000"
+ 1865      434D445F 
+ 1865      50524F43 
+ 1865      00
+ 1866              	.LASF56:
+ 1867 03f5 6E756D5F 		.ascii	"num_rx_bytes_dbg\000"
+ 1867      72785F62 
+ 1867      79746573 
+ 1867      5F646267 
+ 1867      00
+ 1868              	.LASF4:
+ 1869 0406 73686F72 		.ascii	"short int\000"
+ 1869      7420696E 
+ 1869      7400
+ 1870              	.LASF76:
+ 1871 0410 43795261 		.ascii	"CyRamVectors\000"
+ 1871      6D566563 
+ 1871      746F7273 
+ 1871      00
+ 1872              	.LASF25:
+ 1873 041d 4759524F 		.ascii	"GYRO_READ\000"
+ 1873      5F524541 
+ 1873      4400
+ 1874              	.LASF31:
+ 1875 0427 4D494E5F 		.ascii	"MIN_MTR_SPD\000"
+ 1875      4D54525F 
+ 1875      53504400 
+ 1876              	.LASF48:
+ 1877 0433 4D616749 		.ascii	"MagISR_Start\000"
+ 1877      53525F53 
+ 1877      74617274 
+ 1877      00
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccMMoPqP.s 			page 45
+
+
+ 1878              	.LASF82:
+ 1879 0440 433A5C55 		.ascii	"C:\\Users\\EricHoffman\\Documents\\PSoC Creator\\Qu"
+ 1879      73657273 
+ 1879      5C457269 
+ 1879      63486F66 
+ 1879      666D616E 
+ 1880 046e 61645275 		.ascii	"adRunCam6\\QuadRunCam6.cydsn\000"
+ 1880      6E43616D 
+ 1880      365C5175 
+ 1880      61645275 
+ 1880      6E43616D 
+ 1881              	.LASF69:
+ 1882 048a 6D6F746F 		.ascii	"motor_toggles\000"
+ 1882      725F746F 
+ 1882      67676C65 
+ 1882      7300
+ 1883              	.LASF19:
+ 1884 0498 63686172 		.ascii	"char\000"
+ 1884      00
+ 1885              	.LASF53:
+ 1886 049d 4D616749 		.ascii	"MagISR_Interrupt\000"
+ 1886      53525F49 
+ 1886      6E746572 
+ 1886      72757074 
+ 1886      00
+ 1887              	.LASF21:
+ 1888 04ae 63796973 		.ascii	"cyisraddress\000"
+ 1888      72616464 
+ 1888      72657373 
+ 1888      00
+ 1889              	.LASF68:
+ 1890 04bb 6E756D5F 		.ascii	"num_tasks\000"
+ 1890      7461736B 
+ 1890      7300
+ 1891              	.LASF5:
+ 1892 04c5 5F5F7569 		.ascii	"__uint16_t\000"
+ 1892      6E743136 
+ 1892      5F7400
+ 1893              	.LASF65:
+ 1894 04d0 4C494441 		.ascii	"LIDAR_UART_tmr\000"
+ 1894      525F5541 
+ 1894      52545F74 
+ 1894      6D7200
+ 1895              	.LASF34:
+ 1896 04df 72756E5F 		.ascii	"run_mode_t\000"
+ 1896      6D6F6465 
+ 1896      5F7400
+ 1897              	.LASF36:
+ 1898 04ea 48494748 		.ascii	"HIGH\000"
+ 1898      00
+ 1899              	.LASF74:
+ 1900 04ef 72756E5F 		.ascii	"run_mode\000"
+ 1900      6D6F6465 
+ 1900      00
+ 1901              	.LASF12:
+ 1902 04f8 75696E74 		.ascii	"uint8_t\000"
+ 1902      385F7400 
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccMMoPqP.s 			page 46
+
+
+ 1903              	.LASF73:
+ 1904 0500 496E6974 		.ascii	"Init_heading\000"
+ 1904      5F686561 
+ 1904      64696E67 
+ 1904      00
+ 1905              	.LASF64:
+ 1906 050d 72785F62 		.ascii	"rx_bytes_lidar_buff\000"
+ 1906      79746573 
+ 1906      5F6C6964 
+ 1906      61725F62 
+ 1906      75666600 
+ 1907              	.LASF30:
+ 1908 0521 4132445F 		.ascii	"A2D_RDY\000"
+ 1908      52445900 
+ 1909              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

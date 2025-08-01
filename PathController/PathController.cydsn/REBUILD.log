@@ -1,0 +1,15 @@
+--------------- Rebuild Started: 07/30/2025 20:17:49 Project: main.c, Configuration: ARM GCC 5.4-2016-q2-update Debug ---------------
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Debug/main.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -Og -c main.c -o .\CortexM0\ARM_GCC_541\Debug\main.o
+main.c: In function 'processDbgCmd':
+main.c:573:13: warning: passing argument 1 of 'parse_gps' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+   parse_gps(rx_bytes_dbg, &gps_data);
+             ^
+In file included from main.c:20:0:
+sanitize.h:25:5: note: expected 'char *' but argument is of type 'volatile unsigned char *'
+ int parse_gps(char *gps_string, GpsData_t *gps_data);
+     ^
+main.c: In function 'dequeue_task':
+main.c:516:10: warning: 'highest_task' may be used uninitialized in this function [-Wmaybe-uninitialized]
+   return (highest_task);
+          ^
+--------------- Rebuild Succeeded: 07/30/2025 20:17:49 ---------------

@@ -1,8 +1,6 @@
 import random
 
-# Define the maximum wind speed cap based on previous conversion
-# (500 cm/s is approx. 11.18 mph)
-MAX_ALLOWABLE_WIND_MPH = 11.18
+MAX_ALLOWABLE_WIND_MPH = 16.0
 
 
 class Pilot:
@@ -60,7 +58,7 @@ class WindModel:
     """
     Simulates gradually changing wind speed and direction.
     """
-    def __init__(self, min_speed_mph=5.0, max_speed_mph=10.0,
+    def __init__(self, min_speed_mph=5.0, max_speed_mph=MAX_ALLOWABLE_WIND_MPH,
                  speed_slew_rate=0.2, bearing_slew_rate=3.0):
         """
         Initializes the wind model.

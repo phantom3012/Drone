@@ -161,14 +161,16 @@ if __name__ == "__main__":
     pilot_sim = Pilot(max_pitch=MAX_PITCH_CMD_DEGREES,
                       max_roll=MAX_ROLL_CMD_DEGREES)
 
-    # Autopilot (VIRUS) controller setup - Tuned for smoother control
-    # Using a non-linear atan controller instead of PID
+    # Autopilot (VIRUS) controller setup
+    # Using a non-linear P-term (atan) with an I-term to overcome wind.
     virus_controller = DroneNavigator(
         target_lat=TARGET_LAT, target_lon=TARGET_LON,
-        control_gain=0.05,  # Single gain for the atan controller
+        p_gain=0.6,    # Proportional gain for the atan() term. Units: 1/m
+        ki_gain=0.02,  # Gain for tanh() integral.
         distance_threshold=5.0,  # Updated target reached threshold to 5m
         max_pitch_cmd=MAX_PITCH_CMD_DEGREES,
-        max_roll_cmd=MAX_ROLL_CMD_DEGREES
+        max_roll_cmd=MAX_ROLL_CMD_DEGREES,
+        max_i_contribution_ratio=0.75  # I-term limited to 75% of max command
     )
 
     # Slew Rate Limits (degrees per second)
@@ -304,6 +306,10 @@ if __name__ == "__main__":
 
         if not autopilot_on and total_step_count > 100:
             autopilot_on = True
+
+        # Inform the controller about the autopilot's state.
+        # This will handle resetting the integral on first activation.
+        virus_controller.set_active(autopilot_on)
 
         current_lat, current_lon = drone_sim.get_position()
         virus_pitch, virus_roll, reached = virus_controller.update(

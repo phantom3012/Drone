@@ -1,0 +1,2570 @@
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccLpjITj.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m0
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 0
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"AltISR.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.AltISR_SetVector,"ax",%progbits
+  20              		.align	2
+  21              		.global	AltISR_SetVector
+  22              		.code	16
+  23              		.thumb_func
+  24              		.type	AltISR_SetVector, %function
+  25              	AltISR_SetVector:
+  26              	.LFB5:
+  27              		.file 1 "Generated_Source\\PSoC4\\AltISR.c"
+   1:Generated_Source\PSoC4/AltISR.c **** /*******************************************************************************
+   2:Generated_Source\PSoC4/AltISR.c **** * File Name: AltISR.c  
+   3:Generated_Source\PSoC4/AltISR.c **** * Version 1.70
+   4:Generated_Source\PSoC4/AltISR.c **** *
+   5:Generated_Source\PSoC4/AltISR.c **** *  Description:
+   6:Generated_Source\PSoC4/AltISR.c **** *   API for controlling the state of an interrupt.
+   7:Generated_Source\PSoC4/AltISR.c **** *
+   8:Generated_Source\PSoC4/AltISR.c **** *
+   9:Generated_Source\PSoC4/AltISR.c **** *  Note:
+  10:Generated_Source\PSoC4/AltISR.c **** *
+  11:Generated_Source\PSoC4/AltISR.c **** ********************************************************************************
+  12:Generated_Source\PSoC4/AltISR.c **** * Copyright 2008-2015, Cypress Semiconductor Corporation.  All rights reserved.
+  13:Generated_Source\PSoC4/AltISR.c **** * You may use this file only in accordance with the license, terms, conditions, 
+  14:Generated_Source\PSoC4/AltISR.c **** * disclaimers, and limitations in the end user license agreement accompanying 
+  15:Generated_Source\PSoC4/AltISR.c **** * the software package with which this file was provided.
+  16:Generated_Source\PSoC4/AltISR.c **** *******************************************************************************/
+  17:Generated_Source\PSoC4/AltISR.c **** 
+  18:Generated_Source\PSoC4/AltISR.c **** 
+  19:Generated_Source\PSoC4/AltISR.c **** #include <cydevice_trm.h>
+  20:Generated_Source\PSoC4/AltISR.c **** #include <CyLib.h>
+  21:Generated_Source\PSoC4/AltISR.c **** #include <AltISR.h>
+  22:Generated_Source\PSoC4/AltISR.c **** #include "cyapicallbacks.h"
+  23:Generated_Source\PSoC4/AltISR.c **** 
+  24:Generated_Source\PSoC4/AltISR.c **** #if !defined(AltISR__REMOVED) /* Check for removal by optimization */
+  25:Generated_Source\PSoC4/AltISR.c **** 
+  26:Generated_Source\PSoC4/AltISR.c **** /*******************************************************************************
+  27:Generated_Source\PSoC4/AltISR.c **** *  Place your includes, defines and code here 
+  28:Generated_Source\PSoC4/AltISR.c **** ********************************************************************************/
+  29:Generated_Source\PSoC4/AltISR.c **** /* `#START AltISR_intc` */
+  30:Generated_Source\PSoC4/AltISR.c ****   #include "main.h"
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccLpjITj.s 			page 2
+
+
+  31:Generated_Source\PSoC4/AltISR.c **** /* `#END` */
+  32:Generated_Source\PSoC4/AltISR.c **** 
+  33:Generated_Source\PSoC4/AltISR.c **** extern cyisraddress CyRamVectors[CYINT_IRQ_BASE + CY_NUM_INTERRUPTS];
+  34:Generated_Source\PSoC4/AltISR.c **** 
+  35:Generated_Source\PSoC4/AltISR.c **** /* Declared in startup, used to set unused interrupts to. */
+  36:Generated_Source\PSoC4/AltISR.c **** CY_ISR_PROTO(IntDefaultHandler);
+  37:Generated_Source\PSoC4/AltISR.c **** 
+  38:Generated_Source\PSoC4/AltISR.c **** 
+  39:Generated_Source\PSoC4/AltISR.c **** /*******************************************************************************
+  40:Generated_Source\PSoC4/AltISR.c **** * Function Name: AltISR_Start
+  41:Generated_Source\PSoC4/AltISR.c **** ********************************************************************************
+  42:Generated_Source\PSoC4/AltISR.c **** *
+  43:Generated_Source\PSoC4/AltISR.c **** * Summary:
+  44:Generated_Source\PSoC4/AltISR.c **** *  Set up the interrupt and enable it. This function disables the interrupt, 
+  45:Generated_Source\PSoC4/AltISR.c **** *  sets the default interrupt vector, sets the priority from the value in the
+  46:Generated_Source\PSoC4/AltISR.c **** *  Design Wide Resources Interrupt Editor, then enables the interrupt to the 
+  47:Generated_Source\PSoC4/AltISR.c **** *  interrupt controller.
+  48:Generated_Source\PSoC4/AltISR.c **** *
+  49:Generated_Source\PSoC4/AltISR.c **** * Parameters:  
+  50:Generated_Source\PSoC4/AltISR.c **** *   None
+  51:Generated_Source\PSoC4/AltISR.c **** *
+  52:Generated_Source\PSoC4/AltISR.c **** * Return:
+  53:Generated_Source\PSoC4/AltISR.c **** *   None
+  54:Generated_Source\PSoC4/AltISR.c **** *
+  55:Generated_Source\PSoC4/AltISR.c **** *******************************************************************************/
+  56:Generated_Source\PSoC4/AltISR.c **** void AltISR_Start(void)
+  57:Generated_Source\PSoC4/AltISR.c **** {
+  58:Generated_Source\PSoC4/AltISR.c ****     /* For all we know the interrupt is active. */
+  59:Generated_Source\PSoC4/AltISR.c ****     AltISR_Disable();
+  60:Generated_Source\PSoC4/AltISR.c **** 
+  61:Generated_Source\PSoC4/AltISR.c ****     /* Set the ISR to point to the AltISR Interrupt. */
+  62:Generated_Source\PSoC4/AltISR.c ****     AltISR_SetVector(&AltISR_Interrupt);
+  63:Generated_Source\PSoC4/AltISR.c **** 
+  64:Generated_Source\PSoC4/AltISR.c ****     /* Set the priority. */
+  65:Generated_Source\PSoC4/AltISR.c ****     AltISR_SetPriority((uint8)AltISR_INTC_PRIOR_NUMBER);
+  66:Generated_Source\PSoC4/AltISR.c **** 
+  67:Generated_Source\PSoC4/AltISR.c ****     /* Enable it. */
+  68:Generated_Source\PSoC4/AltISR.c ****     AltISR_Enable();
+  69:Generated_Source\PSoC4/AltISR.c **** }
+  70:Generated_Source\PSoC4/AltISR.c **** 
+  71:Generated_Source\PSoC4/AltISR.c **** 
+  72:Generated_Source\PSoC4/AltISR.c **** /*******************************************************************************
+  73:Generated_Source\PSoC4/AltISR.c **** * Function Name: AltISR_StartEx
+  74:Generated_Source\PSoC4/AltISR.c **** ********************************************************************************
+  75:Generated_Source\PSoC4/AltISR.c **** *
+  76:Generated_Source\PSoC4/AltISR.c **** * Summary:
+  77:Generated_Source\PSoC4/AltISR.c **** *  Sets up the interrupt and enables it. This function disables the interrupt,
+  78:Generated_Source\PSoC4/AltISR.c **** *  sets the interrupt vector based on the address passed in, sets the priority 
+  79:Generated_Source\PSoC4/AltISR.c **** *  from the value in the Design Wide Resources Interrupt Editor, then enables 
+  80:Generated_Source\PSoC4/AltISR.c **** *  the interrupt to the interrupt controller.
+  81:Generated_Source\PSoC4/AltISR.c **** *  
+  82:Generated_Source\PSoC4/AltISR.c **** *  When defining ISR functions, the CY_ISR and CY_ISR_PROTO macros should be 
+  83:Generated_Source\PSoC4/AltISR.c **** *  used to provide consistent definition across compilers:
+  84:Generated_Source\PSoC4/AltISR.c **** *  
+  85:Generated_Source\PSoC4/AltISR.c **** *  Function definition example:
+  86:Generated_Source\PSoC4/AltISR.c **** *   CY_ISR(MyISR)
+  87:Generated_Source\PSoC4/AltISR.c **** *   {
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccLpjITj.s 			page 3
+
+
+  88:Generated_Source\PSoC4/AltISR.c **** *   }
+  89:Generated_Source\PSoC4/AltISR.c **** *   Function prototype example:
+  90:Generated_Source\PSoC4/AltISR.c **** *   CY_ISR_PROTO(MyISR);
+  91:Generated_Source\PSoC4/AltISR.c **** *
+  92:Generated_Source\PSoC4/AltISR.c **** * Parameters:  
+  93:Generated_Source\PSoC4/AltISR.c **** *   address: Address of the ISR to set in the interrupt vector table.
+  94:Generated_Source\PSoC4/AltISR.c **** *
+  95:Generated_Source\PSoC4/AltISR.c **** * Return:
+  96:Generated_Source\PSoC4/AltISR.c **** *   None
+  97:Generated_Source\PSoC4/AltISR.c **** *
+  98:Generated_Source\PSoC4/AltISR.c **** *******************************************************************************/
+  99:Generated_Source\PSoC4/AltISR.c **** void AltISR_StartEx(cyisraddress address)
+ 100:Generated_Source\PSoC4/AltISR.c **** {
+ 101:Generated_Source\PSoC4/AltISR.c ****     /* For all we know the interrupt is active. */
+ 102:Generated_Source\PSoC4/AltISR.c ****     AltISR_Disable();
+ 103:Generated_Source\PSoC4/AltISR.c **** 
+ 104:Generated_Source\PSoC4/AltISR.c ****     /* Set the ISR to point to the AltISR Interrupt. */
+ 105:Generated_Source\PSoC4/AltISR.c ****     AltISR_SetVector(address);
+ 106:Generated_Source\PSoC4/AltISR.c **** 
+ 107:Generated_Source\PSoC4/AltISR.c ****     /* Set the priority. */
+ 108:Generated_Source\PSoC4/AltISR.c ****     AltISR_SetPriority((uint8)AltISR_INTC_PRIOR_NUMBER);
+ 109:Generated_Source\PSoC4/AltISR.c **** 
+ 110:Generated_Source\PSoC4/AltISR.c ****     /* Enable it. */
+ 111:Generated_Source\PSoC4/AltISR.c ****     AltISR_Enable();
+ 112:Generated_Source\PSoC4/AltISR.c **** }
+ 113:Generated_Source\PSoC4/AltISR.c **** 
+ 114:Generated_Source\PSoC4/AltISR.c **** 
+ 115:Generated_Source\PSoC4/AltISR.c **** /*******************************************************************************
+ 116:Generated_Source\PSoC4/AltISR.c **** * Function Name: AltISR_Stop
+ 117:Generated_Source\PSoC4/AltISR.c **** ********************************************************************************
+ 118:Generated_Source\PSoC4/AltISR.c **** *
+ 119:Generated_Source\PSoC4/AltISR.c **** * Summary:
+ 120:Generated_Source\PSoC4/AltISR.c **** *   Disables and removes the interrupt.
+ 121:Generated_Source\PSoC4/AltISR.c **** *
+ 122:Generated_Source\PSoC4/AltISR.c **** * Parameters:  
+ 123:Generated_Source\PSoC4/AltISR.c **** *   None
+ 124:Generated_Source\PSoC4/AltISR.c **** *
+ 125:Generated_Source\PSoC4/AltISR.c **** * Return:
+ 126:Generated_Source\PSoC4/AltISR.c **** *   None
+ 127:Generated_Source\PSoC4/AltISR.c **** *
+ 128:Generated_Source\PSoC4/AltISR.c **** *******************************************************************************/
+ 129:Generated_Source\PSoC4/AltISR.c **** void AltISR_Stop(void)
+ 130:Generated_Source\PSoC4/AltISR.c **** {
+ 131:Generated_Source\PSoC4/AltISR.c ****     /* Disable this interrupt. */
+ 132:Generated_Source\PSoC4/AltISR.c ****     AltISR_Disable();
+ 133:Generated_Source\PSoC4/AltISR.c **** 
+ 134:Generated_Source\PSoC4/AltISR.c ****     /* Set the ISR to point to the passive one. */
+ 135:Generated_Source\PSoC4/AltISR.c ****     AltISR_SetVector(&IntDefaultHandler);
+ 136:Generated_Source\PSoC4/AltISR.c **** }
+ 137:Generated_Source\PSoC4/AltISR.c **** 
+ 138:Generated_Source\PSoC4/AltISR.c **** 
+ 139:Generated_Source\PSoC4/AltISR.c **** /*******************************************************************************
+ 140:Generated_Source\PSoC4/AltISR.c **** * Function Name: AltISR_Interrupt
+ 141:Generated_Source\PSoC4/AltISR.c **** ********************************************************************************
+ 142:Generated_Source\PSoC4/AltISR.c **** *
+ 143:Generated_Source\PSoC4/AltISR.c **** * Summary:
+ 144:Generated_Source\PSoC4/AltISR.c **** *   The default Interrupt Service Routine for AltISR.
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccLpjITj.s 			page 4
+
+
+ 145:Generated_Source\PSoC4/AltISR.c **** *
+ 146:Generated_Source\PSoC4/AltISR.c **** *   Add custom code between the START and END comments to keep the next version
+ 147:Generated_Source\PSoC4/AltISR.c **** *   of this file from over-writing your code.
+ 148:Generated_Source\PSoC4/AltISR.c **** *
+ 149:Generated_Source\PSoC4/AltISR.c **** *   Note You may use either the default ISR by using this API, or you may define
+ 150:Generated_Source\PSoC4/AltISR.c **** *   your own separate ISR through ISR_StartEx().
+ 151:Generated_Source\PSoC4/AltISR.c **** *
+ 152:Generated_Source\PSoC4/AltISR.c **** * Parameters:  
+ 153:Generated_Source\PSoC4/AltISR.c **** *   None
+ 154:Generated_Source\PSoC4/AltISR.c **** *
+ 155:Generated_Source\PSoC4/AltISR.c **** * Return:
+ 156:Generated_Source\PSoC4/AltISR.c **** *   None
+ 157:Generated_Source\PSoC4/AltISR.c **** *
+ 158:Generated_Source\PSoC4/AltISR.c **** *******************************************************************************/
+ 159:Generated_Source\PSoC4/AltISR.c **** CY_ISR(AltISR_Interrupt)
+ 160:Generated_Source\PSoC4/AltISR.c **** {
+ 161:Generated_Source\PSoC4/AltISR.c ****     #ifdef AltISR_INTERRUPT_INTERRUPT_CALLBACK
+ 162:Generated_Source\PSoC4/AltISR.c ****         AltISR_Interrupt_InterruptCallback();
+ 163:Generated_Source\PSoC4/AltISR.c ****     #endif /* AltISR_INTERRUPT_INTERRUPT_CALLBACK */ 
+ 164:Generated_Source\PSoC4/AltISR.c **** 
+ 165:Generated_Source\PSoC4/AltISR.c ****     /*  Place your Interrupt code here. */
+ 166:Generated_Source\PSoC4/AltISR.c ****     /* `#START AltISR_Interrupt` */
+ 167:Generated_Source\PSoC4/AltISR.c ****     CyGlobalIntDisable;
+ 168:Generated_Source\PSoC4/AltISR.c **** 
+ 169:Generated_Source\PSoC4/AltISR.c ****     // if (num_tasks<5) { enqueue_task(ALT_READ,0x02); }      // lower priority than GYRO_READ
+ 170:Generated_Source\PSoC4/AltISR.c ****     AltISR_ClearPending();
+ 171:Generated_Source\PSoC4/AltISR.c ****     
+ 172:Generated_Source\PSoC4/AltISR.c ****     CyGlobalIntEnable;
+ 173:Generated_Source\PSoC4/AltISR.c ****     
+ 174:Generated_Source\PSoC4/AltISR.c ****     /* `#END` */
+ 175:Generated_Source\PSoC4/AltISR.c **** }
+ 176:Generated_Source\PSoC4/AltISR.c **** 
+ 177:Generated_Source\PSoC4/AltISR.c **** 
+ 178:Generated_Source\PSoC4/AltISR.c **** /*******************************************************************************
+ 179:Generated_Source\PSoC4/AltISR.c **** * Function Name: AltISR_SetVector
+ 180:Generated_Source\PSoC4/AltISR.c **** ********************************************************************************
+ 181:Generated_Source\PSoC4/AltISR.c **** *
+ 182:Generated_Source\PSoC4/AltISR.c **** * Summary:
+ 183:Generated_Source\PSoC4/AltISR.c **** *   Change the ISR vector for the Interrupt. Note calling AltISR_Start
+ 184:Generated_Source\PSoC4/AltISR.c **** *   will override any effect this method would have had. To set the vector 
+ 185:Generated_Source\PSoC4/AltISR.c **** *   before the component has been started use AltISR_StartEx instead.
+ 186:Generated_Source\PSoC4/AltISR.c **** * 
+ 187:Generated_Source\PSoC4/AltISR.c **** *   When defining ISR functions, the CY_ISR and CY_ISR_PROTO macros should be 
+ 188:Generated_Source\PSoC4/AltISR.c **** *   used to provide consistent definition across compilers:
+ 189:Generated_Source\PSoC4/AltISR.c **** *
+ 190:Generated_Source\PSoC4/AltISR.c **** *   Function definition example:
+ 191:Generated_Source\PSoC4/AltISR.c **** *   CY_ISR(MyISR)
+ 192:Generated_Source\PSoC4/AltISR.c **** *   {
+ 193:Generated_Source\PSoC4/AltISR.c **** *   }
+ 194:Generated_Source\PSoC4/AltISR.c **** *
+ 195:Generated_Source\PSoC4/AltISR.c **** *   Function prototype example:
+ 196:Generated_Source\PSoC4/AltISR.c **** *     CY_ISR_PROTO(MyISR);
+ 197:Generated_Source\PSoC4/AltISR.c **** *
+ 198:Generated_Source\PSoC4/AltISR.c **** * Parameters:
+ 199:Generated_Source\PSoC4/AltISR.c **** *   address: Address of the ISR to set in the interrupt vector table.
+ 200:Generated_Source\PSoC4/AltISR.c **** *
+ 201:Generated_Source\PSoC4/AltISR.c **** * Return:
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccLpjITj.s 			page 5
+
+
+ 202:Generated_Source\PSoC4/AltISR.c **** *   None
+ 203:Generated_Source\PSoC4/AltISR.c **** *
+ 204:Generated_Source\PSoC4/AltISR.c **** *******************************************************************************/
+ 205:Generated_Source\PSoC4/AltISR.c **** void AltISR_SetVector(cyisraddress address)
+ 206:Generated_Source\PSoC4/AltISR.c **** {
+  28              		.loc 1 206 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              		@ link register save eliminated.
+  33              	.LVL0:
+ 207:Generated_Source\PSoC4/AltISR.c ****     CyRamVectors[CYINT_IRQ_BASE + AltISR__INTC_NUMBER] = address;
+  34              		.loc 1 207 0
+  35 0000 014B     		ldr	r3, .L2
+  36 0002 5864     		str	r0, [r3, #68]
+ 208:Generated_Source\PSoC4/AltISR.c **** }
+  37              		.loc 1 208 0
+  38              		@ sp needed
+  39 0004 7047     		bx	lr
+  40              	.L3:
+  41 0006 C046     		.align	2
+  42              	.L2:
+  43 0008 00000000 		.word	CyRamVectors
+  44              		.cfi_endproc
+  45              	.LFE5:
+  46              		.size	AltISR_SetVector, .-AltISR_SetVector
+  47              		.section	.text.AltISR_GetVector,"ax",%progbits
+  48              		.align	2
+  49              		.global	AltISR_GetVector
+  50              		.code	16
+  51              		.thumb_func
+  52              		.type	AltISR_GetVector, %function
+  53              	AltISR_GetVector:
+  54              	.LFB6:
+ 209:Generated_Source\PSoC4/AltISR.c **** 
+ 210:Generated_Source\PSoC4/AltISR.c **** 
+ 211:Generated_Source\PSoC4/AltISR.c **** /*******************************************************************************
+ 212:Generated_Source\PSoC4/AltISR.c **** * Function Name: AltISR_GetVector
+ 213:Generated_Source\PSoC4/AltISR.c **** ********************************************************************************
+ 214:Generated_Source\PSoC4/AltISR.c **** *
+ 215:Generated_Source\PSoC4/AltISR.c **** * Summary:
+ 216:Generated_Source\PSoC4/AltISR.c **** *   Gets the "address" of the current ISR vector for the Interrupt.
+ 217:Generated_Source\PSoC4/AltISR.c **** *
+ 218:Generated_Source\PSoC4/AltISR.c **** * Parameters:
+ 219:Generated_Source\PSoC4/AltISR.c **** *   None
+ 220:Generated_Source\PSoC4/AltISR.c **** *
+ 221:Generated_Source\PSoC4/AltISR.c **** * Return:
+ 222:Generated_Source\PSoC4/AltISR.c **** *   Address of the ISR in the interrupt vector table.
+ 223:Generated_Source\PSoC4/AltISR.c **** *
+ 224:Generated_Source\PSoC4/AltISR.c **** *******************************************************************************/
+ 225:Generated_Source\PSoC4/AltISR.c **** cyisraddress AltISR_GetVector(void)
+ 226:Generated_Source\PSoC4/AltISR.c **** {
+  55              		.loc 1 226 0
+  56              		.cfi_startproc
+  57              		@ args = 0, pretend = 0, frame = 0
+  58              		@ frame_needed = 0, uses_anonymous_args = 0
+  59              		@ link register save eliminated.
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccLpjITj.s 			page 6
+
+
+ 227:Generated_Source\PSoC4/AltISR.c ****     return CyRamVectors[CYINT_IRQ_BASE + AltISR__INTC_NUMBER];
+  60              		.loc 1 227 0
+  61 0000 014B     		ldr	r3, .L5
+  62 0002 586C     		ldr	r0, [r3, #68]
+ 228:Generated_Source\PSoC4/AltISR.c **** }
+  63              		.loc 1 228 0
+  64              		@ sp needed
+  65 0004 7047     		bx	lr
+  66              	.L6:
+  67 0006 C046     		.align	2
+  68              	.L5:
+  69 0008 00000000 		.word	CyRamVectors
+  70              		.cfi_endproc
+  71              	.LFE6:
+  72              		.size	AltISR_GetVector, .-AltISR_GetVector
+  73              		.section	.text.AltISR_SetPriority,"ax",%progbits
+  74              		.align	2
+  75              		.global	AltISR_SetPriority
+  76              		.code	16
+  77              		.thumb_func
+  78              		.type	AltISR_SetPriority, %function
+  79              	AltISR_SetPriority:
+  80              	.LFB7:
+ 229:Generated_Source\PSoC4/AltISR.c **** 
+ 230:Generated_Source\PSoC4/AltISR.c **** 
+ 231:Generated_Source\PSoC4/AltISR.c **** /*******************************************************************************
+ 232:Generated_Source\PSoC4/AltISR.c **** * Function Name: AltISR_SetPriority
+ 233:Generated_Source\PSoC4/AltISR.c **** ********************************************************************************
+ 234:Generated_Source\PSoC4/AltISR.c **** *
+ 235:Generated_Source\PSoC4/AltISR.c **** * Summary:
+ 236:Generated_Source\PSoC4/AltISR.c **** *   Sets the Priority of the Interrupt. 
+ 237:Generated_Source\PSoC4/AltISR.c **** *
+ 238:Generated_Source\PSoC4/AltISR.c **** *   Note calling AltISR_Start or AltISR_StartEx will 
+ 239:Generated_Source\PSoC4/AltISR.c **** *   override any effect this API would have had. This API should only be called
+ 240:Generated_Source\PSoC4/AltISR.c **** *   after AltISR_Start or AltISR_StartEx has been called. 
+ 241:Generated_Source\PSoC4/AltISR.c **** *   To set the initial priority for the component, use the Design-Wide Resources
+ 242:Generated_Source\PSoC4/AltISR.c **** *   Interrupt Editor.
+ 243:Generated_Source\PSoC4/AltISR.c **** *
+ 244:Generated_Source\PSoC4/AltISR.c **** *   Note This API has no effect on Non-maskable interrupt NMI).
+ 245:Generated_Source\PSoC4/AltISR.c **** *
+ 246:Generated_Source\PSoC4/AltISR.c **** * Parameters:
+ 247:Generated_Source\PSoC4/AltISR.c **** *   priority: Priority of the interrupt, 0 being the highest priority
+ 248:Generated_Source\PSoC4/AltISR.c **** *             PSoC 3 and PSoC 5LP: Priority is from 0 to 7.
+ 249:Generated_Source\PSoC4/AltISR.c **** *             PSoC 4: Priority is from 0 to 3.
+ 250:Generated_Source\PSoC4/AltISR.c **** *
+ 251:Generated_Source\PSoC4/AltISR.c **** * Return:
+ 252:Generated_Source\PSoC4/AltISR.c **** *   None
+ 253:Generated_Source\PSoC4/AltISR.c **** *
+ 254:Generated_Source\PSoC4/AltISR.c **** *******************************************************************************/
+ 255:Generated_Source\PSoC4/AltISR.c **** void AltISR_SetPriority(uint8 priority)
+ 256:Generated_Source\PSoC4/AltISR.c **** {
+  81              		.loc 1 256 0
+  82              		.cfi_startproc
+  83              		@ args = 0, pretend = 0, frame = 0
+  84              		@ frame_needed = 0, uses_anonymous_args = 0
+  85              	.LVL1:
+  86 0000 10B5     		push	{r4, lr}
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccLpjITj.s 			page 7
+
+
+  87              		.cfi_def_cfa_offset 8
+  88              		.cfi_offset 4, -8
+  89              		.cfi_offset 14, -4
+  90 0002 0400     		movs	r4, r0
+  91              	.LVL2:
+ 257:Generated_Source\PSoC4/AltISR.c **** 	uint8 interruptState;
+ 258:Generated_Source\PSoC4/AltISR.c ****     uint32 priorityOffset = ((AltISR__INTC_NUMBER % 4u) * 8u) + 6u;
+ 259:Generated_Source\PSoC4/AltISR.c ****     
+ 260:Generated_Source\PSoC4/AltISR.c **** 	interruptState = CyEnterCriticalSection();
+  92              		.loc 1 260 0
+  93 0004 FFF7FEFF 		bl	CyEnterCriticalSection
+  94              	.LVL3:
+ 261:Generated_Source\PSoC4/AltISR.c ****     *AltISR_INTC_PRIOR = (*AltISR_INTC_PRIOR & (uint32)(~AltISR__INTC_PRIOR_MASK)) |
+  95              		.loc 1 261 0
+  96 0008 044A     		ldr	r2, .L8
+  97 000a 1168     		ldr	r1, [r2]
+  98 000c 044B     		ldr	r3, .L8+4
+  99 000e 0B40     		ands	r3, r1
+ 262:Generated_Source\PSoC4/AltISR.c ****                                     ((uint32)priority << priorityOffset);
+ 100              		.loc 1 262 0
+ 101 0010 A403     		lsls	r4, r4, #14
+ 261:Generated_Source\PSoC4/AltISR.c ****     *AltISR_INTC_PRIOR = (*AltISR_INTC_PRIOR & (uint32)(~AltISR__INTC_PRIOR_MASK)) |
+ 102              		.loc 1 261 0
+ 103 0012 1C43     		orrs	r4, r3
+ 104 0014 1460     		str	r4, [r2]
+ 263:Generated_Source\PSoC4/AltISR.c **** 	CyExitCriticalSection(interruptState);
+ 105              		.loc 1 263 0
+ 106 0016 FFF7FEFF 		bl	CyExitCriticalSection
+ 107              	.LVL4:
+ 264:Generated_Source\PSoC4/AltISR.c **** }
+ 108              		.loc 1 264 0
+ 109              		@ sp needed
+ 110 001a 10BD     		pop	{r4, pc}
+ 111              	.L9:
+ 112              		.align	2
+ 113              	.L8:
+ 114 001c 00E400E0 		.word	-536812544
+ 115 0020 FF3FFFFF 		.word	-49153
+ 116              		.cfi_endproc
+ 117              	.LFE7:
+ 118              		.size	AltISR_SetPriority, .-AltISR_SetPriority
+ 119              		.section	.text.AltISR_GetPriority,"ax",%progbits
+ 120              		.align	2
+ 121              		.global	AltISR_GetPriority
+ 122              		.code	16
+ 123              		.thumb_func
+ 124              		.type	AltISR_GetPriority, %function
+ 125              	AltISR_GetPriority:
+ 126              	.LFB8:
+ 265:Generated_Source\PSoC4/AltISR.c **** 
+ 266:Generated_Source\PSoC4/AltISR.c **** 
+ 267:Generated_Source\PSoC4/AltISR.c **** /*******************************************************************************
+ 268:Generated_Source\PSoC4/AltISR.c **** * Function Name: AltISR_GetPriority
+ 269:Generated_Source\PSoC4/AltISR.c **** ********************************************************************************
+ 270:Generated_Source\PSoC4/AltISR.c **** *
+ 271:Generated_Source\PSoC4/AltISR.c **** * Summary:
+ 272:Generated_Source\PSoC4/AltISR.c **** *   Gets the Priority of the Interrupt.
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccLpjITj.s 			page 8
+
+
+ 273:Generated_Source\PSoC4/AltISR.c **** *
+ 274:Generated_Source\PSoC4/AltISR.c **** * Parameters:
+ 275:Generated_Source\PSoC4/AltISR.c **** *   None
+ 276:Generated_Source\PSoC4/AltISR.c **** *
+ 277:Generated_Source\PSoC4/AltISR.c **** * Return:
+ 278:Generated_Source\PSoC4/AltISR.c **** *   Priority of the interrupt, 0 being the highest priority
+ 279:Generated_Source\PSoC4/AltISR.c **** *    PSoC 3 and PSoC 5LP: Priority is from 0 to 7.
+ 280:Generated_Source\PSoC4/AltISR.c **** *    PSoC 4: Priority is from 0 to 3.
+ 281:Generated_Source\PSoC4/AltISR.c **** *
+ 282:Generated_Source\PSoC4/AltISR.c **** *******************************************************************************/
+ 283:Generated_Source\PSoC4/AltISR.c **** uint8 AltISR_GetPriority(void)
+ 284:Generated_Source\PSoC4/AltISR.c **** {
+ 127              		.loc 1 284 0
+ 128              		.cfi_startproc
+ 129              		@ args = 0, pretend = 0, frame = 0
+ 130              		@ frame_needed = 0, uses_anonymous_args = 0
+ 131              		@ link register save eliminated.
+ 132              	.LVL5:
+ 285:Generated_Source\PSoC4/AltISR.c ****     uint32 priority;
+ 286:Generated_Source\PSoC4/AltISR.c **** 	uint32 priorityOffset = ((AltISR__INTC_NUMBER % 4u) * 8u) + 6u;
+ 287:Generated_Source\PSoC4/AltISR.c **** 
+ 288:Generated_Source\PSoC4/AltISR.c ****     priority = (*AltISR_INTC_PRIOR & AltISR__INTC_PRIOR_MASK) >> priorityOffset;
+ 133              		.loc 1 288 0
+ 134 0000 024B     		ldr	r3, .L11
+ 135 0002 1868     		ldr	r0, [r3]
+ 136 0004 800B     		lsrs	r0, r0, #14
+ 137              	.LVL6:
+ 289:Generated_Source\PSoC4/AltISR.c **** 
+ 290:Generated_Source\PSoC4/AltISR.c ****     return (uint8)priority;
+ 138              		.loc 1 290 0
+ 139 0006 0323     		movs	r3, #3
+ 140 0008 1840     		ands	r0, r3
+ 141              	.LVL7:
+ 291:Generated_Source\PSoC4/AltISR.c **** }
+ 142              		.loc 1 291 0
+ 143              		@ sp needed
+ 144 000a 7047     		bx	lr
+ 145              	.L12:
+ 146              		.align	2
+ 147              	.L11:
+ 148 000c 00E400E0 		.word	-536812544
+ 149              		.cfi_endproc
+ 150              	.LFE8:
+ 151              		.size	AltISR_GetPriority, .-AltISR_GetPriority
+ 152              		.section	.text.AltISR_Enable,"ax",%progbits
+ 153              		.align	2
+ 154              		.global	AltISR_Enable
+ 155              		.code	16
+ 156              		.thumb_func
+ 157              		.type	AltISR_Enable, %function
+ 158              	AltISR_Enable:
+ 159              	.LFB9:
+ 292:Generated_Source\PSoC4/AltISR.c **** 
+ 293:Generated_Source\PSoC4/AltISR.c **** 
+ 294:Generated_Source\PSoC4/AltISR.c **** /*******************************************************************************
+ 295:Generated_Source\PSoC4/AltISR.c **** * Function Name: AltISR_Enable
+ 296:Generated_Source\PSoC4/AltISR.c **** ********************************************************************************
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccLpjITj.s 			page 9
+
+
+ 297:Generated_Source\PSoC4/AltISR.c **** *
+ 298:Generated_Source\PSoC4/AltISR.c **** * Summary:
+ 299:Generated_Source\PSoC4/AltISR.c **** *   Enables the interrupt to the interrupt controller. Do not call this function
+ 300:Generated_Source\PSoC4/AltISR.c **** *   unless ISR_Start() has been called or the functionality of the ISR_Start() 
+ 301:Generated_Source\PSoC4/AltISR.c **** *   function, which sets the vector and the priority, has been called.
+ 302:Generated_Source\PSoC4/AltISR.c **** *
+ 303:Generated_Source\PSoC4/AltISR.c **** * Parameters:
+ 304:Generated_Source\PSoC4/AltISR.c **** *   None
+ 305:Generated_Source\PSoC4/AltISR.c **** *
+ 306:Generated_Source\PSoC4/AltISR.c **** * Return:
+ 307:Generated_Source\PSoC4/AltISR.c **** *   None
+ 308:Generated_Source\PSoC4/AltISR.c **** *
+ 309:Generated_Source\PSoC4/AltISR.c **** *******************************************************************************/
+ 310:Generated_Source\PSoC4/AltISR.c **** void AltISR_Enable(void)
+ 311:Generated_Source\PSoC4/AltISR.c **** {
+ 160              		.loc 1 311 0
+ 161              		.cfi_startproc
+ 162              		@ args = 0, pretend = 0, frame = 0
+ 163              		@ frame_needed = 0, uses_anonymous_args = 0
+ 164              		@ link register save eliminated.
+ 312:Generated_Source\PSoC4/AltISR.c ****     /* Enable the general interrupt. */
+ 313:Generated_Source\PSoC4/AltISR.c ****     *AltISR_INTC_SET_EN = AltISR__INTC_MASK;
+ 165              		.loc 1 313 0
+ 166 0000 0222     		movs	r2, #2
+ 167 0002 014B     		ldr	r3, .L14
+ 168 0004 1A60     		str	r2, [r3]
+ 314:Generated_Source\PSoC4/AltISR.c **** }
+ 169              		.loc 1 314 0
+ 170              		@ sp needed
+ 171 0006 7047     		bx	lr
+ 172              	.L15:
+ 173              		.align	2
+ 174              	.L14:
+ 175 0008 00E100E0 		.word	-536813312
+ 176              		.cfi_endproc
+ 177              	.LFE9:
+ 178              		.size	AltISR_Enable, .-AltISR_Enable
+ 179              		.section	.text.AltISR_GetState,"ax",%progbits
+ 180              		.align	2
+ 181              		.global	AltISR_GetState
+ 182              		.code	16
+ 183              		.thumb_func
+ 184              		.type	AltISR_GetState, %function
+ 185              	AltISR_GetState:
+ 186              	.LFB10:
+ 315:Generated_Source\PSoC4/AltISR.c **** 
+ 316:Generated_Source\PSoC4/AltISR.c **** 
+ 317:Generated_Source\PSoC4/AltISR.c **** /*******************************************************************************
+ 318:Generated_Source\PSoC4/AltISR.c **** * Function Name: AltISR_GetState
+ 319:Generated_Source\PSoC4/AltISR.c **** ********************************************************************************
+ 320:Generated_Source\PSoC4/AltISR.c **** *
+ 321:Generated_Source\PSoC4/AltISR.c **** * Summary:
+ 322:Generated_Source\PSoC4/AltISR.c **** *   Gets the state (enabled, disabled) of the Interrupt.
+ 323:Generated_Source\PSoC4/AltISR.c **** *
+ 324:Generated_Source\PSoC4/AltISR.c **** * Parameters:
+ 325:Generated_Source\PSoC4/AltISR.c **** *   None
+ 326:Generated_Source\PSoC4/AltISR.c **** *
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccLpjITj.s 			page 10
+
+
+ 327:Generated_Source\PSoC4/AltISR.c **** * Return:
+ 328:Generated_Source\PSoC4/AltISR.c **** *   1 if enabled, 0 if disabled.
+ 329:Generated_Source\PSoC4/AltISR.c **** *
+ 330:Generated_Source\PSoC4/AltISR.c **** *******************************************************************************/
+ 331:Generated_Source\PSoC4/AltISR.c **** uint8 AltISR_GetState(void)
+ 332:Generated_Source\PSoC4/AltISR.c **** {
+ 187              		.loc 1 332 0
+ 188              		.cfi_startproc
+ 189              		@ args = 0, pretend = 0, frame = 0
+ 190              		@ frame_needed = 0, uses_anonymous_args = 0
+ 191              		@ link register save eliminated.
+ 333:Generated_Source\PSoC4/AltISR.c ****     /* Get the state of the general interrupt. */
+ 334:Generated_Source\PSoC4/AltISR.c ****     return ((*AltISR_INTC_SET_EN & (uint32)AltISR__INTC_MASK) != 0u) ? 1u:0u;
+ 192              		.loc 1 334 0
+ 193 0000 034B     		ldr	r3, .L19
+ 194 0002 1B68     		ldr	r3, [r3]
+ 195 0004 9B07     		lsls	r3, r3, #30
+ 196 0006 01D5     		bpl	.L18
+ 197 0008 0120     		movs	r0, #1
+ 198 000a 00E0     		b	.L17
+ 199              	.L18:
+ 200 000c 0020     		movs	r0, #0
+ 201              	.L17:
+ 335:Generated_Source\PSoC4/AltISR.c **** }
+ 202              		.loc 1 335 0 discriminator 4
+ 203              		@ sp needed
+ 204 000e 7047     		bx	lr
+ 205              	.L20:
+ 206              		.align	2
+ 207              	.L19:
+ 208 0010 00E100E0 		.word	-536813312
+ 209              		.cfi_endproc
+ 210              	.LFE10:
+ 211              		.size	AltISR_GetState, .-AltISR_GetState
+ 212              		.section	.text.AltISR_Disable,"ax",%progbits
+ 213              		.align	2
+ 214              		.global	AltISR_Disable
+ 215              		.code	16
+ 216              		.thumb_func
+ 217              		.type	AltISR_Disable, %function
+ 218              	AltISR_Disable:
+ 219              	.LFB11:
+ 336:Generated_Source\PSoC4/AltISR.c **** 
+ 337:Generated_Source\PSoC4/AltISR.c **** 
+ 338:Generated_Source\PSoC4/AltISR.c **** /*******************************************************************************
+ 339:Generated_Source\PSoC4/AltISR.c **** * Function Name: AltISR_Disable
+ 340:Generated_Source\PSoC4/AltISR.c **** ********************************************************************************
+ 341:Generated_Source\PSoC4/AltISR.c **** *
+ 342:Generated_Source\PSoC4/AltISR.c **** * Summary:
+ 343:Generated_Source\PSoC4/AltISR.c **** *   Disables the Interrupt in the interrupt controller.
+ 344:Generated_Source\PSoC4/AltISR.c **** *
+ 345:Generated_Source\PSoC4/AltISR.c **** * Parameters:
+ 346:Generated_Source\PSoC4/AltISR.c **** *   None
+ 347:Generated_Source\PSoC4/AltISR.c **** *
+ 348:Generated_Source\PSoC4/AltISR.c **** * Return:
+ 349:Generated_Source\PSoC4/AltISR.c **** *   None
+ 350:Generated_Source\PSoC4/AltISR.c **** *
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccLpjITj.s 			page 11
+
+
+ 351:Generated_Source\PSoC4/AltISR.c **** *******************************************************************************/
+ 352:Generated_Source\PSoC4/AltISR.c **** void AltISR_Disable(void)
+ 353:Generated_Source\PSoC4/AltISR.c **** {
+ 220              		.loc 1 353 0
+ 221              		.cfi_startproc
+ 222              		@ args = 0, pretend = 0, frame = 0
+ 223              		@ frame_needed = 0, uses_anonymous_args = 0
+ 224              		@ link register save eliminated.
+ 354:Generated_Source\PSoC4/AltISR.c ****     /* Disable the general interrupt. */
+ 355:Generated_Source\PSoC4/AltISR.c ****     *AltISR_INTC_CLR_EN = AltISR__INTC_MASK;
+ 225              		.loc 1 355 0
+ 226 0000 0222     		movs	r2, #2
+ 227 0002 014B     		ldr	r3, .L22
+ 228 0004 1A60     		str	r2, [r3]
+ 356:Generated_Source\PSoC4/AltISR.c **** }
+ 229              		.loc 1 356 0
+ 230              		@ sp needed
+ 231 0006 7047     		bx	lr
+ 232              	.L23:
+ 233              		.align	2
+ 234              	.L22:
+ 235 0008 80E100E0 		.word	-536813184
+ 236              		.cfi_endproc
+ 237              	.LFE11:
+ 238              		.size	AltISR_Disable, .-AltISR_Disable
+ 239              		.section	.text.AltISR_Start,"ax",%progbits
+ 240              		.align	2
+ 241              		.global	AltISR_Start
+ 242              		.code	16
+ 243              		.thumb_func
+ 244              		.type	AltISR_Start, %function
+ 245              	AltISR_Start:
+ 246              	.LFB1:
+  57:Generated_Source\PSoC4/AltISR.c ****     /* For all we know the interrupt is active. */
+ 247              		.loc 1 57 0
+ 248              		.cfi_startproc
+ 249              		@ args = 0, pretend = 0, frame = 0
+ 250              		@ frame_needed = 0, uses_anonymous_args = 0
+ 251 0000 10B5     		push	{r4, lr}
+ 252              		.cfi_def_cfa_offset 8
+ 253              		.cfi_offset 4, -8
+ 254              		.cfi_offset 14, -4
+  59:Generated_Source\PSoC4/AltISR.c **** 
+ 255              		.loc 1 59 0
+ 256 0002 FFF7FEFF 		bl	AltISR_Disable
+ 257              	.LVL8:
+  62:Generated_Source\PSoC4/AltISR.c **** 
+ 258              		.loc 1 62 0
+ 259 0006 0448     		ldr	r0, .L25
+ 260 0008 FFF7FEFF 		bl	AltISR_SetVector
+ 261              	.LVL9:
+  65:Generated_Source\PSoC4/AltISR.c **** 
+ 262              		.loc 1 65 0
+ 263 000c 0320     		movs	r0, #3
+ 264 000e FFF7FEFF 		bl	AltISR_SetPriority
+ 265              	.LVL10:
+  68:Generated_Source\PSoC4/AltISR.c **** }
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccLpjITj.s 			page 12
+
+
+ 266              		.loc 1 68 0
+ 267 0012 FFF7FEFF 		bl	AltISR_Enable
+ 268              	.LVL11:
+  69:Generated_Source\PSoC4/AltISR.c **** 
+ 269              		.loc 1 69 0
+ 270              		@ sp needed
+ 271 0016 10BD     		pop	{r4, pc}
+ 272              	.L26:
+ 273              		.align	2
+ 274              	.L25:
+ 275 0018 00000000 		.word	AltISR_Interrupt
+ 276              		.cfi_endproc
+ 277              	.LFE1:
+ 278              		.size	AltISR_Start, .-AltISR_Start
+ 279              		.section	.text.AltISR_StartEx,"ax",%progbits
+ 280              		.align	2
+ 281              		.global	AltISR_StartEx
+ 282              		.code	16
+ 283              		.thumb_func
+ 284              		.type	AltISR_StartEx, %function
+ 285              	AltISR_StartEx:
+ 286              	.LFB2:
+ 100:Generated_Source\PSoC4/AltISR.c ****     /* For all we know the interrupt is active. */
+ 287              		.loc 1 100 0
+ 288              		.cfi_startproc
+ 289              		@ args = 0, pretend = 0, frame = 0
+ 290              		@ frame_needed = 0, uses_anonymous_args = 0
+ 291              	.LVL12:
+ 292 0000 10B5     		push	{r4, lr}
+ 293              		.cfi_def_cfa_offset 8
+ 294              		.cfi_offset 4, -8
+ 295              		.cfi_offset 14, -4
+ 296 0002 0400     		movs	r4, r0
+ 102:Generated_Source\PSoC4/AltISR.c **** 
+ 297              		.loc 1 102 0
+ 298 0004 FFF7FEFF 		bl	AltISR_Disable
+ 299              	.LVL13:
+ 105:Generated_Source\PSoC4/AltISR.c **** 
+ 300              		.loc 1 105 0
+ 301 0008 2000     		movs	r0, r4
+ 302 000a FFF7FEFF 		bl	AltISR_SetVector
+ 303              	.LVL14:
+ 108:Generated_Source\PSoC4/AltISR.c **** 
+ 304              		.loc 1 108 0
+ 305 000e 0320     		movs	r0, #3
+ 306 0010 FFF7FEFF 		bl	AltISR_SetPriority
+ 307              	.LVL15:
+ 111:Generated_Source\PSoC4/AltISR.c **** }
+ 308              		.loc 1 111 0
+ 309 0014 FFF7FEFF 		bl	AltISR_Enable
+ 310              	.LVL16:
+ 112:Generated_Source\PSoC4/AltISR.c **** 
+ 311              		.loc 1 112 0
+ 312              		@ sp needed
+ 313              	.LVL17:
+ 314 0018 10BD     		pop	{r4, pc}
+ 315              		.cfi_endproc
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccLpjITj.s 			page 13
+
+
+ 316              	.LFE2:
+ 317              		.size	AltISR_StartEx, .-AltISR_StartEx
+ 318 001a C046     		.section	.text.AltISR_Stop,"ax",%progbits
+ 319              		.align	2
+ 320              		.global	AltISR_Stop
+ 321              		.code	16
+ 322              		.thumb_func
+ 323              		.type	AltISR_Stop, %function
+ 324              	AltISR_Stop:
+ 325              	.LFB3:
+ 130:Generated_Source\PSoC4/AltISR.c ****     /* Disable this interrupt. */
+ 326              		.loc 1 130 0
+ 327              		.cfi_startproc
+ 328              		@ args = 0, pretend = 0, frame = 0
+ 329              		@ frame_needed = 0, uses_anonymous_args = 0
+ 330 0000 10B5     		push	{r4, lr}
+ 331              		.cfi_def_cfa_offset 8
+ 332              		.cfi_offset 4, -8
+ 333              		.cfi_offset 14, -4
+ 132:Generated_Source\PSoC4/AltISR.c **** 
+ 334              		.loc 1 132 0
+ 335 0002 FFF7FEFF 		bl	AltISR_Disable
+ 336              	.LVL18:
+ 135:Generated_Source\PSoC4/AltISR.c **** }
+ 337              		.loc 1 135 0
+ 338 0006 0248     		ldr	r0, .L29
+ 339 0008 FFF7FEFF 		bl	AltISR_SetVector
+ 340              	.LVL19:
+ 136:Generated_Source\PSoC4/AltISR.c **** 
+ 341              		.loc 1 136 0
+ 342              		@ sp needed
+ 343 000c 10BD     		pop	{r4, pc}
+ 344              	.L30:
+ 345 000e C046     		.align	2
+ 346              	.L29:
+ 347 0010 00000000 		.word	IntDefaultHandler
+ 348              		.cfi_endproc
+ 349              	.LFE3:
+ 350              		.size	AltISR_Stop, .-AltISR_Stop
+ 351              		.section	.text.AltISR_SetPending,"ax",%progbits
+ 352              		.align	2
+ 353              		.global	AltISR_SetPending
+ 354              		.code	16
+ 355              		.thumb_func
+ 356              		.type	AltISR_SetPending, %function
+ 357              	AltISR_SetPending:
+ 358              	.LFB12:
+ 357:Generated_Source\PSoC4/AltISR.c **** 
+ 358:Generated_Source\PSoC4/AltISR.c **** 
+ 359:Generated_Source\PSoC4/AltISR.c **** /*******************************************************************************
+ 360:Generated_Source\PSoC4/AltISR.c **** * Function Name: AltISR_SetPending
+ 361:Generated_Source\PSoC4/AltISR.c **** ********************************************************************************
+ 362:Generated_Source\PSoC4/AltISR.c **** *
+ 363:Generated_Source\PSoC4/AltISR.c **** * Summary:
+ 364:Generated_Source\PSoC4/AltISR.c **** *   Causes the Interrupt to enter the pending state, a software method of
+ 365:Generated_Source\PSoC4/AltISR.c **** *   generating the interrupt.
+ 366:Generated_Source\PSoC4/AltISR.c **** *
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccLpjITj.s 			page 14
+
+
+ 367:Generated_Source\PSoC4/AltISR.c **** * Parameters:
+ 368:Generated_Source\PSoC4/AltISR.c **** *   None
+ 369:Generated_Source\PSoC4/AltISR.c **** *
+ 370:Generated_Source\PSoC4/AltISR.c **** * Return:
+ 371:Generated_Source\PSoC4/AltISR.c **** *   None
+ 372:Generated_Source\PSoC4/AltISR.c **** *
+ 373:Generated_Source\PSoC4/AltISR.c **** * Side Effects:
+ 374:Generated_Source\PSoC4/AltISR.c **** *   If interrupts are enabled and the interrupt is set up properly, the ISR is
+ 375:Generated_Source\PSoC4/AltISR.c **** *   entered (depending on the priority of this interrupt and other pending 
+ 376:Generated_Source\PSoC4/AltISR.c **** *   interrupts).
+ 377:Generated_Source\PSoC4/AltISR.c **** *
+ 378:Generated_Source\PSoC4/AltISR.c **** *******************************************************************************/
+ 379:Generated_Source\PSoC4/AltISR.c **** void AltISR_SetPending(void)
+ 380:Generated_Source\PSoC4/AltISR.c **** {
+ 359              		.loc 1 380 0
+ 360              		.cfi_startproc
+ 361              		@ args = 0, pretend = 0, frame = 0
+ 362              		@ frame_needed = 0, uses_anonymous_args = 0
+ 363              		@ link register save eliminated.
+ 381:Generated_Source\PSoC4/AltISR.c ****     *AltISR_INTC_SET_PD = AltISR__INTC_MASK;
+ 364              		.loc 1 381 0
+ 365 0000 0222     		movs	r2, #2
+ 366 0002 014B     		ldr	r3, .L32
+ 367 0004 1A60     		str	r2, [r3]
+ 382:Generated_Source\PSoC4/AltISR.c **** }
+ 368              		.loc 1 382 0
+ 369              		@ sp needed
+ 370 0006 7047     		bx	lr
+ 371              	.L33:
+ 372              		.align	2
+ 373              	.L32:
+ 374 0008 00E200E0 		.word	-536813056
+ 375              		.cfi_endproc
+ 376              	.LFE12:
+ 377              		.size	AltISR_SetPending, .-AltISR_SetPending
+ 378              		.section	.text.AltISR_ClearPending,"ax",%progbits
+ 379              		.align	2
+ 380              		.global	AltISR_ClearPending
+ 381              		.code	16
+ 382              		.thumb_func
+ 383              		.type	AltISR_ClearPending, %function
+ 384              	AltISR_ClearPending:
+ 385              	.LFB13:
+ 383:Generated_Source\PSoC4/AltISR.c **** 
+ 384:Generated_Source\PSoC4/AltISR.c **** 
+ 385:Generated_Source\PSoC4/AltISR.c **** /*******************************************************************************
+ 386:Generated_Source\PSoC4/AltISR.c **** * Function Name: AltISR_ClearPending
+ 387:Generated_Source\PSoC4/AltISR.c **** ********************************************************************************
+ 388:Generated_Source\PSoC4/AltISR.c **** *
+ 389:Generated_Source\PSoC4/AltISR.c **** * Summary:
+ 390:Generated_Source\PSoC4/AltISR.c **** *   Clears a pending interrupt in the interrupt controller.
+ 391:Generated_Source\PSoC4/AltISR.c **** *
+ 392:Generated_Source\PSoC4/AltISR.c **** *   Note Some interrupt sources are clear-on-read and require the block 
+ 393:Generated_Source\PSoC4/AltISR.c **** *   interrupt/status register to be read/cleared with the appropriate block API 
+ 394:Generated_Source\PSoC4/AltISR.c **** *   (GPIO, UART, and so on). Otherwise the ISR will continue to remain in 
+ 395:Generated_Source\PSoC4/AltISR.c **** *   pending state even though the interrupt itself is cleared using this API.
+ 396:Generated_Source\PSoC4/AltISR.c **** *
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccLpjITj.s 			page 15
+
+
+ 397:Generated_Source\PSoC4/AltISR.c **** * Parameters:
+ 398:Generated_Source\PSoC4/AltISR.c **** *   None
+ 399:Generated_Source\PSoC4/AltISR.c **** *
+ 400:Generated_Source\PSoC4/AltISR.c **** * Return:
+ 401:Generated_Source\PSoC4/AltISR.c **** *   None
+ 402:Generated_Source\PSoC4/AltISR.c **** *
+ 403:Generated_Source\PSoC4/AltISR.c **** *******************************************************************************/
+ 404:Generated_Source\PSoC4/AltISR.c **** void AltISR_ClearPending(void)
+ 405:Generated_Source\PSoC4/AltISR.c **** {
+ 386              		.loc 1 405 0
+ 387              		.cfi_startproc
+ 388              		@ args = 0, pretend = 0, frame = 0
+ 389              		@ frame_needed = 0, uses_anonymous_args = 0
+ 390              		@ link register save eliminated.
+ 406:Generated_Source\PSoC4/AltISR.c ****     *AltISR_INTC_CLR_PD = AltISR__INTC_MASK;
+ 391              		.loc 1 406 0
+ 392 0000 0222     		movs	r2, #2
+ 393 0002 014B     		ldr	r3, .L35
+ 394 0004 1A60     		str	r2, [r3]
+ 407:Generated_Source\PSoC4/AltISR.c **** }
+ 395              		.loc 1 407 0
+ 396              		@ sp needed
+ 397 0006 7047     		bx	lr
+ 398              	.L36:
+ 399              		.align	2
+ 400              	.L35:
+ 401 0008 80E200E0 		.word	-536812928
+ 402              		.cfi_endproc
+ 403              	.LFE13:
+ 404              		.size	AltISR_ClearPending, .-AltISR_ClearPending
+ 405              		.section	.text.AltISR_Interrupt,"ax",%progbits
+ 406              		.align	2
+ 407              		.global	AltISR_Interrupt
+ 408              		.code	16
+ 409              		.thumb_func
+ 410              		.type	AltISR_Interrupt, %function
+ 411              	AltISR_Interrupt:
+ 412              	.LFB4:
+ 160:Generated_Source\PSoC4/AltISR.c ****     #ifdef AltISR_INTERRUPT_INTERRUPT_CALLBACK
+ 413              		.loc 1 160 0
+ 414              		.cfi_startproc
+ 415              		@ args = 0, pretend = 0, frame = 0
+ 416              		@ frame_needed = 0, uses_anonymous_args = 0
+ 417 0000 10B5     		push	{r4, lr}
+ 418              		.cfi_def_cfa_offset 8
+ 419              		.cfi_offset 4, -8
+ 420              		.cfi_offset 14, -4
+ 167:Generated_Source\PSoC4/AltISR.c **** 
+ 421              		.loc 1 167 0
+ 422              		.syntax divided
+ 423              	@ 167 "Generated_Source\PSoC4\AltISR.c" 1
+ 424 0002 72B6     		CPSID   i
+ 425              	@ 0 "" 2
+ 170:Generated_Source\PSoC4/AltISR.c ****     
+ 426              		.loc 1 170 0
+ 427              		.thumb
+ 428              		.syntax unified
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccLpjITj.s 			page 16
+
+
+ 429 0004 FFF7FEFF 		bl	AltISR_ClearPending
+ 430              	.LVL20:
+ 172:Generated_Source\PSoC4/AltISR.c ****     
+ 431              		.loc 1 172 0
+ 432              		.syntax divided
+ 433              	@ 172 "Generated_Source\PSoC4\AltISR.c" 1
+ 434 0008 62B6     		CPSIE   i
+ 435              	@ 0 "" 2
+ 175:Generated_Source\PSoC4/AltISR.c **** 
+ 436              		.loc 1 175 0
+ 437              		.thumb
+ 438              		.syntax unified
+ 439              		@ sp needed
+ 440 000a 10BD     		pop	{r4, pc}
+ 441              		.cfi_endproc
+ 442              	.LFE4:
+ 443              		.size	AltISR_Interrupt, .-AltISR_Interrupt
+ 444              		.comm	slider_pos_last,1,1
+ 445              		.comm	run_mode,1,1
+ 446              		.comm	Batt_volt,2,2
+ 447              		.comm	ESC_curr,2,2
+ 448              		.comm	motor_toggles,2,2
+ 449              		.comm	num_tasks,1,1
+ 450              		.comm	num_rx_bytes_lidar_buff,1,1
+ 451              		.comm	num_rx_bytes_lidar,1,1
+ 452              		.comm	LIDAR_UART_tmr,1,1
+ 453              		.comm	rx_bytes_lidar_buff,16,4
+ 454              		.comm	rx_bytes_lidar,16,4
+ 455              		.comm	num_rx_bytes_ble_buff,1,1
+ 456              		.comm	num_rx_bytes_ble,1,1
+ 457              		.comm	BLE_UART_tmr,1,1
+ 458              		.comm	rx_bytes_ble_buff,8,4
+ 459              		.comm	rx_bytes_ble,8,4
+ 460              		.comm	num_rx_bytes_dbg_buff,1,1
+ 461              		.comm	num_rx_bytes_dbg,1,1
+ 462              		.comm	rx_bytes_dbg_buff,8,4
+ 463              		.comm	rx_bytes_dbg,8,4
+ 464              		.text
+ 465              	.Letext0:
+ 466              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.3\\psoc creator\\import\\gnu\\arm\\5.4.
+ 467              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.3\\psoc creator\\import\\gnu\\arm\\5.4.
+ 468              		.file 4 "Generated_Source\\PSoC4/cytypes.h"
+ 469              		.file 5 "./main.h"
+ 470              		.file 6 "Generated_Source\\PSoC4/CyLib.h"
+ 471              		.section	.debug_info,"",%progbits
+ 472              	.Ldebug_info0:
+ 473 0000 69050000 		.4byte	0x569
+ 474 0004 0400     		.2byte	0x4
+ 475 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 476 000a 04       		.byte	0x4
+ 477 000b 01       		.uleb128 0x1
+ 478 000c A9000000 		.4byte	.LASF70
+ 479 0010 0C       		.byte	0xc
+ 480 0011 4E010000 		.4byte	.LASF71
+ 481 0015 5B000000 		.4byte	.LASF72
+ 482 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 483 001d 00000000 		.4byte	0
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccLpjITj.s 			page 17
+
+
+ 484 0021 00000000 		.4byte	.Ldebug_line0
+ 485 0025 02       		.uleb128 0x2
+ 486 0026 01       		.byte	0x1
+ 487 0027 06       		.byte	0x6
+ 488 0028 AF010000 		.4byte	.LASF0
+ 489 002c 03       		.uleb128 0x3
+ 490 002d 29000000 		.4byte	.LASF2
+ 491 0031 02       		.byte	0x2
+ 492 0032 1D       		.byte	0x1d
+ 493 0033 37000000 		.4byte	0x37
+ 494 0037 02       		.uleb128 0x2
+ 495 0038 01       		.byte	0x1
+ 496 0039 08       		.byte	0x8
+ 497 003a 7A030000 		.4byte	.LASF1
+ 498 003e 03       		.uleb128 0x3
+ 499 003f 28020000 		.4byte	.LASF3
+ 500 0043 02       		.byte	0x2
+ 501 0044 29       		.byte	0x29
+ 502 0045 49000000 		.4byte	0x49
+ 503 0049 02       		.uleb128 0x2
+ 504 004a 02       		.byte	0x2
+ 505 004b 05       		.byte	0x5
+ 506 004c 99030000 		.4byte	.LASF4
+ 507 0050 03       		.uleb128 0x3
+ 508 0051 2D040000 		.4byte	.LASF5
+ 509 0055 02       		.byte	0x2
+ 510 0056 2B       		.byte	0x2b
+ 511 0057 5B000000 		.4byte	0x5b
+ 512 005b 02       		.uleb128 0x2
+ 513 005c 02       		.byte	0x2
+ 514 005d 07       		.byte	0x7
+ 515 005e 99020000 		.4byte	.LASF6
+ 516 0062 02       		.uleb128 0x2
+ 517 0063 04       		.byte	0x4
+ 518 0064 05       		.byte	0x5
+ 519 0065 D9010000 		.4byte	.LASF7
+ 520 0069 02       		.uleb128 0x2
+ 521 006a 04       		.byte	0x4
+ 522 006b 07       		.byte	0x7
+ 523 006c 60020000 		.4byte	.LASF8
+ 524 0070 02       		.uleb128 0x2
+ 525 0071 08       		.byte	0x8
+ 526 0072 05       		.byte	0x5
+ 527 0073 A1010000 		.4byte	.LASF9
+ 528 0077 02       		.uleb128 0x2
+ 529 0078 08       		.byte	0x8
+ 530 0079 07       		.byte	0x7
+ 531 007a 37010000 		.4byte	.LASF10
+ 532 007e 04       		.uleb128 0x4
+ 533 007f 04       		.byte	0x4
+ 534 0080 05       		.byte	0x5
+ 535 0081 696E7400 		.ascii	"int\000"
+ 536 0085 02       		.uleb128 0x2
+ 537 0086 04       		.byte	0x4
+ 538 0087 07       		.byte	0x7
+ 539 0088 42020000 		.4byte	.LASF11
+ 540 008c 03       		.uleb128 0x3
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccLpjITj.s 			page 18
+
+
+ 541 008d 8E040000 		.4byte	.LASF12
+ 542 0091 03       		.byte	0x3
+ 543 0092 18       		.byte	0x18
+ 544 0093 2C000000 		.4byte	0x2c
+ 545 0097 03       		.uleb128 0x3
+ 546 0098 99010000 		.4byte	.LASF13
+ 547 009c 03       		.byte	0x3
+ 548 009d 20       		.byte	0x20
+ 549 009e 3E000000 		.4byte	0x3e
+ 550 00a2 03       		.uleb128 0x3
+ 551 00a3 E8010000 		.4byte	.LASF14
+ 552 00a7 03       		.byte	0x3
+ 553 00a8 24       		.byte	0x24
+ 554 00a9 50000000 		.4byte	0x50
+ 555 00ad 05       		.uleb128 0x5
+ 556 00ae E2010000 		.4byte	.LASF15
+ 557 00b2 04       		.byte	0x4
+ 558 00b3 F701     		.2byte	0x1f7
+ 559 00b5 37000000 		.4byte	0x37
+ 560 00b9 05       		.uleb128 0x5
+ 561 00ba 01020000 		.4byte	.LASF16
+ 562 00be 04       		.byte	0x4
+ 563 00bf F901     		.2byte	0x1f9
+ 564 00c1 69000000 		.4byte	0x69
+ 565 00c5 02       		.uleb128 0x2
+ 566 00c6 04       		.byte	0x4
+ 567 00c7 04       		.byte	0x4
+ 568 00c8 43030000 		.4byte	.LASF17
+ 569 00cc 02       		.uleb128 0x2
+ 570 00cd 08       		.byte	0x8
+ 571 00ce 04       		.byte	0x4
+ 572 00cf F1010000 		.4byte	.LASF18
+ 573 00d3 02       		.uleb128 0x2
+ 574 00d4 01       		.byte	0x1
+ 575 00d5 08       		.byte	0x8
+ 576 00d6 00040000 		.4byte	.LASF19
+ 577 00da 05       		.uleb128 0x5
+ 578 00db E9020000 		.4byte	.LASF20
+ 579 00df 04       		.byte	0x4
+ 580 00e0 A302     		.2byte	0x2a3
+ 581 00e2 E6000000 		.4byte	0xe6
+ 582 00e6 06       		.uleb128 0x6
+ 583 00e7 B9000000 		.4byte	0xb9
+ 584 00eb 05       		.uleb128 0x5
+ 585 00ec 05040000 		.4byte	.LASF21
+ 586 00f0 04       		.byte	0x4
+ 587 00f1 B302     		.2byte	0x2b3
+ 588 00f3 F7000000 		.4byte	0xf7
+ 589 00f7 07       		.uleb128 0x7
+ 590 00f8 04       		.byte	0x4
+ 591 00f9 FD000000 		.4byte	0xfd
+ 592 00fd 08       		.uleb128 0x8
+ 593 00fe 02       		.uleb128 0x2
+ 594 00ff 08       		.byte	0x8
+ 595 0100 04       		.byte	0x4
+ 596 0101 0C030000 		.4byte	.LASF22
+ 597 0105 02       		.uleb128 0x2
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccLpjITj.s 			page 19
+
+
+ 598 0106 04       		.byte	0x4
+ 599 0107 07       		.byte	0x7
+ 600 0108 03030000 		.4byte	.LASF23
+ 601 010c 09       		.uleb128 0x9
+ 602 010d 01       		.byte	0x1
+ 603 010e 37000000 		.4byte	0x37
+ 604 0112 05       		.byte	0x5
+ 605 0113 27       		.byte	0x27
+ 606 0114 3D010000 		.4byte	0x13d
+ 607 0118 0A       		.uleb128 0xa
+ 608 0119 4F464600 		.ascii	"OFF\000"
+ 609 011d 00       		.byte	0
+ 610 011e 0B       		.uleb128 0xb
+ 611 011f D3030000 		.4byte	.LASF24
+ 612 0123 01       		.byte	0x1
+ 613 0124 0A       		.uleb128 0xa
+ 614 0125 43414C00 		.ascii	"CAL\000"
+ 615 0129 02       		.byte	0x2
+ 616 012a 0B       		.uleb128 0xb
+ 617 012b EF020000 		.4byte	.LASF25
+ 618 012f 03       		.byte	0x3
+ 619 0130 0A       		.uleb128 0xa
+ 620 0131 52554E00 		.ascii	"RUN\000"
+ 621 0135 04       		.byte	0x4
+ 622 0136 0B       		.uleb128 0xb
+ 623 0137 F9020000 		.4byte	.LASF26
+ 624 013b 05       		.byte	0x5
+ 625 013c 00       		.byte	0
+ 626 013d 03       		.uleb128 0x3
+ 627 013e 66040000 		.4byte	.LASF27
+ 628 0142 05       		.byte	0x5
+ 629 0143 27       		.byte	0x27
+ 630 0144 0C010000 		.4byte	0x10c
+ 631 0148 09       		.uleb128 0x9
+ 632 0149 01       		.byte	0x1
+ 633 014a 37000000 		.4byte	0x37
+ 634 014e 05       		.byte	0x5
+ 635 014f 2A       		.byte	0x2a
+ 636 0150 67010000 		.4byte	0x167
+ 637 0154 0A       		.uleb128 0xa
+ 638 0155 4C4F5700 		.ascii	"LOW\000"
+ 639 0159 00       		.byte	0
+ 640 015a 0B       		.uleb128 0xb
+ 641 015b 20020000 		.4byte	.LASF28
+ 642 015f 01       		.byte	0x1
+ 643 0160 0B       		.uleb128 0xb
+ 644 0161 71040000 		.4byte	.LASF29
+ 645 0165 02       		.byte	0x2
+ 646 0166 00       		.byte	0
+ 647 0167 03       		.uleb128 0x3
+ 648 0168 55030000 		.4byte	.LASF30
+ 649 016c 05       		.byte	0x5
+ 650 016d 2A       		.byte	0x2a
+ 651 016e 48010000 		.4byte	0x148
+ 652 0172 0C       		.uleb128 0xc
+ 653 0173 12040000 		.4byte	.LASF31
+ 654 0177 01       		.byte	0x1
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccLpjITj.s 			page 20
+
+
+ 655 0178 CD       		.byte	0xcd
+ 656 0179 00000000 		.4byte	.LFB5
+ 657 017d 0C000000 		.4byte	.LFE5-.LFB5
+ 658 0181 01       		.uleb128 0x1
+ 659 0182 9C       		.byte	0x9c
+ 660 0183 95010000 		.4byte	0x195
+ 661 0187 0D       		.uleb128 0xd
+ 662 0188 18030000 		.4byte	.LASF33
+ 663 018c 01       		.byte	0x1
+ 664 018d CD       		.byte	0xcd
+ 665 018e EB000000 		.4byte	0xeb
+ 666 0192 01       		.uleb128 0x1
+ 667 0193 50       		.byte	0x50
+ 668 0194 00       		.byte	0
+ 669 0195 0E       		.uleb128 0xe
+ 670 0196 AA040000 		.4byte	.LASF37
+ 671 019a 01       		.byte	0x1
+ 672 019b E1       		.byte	0xe1
+ 673 019c EB000000 		.4byte	0xeb
+ 674 01a0 00000000 		.4byte	.LFB6
+ 675 01a4 0C000000 		.4byte	.LFE6-.LFB6
+ 676 01a8 01       		.uleb128 0x1
+ 677 01a9 9C       		.byte	0x9c
+ 678 01aa 0C       		.uleb128 0xc
+ 679 01ab DF030000 		.4byte	.LASF32
+ 680 01af 01       		.byte	0x1
+ 681 01b0 FF       		.byte	0xff
+ 682 01b1 00000000 		.4byte	.LFB7
+ 683 01b5 24000000 		.4byte	.LFE7-.LFB7
+ 684 01b9 01       		.uleb128 0x1
+ 685 01ba 9C       		.byte	0x9c
+ 686 01bb FE010000 		.4byte	0x1fe
+ 687 01bf 0F       		.uleb128 0xf
+ 688 01c0 AC020000 		.4byte	.LASF34
+ 689 01c4 01       		.byte	0x1
+ 690 01c5 FF       		.byte	0xff
+ 691 01c6 AD000000 		.4byte	0xad
+ 692 01ca 00000000 		.4byte	.LLST0
+ 693 01ce 10       		.uleb128 0x10
+ 694 01cf BB010000 		.4byte	.LASF35
+ 695 01d3 01       		.byte	0x1
+ 696 01d4 0101     		.2byte	0x101
+ 697 01d6 AD000000 		.4byte	0xad
+ 698 01da 21000000 		.4byte	.LLST1
+ 699 01de 11       		.uleb128 0x11
+ 700 01df 7D010000 		.4byte	.LASF36
+ 701 01e3 01       		.byte	0x1
+ 702 01e4 0201     		.2byte	0x102
+ 703 01e6 B9000000 		.4byte	0xb9
+ 704 01ea 0E       		.byte	0xe
+ 705 01eb 12       		.uleb128 0x12
+ 706 01ec 08000000 		.4byte	.LVL3
+ 707 01f0 56050000 		.4byte	0x556
+ 708 01f4 12       		.uleb128 0x12
+ 709 01f5 1A000000 		.4byte	.LVL4
+ 710 01f9 61050000 		.4byte	0x561
+ 711 01fd 00       		.byte	0
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccLpjITj.s 			page 21
+
+
+ 712 01fe 13       		.uleb128 0x13
+ 713 01ff C9020000 		.4byte	.LASF73
+ 714 0203 01       		.byte	0x1
+ 715 0204 1B01     		.2byte	0x11b
+ 716 0206 AD000000 		.4byte	0xad
+ 717 020a 00000000 		.4byte	.LFB8
+ 718 020e 10000000 		.4byte	.LFE8-.LFB8
+ 719 0212 01       		.uleb128 0x1
+ 720 0213 9C       		.byte	0x9c
+ 721 0214 36020000 		.4byte	0x236
+ 722 0218 10       		.uleb128 0x10
+ 723 0219 AC020000 		.4byte	.LASF34
+ 724 021d 01       		.byte	0x1
+ 725 021e 1D01     		.2byte	0x11d
+ 726 0220 B9000000 		.4byte	0xb9
+ 727 0224 34000000 		.4byte	.LLST2
+ 728 0228 11       		.uleb128 0x11
+ 729 0229 7D010000 		.4byte	.LASF36
+ 730 022d 01       		.byte	0x1
+ 731 022e 1E01     		.2byte	0x11e
+ 732 0230 B9000000 		.4byte	0xb9
+ 733 0234 0E       		.byte	0xe
+ 734 0235 00       		.byte	0
+ 735 0236 14       		.uleb128 0x14
+ 736 0237 12020000 		.4byte	.LASF39
+ 737 023b 01       		.byte	0x1
+ 738 023c 3601     		.2byte	0x136
+ 739 023e 00000000 		.4byte	.LFB9
+ 740 0242 0C000000 		.4byte	.LFE9-.LFB9
+ 741 0246 01       		.uleb128 0x1
+ 742 0247 9C       		.byte	0x9c
+ 743 0248 15       		.uleb128 0x15
+ 744 0249 32020000 		.4byte	.LASF38
+ 745 024d 01       		.byte	0x1
+ 746 024e 4B01     		.2byte	0x14b
+ 747 0250 AD000000 		.4byte	0xad
+ 748 0254 00000000 		.4byte	.LFB10
+ 749 0258 14000000 		.4byte	.LFE10-.LFB10
+ 750 025c 01       		.uleb128 0x1
+ 751 025d 9C       		.byte	0x9c
+ 752 025e 14       		.uleb128 0x14
+ 753 025f 7F040000 		.4byte	.LASF40
+ 754 0263 01       		.byte	0x1
+ 755 0264 6001     		.2byte	0x160
+ 756 0266 00000000 		.4byte	.LFB11
+ 757 026a 0C000000 		.4byte	.LFE11-.LFB11
+ 758 026e 01       		.uleb128 0x1
+ 759 026f 9C       		.byte	0x9c
+ 760 0270 0C       		.uleb128 0xc
+ 761 0271 4A040000 		.4byte	.LASF41
+ 762 0275 01       		.byte	0x1
+ 763 0276 38       		.byte	0x38
+ 764 0277 00000000 		.4byte	.LFB1
+ 765 027b 1C000000 		.4byte	.LFE1-.LFB1
+ 766 027f 01       		.uleb128 0x1
+ 767 0280 9C       		.byte	0x9c
+ 768 0281 C2020000 		.4byte	0x2c2
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccLpjITj.s 			page 22
+
+
+ 769 0285 12       		.uleb128 0x12
+ 770 0286 06000000 		.4byte	.LVL8
+ 771 028a 5E020000 		.4byte	0x25e
+ 772 028e 16       		.uleb128 0x16
+ 773 028f 0C000000 		.4byte	.LVL9
+ 774 0293 72010000 		.4byte	0x172
+ 775 0297 A5020000 		.4byte	0x2a5
+ 776 029b 17       		.uleb128 0x17
+ 777 029c 01       		.uleb128 0x1
+ 778 029d 50       		.byte	0x50
+ 779 029e 05       		.uleb128 0x5
+ 780 029f 03       		.byte	0x3
+ 781 02a0 00000000 		.4byte	AltISR_Interrupt
+ 782 02a4 00       		.byte	0
+ 783 02a5 16       		.uleb128 0x16
+ 784 02a6 12000000 		.4byte	.LVL10
+ 785 02aa AA010000 		.4byte	0x1aa
+ 786 02ae B8020000 		.4byte	0x2b8
+ 787 02b2 17       		.uleb128 0x17
+ 788 02b3 01       		.uleb128 0x1
+ 789 02b4 50       		.byte	0x50
+ 790 02b5 01       		.uleb128 0x1
+ 791 02b6 33       		.byte	0x33
+ 792 02b7 00       		.byte	0
+ 793 02b8 12       		.uleb128 0x12
+ 794 02b9 16000000 		.4byte	.LVL11
+ 795 02bd 36020000 		.4byte	0x236
+ 796 02c1 00       		.byte	0
+ 797 02c2 0C       		.uleb128 0xc
+ 798 02c3 CA010000 		.4byte	.LASF42
+ 799 02c7 01       		.byte	0x1
+ 800 02c8 63       		.byte	0x63
+ 801 02c9 00000000 		.4byte	.LFB2
+ 802 02cd 1A000000 		.4byte	.LFE2-.LFB2
+ 803 02d1 01       		.uleb128 0x1
+ 804 02d2 9C       		.byte	0x9c
+ 805 02d3 20030000 		.4byte	0x320
+ 806 02d7 0F       		.uleb128 0xf
+ 807 02d8 18030000 		.4byte	.LASF33
+ 808 02dc 01       		.byte	0x1
+ 809 02dd 63       		.byte	0x63
+ 810 02de EB000000 		.4byte	0xeb
+ 811 02e2 56000000 		.4byte	.LLST3
+ 812 02e6 12       		.uleb128 0x12
+ 813 02e7 08000000 		.4byte	.LVL13
+ 814 02eb 5E020000 		.4byte	0x25e
+ 815 02ef 16       		.uleb128 0x16
+ 816 02f0 0E000000 		.4byte	.LVL14
+ 817 02f4 72010000 		.4byte	0x172
+ 818 02f8 03030000 		.4byte	0x303
+ 819 02fc 17       		.uleb128 0x17
+ 820 02fd 01       		.uleb128 0x1
+ 821 02fe 50       		.byte	0x50
+ 822 02ff 02       		.uleb128 0x2
+ 823 0300 74       		.byte	0x74
+ 824 0301 00       		.sleb128 0
+ 825 0302 00       		.byte	0
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccLpjITj.s 			page 23
+
+
+ 826 0303 16       		.uleb128 0x16
+ 827 0304 14000000 		.4byte	.LVL15
+ 828 0308 AA010000 		.4byte	0x1aa
+ 829 030c 16030000 		.4byte	0x316
+ 830 0310 17       		.uleb128 0x17
+ 831 0311 01       		.uleb128 0x1
+ 832 0312 50       		.byte	0x50
+ 833 0313 01       		.uleb128 0x1
+ 834 0314 33       		.byte	0x33
+ 835 0315 00       		.byte	0
+ 836 0316 12       		.uleb128 0x12
+ 837 0317 18000000 		.4byte	.LVL16
+ 838 031b 36020000 		.4byte	0x236
+ 839 031f 00       		.byte	0
+ 840 0320 0C       		.uleb128 0xc
+ 841 0321 49030000 		.4byte	.LASF43
+ 842 0325 01       		.byte	0x1
+ 843 0326 81       		.byte	0x81
+ 844 0327 00000000 		.4byte	.LFB3
+ 845 032b 14000000 		.4byte	.LFE3-.LFB3
+ 846 032f 01       		.uleb128 0x1
+ 847 0330 9C       		.byte	0x9c
+ 848 0331 48030000 		.4byte	0x348
+ 849 0335 12       		.uleb128 0x12
+ 850 0336 06000000 		.4byte	.LVL18
+ 851 033a 5E020000 		.4byte	0x25e
+ 852 033e 12       		.uleb128 0x12
+ 853 033f 0C000000 		.4byte	.LVL19
+ 854 0343 72010000 		.4byte	0x172
+ 855 0347 00       		.byte	0
+ 856 0348 14       		.uleb128 0x14
+ 857 0349 38040000 		.4byte	.LASF44
+ 858 034d 01       		.byte	0x1
+ 859 034e 7B01     		.2byte	0x17b
+ 860 0350 00000000 		.4byte	.LFB12
+ 861 0354 0C000000 		.4byte	.LFE12-.LFB12
+ 862 0358 01       		.uleb128 0x1
+ 863 0359 9C       		.byte	0x9c
+ 864 035a 14       		.uleb128 0x14
+ 865 035b B5020000 		.4byte	.LASF45
+ 866 035f 01       		.byte	0x1
+ 867 0360 9401     		.2byte	0x194
+ 868 0362 00000000 		.4byte	.LFB13
+ 869 0366 0C000000 		.4byte	.LFE13-.LFB13
+ 870 036a 01       		.uleb128 0x1
+ 871 036b 9C       		.byte	0x9c
+ 872 036c 0C       		.uleb128 0xc
+ 873 036d A3030000 		.4byte	.LASF46
+ 874 0371 01       		.byte	0x1
+ 875 0372 9F       		.byte	0x9f
+ 876 0373 00000000 		.4byte	.LFB4
+ 877 0377 0C000000 		.4byte	.LFE4-.LFB4
+ 878 037b 01       		.uleb128 0x1
+ 879 037c 9C       		.byte	0x9c
+ 880 037d 8B030000 		.4byte	0x38b
+ 881 0381 12       		.uleb128 0x12
+ 882 0382 08000000 		.4byte	.LVL20
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccLpjITj.s 			page 24
+
+
+ 883 0386 5A030000 		.4byte	0x35a
+ 884 038a 00       		.byte	0
+ 885 038b 18       		.uleb128 0x18
+ 886 038c 9B030000 		.4byte	0x39b
+ 887 0390 9B030000 		.4byte	0x39b
+ 888 0394 19       		.uleb128 0x19
+ 889 0395 05010000 		.4byte	0x105
+ 890 0399 07       		.byte	0x7
+ 891 039a 00       		.byte	0
+ 892 039b 06       		.uleb128 0x6
+ 893 039c 37000000 		.4byte	0x37
+ 894 03a0 1A       		.uleb128 0x1a
+ 895 03a1 DC020000 		.4byte	.LASF47
+ 896 03a5 05       		.byte	0x5
+ 897 03a6 2F       		.byte	0x2f
+ 898 03a7 B1030000 		.4byte	0x3b1
+ 899 03ab 05       		.uleb128 0x5
+ 900 03ac 03       		.byte	0x3
+ 901 03ad 00000000 		.4byte	rx_bytes_dbg
+ 902 03b1 06       		.uleb128 0x6
+ 903 03b2 8B030000 		.4byte	0x38b
+ 904 03b6 1A       		.uleb128 0x1a
+ 905 03b7 33000000 		.4byte	.LASF48
+ 906 03bb 05       		.byte	0x5
+ 907 03bc 30       		.byte	0x30
+ 908 03bd C7030000 		.4byte	0x3c7
+ 909 03c1 05       		.uleb128 0x5
+ 910 03c2 03       		.byte	0x3
+ 911 03c3 00000000 		.4byte	rx_bytes_dbg_buff
+ 912 03c7 06       		.uleb128 0x6
+ 913 03c8 8B030000 		.4byte	0x38b
+ 914 03cc 1A       		.uleb128 0x1a
+ 915 03cd 88030000 		.4byte	.LASF49
+ 916 03d1 05       		.byte	0x5
+ 917 03d2 31       		.byte	0x31
+ 918 03d3 DD030000 		.4byte	0x3dd
+ 919 03d7 05       		.uleb128 0x5
+ 920 03d8 03       		.byte	0x3
+ 921 03d9 00000000 		.4byte	num_rx_bytes_dbg
+ 922 03dd 06       		.uleb128 0x6
+ 923 03de 8C000000 		.4byte	0x8c
+ 924 03e2 1A       		.uleb128 0x1a
+ 925 03e3 2D030000 		.4byte	.LASF50
+ 926 03e7 05       		.byte	0x5
+ 927 03e8 32       		.byte	0x32
+ 928 03e9 DD030000 		.4byte	0x3dd
+ 929 03ed 05       		.uleb128 0x5
+ 930 03ee 03       		.byte	0x3
+ 931 03ef 00000000 		.4byte	num_rx_bytes_dbg_buff
+ 932 03f3 1A       		.uleb128 0x1a
+ 933 03f4 8C010000 		.4byte	.LASF51
+ 934 03f8 05       		.byte	0x5
+ 935 03f9 33       		.byte	0x33
+ 936 03fa 04040000 		.4byte	0x404
+ 937 03fe 05       		.uleb128 0x5
+ 938 03ff 03       		.byte	0x3
+ 939 0400 00000000 		.4byte	rx_bytes_ble
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccLpjITj.s 			page 25
+
+
+ 940 0404 06       		.uleb128 0x6
+ 941 0405 8B030000 		.4byte	0x38b
+ 942 0409 1A       		.uleb128 0x1a
+ 943 040a C1030000 		.4byte	.LASF52
+ 944 040e 05       		.byte	0x5
+ 945 040f 34       		.byte	0x34
+ 946 0410 1A040000 		.4byte	0x41a
+ 947 0414 05       		.uleb128 0x5
+ 948 0415 03       		.byte	0x3
+ 949 0416 00000000 		.4byte	rx_bytes_ble_buff
+ 950 041a 06       		.uleb128 0x6
+ 951 041b 8B030000 		.4byte	0x38b
+ 952 041f 1A       		.uleb128 0x1a
+ 953 0420 20030000 		.4byte	.LASF53
+ 954 0424 05       		.byte	0x5
+ 955 0425 35       		.byte	0x35
+ 956 0426 DD030000 		.4byte	0x3dd
+ 957 042a 05       		.uleb128 0x5
+ 958 042b 03       		.byte	0x3
+ 959 042c 00000000 		.4byte	BLE_UART_tmr
+ 960 0430 1A       		.uleb128 0x1a
+ 961 0431 4F020000 		.4byte	.LASF54
+ 962 0435 05       		.byte	0x5
+ 963 0436 36       		.byte	0x36
+ 964 0437 DD030000 		.4byte	0x3dd
+ 965 043b 05       		.uleb128 0x5
+ 966 043c 03       		.byte	0x3
+ 967 043d 00000000 		.4byte	num_rx_bytes_ble
+ 968 0441 1A       		.uleb128 0x1a
+ 969 0442 45000000 		.4byte	.LASF55
+ 970 0446 05       		.byte	0x5
+ 971 0447 37       		.byte	0x37
+ 972 0448 DD030000 		.4byte	0x3dd
+ 973 044c 05       		.uleb128 0x5
+ 974 044d 03       		.byte	0x3
+ 975 044e 00000000 		.4byte	num_rx_bytes_ble_buff
+ 976 0452 18       		.uleb128 0x18
+ 977 0453 9B030000 		.4byte	0x39b
+ 978 0457 62040000 		.4byte	0x462
+ 979 045b 19       		.uleb128 0x19
+ 980 045c 05010000 		.4byte	0x105
+ 981 0460 0F       		.byte	0xf
+ 982 0461 00       		.byte	0
+ 983 0462 1A       		.uleb128 0x1a
+ 984 0463 6E010000 		.4byte	.LASF56
+ 985 0467 05       		.byte	0x5
+ 986 0468 38       		.byte	0x38
+ 987 0469 73040000 		.4byte	0x473
+ 988 046d 05       		.uleb128 0x5
+ 989 046e 03       		.byte	0x3
+ 990 046f 00000000 		.4byte	rx_bytes_lidar
+ 991 0473 06       		.uleb128 0x6
+ 992 0474 52040000 		.4byte	0x452
+ 993 0478 1A       		.uleb128 0x1a
+ 994 0479 96040000 		.4byte	.LASF57
+ 995 047d 05       		.byte	0x5
+ 996 047e 39       		.byte	0x39
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccLpjITj.s 			page 26
+
+
+ 997 047f 89040000 		.4byte	0x489
+ 998 0483 05       		.uleb128 0x5
+ 999 0484 03       		.byte	0x3
+ 1000 0485 00000000 		.4byte	rx_bytes_lidar_buff
+ 1001 0489 06       		.uleb128 0x6
+ 1002 048a 52040000 		.4byte	0x452
+ 1003 048e 1A       		.uleb128 0x1a
+ 1004 048f 57040000 		.4byte	.LASF58
+ 1005 0493 05       		.byte	0x5
+ 1006 0494 3A       		.byte	0x3a
+ 1007 0495 DD030000 		.4byte	0x3dd
+ 1008 0499 05       		.uleb128 0x5
+ 1009 049a 03       		.byte	0x3
+ 1010 049b 00000000 		.4byte	LIDAR_UART_tmr
+ 1011 049f 1A       		.uleb128 0x1a
+ 1012 04a0 16000000 		.4byte	.LASF59
+ 1013 04a4 05       		.byte	0x5
+ 1014 04a5 3B       		.byte	0x3b
+ 1015 04a6 DD030000 		.4byte	0x3dd
+ 1016 04aa 05       		.uleb128 0x5
+ 1017 04ab 03       		.byte	0x3
+ 1018 04ac 00000000 		.4byte	num_rx_bytes_lidar
+ 1019 04b0 1A       		.uleb128 0x1a
+ 1020 04b1 62030000 		.4byte	.LASF60
+ 1021 04b5 05       		.byte	0x5
+ 1022 04b6 3C       		.byte	0x3c
+ 1023 04b7 DD030000 		.4byte	0x3dd
+ 1024 04bb 05       		.uleb128 0x5
+ 1025 04bc 03       		.byte	0x3
+ 1026 04bd 00000000 		.4byte	num_rx_bytes_lidar_buff
+ 1027 04c1 1A       		.uleb128 0x1a
+ 1028 04c2 23040000 		.4byte	.LASF61
+ 1029 04c6 05       		.byte	0x5
+ 1030 04c7 3D       		.byte	0x3d
+ 1031 04c8 DD030000 		.4byte	0x3dd
+ 1032 04cc 05       		.uleb128 0x5
+ 1033 04cd 03       		.byte	0x3
+ 1034 04ce 00000000 		.4byte	num_tasks
+ 1035 04d2 1A       		.uleb128 0x1a
+ 1036 04d3 F2030000 		.4byte	.LASF62
+ 1037 04d7 05       		.byte	0x5
+ 1038 04d8 3E       		.byte	0x3e
+ 1039 04d9 E3040000 		.4byte	0x4e3
+ 1040 04dd 05       		.uleb128 0x5
+ 1041 04de 03       		.byte	0x3
+ 1042 04df 00000000 		.4byte	motor_toggles
+ 1043 04e3 06       		.uleb128 0x6
+ 1044 04e4 A2000000 		.4byte	0xa2
+ 1045 04e8 1A       		.uleb128 0x1a
+ 1046 04e9 F8010000 		.4byte	.LASF63
+ 1047 04ed 05       		.byte	0x5
+ 1048 04ee 3F       		.byte	0x3f
+ 1049 04ef F9040000 		.4byte	0x4f9
+ 1050 04f3 05       		.uleb128 0x5
+ 1051 04f4 03       		.byte	0x3
+ 1052 04f5 00000000 		.4byte	ESC_curr
+ 1053 04f9 06       		.uleb128 0x6
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccLpjITj.s 			page 27
+
+
+ 1054 04fa 97000000 		.4byte	0x97
+ 1055 04fe 1A       		.uleb128 0x1a
+ 1056 04ff 08020000 		.4byte	.LASF64
+ 1057 0503 05       		.byte	0x5
+ 1058 0504 40       		.byte	0x40
+ 1059 0505 F9040000 		.4byte	0x4f9
+ 1060 0509 05       		.uleb128 0x5
+ 1061 050a 03       		.byte	0x3
+ 1062 050b 00000000 		.4byte	Batt_volt
+ 1063 050f 1A       		.uleb128 0x1a
+ 1064 0510 76040000 		.4byte	.LASF65
+ 1065 0514 05       		.byte	0x5
+ 1066 0515 41       		.byte	0x41
+ 1067 0516 20050000 		.4byte	0x520
+ 1068 051a 05       		.uleb128 0x5
+ 1069 051b 03       		.byte	0x3
+ 1070 051c 00000000 		.4byte	run_mode
+ 1071 0520 06       		.uleb128 0x6
+ 1072 0521 3D010000 		.4byte	0x13d
+ 1073 0525 1A       		.uleb128 0x1a
+ 1074 0526 72020000 		.4byte	.LASF66
+ 1075 052a 05       		.byte	0x5
+ 1076 052b 42       		.byte	0x42
+ 1077 052c 36050000 		.4byte	0x536
+ 1078 0530 05       		.uleb128 0x5
+ 1079 0531 03       		.byte	0x3
+ 1080 0532 00000000 		.4byte	slider_pos_last
+ 1081 0536 06       		.uleb128 0x6
+ 1082 0537 67010000 		.4byte	0x167
+ 1083 053b 18       		.uleb128 0x18
+ 1084 053c EB000000 		.4byte	0xeb
+ 1085 0540 4B050000 		.4byte	0x54b
+ 1086 0544 19       		.uleb128 0x19
+ 1087 0545 05010000 		.4byte	0x105
+ 1088 0549 2F       		.byte	0x2f
+ 1089 054a 00       		.byte	0
+ 1090 054b 1B       		.uleb128 0x1b
+ 1091 054c B4030000 		.4byte	.LASF67
+ 1092 0550 01       		.byte	0x1
+ 1093 0551 21       		.byte	0x21
+ 1094 0552 3B050000 		.4byte	0x53b
+ 1095 0556 1C       		.uleb128 0x1c
+ 1096 0557 82020000 		.4byte	.LASF68
+ 1097 055b 82020000 		.4byte	.LASF68
+ 1098 055f 06       		.byte	0x6
+ 1099 0560 F8       		.byte	0xf8
+ 1100 0561 1C       		.uleb128 0x1c
+ 1101 0562 00000000 		.4byte	.LASF69
+ 1102 0566 00000000 		.4byte	.LASF69
+ 1103 056a 06       		.byte	0x6
+ 1104 056b F9       		.byte	0xf9
+ 1105 056c 00       		.byte	0
+ 1106              		.section	.debug_abbrev,"",%progbits
+ 1107              	.Ldebug_abbrev0:
+ 1108 0000 01       		.uleb128 0x1
+ 1109 0001 11       		.uleb128 0x11
+ 1110 0002 01       		.byte	0x1
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccLpjITj.s 			page 28
+
+
+ 1111 0003 25       		.uleb128 0x25
+ 1112 0004 0E       		.uleb128 0xe
+ 1113 0005 13       		.uleb128 0x13
+ 1114 0006 0B       		.uleb128 0xb
+ 1115 0007 03       		.uleb128 0x3
+ 1116 0008 0E       		.uleb128 0xe
+ 1117 0009 1B       		.uleb128 0x1b
+ 1118 000a 0E       		.uleb128 0xe
+ 1119 000b 55       		.uleb128 0x55
+ 1120 000c 17       		.uleb128 0x17
+ 1121 000d 11       		.uleb128 0x11
+ 1122 000e 01       		.uleb128 0x1
+ 1123 000f 10       		.uleb128 0x10
+ 1124 0010 17       		.uleb128 0x17
+ 1125 0011 00       		.byte	0
+ 1126 0012 00       		.byte	0
+ 1127 0013 02       		.uleb128 0x2
+ 1128 0014 24       		.uleb128 0x24
+ 1129 0015 00       		.byte	0
+ 1130 0016 0B       		.uleb128 0xb
+ 1131 0017 0B       		.uleb128 0xb
+ 1132 0018 3E       		.uleb128 0x3e
+ 1133 0019 0B       		.uleb128 0xb
+ 1134 001a 03       		.uleb128 0x3
+ 1135 001b 0E       		.uleb128 0xe
+ 1136 001c 00       		.byte	0
+ 1137 001d 00       		.byte	0
+ 1138 001e 03       		.uleb128 0x3
+ 1139 001f 16       		.uleb128 0x16
+ 1140 0020 00       		.byte	0
+ 1141 0021 03       		.uleb128 0x3
+ 1142 0022 0E       		.uleb128 0xe
+ 1143 0023 3A       		.uleb128 0x3a
+ 1144 0024 0B       		.uleb128 0xb
+ 1145 0025 3B       		.uleb128 0x3b
+ 1146 0026 0B       		.uleb128 0xb
+ 1147 0027 49       		.uleb128 0x49
+ 1148 0028 13       		.uleb128 0x13
+ 1149 0029 00       		.byte	0
+ 1150 002a 00       		.byte	0
+ 1151 002b 04       		.uleb128 0x4
+ 1152 002c 24       		.uleb128 0x24
+ 1153 002d 00       		.byte	0
+ 1154 002e 0B       		.uleb128 0xb
+ 1155 002f 0B       		.uleb128 0xb
+ 1156 0030 3E       		.uleb128 0x3e
+ 1157 0031 0B       		.uleb128 0xb
+ 1158 0032 03       		.uleb128 0x3
+ 1159 0033 08       		.uleb128 0x8
+ 1160 0034 00       		.byte	0
+ 1161 0035 00       		.byte	0
+ 1162 0036 05       		.uleb128 0x5
+ 1163 0037 16       		.uleb128 0x16
+ 1164 0038 00       		.byte	0
+ 1165 0039 03       		.uleb128 0x3
+ 1166 003a 0E       		.uleb128 0xe
+ 1167 003b 3A       		.uleb128 0x3a
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccLpjITj.s 			page 29
+
+
+ 1168 003c 0B       		.uleb128 0xb
+ 1169 003d 3B       		.uleb128 0x3b
+ 1170 003e 05       		.uleb128 0x5
+ 1171 003f 49       		.uleb128 0x49
+ 1172 0040 13       		.uleb128 0x13
+ 1173 0041 00       		.byte	0
+ 1174 0042 00       		.byte	0
+ 1175 0043 06       		.uleb128 0x6
+ 1176 0044 35       		.uleb128 0x35
+ 1177 0045 00       		.byte	0
+ 1178 0046 49       		.uleb128 0x49
+ 1179 0047 13       		.uleb128 0x13
+ 1180 0048 00       		.byte	0
+ 1181 0049 00       		.byte	0
+ 1182 004a 07       		.uleb128 0x7
+ 1183 004b 0F       		.uleb128 0xf
+ 1184 004c 00       		.byte	0
+ 1185 004d 0B       		.uleb128 0xb
+ 1186 004e 0B       		.uleb128 0xb
+ 1187 004f 49       		.uleb128 0x49
+ 1188 0050 13       		.uleb128 0x13
+ 1189 0051 00       		.byte	0
+ 1190 0052 00       		.byte	0
+ 1191 0053 08       		.uleb128 0x8
+ 1192 0054 15       		.uleb128 0x15
+ 1193 0055 00       		.byte	0
+ 1194 0056 27       		.uleb128 0x27
+ 1195 0057 19       		.uleb128 0x19
+ 1196 0058 00       		.byte	0
+ 1197 0059 00       		.byte	0
+ 1198 005a 09       		.uleb128 0x9
+ 1199 005b 04       		.uleb128 0x4
+ 1200 005c 01       		.byte	0x1
+ 1201 005d 0B       		.uleb128 0xb
+ 1202 005e 0B       		.uleb128 0xb
+ 1203 005f 49       		.uleb128 0x49
+ 1204 0060 13       		.uleb128 0x13
+ 1205 0061 3A       		.uleb128 0x3a
+ 1206 0062 0B       		.uleb128 0xb
+ 1207 0063 3B       		.uleb128 0x3b
+ 1208 0064 0B       		.uleb128 0xb
+ 1209 0065 01       		.uleb128 0x1
+ 1210 0066 13       		.uleb128 0x13
+ 1211 0067 00       		.byte	0
+ 1212 0068 00       		.byte	0
+ 1213 0069 0A       		.uleb128 0xa
+ 1214 006a 28       		.uleb128 0x28
+ 1215 006b 00       		.byte	0
+ 1216 006c 03       		.uleb128 0x3
+ 1217 006d 08       		.uleb128 0x8
+ 1218 006e 1C       		.uleb128 0x1c
+ 1219 006f 0B       		.uleb128 0xb
+ 1220 0070 00       		.byte	0
+ 1221 0071 00       		.byte	0
+ 1222 0072 0B       		.uleb128 0xb
+ 1223 0073 28       		.uleb128 0x28
+ 1224 0074 00       		.byte	0
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccLpjITj.s 			page 30
+
+
+ 1225 0075 03       		.uleb128 0x3
+ 1226 0076 0E       		.uleb128 0xe
+ 1227 0077 1C       		.uleb128 0x1c
+ 1228 0078 0B       		.uleb128 0xb
+ 1229 0079 00       		.byte	0
+ 1230 007a 00       		.byte	0
+ 1231 007b 0C       		.uleb128 0xc
+ 1232 007c 2E       		.uleb128 0x2e
+ 1233 007d 01       		.byte	0x1
+ 1234 007e 3F       		.uleb128 0x3f
+ 1235 007f 19       		.uleb128 0x19
+ 1236 0080 03       		.uleb128 0x3
+ 1237 0081 0E       		.uleb128 0xe
+ 1238 0082 3A       		.uleb128 0x3a
+ 1239 0083 0B       		.uleb128 0xb
+ 1240 0084 3B       		.uleb128 0x3b
+ 1241 0085 0B       		.uleb128 0xb
+ 1242 0086 27       		.uleb128 0x27
+ 1243 0087 19       		.uleb128 0x19
+ 1244 0088 11       		.uleb128 0x11
+ 1245 0089 01       		.uleb128 0x1
+ 1246 008a 12       		.uleb128 0x12
+ 1247 008b 06       		.uleb128 0x6
+ 1248 008c 40       		.uleb128 0x40
+ 1249 008d 18       		.uleb128 0x18
+ 1250 008e 9742     		.uleb128 0x2117
+ 1251 0090 19       		.uleb128 0x19
+ 1252 0091 01       		.uleb128 0x1
+ 1253 0092 13       		.uleb128 0x13
+ 1254 0093 00       		.byte	0
+ 1255 0094 00       		.byte	0
+ 1256 0095 0D       		.uleb128 0xd
+ 1257 0096 05       		.uleb128 0x5
+ 1258 0097 00       		.byte	0
+ 1259 0098 03       		.uleb128 0x3
+ 1260 0099 0E       		.uleb128 0xe
+ 1261 009a 3A       		.uleb128 0x3a
+ 1262 009b 0B       		.uleb128 0xb
+ 1263 009c 3B       		.uleb128 0x3b
+ 1264 009d 0B       		.uleb128 0xb
+ 1265 009e 49       		.uleb128 0x49
+ 1266 009f 13       		.uleb128 0x13
+ 1267 00a0 02       		.uleb128 0x2
+ 1268 00a1 18       		.uleb128 0x18
+ 1269 00a2 00       		.byte	0
+ 1270 00a3 00       		.byte	0
+ 1271 00a4 0E       		.uleb128 0xe
+ 1272 00a5 2E       		.uleb128 0x2e
+ 1273 00a6 00       		.byte	0
+ 1274 00a7 3F       		.uleb128 0x3f
+ 1275 00a8 19       		.uleb128 0x19
+ 1276 00a9 03       		.uleb128 0x3
+ 1277 00aa 0E       		.uleb128 0xe
+ 1278 00ab 3A       		.uleb128 0x3a
+ 1279 00ac 0B       		.uleb128 0xb
+ 1280 00ad 3B       		.uleb128 0x3b
+ 1281 00ae 0B       		.uleb128 0xb
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccLpjITj.s 			page 31
+
+
+ 1282 00af 27       		.uleb128 0x27
+ 1283 00b0 19       		.uleb128 0x19
+ 1284 00b1 49       		.uleb128 0x49
+ 1285 00b2 13       		.uleb128 0x13
+ 1286 00b3 11       		.uleb128 0x11
+ 1287 00b4 01       		.uleb128 0x1
+ 1288 00b5 12       		.uleb128 0x12
+ 1289 00b6 06       		.uleb128 0x6
+ 1290 00b7 40       		.uleb128 0x40
+ 1291 00b8 18       		.uleb128 0x18
+ 1292 00b9 9742     		.uleb128 0x2117
+ 1293 00bb 19       		.uleb128 0x19
+ 1294 00bc 00       		.byte	0
+ 1295 00bd 00       		.byte	0
+ 1296 00be 0F       		.uleb128 0xf
+ 1297 00bf 05       		.uleb128 0x5
+ 1298 00c0 00       		.byte	0
+ 1299 00c1 03       		.uleb128 0x3
+ 1300 00c2 0E       		.uleb128 0xe
+ 1301 00c3 3A       		.uleb128 0x3a
+ 1302 00c4 0B       		.uleb128 0xb
+ 1303 00c5 3B       		.uleb128 0x3b
+ 1304 00c6 0B       		.uleb128 0xb
+ 1305 00c7 49       		.uleb128 0x49
+ 1306 00c8 13       		.uleb128 0x13
+ 1307 00c9 02       		.uleb128 0x2
+ 1308 00ca 17       		.uleb128 0x17
+ 1309 00cb 00       		.byte	0
+ 1310 00cc 00       		.byte	0
+ 1311 00cd 10       		.uleb128 0x10
+ 1312 00ce 34       		.uleb128 0x34
+ 1313 00cf 00       		.byte	0
+ 1314 00d0 03       		.uleb128 0x3
+ 1315 00d1 0E       		.uleb128 0xe
+ 1316 00d2 3A       		.uleb128 0x3a
+ 1317 00d3 0B       		.uleb128 0xb
+ 1318 00d4 3B       		.uleb128 0x3b
+ 1319 00d5 05       		.uleb128 0x5
+ 1320 00d6 49       		.uleb128 0x49
+ 1321 00d7 13       		.uleb128 0x13
+ 1322 00d8 02       		.uleb128 0x2
+ 1323 00d9 17       		.uleb128 0x17
+ 1324 00da 00       		.byte	0
+ 1325 00db 00       		.byte	0
+ 1326 00dc 11       		.uleb128 0x11
+ 1327 00dd 34       		.uleb128 0x34
+ 1328 00de 00       		.byte	0
+ 1329 00df 03       		.uleb128 0x3
+ 1330 00e0 0E       		.uleb128 0xe
+ 1331 00e1 3A       		.uleb128 0x3a
+ 1332 00e2 0B       		.uleb128 0xb
+ 1333 00e3 3B       		.uleb128 0x3b
+ 1334 00e4 05       		.uleb128 0x5
+ 1335 00e5 49       		.uleb128 0x49
+ 1336 00e6 13       		.uleb128 0x13
+ 1337 00e7 1C       		.uleb128 0x1c
+ 1338 00e8 0B       		.uleb128 0xb
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccLpjITj.s 			page 32
+
+
+ 1339 00e9 00       		.byte	0
+ 1340 00ea 00       		.byte	0
+ 1341 00eb 12       		.uleb128 0x12
+ 1342 00ec 898201   		.uleb128 0x4109
+ 1343 00ef 00       		.byte	0
+ 1344 00f0 11       		.uleb128 0x11
+ 1345 00f1 01       		.uleb128 0x1
+ 1346 00f2 31       		.uleb128 0x31
+ 1347 00f3 13       		.uleb128 0x13
+ 1348 00f4 00       		.byte	0
+ 1349 00f5 00       		.byte	0
+ 1350 00f6 13       		.uleb128 0x13
+ 1351 00f7 2E       		.uleb128 0x2e
+ 1352 00f8 01       		.byte	0x1
+ 1353 00f9 3F       		.uleb128 0x3f
+ 1354 00fa 19       		.uleb128 0x19
+ 1355 00fb 03       		.uleb128 0x3
+ 1356 00fc 0E       		.uleb128 0xe
+ 1357 00fd 3A       		.uleb128 0x3a
+ 1358 00fe 0B       		.uleb128 0xb
+ 1359 00ff 3B       		.uleb128 0x3b
+ 1360 0100 05       		.uleb128 0x5
+ 1361 0101 27       		.uleb128 0x27
+ 1362 0102 19       		.uleb128 0x19
+ 1363 0103 49       		.uleb128 0x49
+ 1364 0104 13       		.uleb128 0x13
+ 1365 0105 11       		.uleb128 0x11
+ 1366 0106 01       		.uleb128 0x1
+ 1367 0107 12       		.uleb128 0x12
+ 1368 0108 06       		.uleb128 0x6
+ 1369 0109 40       		.uleb128 0x40
+ 1370 010a 18       		.uleb128 0x18
+ 1371 010b 9742     		.uleb128 0x2117
+ 1372 010d 19       		.uleb128 0x19
+ 1373 010e 01       		.uleb128 0x1
+ 1374 010f 13       		.uleb128 0x13
+ 1375 0110 00       		.byte	0
+ 1376 0111 00       		.byte	0
+ 1377 0112 14       		.uleb128 0x14
+ 1378 0113 2E       		.uleb128 0x2e
+ 1379 0114 00       		.byte	0
+ 1380 0115 3F       		.uleb128 0x3f
+ 1381 0116 19       		.uleb128 0x19
+ 1382 0117 03       		.uleb128 0x3
+ 1383 0118 0E       		.uleb128 0xe
+ 1384 0119 3A       		.uleb128 0x3a
+ 1385 011a 0B       		.uleb128 0xb
+ 1386 011b 3B       		.uleb128 0x3b
+ 1387 011c 05       		.uleb128 0x5
+ 1388 011d 27       		.uleb128 0x27
+ 1389 011e 19       		.uleb128 0x19
+ 1390 011f 11       		.uleb128 0x11
+ 1391 0120 01       		.uleb128 0x1
+ 1392 0121 12       		.uleb128 0x12
+ 1393 0122 06       		.uleb128 0x6
+ 1394 0123 40       		.uleb128 0x40
+ 1395 0124 18       		.uleb128 0x18
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccLpjITj.s 			page 33
+
+
+ 1396 0125 9742     		.uleb128 0x2117
+ 1397 0127 19       		.uleb128 0x19
+ 1398 0128 00       		.byte	0
+ 1399 0129 00       		.byte	0
+ 1400 012a 15       		.uleb128 0x15
+ 1401 012b 2E       		.uleb128 0x2e
+ 1402 012c 00       		.byte	0
+ 1403 012d 3F       		.uleb128 0x3f
+ 1404 012e 19       		.uleb128 0x19
+ 1405 012f 03       		.uleb128 0x3
+ 1406 0130 0E       		.uleb128 0xe
+ 1407 0131 3A       		.uleb128 0x3a
+ 1408 0132 0B       		.uleb128 0xb
+ 1409 0133 3B       		.uleb128 0x3b
+ 1410 0134 05       		.uleb128 0x5
+ 1411 0135 27       		.uleb128 0x27
+ 1412 0136 19       		.uleb128 0x19
+ 1413 0137 49       		.uleb128 0x49
+ 1414 0138 13       		.uleb128 0x13
+ 1415 0139 11       		.uleb128 0x11
+ 1416 013a 01       		.uleb128 0x1
+ 1417 013b 12       		.uleb128 0x12
+ 1418 013c 06       		.uleb128 0x6
+ 1419 013d 40       		.uleb128 0x40
+ 1420 013e 18       		.uleb128 0x18
+ 1421 013f 9742     		.uleb128 0x2117
+ 1422 0141 19       		.uleb128 0x19
+ 1423 0142 00       		.byte	0
+ 1424 0143 00       		.byte	0
+ 1425 0144 16       		.uleb128 0x16
+ 1426 0145 898201   		.uleb128 0x4109
+ 1427 0148 01       		.byte	0x1
+ 1428 0149 11       		.uleb128 0x11
+ 1429 014a 01       		.uleb128 0x1
+ 1430 014b 31       		.uleb128 0x31
+ 1431 014c 13       		.uleb128 0x13
+ 1432 014d 01       		.uleb128 0x1
+ 1433 014e 13       		.uleb128 0x13
+ 1434 014f 00       		.byte	0
+ 1435 0150 00       		.byte	0
+ 1436 0151 17       		.uleb128 0x17
+ 1437 0152 8A8201   		.uleb128 0x410a
+ 1438 0155 00       		.byte	0
+ 1439 0156 02       		.uleb128 0x2
+ 1440 0157 18       		.uleb128 0x18
+ 1441 0158 9142     		.uleb128 0x2111
+ 1442 015a 18       		.uleb128 0x18
+ 1443 015b 00       		.byte	0
+ 1444 015c 00       		.byte	0
+ 1445 015d 18       		.uleb128 0x18
+ 1446 015e 01       		.uleb128 0x1
+ 1447 015f 01       		.byte	0x1
+ 1448 0160 49       		.uleb128 0x49
+ 1449 0161 13       		.uleb128 0x13
+ 1450 0162 01       		.uleb128 0x1
+ 1451 0163 13       		.uleb128 0x13
+ 1452 0164 00       		.byte	0
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccLpjITj.s 			page 34
+
+
+ 1453 0165 00       		.byte	0
+ 1454 0166 19       		.uleb128 0x19
+ 1455 0167 21       		.uleb128 0x21
+ 1456 0168 00       		.byte	0
+ 1457 0169 49       		.uleb128 0x49
+ 1458 016a 13       		.uleb128 0x13
+ 1459 016b 2F       		.uleb128 0x2f
+ 1460 016c 0B       		.uleb128 0xb
+ 1461 016d 00       		.byte	0
+ 1462 016e 00       		.byte	0
+ 1463 016f 1A       		.uleb128 0x1a
+ 1464 0170 34       		.uleb128 0x34
+ 1465 0171 00       		.byte	0
+ 1466 0172 03       		.uleb128 0x3
+ 1467 0173 0E       		.uleb128 0xe
+ 1468 0174 3A       		.uleb128 0x3a
+ 1469 0175 0B       		.uleb128 0xb
+ 1470 0176 3B       		.uleb128 0x3b
+ 1471 0177 0B       		.uleb128 0xb
+ 1472 0178 49       		.uleb128 0x49
+ 1473 0179 13       		.uleb128 0x13
+ 1474 017a 3F       		.uleb128 0x3f
+ 1475 017b 19       		.uleb128 0x19
+ 1476 017c 02       		.uleb128 0x2
+ 1477 017d 18       		.uleb128 0x18
+ 1478 017e 00       		.byte	0
+ 1479 017f 00       		.byte	0
+ 1480 0180 1B       		.uleb128 0x1b
+ 1481 0181 34       		.uleb128 0x34
+ 1482 0182 00       		.byte	0
+ 1483 0183 03       		.uleb128 0x3
+ 1484 0184 0E       		.uleb128 0xe
+ 1485 0185 3A       		.uleb128 0x3a
+ 1486 0186 0B       		.uleb128 0xb
+ 1487 0187 3B       		.uleb128 0x3b
+ 1488 0188 0B       		.uleb128 0xb
+ 1489 0189 49       		.uleb128 0x49
+ 1490 018a 13       		.uleb128 0x13
+ 1491 018b 3F       		.uleb128 0x3f
+ 1492 018c 19       		.uleb128 0x19
+ 1493 018d 3C       		.uleb128 0x3c
+ 1494 018e 19       		.uleb128 0x19
+ 1495 018f 00       		.byte	0
+ 1496 0190 00       		.byte	0
+ 1497 0191 1C       		.uleb128 0x1c
+ 1498 0192 2E       		.uleb128 0x2e
+ 1499 0193 00       		.byte	0
+ 1500 0194 3F       		.uleb128 0x3f
+ 1501 0195 19       		.uleb128 0x19
+ 1502 0196 3C       		.uleb128 0x3c
+ 1503 0197 19       		.uleb128 0x19
+ 1504 0198 6E       		.uleb128 0x6e
+ 1505 0199 0E       		.uleb128 0xe
+ 1506 019a 03       		.uleb128 0x3
+ 1507 019b 0E       		.uleb128 0xe
+ 1508 019c 3A       		.uleb128 0x3a
+ 1509 019d 0B       		.uleb128 0xb
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccLpjITj.s 			page 35
+
+
+ 1510 019e 3B       		.uleb128 0x3b
+ 1511 019f 0B       		.uleb128 0xb
+ 1512 01a0 00       		.byte	0
+ 1513 01a1 00       		.byte	0
+ 1514 01a2 00       		.byte	0
+ 1515              		.section	.debug_loc,"",%progbits
+ 1516              	.Ldebug_loc0:
+ 1517              	.LLST0:
+ 1518 0000 00000000 		.4byte	.LVL1
+ 1519 0004 07000000 		.4byte	.LVL3-1
+ 1520 0008 0100     		.2byte	0x1
+ 1521 000a 50       		.byte	0x50
+ 1522 000b 07000000 		.4byte	.LVL3-1
+ 1523 000f 24000000 		.4byte	.LFE7
+ 1524 0013 0400     		.2byte	0x4
+ 1525 0015 F3       		.byte	0xf3
+ 1526 0016 01       		.uleb128 0x1
+ 1527 0017 50       		.byte	0x50
+ 1528 0018 9F       		.byte	0x9f
+ 1529 0019 00000000 		.4byte	0
+ 1530 001d 00000000 		.4byte	0
+ 1531              	.LLST1:
+ 1532 0021 08000000 		.4byte	.LVL3
+ 1533 0025 19000000 		.4byte	.LVL4-1
+ 1534 0029 0100     		.2byte	0x1
+ 1535 002b 50       		.byte	0x50
+ 1536 002c 00000000 		.4byte	0
+ 1537 0030 00000000 		.4byte	0
+ 1538              	.LLST2:
+ 1539 0034 06000000 		.4byte	.LVL6
+ 1540 0038 0A000000 		.4byte	.LVL7
+ 1541 003c 0500     		.2byte	0x5
+ 1542 003e 70       		.byte	0x70
+ 1543 003f 00       		.sleb128 0
+ 1544 0040 33       		.byte	0x33
+ 1545 0041 1A       		.byte	0x1a
+ 1546 0042 9F       		.byte	0x9f
+ 1547 0043 0A000000 		.4byte	.LVL7
+ 1548 0047 10000000 		.4byte	.LFE8
+ 1549 004b 0100     		.2byte	0x1
+ 1550 004d 50       		.byte	0x50
+ 1551 004e 00000000 		.4byte	0
+ 1552 0052 00000000 		.4byte	0
+ 1553              	.LLST3:
+ 1554 0056 00000000 		.4byte	.LVL12
+ 1555 005a 07000000 		.4byte	.LVL13-1
+ 1556 005e 0100     		.2byte	0x1
+ 1557 0060 50       		.byte	0x50
+ 1558 0061 07000000 		.4byte	.LVL13-1
+ 1559 0065 18000000 		.4byte	.LVL17
+ 1560 0069 0100     		.2byte	0x1
+ 1561 006b 54       		.byte	0x54
+ 1562 006c 18000000 		.4byte	.LVL17
+ 1563 0070 1A000000 		.4byte	.LFE2
+ 1564 0074 0400     		.2byte	0x4
+ 1565 0076 F3       		.byte	0xf3
+ 1566 0077 01       		.uleb128 0x1
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccLpjITj.s 			page 36
+
+
+ 1567 0078 50       		.byte	0x50
+ 1568 0079 9F       		.byte	0x9f
+ 1569 007a 00000000 		.4byte	0
+ 1570 007e 00000000 		.4byte	0
+ 1571              		.section	.debug_aranges,"",%progbits
+ 1572 0000 7C000000 		.4byte	0x7c
+ 1573 0004 0200     		.2byte	0x2
+ 1574 0006 00000000 		.4byte	.Ldebug_info0
+ 1575 000a 04       		.byte	0x4
+ 1576 000b 00       		.byte	0
+ 1577 000c 0000     		.2byte	0
+ 1578 000e 0000     		.2byte	0
+ 1579 0010 00000000 		.4byte	.LFB5
+ 1580 0014 0C000000 		.4byte	.LFE5-.LFB5
+ 1581 0018 00000000 		.4byte	.LFB6
+ 1582 001c 0C000000 		.4byte	.LFE6-.LFB6
+ 1583 0020 00000000 		.4byte	.LFB7
+ 1584 0024 24000000 		.4byte	.LFE7-.LFB7
+ 1585 0028 00000000 		.4byte	.LFB8
+ 1586 002c 10000000 		.4byte	.LFE8-.LFB8
+ 1587 0030 00000000 		.4byte	.LFB9
+ 1588 0034 0C000000 		.4byte	.LFE9-.LFB9
+ 1589 0038 00000000 		.4byte	.LFB10
+ 1590 003c 14000000 		.4byte	.LFE10-.LFB10
+ 1591 0040 00000000 		.4byte	.LFB11
+ 1592 0044 0C000000 		.4byte	.LFE11-.LFB11
+ 1593 0048 00000000 		.4byte	.LFB1
+ 1594 004c 1C000000 		.4byte	.LFE1-.LFB1
+ 1595 0050 00000000 		.4byte	.LFB2
+ 1596 0054 1A000000 		.4byte	.LFE2-.LFB2
+ 1597 0058 00000000 		.4byte	.LFB3
+ 1598 005c 14000000 		.4byte	.LFE3-.LFB3
+ 1599 0060 00000000 		.4byte	.LFB12
+ 1600 0064 0C000000 		.4byte	.LFE12-.LFB12
+ 1601 0068 00000000 		.4byte	.LFB13
+ 1602 006c 0C000000 		.4byte	.LFE13-.LFB13
+ 1603 0070 00000000 		.4byte	.LFB4
+ 1604 0074 0C000000 		.4byte	.LFE4-.LFB4
+ 1605 0078 00000000 		.4byte	0
+ 1606 007c 00000000 		.4byte	0
+ 1607              		.section	.debug_ranges,"",%progbits
+ 1608              	.Ldebug_ranges0:
+ 1609 0000 00000000 		.4byte	.LFB5
+ 1610 0004 0C000000 		.4byte	.LFE5
+ 1611 0008 00000000 		.4byte	.LFB6
+ 1612 000c 0C000000 		.4byte	.LFE6
+ 1613 0010 00000000 		.4byte	.LFB7
+ 1614 0014 24000000 		.4byte	.LFE7
+ 1615 0018 00000000 		.4byte	.LFB8
+ 1616 001c 10000000 		.4byte	.LFE8
+ 1617 0020 00000000 		.4byte	.LFB9
+ 1618 0024 0C000000 		.4byte	.LFE9
+ 1619 0028 00000000 		.4byte	.LFB10
+ 1620 002c 14000000 		.4byte	.LFE10
+ 1621 0030 00000000 		.4byte	.LFB11
+ 1622 0034 0C000000 		.4byte	.LFE11
+ 1623 0038 00000000 		.4byte	.LFB1
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccLpjITj.s 			page 37
+
+
+ 1624 003c 1C000000 		.4byte	.LFE1
+ 1625 0040 00000000 		.4byte	.LFB2
+ 1626 0044 1A000000 		.4byte	.LFE2
+ 1627 0048 00000000 		.4byte	.LFB3
+ 1628 004c 14000000 		.4byte	.LFE3
+ 1629 0050 00000000 		.4byte	.LFB12
+ 1630 0054 0C000000 		.4byte	.LFE12
+ 1631 0058 00000000 		.4byte	.LFB13
+ 1632 005c 0C000000 		.4byte	.LFE13
+ 1633 0060 00000000 		.4byte	.LFB4
+ 1634 0064 0C000000 		.4byte	.LFE4
+ 1635 0068 00000000 		.4byte	0
+ 1636 006c 00000000 		.4byte	0
+ 1637              		.section	.debug_line,"",%progbits
+ 1638              	.Ldebug_line0:
+ 1639 0000 58020000 		.section	.debug_str,"MS",%progbits,1
+ 1639      02005701 
+ 1639      00000201 
+ 1639      FB0E0D00 
+ 1639      01010101 
+ 1640              	.LASF69:
+ 1641 0000 43794578 		.ascii	"CyExitCriticalSection\000"
+ 1641      69744372 
+ 1641      69746963 
+ 1641      616C5365 
+ 1641      6374696F 
+ 1642              	.LASF59:
+ 1643 0016 6E756D5F 		.ascii	"num_rx_bytes_lidar\000"
+ 1643      72785F62 
+ 1643      79746573 
+ 1643      5F6C6964 
+ 1643      617200
+ 1644              	.LASF2:
+ 1645 0029 5F5F7569 		.ascii	"__uint8_t\000"
+ 1645      6E74385F 
+ 1645      7400
+ 1646              	.LASF48:
+ 1647 0033 72785F62 		.ascii	"rx_bytes_dbg_buff\000"
+ 1647      79746573 
+ 1647      5F646267 
+ 1647      5F627566 
+ 1647      6600
+ 1648              	.LASF55:
+ 1649 0045 6E756D5F 		.ascii	"num_rx_bytes_ble_buff\000"
+ 1649      72785F62 
+ 1649      79746573 
+ 1649      5F626C65 
+ 1649      5F627566 
+ 1650              	.LASF72:
+ 1651 005b 433A5C55 		.ascii	"C:\\Users\\EricHoffman\\Documents\\PSoC Creator\\Qu"
+ 1651      73657273 
+ 1651      5C457269 
+ 1651      63486F66 
+ 1651      666D616E 
+ 1652 0089 6164436F 		.ascii	"adCopter6_4\\QuadCopter6_4.cydsn\000"
+ 1652      70746572 
+ 1652      365F345C 
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccLpjITj.s 			page 38
+
+
+ 1652      51756164 
+ 1652      436F7074 
+ 1653              	.LASF70:
+ 1654 00a9 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 1654      43313120 
+ 1654      352E342E 
+ 1654      31203230 
+ 1654      31363036 
+ 1655 00dc 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m0 -mthumb -g -O"
+ 1655      20726576 
+ 1655      6973696F 
+ 1655      6E203233 
+ 1655      37373135 
+ 1656 010f 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 1656      66756E63 
+ 1656      74696F6E 
+ 1656      2D736563 
+ 1656      74696F6E 
+ 1657              	.LASF10:
+ 1658 0137 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1658      206C6F6E 
+ 1658      6720756E 
+ 1658      7369676E 
+ 1658      65642069 
+ 1659              	.LASF71:
+ 1660 014e 47656E65 		.ascii	"Generated_Source\\PSoC4\\AltISR.c\000"
+ 1660      72617465 
+ 1660      645F536F 
+ 1660      75726365 
+ 1660      5C50536F 
+ 1661              	.LASF56:
+ 1662 016e 72785F62 		.ascii	"rx_bytes_lidar\000"
+ 1662      79746573 
+ 1662      5F6C6964 
+ 1662      617200
+ 1663              	.LASF36:
+ 1664 017d 7072696F 		.ascii	"priorityOffset\000"
+ 1664      72697479 
+ 1664      4F666673 
+ 1664      657400
+ 1665              	.LASF51:
+ 1666 018c 72785F62 		.ascii	"rx_bytes_ble\000"
+ 1666      79746573 
+ 1666      5F626C65 
+ 1666      00
+ 1667              	.LASF13:
+ 1668 0199 696E7431 		.ascii	"int16_t\000"
+ 1668      365F7400 
+ 1669              	.LASF9:
+ 1670 01a1 6C6F6E67 		.ascii	"long long int\000"
+ 1670      206C6F6E 
+ 1670      6720696E 
+ 1670      7400
+ 1671              	.LASF0:
+ 1672 01af 7369676E 		.ascii	"signed char\000"
+ 1672      65642063 
+ 1672      68617200 
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccLpjITj.s 			page 39
+
+
+ 1673              	.LASF35:
+ 1674 01bb 696E7465 		.ascii	"interruptState\000"
+ 1674      72727570 
+ 1674      74537461 
+ 1674      746500
+ 1675              	.LASF42:
+ 1676 01ca 416C7449 		.ascii	"AltISR_StartEx\000"
+ 1676      53525F53 
+ 1676      74617274 
+ 1676      457800
+ 1677              	.LASF7:
+ 1678 01d9 6C6F6E67 		.ascii	"long int\000"
+ 1678      20696E74 
+ 1678      00
+ 1679              	.LASF15:
+ 1680 01e2 75696E74 		.ascii	"uint8\000"
+ 1680      3800
+ 1681              	.LASF14:
+ 1682 01e8 75696E74 		.ascii	"uint16_t\000"
+ 1682      31365F74 
+ 1682      00
+ 1683              	.LASF18:
+ 1684 01f1 646F7562 		.ascii	"double\000"
+ 1684      6C6500
+ 1685              	.LASF63:
+ 1686 01f8 4553435F 		.ascii	"ESC_curr\000"
+ 1686      63757272 
+ 1686      00
+ 1687              	.LASF16:
+ 1688 0201 75696E74 		.ascii	"uint32\000"
+ 1688      333200
+ 1689              	.LASF64:
+ 1690 0208 42617474 		.ascii	"Batt_volt\000"
+ 1690      5F766F6C 
+ 1690      7400
+ 1691              	.LASF39:
+ 1692 0212 416C7449 		.ascii	"AltISR_Enable\000"
+ 1692      53525F45 
+ 1692      6E61626C 
+ 1692      6500
+ 1693              	.LASF28:
+ 1694 0220 4E455554 		.ascii	"NEUTRAL\000"
+ 1694      52414C00 
+ 1695              	.LASF3:
+ 1696 0228 5F5F696E 		.ascii	"__int16_t\000"
+ 1696      7431365F 
+ 1696      7400
+ 1697              	.LASF38:
+ 1698 0232 416C7449 		.ascii	"AltISR_GetState\000"
+ 1698      53525F47 
+ 1698      65745374 
+ 1698      61746500 
+ 1699              	.LASF11:
+ 1700 0242 756E7369 		.ascii	"unsigned int\000"
+ 1700      676E6564 
+ 1700      20696E74 
+ 1700      00
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccLpjITj.s 			page 40
+
+
+ 1701              	.LASF54:
+ 1702 024f 6E756D5F 		.ascii	"num_rx_bytes_ble\000"
+ 1702      72785F62 
+ 1702      79746573 
+ 1702      5F626C65 
+ 1702      00
+ 1703              	.LASF8:
+ 1704 0260 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1704      20756E73 
+ 1704      69676E65 
+ 1704      6420696E 
+ 1704      7400
+ 1705              	.LASF66:
+ 1706 0272 736C6964 		.ascii	"slider_pos_last\000"
+ 1706      65725F70 
+ 1706      6F735F6C 
+ 1706      61737400 
+ 1707              	.LASF68:
+ 1708 0282 4379456E 		.ascii	"CyEnterCriticalSection\000"
+ 1708      74657243 
+ 1708      72697469 
+ 1708      63616C53 
+ 1708      65637469 
+ 1709              	.LASF6:
+ 1710 0299 73686F72 		.ascii	"short unsigned int\000"
+ 1710      7420756E 
+ 1710      7369676E 
+ 1710      65642069 
+ 1710      6E7400
+ 1711              	.LASF34:
+ 1712 02ac 7072696F 		.ascii	"priority\000"
+ 1712      72697479 
+ 1712      00
+ 1713              	.LASF45:
+ 1714 02b5 416C7449 		.ascii	"AltISR_ClearPending\000"
+ 1714      53525F43 
+ 1714      6C656172 
+ 1714      50656E64 
+ 1714      696E6700 
+ 1715              	.LASF73:
+ 1716 02c9 416C7449 		.ascii	"AltISR_GetPriority\000"
+ 1716      53525F47 
+ 1716      65745072 
+ 1716      696F7269 
+ 1716      747900
+ 1717              	.LASF47:
+ 1718 02dc 72785F62 		.ascii	"rx_bytes_dbg\000"
+ 1718      79746573 
+ 1718      5F646267 
+ 1718      00
+ 1719              	.LASF20:
+ 1720 02e9 72656733 		.ascii	"reg32\000"
+ 1720      3200
+ 1721              	.LASF25:
+ 1722 02ef 43414C5F 		.ascii	"CAL_FINAL\000"
+ 1722      46494E41 
+ 1722      4C00
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccLpjITj.s 			page 41
+
+
+ 1723              	.LASF26:
+ 1724 02f9 454D4552 		.ascii	"EMER_LAND\000"
+ 1724      5F4C414E 
+ 1724      4400
+ 1725              	.LASF23:
+ 1726 0303 73697A65 		.ascii	"sizetype\000"
+ 1726      74797065 
+ 1726      00
+ 1727              	.LASF22:
+ 1728 030c 6C6F6E67 		.ascii	"long double\000"
+ 1728      20646F75 
+ 1728      626C6500 
+ 1729              	.LASF33:
+ 1730 0318 61646472 		.ascii	"address\000"
+ 1730      65737300 
+ 1731              	.LASF53:
+ 1732 0320 424C455F 		.ascii	"BLE_UART_tmr\000"
+ 1732      55415254 
+ 1732      5F746D72 
+ 1732      00
+ 1733              	.LASF50:
+ 1734 032d 6E756D5F 		.ascii	"num_rx_bytes_dbg_buff\000"
+ 1734      72785F62 
+ 1734      79746573 
+ 1734      5F646267 
+ 1734      5F627566 
+ 1735              	.LASF17:
+ 1736 0343 666C6F61 		.ascii	"float\000"
+ 1736      7400
+ 1737              	.LASF43:
+ 1738 0349 416C7449 		.ascii	"AltISR_Stop\000"
+ 1738      53525F53 
+ 1738      746F7000 
+ 1739              	.LASF30:
+ 1740 0355 736C6964 		.ascii	"slider_pos_t\000"
+ 1740      65725F70 
+ 1740      6F735F74 
+ 1740      00
+ 1741              	.LASF60:
+ 1742 0362 6E756D5F 		.ascii	"num_rx_bytes_lidar_buff\000"
+ 1742      72785F62 
+ 1742      79746573 
+ 1742      5F6C6964 
+ 1742      61725F62 
+ 1743              	.LASF1:
+ 1744 037a 756E7369 		.ascii	"unsigned char\000"
+ 1744      676E6564 
+ 1744      20636861 
+ 1744      7200
+ 1745              	.LASF49:
+ 1746 0388 6E756D5F 		.ascii	"num_rx_bytes_dbg\000"
+ 1746      72785F62 
+ 1746      79746573 
+ 1746      5F646267 
+ 1746      00
+ 1747              	.LASF4:
+ 1748 0399 73686F72 		.ascii	"short int\000"
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccLpjITj.s 			page 42
+
+
+ 1748      7420696E 
+ 1748      7400
+ 1749              	.LASF46:
+ 1750 03a3 416C7449 		.ascii	"AltISR_Interrupt\000"
+ 1750      53525F49 
+ 1750      6E746572 
+ 1750      72757074 
+ 1750      00
+ 1751              	.LASF67:
+ 1752 03b4 43795261 		.ascii	"CyRamVectors\000"
+ 1752      6D566563 
+ 1752      746F7273 
+ 1752      00
+ 1753              	.LASF52:
+ 1754 03c1 72785F62 		.ascii	"rx_bytes_ble_buff\000"
+ 1754      79746573 
+ 1754      5F626C65 
+ 1754      5F627566 
+ 1754      6600
+ 1755              	.LASF24:
+ 1756 03d3 4D494E5F 		.ascii	"MIN_MTR_SPD\000"
+ 1756      4D54525F 
+ 1756      53504400 
+ 1757              	.LASF32:
+ 1758 03df 416C7449 		.ascii	"AltISR_SetPriority\000"
+ 1758      53525F53 
+ 1758      65745072 
+ 1758      696F7269 
+ 1758      747900
+ 1759              	.LASF62:
+ 1760 03f2 6D6F746F 		.ascii	"motor_toggles\000"
+ 1760      725F746F 
+ 1760      67676C65 
+ 1760      7300
+ 1761              	.LASF19:
+ 1762 0400 63686172 		.ascii	"char\000"
+ 1762      00
+ 1763              	.LASF21:
+ 1764 0405 63796973 		.ascii	"cyisraddress\000"
+ 1764      72616464 
+ 1764      72657373 
+ 1764      00
+ 1765              	.LASF31:
+ 1766 0412 416C7449 		.ascii	"AltISR_SetVector\000"
+ 1766      53525F53 
+ 1766      65745665 
+ 1766      63746F72 
+ 1766      00
+ 1767              	.LASF61:
+ 1768 0423 6E756D5F 		.ascii	"num_tasks\000"
+ 1768      7461736B 
+ 1768      7300
+ 1769              	.LASF5:
+ 1770 042d 5F5F7569 		.ascii	"__uint16_t\000"
+ 1770      6E743136 
+ 1770      5F7400
+ 1771              	.LASF44:
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccLpjITj.s 			page 43
+
+
+ 1772 0438 416C7449 		.ascii	"AltISR_SetPending\000"
+ 1772      53525F53 
+ 1772      65745065 
+ 1772      6E64696E 
+ 1772      6700
+ 1773              	.LASF41:
+ 1774 044a 416C7449 		.ascii	"AltISR_Start\000"
+ 1774      53525F53 
+ 1774      74617274 
+ 1774      00
+ 1775              	.LASF58:
+ 1776 0457 4C494441 		.ascii	"LIDAR_UART_tmr\000"
+ 1776      525F5541 
+ 1776      52545F74 
+ 1776      6D7200
+ 1777              	.LASF27:
+ 1778 0466 72756E5F 		.ascii	"run_mode_t\000"
+ 1778      6D6F6465 
+ 1778      5F7400
+ 1779              	.LASF29:
+ 1780 0471 48494748 		.ascii	"HIGH\000"
+ 1780      00
+ 1781              	.LASF65:
+ 1782 0476 72756E5F 		.ascii	"run_mode\000"
+ 1782      6D6F6465 
+ 1782      00
+ 1783              	.LASF40:
+ 1784 047f 416C7449 		.ascii	"AltISR_Disable\000"
+ 1784      53525F44 
+ 1784      69736162 
+ 1784      6C6500
+ 1785              	.LASF12:
+ 1786 048e 75696E74 		.ascii	"uint8_t\000"
+ 1786      385F7400 
+ 1787              	.LASF57:
+ 1788 0496 72785F62 		.ascii	"rx_bytes_lidar_buff\000"
+ 1788      79746573 
+ 1788      5F6C6964 
+ 1788      61725F62 
+ 1788      75666600 
+ 1789              	.LASF37:
+ 1790 04aa 416C7449 		.ascii	"AltISR_GetVector\000"
+ 1790      53525F47 
+ 1790      65745665 
+ 1790      63746F72 
+ 1790      00
+ 1791              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

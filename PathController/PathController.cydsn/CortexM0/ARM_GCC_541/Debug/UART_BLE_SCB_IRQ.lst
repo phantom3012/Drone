@@ -1,0 +1,2991 @@
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccTEweIY.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m0
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 0
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"UART_BLE_SCB_IRQ.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.UART_BLE_SCB_IRQ_Interrupt,"ax",%progbits
+  20              		.align	2
+  21              		.global	UART_BLE_SCB_IRQ_Interrupt
+  22              		.code	16
+  23              		.thumb_func
+  24              		.type	UART_BLE_SCB_IRQ_Interrupt, %function
+  25              	UART_BLE_SCB_IRQ_Interrupt:
+  26              	.LFB4:
+  27              		.file 1 "Generated_Source\\PSoC4\\UART_BLE_SCB_IRQ.c"
+   1:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** /*******************************************************************************
+   2:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** * File Name: UART_BLE_SCB_IRQ.c  
+   3:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** * Version 1.70
+   4:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *
+   5:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *  Description:
+   6:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *   API for controlling the state of an interrupt.
+   7:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *
+   8:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *
+   9:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *  Note:
+  10:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *
+  11:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** ********************************************************************************
+  12:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** * Copyright 2008-2015, Cypress Semiconductor Corporation.  All rights reserved.
+  13:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** * You may use this file only in accordance with the license, terms, conditions, 
+  14:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** * disclaimers, and limitations in the end user license agreement accompanying 
+  15:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** * the software package with which this file was provided.
+  16:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *******************************************************************************/
+  17:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** 
+  18:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** 
+  19:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** #include <cydevice_trm.h>
+  20:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** #include <CyLib.h>
+  21:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** #include <UART_BLE_SCB_IRQ.h>
+  22:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** #include "cyapicallbacks.h"
+  23:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** 
+  24:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** #if !defined(UART_BLE_SCB_IRQ__REMOVED) /* Check for removal by optimization */
+  25:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** 
+  26:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** /*******************************************************************************
+  27:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *  Place your includes, defines and code here 
+  28:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** ********************************************************************************/
+  29:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** /* `#START UART_BLE_SCB_IRQ_intc` */
+  30:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c ****   #include "main.h"
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccTEweIY.s 			page 2
+
+
+  31:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c ****   #include "UART_BLE_SPI_UART.h"
+  32:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c ****   #include "UART_BLE.h"
+  33:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** /* `#END` */
+  34:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** 
+  35:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** extern cyisraddress CyRamVectors[CYINT_IRQ_BASE + CY_NUM_INTERRUPTS];
+  36:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** 
+  37:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** /* Declared in startup, used to set unused interrupts to. */
+  38:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** CY_ISR_PROTO(IntDefaultHandler);
+  39:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** 
+  40:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** 
+  41:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** /*******************************************************************************
+  42:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** * Function Name: UART_BLE_SCB_IRQ_Start
+  43:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** ********************************************************************************
+  44:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *
+  45:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** * Summary:
+  46:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *  Set up the interrupt and enable it. This function disables the interrupt, 
+  47:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *  sets the default interrupt vector, sets the priority from the value in the
+  48:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *  Design Wide Resources Interrupt Editor, then enables the interrupt to the 
+  49:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *  interrupt controller.
+  50:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *
+  51:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** * Parameters:  
+  52:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *   None
+  53:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *
+  54:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** * Return:
+  55:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *   None
+  56:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *
+  57:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *******************************************************************************/
+  58:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** void UART_BLE_SCB_IRQ_Start(void)
+  59:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** {
+  60:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c ****     /* For all we know the interrupt is active. */
+  61:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c ****     UART_BLE_SCB_IRQ_Disable();
+  62:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** 
+  63:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c ****     /* Set the ISR to point to the UART_BLE_SCB_IRQ Interrupt. */
+  64:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c ****     UART_BLE_SCB_IRQ_SetVector(&UART_BLE_SCB_IRQ_Interrupt);
+  65:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** 
+  66:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c ****     /* Set the priority. */
+  67:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c ****     UART_BLE_SCB_IRQ_SetPriority((uint8)UART_BLE_SCB_IRQ_INTC_PRIOR_NUMBER);
+  68:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** 
+  69:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c ****     /* Enable it. */
+  70:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c ****     UART_BLE_SCB_IRQ_Enable();
+  71:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** }
+  72:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** 
+  73:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** 
+  74:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** /*******************************************************************************
+  75:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** * Function Name: UART_BLE_SCB_IRQ_StartEx
+  76:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** ********************************************************************************
+  77:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *
+  78:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** * Summary:
+  79:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *  Sets up the interrupt and enables it. This function disables the interrupt,
+  80:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *  sets the interrupt vector based on the address passed in, sets the priority 
+  81:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *  from the value in the Design Wide Resources Interrupt Editor, then enables 
+  82:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *  the interrupt to the interrupt controller.
+  83:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *  
+  84:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *  When defining ISR functions, the CY_ISR and CY_ISR_PROTO macros should be 
+  85:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *  used to provide consistent definition across compilers:
+  86:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *  
+  87:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *  Function definition example:
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccTEweIY.s 			page 3
+
+
+  88:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *   CY_ISR(MyISR)
+  89:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *   {
+  90:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *   }
+  91:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *   Function prototype example:
+  92:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *   CY_ISR_PROTO(MyISR);
+  93:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *
+  94:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** * Parameters:  
+  95:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *   address: Address of the ISR to set in the interrupt vector table.
+  96:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *
+  97:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** * Return:
+  98:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *   None
+  99:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *
+ 100:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *******************************************************************************/
+ 101:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** void UART_BLE_SCB_IRQ_StartEx(cyisraddress address)
+ 102:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** {
+ 103:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c ****     /* For all we know the interrupt is active. */
+ 104:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c ****     UART_BLE_SCB_IRQ_Disable();
+ 105:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** 
+ 106:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c ****     /* Set the ISR to point to the UART_BLE_SCB_IRQ Interrupt. */
+ 107:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c ****     UART_BLE_SCB_IRQ_SetVector(address);
+ 108:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** 
+ 109:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c ****     /* Set the priority. */
+ 110:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c ****     UART_BLE_SCB_IRQ_SetPriority((uint8)UART_BLE_SCB_IRQ_INTC_PRIOR_NUMBER);
+ 111:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** 
+ 112:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c ****     /* Enable it. */
+ 113:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c ****     UART_BLE_SCB_IRQ_Enable();
+ 114:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** }
+ 115:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** 
+ 116:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** 
+ 117:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** /*******************************************************************************
+ 118:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** * Function Name: UART_BLE_SCB_IRQ_Stop
+ 119:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** ********************************************************************************
+ 120:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *
+ 121:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** * Summary:
+ 122:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *   Disables and removes the interrupt.
+ 123:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *
+ 124:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** * Parameters:  
+ 125:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *   None
+ 126:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *
+ 127:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** * Return:
+ 128:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *   None
+ 129:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *
+ 130:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *******************************************************************************/
+ 131:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** void UART_BLE_SCB_IRQ_Stop(void)
+ 132:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** {
+ 133:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c ****     /* Disable this interrupt. */
+ 134:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c ****     UART_BLE_SCB_IRQ_Disable();
+ 135:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** 
+ 136:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c ****     /* Set the ISR to point to the passive one. */
+ 137:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c ****     UART_BLE_SCB_IRQ_SetVector(&IntDefaultHandler);
+ 138:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** }
+ 139:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** 
+ 140:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** 
+ 141:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** /*******************************************************************************
+ 142:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** * Function Name: UART_BLE_SCB_IRQ_Interrupt
+ 143:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** ********************************************************************************
+ 144:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccTEweIY.s 			page 4
+
+
+ 145:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** * Summary:
+ 146:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *   The default Interrupt Service Routine for UART_BLE_SCB_IRQ.
+ 147:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *
+ 148:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *   Add custom code between the START and END comments to keep the next version
+ 149:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *   of this file from over-writing your code.
+ 150:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *
+ 151:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *   Note You may use either the default ISR by using this API, or you may define
+ 152:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *   your own separate ISR through ISR_StartEx().
+ 153:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *
+ 154:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** * Parameters:  
+ 155:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *   None
+ 156:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *
+ 157:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** * Return:
+ 158:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *   None
+ 159:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *
+ 160:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *******************************************************************************/
+ 161:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** CY_ISR(UART_BLE_SCB_IRQ_Interrupt)
+ 162:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** {
+  28              		.loc 1 162 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32 0000 70B5     		push	{r4, r5, r6, lr}
+  33              		.cfi_def_cfa_offset 16
+  34              		.cfi_offset 4, -16
+  35              		.cfi_offset 5, -12
+  36              		.cfi_offset 6, -8
+  37              		.cfi_offset 14, -4
+ 163:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c ****     #ifdef UART_BLE_SCB_IRQ_INTERRUPT_INTERRUPT_CALLBACK
+ 164:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c ****         UART_BLE_SCB_IRQ_Interrupt_InterruptCallback();
+ 165:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c ****     #endif /* UART_BLE_SCB_IRQ_INTERRUPT_INTERRUPT_CALLBACK */ 
+ 166:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** 
+ 167:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c ****     /*  Place your Interrupt code here. */
+ 168:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c ****     /* `#START UART_BLE_SCB_IRQ_Interrupt` */
+ 169:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c ****     uint8_t buff_depth,x;
+ 170:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c ****     
+ 171:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c ****     buff_depth = UART_BLE_SpiUartGetRxBufferSize();
+  38              		.loc 1 171 0
+  39 0002 FFF7FEFF 		bl	UART_BLE_SpiUartGetRxBufferSize
+  40              	.LVL0:
+  41 0006 C5B2     		uxtb	r5, r0
+  42              	.LVL1:
+ 172:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c ****     
+ 173:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c ****     if (num_rx_bytes_ble_buff==0) {
+  43              		.loc 1 173 0
+  44 0008 1C4B     		ldr	r3, .L9
+  45 000a 1B78     		ldrb	r3, [r3]
+  46 000c 002B     		cmp	r3, #0
+  47 000e 02D1     		bne	.L2
+ 174:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c ****         BLE_UART_tmr=0;         // knock down timeout timer
+  48              		.loc 1 174 0
+  49 0010 0022     		movs	r2, #0
+  50 0012 1B4B     		ldr	r3, .L9+4
+  51 0014 1A70     		strb	r2, [r3]
+  52              	.L2:
+ 162:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c ****     #ifdef UART_BLE_SCB_IRQ_INTERRUPT_INTERRUPT_CALLBACK
+  53              		.loc 1 162 0 discriminator 1
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccTEweIY.s 			page 5
+
+
+  54 0016 0024     		movs	r4, #0
+  55 0018 0CE0     		b	.L3
+  56              	.LVL2:
+  57              	.L4:
+ 175:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c ****     }  
+ 176:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c ****     
+ 177:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c ****     for (x=0; x<buff_depth; x++)
+ 178:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c ****       rx_bytes_ble_buff[num_rx_bytes_ble_buff++] = UART_BLE_UartGetByte();
+  58              		.loc 1 178 0 discriminator 3
+  59 001a 184A     		ldr	r2, .L9
+  60 001c 1678     		ldrb	r6, [r2]
+  61 001e F6B2     		uxtb	r6, r6
+  62 0020 731C     		adds	r3, r6, #1
+  63 0022 DBB2     		uxtb	r3, r3
+  64 0024 1370     		strb	r3, [r2]
+  65 0026 FFF7FEFF 		bl	UART_BLE_UartGetByte
+  66              	.LVL3:
+  67 002a C0B2     		uxtb	r0, r0
+  68 002c 154B     		ldr	r3, .L9+8
+  69 002e 9855     		strb	r0, [r3, r6]
+ 177:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c ****       rx_bytes_ble_buff[num_rx_bytes_ble_buff++] = UART_BLE_UartGetByte();
+  70              		.loc 1 177 0 discriminator 3
+  71 0030 0134     		adds	r4, r4, #1
+  72              	.LVL4:
+  73 0032 E4B2     		uxtb	r4, r4
+  74              	.LVL5:
+  75              	.L3:
+ 177:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c ****       rx_bytes_ble_buff[num_rx_bytes_ble_buff++] = UART_BLE_UartGetByte();
+  76              		.loc 1 177 0 is_stmt 0 discriminator 1
+  77 0034 AC42     		cmp	r4, r5
+  78 0036 F0D3     		bcc	.L4
+ 179:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c ****     
+ 180:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c ****     UART_BLE_ClearRxInterruptSource(0xFF);
+  79              		.loc 1 180 0 is_stmt 1
+  80 0038 FF22     		movs	r2, #255
+  81 003a 134B     		ldr	r3, .L9+12
+  82 003c 1A60     		str	r2, [r3]
+ 181:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c ****     // Pitch = {byte[0],byte[1]:7:6};
+ 182:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c ****     // Roll = (byte[1][5:0],byte[2]7:4}
+ 183:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c ****     // thrust = {byte[2]3:0,byte[3]7:3}
+ 184:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c ****     // cmd = byte[3]2:0
+ 185:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c ****     // chksum = byte[4]
+ 186:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c ****     if (num_rx_bytes_ble_buff==5) {              // full command is in
+  83              		.loc 1 186 0
+  84 003e 0F4B     		ldr	r3, .L9
+  85 0040 1B78     		ldrb	r3, [r3]
+  86 0042 052B     		cmp	r3, #5
+  87 0044 19D1     		bne	.L1
+  88 0046 07E0     		b	.L8
+  89              	.LVL6:
+  90              	.L7:
+ 187:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c ****         for (x=0; x<5; x++) {
+ 188:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c ****             rx_bytes_ble[x]=rx_bytes_ble_buff[x];
+  91              		.loc 1 188 0 discriminator 3
+  92 0048 0E4A     		ldr	r2, .L9+8
+  93 004a D25C     		ldrb	r2, [r2, r3]
+  94 004c D2B2     		uxtb	r2, r2
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccTEweIY.s 			page 6
+
+
+  95 004e 0F49     		ldr	r1, .L9+16
+  96 0050 CA54     		strb	r2, [r1, r3]
+ 187:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c ****         for (x=0; x<5; x++) {
+  97              		.loc 1 187 0 discriminator 3
+  98 0052 0133     		adds	r3, r3, #1
+  99              	.LVL7:
+ 100 0054 DBB2     		uxtb	r3, r3
+ 101              	.LVL8:
+ 102 0056 00E0     		b	.L5
+ 103              	.LVL9:
+ 104              	.L8:
+ 105 0058 0023     		movs	r3, #0
+ 106              	.LVL10:
+ 107              	.L5:
+ 187:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c ****         for (x=0; x<5; x++) {
+ 108              		.loc 1 187 0 is_stmt 0 discriminator 1
+ 109 005a 042B     		cmp	r3, #4
+ 110 005c F4D9     		bls	.L7
+ 189:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c ****         }
+ 190:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c ****         num_rx_bytes_ble = num_rx_bytes_ble_buff;
+ 111              		.loc 1 190 0 is_stmt 1
+ 112 005e 074A     		ldr	r2, .L9
+ 113 0060 1378     		ldrb	r3, [r2]
+ 114              	.LVL11:
+ 115 0062 DBB2     		uxtb	r3, r3
+ 116 0064 0A49     		ldr	r1, .L9+20
+ 117 0066 0B70     		strb	r3, [r1]
+ 191:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c ****         num_rx_bytes_ble_buff = 0;
+ 118              		.loc 1 191 0
+ 119 0068 0023     		movs	r3, #0
+ 120 006a 1370     		strb	r3, [r2]
+ 192:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c ****         BLE_UART_tmr = 4;                           // cancel UART timeout
+ 121              		.loc 1 192 0
+ 122 006c 0422     		movs	r2, #4
+ 123 006e 044B     		ldr	r3, .L9+4
+ 124 0070 1A70     		strb	r2, [r3]
+ 193:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c ****         enqueue_task(BLE_CMD_PROC,2);
+ 125              		.loc 1 193 0
+ 126 0072 0221     		movs	r1, #2
+ 127 0074 0220     		movs	r0, #2
+ 128 0076 FFF7FEFF 		bl	enqueue_task
+ 129              	.LVL12:
+ 130              	.L1:
+ 194:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c ****     }
+ 195:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c ****     /* `#END` */
+ 196:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** }
+ 131              		.loc 1 196 0
+ 132              		@ sp needed
+ 133              	.LVL13:
+ 134 007a 70BD     		pop	{r4, r5, r6, pc}
+ 135              	.L10:
+ 136              		.align	2
+ 137              	.L9:
+ 138 007c 00000000 		.word	num_rx_bytes_ble_buff
+ 139 0080 00000000 		.word	BLE_UART_tmr
+ 140 0084 00000000 		.word	rx_bytes_ble_buff
+ 141 0088 C00F2440 		.word	1076105152
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccTEweIY.s 			page 7
+
+
+ 142 008c 00000000 		.word	rx_bytes_ble
+ 143 0090 00000000 		.word	num_rx_bytes_ble
+ 144              		.cfi_endproc
+ 145              	.LFE4:
+ 146              		.size	UART_BLE_SCB_IRQ_Interrupt, .-UART_BLE_SCB_IRQ_Interrupt
+ 147              		.section	.text.UART_BLE_SCB_IRQ_SetVector,"ax",%progbits
+ 148              		.align	2
+ 149              		.global	UART_BLE_SCB_IRQ_SetVector
+ 150              		.code	16
+ 151              		.thumb_func
+ 152              		.type	UART_BLE_SCB_IRQ_SetVector, %function
+ 153              	UART_BLE_SCB_IRQ_SetVector:
+ 154              	.LFB5:
+ 197:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** 
+ 198:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** 
+ 199:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** /*******************************************************************************
+ 200:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** * Function Name: UART_BLE_SCB_IRQ_SetVector
+ 201:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** ********************************************************************************
+ 202:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *
+ 203:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** * Summary:
+ 204:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *   Change the ISR vector for the Interrupt. Note calling UART_BLE_SCB_IRQ_Start
+ 205:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *   will override any effect this method would have had. To set the vector 
+ 206:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *   before the component has been started use UART_BLE_SCB_IRQ_StartEx instead.
+ 207:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** * 
+ 208:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *   When defining ISR functions, the CY_ISR and CY_ISR_PROTO macros should be 
+ 209:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *   used to provide consistent definition across compilers:
+ 210:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *
+ 211:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *   Function definition example:
+ 212:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *   CY_ISR(MyISR)
+ 213:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *   {
+ 214:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *   }
+ 215:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *
+ 216:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *   Function prototype example:
+ 217:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *     CY_ISR_PROTO(MyISR);
+ 218:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *
+ 219:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** * Parameters:
+ 220:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *   address: Address of the ISR to set in the interrupt vector table.
+ 221:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *
+ 222:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** * Return:
+ 223:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *   None
+ 224:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *
+ 225:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *******************************************************************************/
+ 226:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** void UART_BLE_SCB_IRQ_SetVector(cyisraddress address)
+ 227:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** {
+ 155              		.loc 1 227 0
+ 156              		.cfi_startproc
+ 157              		@ args = 0, pretend = 0, frame = 0
+ 158              		@ frame_needed = 0, uses_anonymous_args = 0
+ 159              		@ link register save eliminated.
+ 160              	.LVL14:
+ 228:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c ****     CyRamVectors[CYINT_IRQ_BASE + UART_BLE_SCB_IRQ__INTC_NUMBER] = address;
+ 161              		.loc 1 228 0
+ 162 0000 014B     		ldr	r3, .L12
+ 163 0002 1866     		str	r0, [r3, #96]
+ 229:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** }
+ 164              		.loc 1 229 0
+ 165              		@ sp needed
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccTEweIY.s 			page 8
+
+
+ 166 0004 7047     		bx	lr
+ 167              	.L13:
+ 168 0006 C046     		.align	2
+ 169              	.L12:
+ 170 0008 00000000 		.word	CyRamVectors
+ 171              		.cfi_endproc
+ 172              	.LFE5:
+ 173              		.size	UART_BLE_SCB_IRQ_SetVector, .-UART_BLE_SCB_IRQ_SetVector
+ 174              		.section	.text.UART_BLE_SCB_IRQ_GetVector,"ax",%progbits
+ 175              		.align	2
+ 176              		.global	UART_BLE_SCB_IRQ_GetVector
+ 177              		.code	16
+ 178              		.thumb_func
+ 179              		.type	UART_BLE_SCB_IRQ_GetVector, %function
+ 180              	UART_BLE_SCB_IRQ_GetVector:
+ 181              	.LFB6:
+ 230:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** 
+ 231:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** 
+ 232:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** /*******************************************************************************
+ 233:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** * Function Name: UART_BLE_SCB_IRQ_GetVector
+ 234:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** ********************************************************************************
+ 235:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *
+ 236:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** * Summary:
+ 237:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *   Gets the "address" of the current ISR vector for the Interrupt.
+ 238:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *
+ 239:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** * Parameters:
+ 240:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *   None
+ 241:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *
+ 242:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** * Return:
+ 243:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *   Address of the ISR in the interrupt vector table.
+ 244:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *
+ 245:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *******************************************************************************/
+ 246:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** cyisraddress UART_BLE_SCB_IRQ_GetVector(void)
+ 247:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** {
+ 182              		.loc 1 247 0
+ 183              		.cfi_startproc
+ 184              		@ args = 0, pretend = 0, frame = 0
+ 185              		@ frame_needed = 0, uses_anonymous_args = 0
+ 186              		@ link register save eliminated.
+ 248:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c ****     return CyRamVectors[CYINT_IRQ_BASE + UART_BLE_SCB_IRQ__INTC_NUMBER];
+ 187              		.loc 1 248 0
+ 188 0000 014B     		ldr	r3, .L15
+ 189 0002 186E     		ldr	r0, [r3, #96]
+ 249:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** }
+ 190              		.loc 1 249 0
+ 191              		@ sp needed
+ 192 0004 7047     		bx	lr
+ 193              	.L16:
+ 194 0006 C046     		.align	2
+ 195              	.L15:
+ 196 0008 00000000 		.word	CyRamVectors
+ 197              		.cfi_endproc
+ 198              	.LFE6:
+ 199              		.size	UART_BLE_SCB_IRQ_GetVector, .-UART_BLE_SCB_IRQ_GetVector
+ 200              		.section	.text.UART_BLE_SCB_IRQ_SetPriority,"ax",%progbits
+ 201              		.align	2
+ 202              		.global	UART_BLE_SCB_IRQ_SetPriority
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccTEweIY.s 			page 9
+
+
+ 203              		.code	16
+ 204              		.thumb_func
+ 205              		.type	UART_BLE_SCB_IRQ_SetPriority, %function
+ 206              	UART_BLE_SCB_IRQ_SetPriority:
+ 207              	.LFB7:
+ 250:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** 
+ 251:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** 
+ 252:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** /*******************************************************************************
+ 253:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** * Function Name: UART_BLE_SCB_IRQ_SetPriority
+ 254:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** ********************************************************************************
+ 255:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *
+ 256:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** * Summary:
+ 257:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *   Sets the Priority of the Interrupt. 
+ 258:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *
+ 259:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *   Note calling UART_BLE_SCB_IRQ_Start or UART_BLE_SCB_IRQ_StartEx will 
+ 260:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *   override any effect this API would have had. This API should only be called
+ 261:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *   after UART_BLE_SCB_IRQ_Start or UART_BLE_SCB_IRQ_StartEx has been called. 
+ 262:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *   To set the initial priority for the component, use the Design-Wide Resources
+ 263:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *   Interrupt Editor.
+ 264:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *
+ 265:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *   Note This API has no effect on Non-maskable interrupt NMI).
+ 266:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *
+ 267:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** * Parameters:
+ 268:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *   priority: Priority of the interrupt, 0 being the highest priority
+ 269:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *             PSoC 3 and PSoC 5LP: Priority is from 0 to 7.
+ 270:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *             PSoC 4: Priority is from 0 to 3.
+ 271:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *
+ 272:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** * Return:
+ 273:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *   None
+ 274:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *
+ 275:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *******************************************************************************/
+ 276:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** void UART_BLE_SCB_IRQ_SetPriority(uint8 priority)
+ 277:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** {
+ 208              		.loc 1 277 0
+ 209              		.cfi_startproc
+ 210              		@ args = 0, pretend = 0, frame = 0
+ 211              		@ frame_needed = 0, uses_anonymous_args = 0
+ 212              	.LVL15:
+ 213 0000 10B5     		push	{r4, lr}
+ 214              		.cfi_def_cfa_offset 8
+ 215              		.cfi_offset 4, -8
+ 216              		.cfi_offset 14, -4
+ 217 0002 0400     		movs	r4, r0
+ 218              	.LVL16:
+ 278:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** 	uint8 interruptState;
+ 279:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c ****     uint32 priorityOffset = ((UART_BLE_SCB_IRQ__INTC_NUMBER % 4u) * 8u) + 6u;
+ 280:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c ****     
+ 281:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** 	interruptState = CyEnterCriticalSection();
+ 219              		.loc 1 281 0
+ 220 0004 FFF7FEFF 		bl	CyEnterCriticalSection
+ 221              	.LVL17:
+ 282:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c ****     *UART_BLE_SCB_IRQ_INTC_PRIOR = (*UART_BLE_SCB_IRQ_INTC_PRIOR & (uint32)(~UART_BLE_SCB_IRQ__INTC
+ 222              		.loc 1 282 0
+ 223 0008 044A     		ldr	r2, .L18
+ 224 000a 1368     		ldr	r3, [r2]
+ 225 000c C021     		movs	r1, #192
+ 226 000e 8B43     		bics	r3, r1
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccTEweIY.s 			page 10
+
+
+ 283:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c ****                                     ((uint32)priority << priorityOffset);
+ 227              		.loc 1 283 0
+ 228 0010 A401     		lsls	r4, r4, #6
+ 282:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c ****     *UART_BLE_SCB_IRQ_INTC_PRIOR = (*UART_BLE_SCB_IRQ_INTC_PRIOR & (uint32)(~UART_BLE_SCB_IRQ__INTC
+ 229              		.loc 1 282 0
+ 230 0012 1C43     		orrs	r4, r3
+ 231 0014 1460     		str	r4, [r2]
+ 284:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** 	CyExitCriticalSection(interruptState);
+ 232              		.loc 1 284 0
+ 233 0016 FFF7FEFF 		bl	CyExitCriticalSection
+ 234              	.LVL18:
+ 285:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** }
+ 235              		.loc 1 285 0
+ 236              		@ sp needed
+ 237 001a 10BD     		pop	{r4, pc}
+ 238              	.L19:
+ 239              		.align	2
+ 240              	.L18:
+ 241 001c 08E400E0 		.word	-536812536
+ 242              		.cfi_endproc
+ 243              	.LFE7:
+ 244              		.size	UART_BLE_SCB_IRQ_SetPriority, .-UART_BLE_SCB_IRQ_SetPriority
+ 245              		.section	.text.UART_BLE_SCB_IRQ_GetPriority,"ax",%progbits
+ 246              		.align	2
+ 247              		.global	UART_BLE_SCB_IRQ_GetPriority
+ 248              		.code	16
+ 249              		.thumb_func
+ 250              		.type	UART_BLE_SCB_IRQ_GetPriority, %function
+ 251              	UART_BLE_SCB_IRQ_GetPriority:
+ 252              	.LFB8:
+ 286:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** 
+ 287:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** 
+ 288:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** /*******************************************************************************
+ 289:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** * Function Name: UART_BLE_SCB_IRQ_GetPriority
+ 290:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** ********************************************************************************
+ 291:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *
+ 292:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** * Summary:
+ 293:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *   Gets the Priority of the Interrupt.
+ 294:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *
+ 295:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** * Parameters:
+ 296:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *   None
+ 297:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *
+ 298:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** * Return:
+ 299:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *   Priority of the interrupt, 0 being the highest priority
+ 300:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *    PSoC 3 and PSoC 5LP: Priority is from 0 to 7.
+ 301:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *    PSoC 4: Priority is from 0 to 3.
+ 302:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *
+ 303:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *******************************************************************************/
+ 304:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** uint8 UART_BLE_SCB_IRQ_GetPriority(void)
+ 305:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** {
+ 253              		.loc 1 305 0
+ 254              		.cfi_startproc
+ 255              		@ args = 0, pretend = 0, frame = 0
+ 256              		@ frame_needed = 0, uses_anonymous_args = 0
+ 257              		@ link register save eliminated.
+ 258              	.LVL19:
+ 306:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c ****     uint32 priority;
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccTEweIY.s 			page 11
+
+
+ 307:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** 	uint32 priorityOffset = ((UART_BLE_SCB_IRQ__INTC_NUMBER % 4u) * 8u) + 6u;
+ 308:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** 
+ 309:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c ****     priority = (*UART_BLE_SCB_IRQ_INTC_PRIOR & UART_BLE_SCB_IRQ__INTC_PRIOR_MASK) >> priorityOffset
+ 259              		.loc 1 309 0
+ 260 0000 024B     		ldr	r3, .L21
+ 261 0002 1868     		ldr	r0, [r3]
+ 262 0004 8009     		lsrs	r0, r0, #6
+ 263              	.LVL20:
+ 310:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** 
+ 311:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c ****     return (uint8)priority;
+ 264              		.loc 1 311 0
+ 265 0006 0323     		movs	r3, #3
+ 266 0008 1840     		ands	r0, r3
+ 267              	.LVL21:
+ 312:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** }
+ 268              		.loc 1 312 0
+ 269              		@ sp needed
+ 270 000a 7047     		bx	lr
+ 271              	.L22:
+ 272              		.align	2
+ 273              	.L21:
+ 274 000c 08E400E0 		.word	-536812536
+ 275              		.cfi_endproc
+ 276              	.LFE8:
+ 277              		.size	UART_BLE_SCB_IRQ_GetPriority, .-UART_BLE_SCB_IRQ_GetPriority
+ 278              		.section	.text.UART_BLE_SCB_IRQ_Enable,"ax",%progbits
+ 279              		.align	2
+ 280              		.global	UART_BLE_SCB_IRQ_Enable
+ 281              		.code	16
+ 282              		.thumb_func
+ 283              		.type	UART_BLE_SCB_IRQ_Enable, %function
+ 284              	UART_BLE_SCB_IRQ_Enable:
+ 285              	.LFB9:
+ 313:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** 
+ 314:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** 
+ 315:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** /*******************************************************************************
+ 316:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** * Function Name: UART_BLE_SCB_IRQ_Enable
+ 317:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** ********************************************************************************
+ 318:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *
+ 319:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** * Summary:
+ 320:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *   Enables the interrupt to the interrupt controller. Do not call this function
+ 321:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *   unless ISR_Start() has been called or the functionality of the ISR_Start() 
+ 322:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *   function, which sets the vector and the priority, has been called.
+ 323:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *
+ 324:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** * Parameters:
+ 325:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *   None
+ 326:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *
+ 327:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** * Return:
+ 328:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *   None
+ 329:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *
+ 330:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *******************************************************************************/
+ 331:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** void UART_BLE_SCB_IRQ_Enable(void)
+ 332:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** {
+ 286              		.loc 1 332 0
+ 287              		.cfi_startproc
+ 288              		@ args = 0, pretend = 0, frame = 0
+ 289              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccTEweIY.s 			page 12
+
+
+ 290              		@ link register save eliminated.
+ 333:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c ****     /* Enable the general interrupt. */
+ 334:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c ****     *UART_BLE_SCB_IRQ_INTC_SET_EN = UART_BLE_SCB_IRQ__INTC_MASK;
+ 291              		.loc 1 334 0
+ 292 0000 8022     		movs	r2, #128
+ 293 0002 5200     		lsls	r2, r2, #1
+ 294 0004 014B     		ldr	r3, .L24
+ 295 0006 1A60     		str	r2, [r3]
+ 335:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** }
+ 296              		.loc 1 335 0
+ 297              		@ sp needed
+ 298 0008 7047     		bx	lr
+ 299              	.L25:
+ 300 000a C046     		.align	2
+ 301              	.L24:
+ 302 000c 00E100E0 		.word	-536813312
+ 303              		.cfi_endproc
+ 304              	.LFE9:
+ 305              		.size	UART_BLE_SCB_IRQ_Enable, .-UART_BLE_SCB_IRQ_Enable
+ 306              		.section	.text.UART_BLE_SCB_IRQ_GetState,"ax",%progbits
+ 307              		.align	2
+ 308              		.global	UART_BLE_SCB_IRQ_GetState
+ 309              		.code	16
+ 310              		.thumb_func
+ 311              		.type	UART_BLE_SCB_IRQ_GetState, %function
+ 312              	UART_BLE_SCB_IRQ_GetState:
+ 313              	.LFB10:
+ 336:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** 
+ 337:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** 
+ 338:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** /*******************************************************************************
+ 339:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** * Function Name: UART_BLE_SCB_IRQ_GetState
+ 340:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** ********************************************************************************
+ 341:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *
+ 342:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** * Summary:
+ 343:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *   Gets the state (enabled, disabled) of the Interrupt.
+ 344:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *
+ 345:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** * Parameters:
+ 346:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *   None
+ 347:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *
+ 348:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** * Return:
+ 349:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *   1 if enabled, 0 if disabled.
+ 350:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *
+ 351:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *******************************************************************************/
+ 352:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** uint8 UART_BLE_SCB_IRQ_GetState(void)
+ 353:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** {
+ 314              		.loc 1 353 0
+ 315              		.cfi_startproc
+ 316              		@ args = 0, pretend = 0, frame = 0
+ 317              		@ frame_needed = 0, uses_anonymous_args = 0
+ 318              		@ link register save eliminated.
+ 354:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c ****     /* Get the state of the general interrupt. */
+ 355:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c ****     return ((*UART_BLE_SCB_IRQ_INTC_SET_EN & (uint32)UART_BLE_SCB_IRQ__INTC_MASK) != 0u) ? 1u:0u;
+ 319              		.loc 1 355 0
+ 320 0000 034B     		ldr	r3, .L29
+ 321 0002 1B68     		ldr	r3, [r3]
+ 322 0004 DB05     		lsls	r3, r3, #23
+ 323 0006 01D5     		bpl	.L28
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccTEweIY.s 			page 13
+
+
+ 324 0008 0120     		movs	r0, #1
+ 325 000a 00E0     		b	.L27
+ 326              	.L28:
+ 327 000c 0020     		movs	r0, #0
+ 328              	.L27:
+ 356:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** }
+ 329              		.loc 1 356 0 discriminator 4
+ 330              		@ sp needed
+ 331 000e 7047     		bx	lr
+ 332              	.L30:
+ 333              		.align	2
+ 334              	.L29:
+ 335 0010 00E100E0 		.word	-536813312
+ 336              		.cfi_endproc
+ 337              	.LFE10:
+ 338              		.size	UART_BLE_SCB_IRQ_GetState, .-UART_BLE_SCB_IRQ_GetState
+ 339              		.section	.text.UART_BLE_SCB_IRQ_Disable,"ax",%progbits
+ 340              		.align	2
+ 341              		.global	UART_BLE_SCB_IRQ_Disable
+ 342              		.code	16
+ 343              		.thumb_func
+ 344              		.type	UART_BLE_SCB_IRQ_Disable, %function
+ 345              	UART_BLE_SCB_IRQ_Disable:
+ 346              	.LFB11:
+ 357:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** 
+ 358:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** 
+ 359:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** /*******************************************************************************
+ 360:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** * Function Name: UART_BLE_SCB_IRQ_Disable
+ 361:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** ********************************************************************************
+ 362:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *
+ 363:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** * Summary:
+ 364:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *   Disables the Interrupt in the interrupt controller.
+ 365:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *
+ 366:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** * Parameters:
+ 367:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *   None
+ 368:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *
+ 369:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** * Return:
+ 370:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *   None
+ 371:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *
+ 372:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *******************************************************************************/
+ 373:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** void UART_BLE_SCB_IRQ_Disable(void)
+ 374:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** {
+ 347              		.loc 1 374 0
+ 348              		.cfi_startproc
+ 349              		@ args = 0, pretend = 0, frame = 0
+ 350              		@ frame_needed = 0, uses_anonymous_args = 0
+ 351              		@ link register save eliminated.
+ 375:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c ****     /* Disable the general interrupt. */
+ 376:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c ****     *UART_BLE_SCB_IRQ_INTC_CLR_EN = UART_BLE_SCB_IRQ__INTC_MASK;
+ 352              		.loc 1 376 0
+ 353 0000 8022     		movs	r2, #128
+ 354 0002 5200     		lsls	r2, r2, #1
+ 355 0004 014B     		ldr	r3, .L32
+ 356 0006 1A60     		str	r2, [r3]
+ 377:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** }
+ 357              		.loc 1 377 0
+ 358              		@ sp needed
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccTEweIY.s 			page 14
+
+
+ 359 0008 7047     		bx	lr
+ 360              	.L33:
+ 361 000a C046     		.align	2
+ 362              	.L32:
+ 363 000c 80E100E0 		.word	-536813184
+ 364              		.cfi_endproc
+ 365              	.LFE11:
+ 366              		.size	UART_BLE_SCB_IRQ_Disable, .-UART_BLE_SCB_IRQ_Disable
+ 367              		.section	.text.UART_BLE_SCB_IRQ_Start,"ax",%progbits
+ 368              		.align	2
+ 369              		.global	UART_BLE_SCB_IRQ_Start
+ 370              		.code	16
+ 371              		.thumb_func
+ 372              		.type	UART_BLE_SCB_IRQ_Start, %function
+ 373              	UART_BLE_SCB_IRQ_Start:
+ 374              	.LFB1:
+  59:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c ****     /* For all we know the interrupt is active. */
+ 375              		.loc 1 59 0
+ 376              		.cfi_startproc
+ 377              		@ args = 0, pretend = 0, frame = 0
+ 378              		@ frame_needed = 0, uses_anonymous_args = 0
+ 379 0000 10B5     		push	{r4, lr}
+ 380              		.cfi_def_cfa_offset 8
+ 381              		.cfi_offset 4, -8
+ 382              		.cfi_offset 14, -4
+  61:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** 
+ 383              		.loc 1 61 0
+ 384 0002 FFF7FEFF 		bl	UART_BLE_SCB_IRQ_Disable
+ 385              	.LVL22:
+  64:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** 
+ 386              		.loc 1 64 0
+ 387 0006 0448     		ldr	r0, .L35
+ 388 0008 FFF7FEFF 		bl	UART_BLE_SCB_IRQ_SetVector
+ 389              	.LVL23:
+  67:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** 
+ 390              		.loc 1 67 0
+ 391 000c 0320     		movs	r0, #3
+ 392 000e FFF7FEFF 		bl	UART_BLE_SCB_IRQ_SetPriority
+ 393              	.LVL24:
+  70:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** }
+ 394              		.loc 1 70 0
+ 395 0012 FFF7FEFF 		bl	UART_BLE_SCB_IRQ_Enable
+ 396              	.LVL25:
+  71:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** 
+ 397              		.loc 1 71 0
+ 398              		@ sp needed
+ 399 0016 10BD     		pop	{r4, pc}
+ 400              	.L36:
+ 401              		.align	2
+ 402              	.L35:
+ 403 0018 00000000 		.word	UART_BLE_SCB_IRQ_Interrupt
+ 404              		.cfi_endproc
+ 405              	.LFE1:
+ 406              		.size	UART_BLE_SCB_IRQ_Start, .-UART_BLE_SCB_IRQ_Start
+ 407              		.section	.text.UART_BLE_SCB_IRQ_StartEx,"ax",%progbits
+ 408              		.align	2
+ 409              		.global	UART_BLE_SCB_IRQ_StartEx
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccTEweIY.s 			page 15
+
+
+ 410              		.code	16
+ 411              		.thumb_func
+ 412              		.type	UART_BLE_SCB_IRQ_StartEx, %function
+ 413              	UART_BLE_SCB_IRQ_StartEx:
+ 414              	.LFB2:
+ 102:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c ****     /* For all we know the interrupt is active. */
+ 415              		.loc 1 102 0
+ 416              		.cfi_startproc
+ 417              		@ args = 0, pretend = 0, frame = 0
+ 418              		@ frame_needed = 0, uses_anonymous_args = 0
+ 419              	.LVL26:
+ 420 0000 10B5     		push	{r4, lr}
+ 421              		.cfi_def_cfa_offset 8
+ 422              		.cfi_offset 4, -8
+ 423              		.cfi_offset 14, -4
+ 424 0002 0400     		movs	r4, r0
+ 104:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** 
+ 425              		.loc 1 104 0
+ 426 0004 FFF7FEFF 		bl	UART_BLE_SCB_IRQ_Disable
+ 427              	.LVL27:
+ 107:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** 
+ 428              		.loc 1 107 0
+ 429 0008 2000     		movs	r0, r4
+ 430 000a FFF7FEFF 		bl	UART_BLE_SCB_IRQ_SetVector
+ 431              	.LVL28:
+ 110:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** 
+ 432              		.loc 1 110 0
+ 433 000e 0320     		movs	r0, #3
+ 434 0010 FFF7FEFF 		bl	UART_BLE_SCB_IRQ_SetPriority
+ 435              	.LVL29:
+ 113:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** }
+ 436              		.loc 1 113 0
+ 437 0014 FFF7FEFF 		bl	UART_BLE_SCB_IRQ_Enable
+ 438              	.LVL30:
+ 114:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** 
+ 439              		.loc 1 114 0
+ 440              		@ sp needed
+ 441              	.LVL31:
+ 442 0018 10BD     		pop	{r4, pc}
+ 443              		.cfi_endproc
+ 444              	.LFE2:
+ 445              		.size	UART_BLE_SCB_IRQ_StartEx, .-UART_BLE_SCB_IRQ_StartEx
+ 446 001a C046     		.section	.text.UART_BLE_SCB_IRQ_Stop,"ax",%progbits
+ 447              		.align	2
+ 448              		.global	UART_BLE_SCB_IRQ_Stop
+ 449              		.code	16
+ 450              		.thumb_func
+ 451              		.type	UART_BLE_SCB_IRQ_Stop, %function
+ 452              	UART_BLE_SCB_IRQ_Stop:
+ 453              	.LFB3:
+ 132:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c ****     /* Disable this interrupt. */
+ 454              		.loc 1 132 0
+ 455              		.cfi_startproc
+ 456              		@ args = 0, pretend = 0, frame = 0
+ 457              		@ frame_needed = 0, uses_anonymous_args = 0
+ 458 0000 10B5     		push	{r4, lr}
+ 459              		.cfi_def_cfa_offset 8
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccTEweIY.s 			page 16
+
+
+ 460              		.cfi_offset 4, -8
+ 461              		.cfi_offset 14, -4
+ 134:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** 
+ 462              		.loc 1 134 0
+ 463 0002 FFF7FEFF 		bl	UART_BLE_SCB_IRQ_Disable
+ 464              	.LVL32:
+ 137:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** }
+ 465              		.loc 1 137 0
+ 466 0006 0248     		ldr	r0, .L39
+ 467 0008 FFF7FEFF 		bl	UART_BLE_SCB_IRQ_SetVector
+ 468              	.LVL33:
+ 138:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** 
+ 469              		.loc 1 138 0
+ 470              		@ sp needed
+ 471 000c 10BD     		pop	{r4, pc}
+ 472              	.L40:
+ 473 000e C046     		.align	2
+ 474              	.L39:
+ 475 0010 00000000 		.word	IntDefaultHandler
+ 476              		.cfi_endproc
+ 477              	.LFE3:
+ 478              		.size	UART_BLE_SCB_IRQ_Stop, .-UART_BLE_SCB_IRQ_Stop
+ 479              		.section	.text.UART_BLE_SCB_IRQ_SetPending,"ax",%progbits
+ 480              		.align	2
+ 481              		.global	UART_BLE_SCB_IRQ_SetPending
+ 482              		.code	16
+ 483              		.thumb_func
+ 484              		.type	UART_BLE_SCB_IRQ_SetPending, %function
+ 485              	UART_BLE_SCB_IRQ_SetPending:
+ 486              	.LFB12:
+ 378:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** 
+ 379:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** 
+ 380:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** /*******************************************************************************
+ 381:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** * Function Name: UART_BLE_SCB_IRQ_SetPending
+ 382:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** ********************************************************************************
+ 383:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *
+ 384:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** * Summary:
+ 385:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *   Causes the Interrupt to enter the pending state, a software method of
+ 386:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *   generating the interrupt.
+ 387:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *
+ 388:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** * Parameters:
+ 389:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *   None
+ 390:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *
+ 391:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** * Return:
+ 392:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *   None
+ 393:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *
+ 394:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** * Side Effects:
+ 395:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *   If interrupts are enabled and the interrupt is set up properly, the ISR is
+ 396:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *   entered (depending on the priority of this interrupt and other pending 
+ 397:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *   interrupts).
+ 398:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *
+ 399:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *******************************************************************************/
+ 400:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** void UART_BLE_SCB_IRQ_SetPending(void)
+ 401:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** {
+ 487              		.loc 1 401 0
+ 488              		.cfi_startproc
+ 489              		@ args = 0, pretend = 0, frame = 0
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccTEweIY.s 			page 17
+
+
+ 490              		@ frame_needed = 0, uses_anonymous_args = 0
+ 491              		@ link register save eliminated.
+ 402:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c ****     *UART_BLE_SCB_IRQ_INTC_SET_PD = UART_BLE_SCB_IRQ__INTC_MASK;
+ 492              		.loc 1 402 0
+ 493 0000 8022     		movs	r2, #128
+ 494 0002 5200     		lsls	r2, r2, #1
+ 495 0004 014B     		ldr	r3, .L42
+ 496 0006 1A60     		str	r2, [r3]
+ 403:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** }
+ 497              		.loc 1 403 0
+ 498              		@ sp needed
+ 499 0008 7047     		bx	lr
+ 500              	.L43:
+ 501 000a C046     		.align	2
+ 502              	.L42:
+ 503 000c 00E200E0 		.word	-536813056
+ 504              		.cfi_endproc
+ 505              	.LFE12:
+ 506              		.size	UART_BLE_SCB_IRQ_SetPending, .-UART_BLE_SCB_IRQ_SetPending
+ 507              		.section	.text.UART_BLE_SCB_IRQ_ClearPending,"ax",%progbits
+ 508              		.align	2
+ 509              		.global	UART_BLE_SCB_IRQ_ClearPending
+ 510              		.code	16
+ 511              		.thumb_func
+ 512              		.type	UART_BLE_SCB_IRQ_ClearPending, %function
+ 513              	UART_BLE_SCB_IRQ_ClearPending:
+ 514              	.LFB13:
+ 404:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** 
+ 405:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** 
+ 406:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** /*******************************************************************************
+ 407:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** * Function Name: UART_BLE_SCB_IRQ_ClearPending
+ 408:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** ********************************************************************************
+ 409:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *
+ 410:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** * Summary:
+ 411:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *   Clears a pending interrupt in the interrupt controller.
+ 412:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *
+ 413:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *   Note Some interrupt sources are clear-on-read and require the block 
+ 414:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *   interrupt/status register to be read/cleared with the appropriate block API 
+ 415:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *   (GPIO, UART, and so on). Otherwise the ISR will continue to remain in 
+ 416:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *   pending state even though the interrupt itself is cleared using this API.
+ 417:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *
+ 418:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** * Parameters:
+ 419:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *   None
+ 420:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *
+ 421:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** * Return:
+ 422:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *   None
+ 423:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *
+ 424:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** *******************************************************************************/
+ 425:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** void UART_BLE_SCB_IRQ_ClearPending(void)
+ 426:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** {
+ 515              		.loc 1 426 0
+ 516              		.cfi_startproc
+ 517              		@ args = 0, pretend = 0, frame = 0
+ 518              		@ frame_needed = 0, uses_anonymous_args = 0
+ 519              		@ link register save eliminated.
+ 427:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c ****     *UART_BLE_SCB_IRQ_INTC_CLR_PD = UART_BLE_SCB_IRQ__INTC_MASK;
+ 520              		.loc 1 427 0
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccTEweIY.s 			page 18
+
+
+ 521 0000 8022     		movs	r2, #128
+ 522 0002 5200     		lsls	r2, r2, #1
+ 523 0004 014B     		ldr	r3, .L45
+ 524 0006 1A60     		str	r2, [r3]
+ 428:Generated_Source\PSoC4/UART_BLE_SCB_IRQ.c **** }
+ 525              		.loc 1 428 0
+ 526              		@ sp needed
+ 527 0008 7047     		bx	lr
+ 528              	.L46:
+ 529 000a C046     		.align	2
+ 530              	.L45:
+ 531 000c 80E200E0 		.word	-536812928
+ 532              		.cfi_endproc
+ 533              	.LFE13:
+ 534              		.size	UART_BLE_SCB_IRQ_ClearPending, .-UART_BLE_SCB_IRQ_ClearPending
+ 535              		.comm	slider_pos_last,1,1
+ 536              		.comm	run_mode,1,1
+ 537              		.comm	Init_heading,2,2
+ 538              		.comm	Max_Lidar,2,2
+ 539              		.comm	Batt_volt,2,2
+ 540              		.comm	ESC_curr,2,2
+ 541              		.comm	motor_toggles,2,2
+ 542              		.comm	num_tasks,1,1
+ 543              		.comm	num_rx_bytes_lidar_buff,1,1
+ 544              		.comm	num_rx_bytes_lidar,1,1
+ 545              		.comm	LIDAR_UART_tmr,1,1
+ 546              		.comm	rx_bytes_lidar_buff,16,4
+ 547              		.comm	rx_bytes_lidar,16,4
+ 548              		.comm	num_rx_bytes_ble_buff,1,1
+ 549              		.comm	num_rx_bytes_ble,1,1
+ 550              		.comm	BLE_UART_tmr,1,1
+ 551              		.comm	rx_bytes_ble_buff,8,4
+ 552              		.comm	rx_bytes_ble,8,4
+ 553              		.comm	num_rx_bytes_dbg_buff,1,1
+ 554              		.comm	num_rx_bytes_dbg,1,1
+ 555              		.comm	rx_bytes_dbg_buff,8,4
+ 556              		.comm	rx_bytes_dbg,8,4
+ 557              		.text
+ 558              	.Letext0:
+ 559              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.3\\psoc creator\\import\\gnu\\arm\\5.4.
+ 560              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.3\\psoc creator\\import\\gnu\\arm\\5.4.
+ 561              		.file 4 "Generated_Source\\PSoC4/cytypes.h"
+ 562              		.file 5 "./main.h"
+ 563              		.file 6 "Generated_Source\\PSoC4\\UART_BLE_SPI_UART.h"
+ 564              		.file 7 "Generated_Source\\PSoC4/CyLib.h"
+ 565              		.section	.debug_info,"",%progbits
+ 566              	.Ldebug_info0:
+ 567 0000 20060000 		.4byte	0x620
+ 568 0004 0400     		.2byte	0x4
+ 569 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 570 000a 04       		.byte	0x4
+ 571 000b 01       		.uleb128 0x1
+ 572 000c 46010000 		.4byte	.LASF83
+ 573 0010 0C       		.byte	0xc
+ 574 0011 08020000 		.4byte	.LASF84
+ 575 0015 32020000 		.4byte	.LASF85
+ 576 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccTEweIY.s 			page 19
+
+
+ 577 001d 00000000 		.4byte	0
+ 578 0021 00000000 		.4byte	.Ldebug_line0
+ 579 0025 02       		.uleb128 0x2
+ 580 0026 01       		.byte	0x1
+ 581 0027 06       		.byte	0x6
+ 582 0028 FE030000 		.4byte	.LASF0
+ 583 002c 03       		.uleb128 0x3
+ 584 002d 52030000 		.4byte	.LASF2
+ 585 0031 02       		.byte	0x2
+ 586 0032 1D       		.byte	0x1d
+ 587 0033 37000000 		.4byte	0x37
+ 588 0037 02       		.uleb128 0x2
+ 589 0038 01       		.byte	0x1
+ 590 0039 08       		.byte	0x8
+ 591 003a 24030000 		.4byte	.LASF1
+ 592 003e 03       		.uleb128 0x3
+ 593 003f 49000000 		.4byte	.LASF3
+ 594 0043 02       		.byte	0x2
+ 595 0044 29       		.byte	0x29
+ 596 0045 49000000 		.4byte	0x49
+ 597 0049 02       		.uleb128 0x2
+ 598 004a 02       		.byte	0x2
+ 599 004b 05       		.byte	0x5
+ 600 004c AF000000 		.4byte	.LASF4
+ 601 0050 03       		.uleb128 0x3
+ 602 0051 26010000 		.4byte	.LASF5
+ 603 0055 02       		.byte	0x2
+ 604 0056 2B       		.byte	0x2b
+ 605 0057 5B000000 		.4byte	0x5b
+ 606 005b 02       		.uleb128 0x2
+ 607 005c 02       		.byte	0x2
+ 608 005d 07       		.byte	0x7
+ 609 005e 7E040000 		.4byte	.LASF6
+ 610 0062 02       		.uleb128 0x2
+ 611 0063 04       		.byte	0x4
+ 612 0064 05       		.byte	0x5
+ 613 0065 13030000 		.4byte	.LASF7
+ 614 0069 02       		.uleb128 0x2
+ 615 006a 04       		.byte	0x4
+ 616 006b 07       		.byte	0x7
+ 617 006c 20050000 		.4byte	.LASF8
+ 618 0070 02       		.uleb128 0x2
+ 619 0071 08       		.byte	0x8
+ 620 0072 05       		.byte	0x5
+ 621 0073 D4020000 		.4byte	.LASF9
+ 622 0077 02       		.uleb128 0x2
+ 623 0078 08       		.byte	0x8
+ 624 0079 07       		.byte	0x7
+ 625 007a 0A040000 		.4byte	.LASF10
+ 626 007e 04       		.uleb128 0x4
+ 627 007f 04       		.byte	0x4
+ 628 0080 05       		.byte	0x5
+ 629 0081 696E7400 		.ascii	"int\000"
+ 630 0085 02       		.uleb128 0x2
+ 631 0086 04       		.byte	0x4
+ 632 0087 07       		.byte	0x7
+ 633 0088 38040000 		.4byte	.LASF11
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccTEweIY.s 			page 20
+
+
+ 634 008c 03       		.uleb128 0x3
+ 635 008d D4010000 		.4byte	.LASF12
+ 636 0091 03       		.byte	0x3
+ 637 0092 18       		.byte	0x18
+ 638 0093 2C000000 		.4byte	0x2c
+ 639 0097 03       		.uleb128 0x3
+ 640 0098 CB040000 		.4byte	.LASF13
+ 641 009c 03       		.byte	0x3
+ 642 009d 20       		.byte	0x20
+ 643 009e 3E000000 		.4byte	0x3e
+ 644 00a2 03       		.uleb128 0x3
+ 645 00a3 5F040000 		.4byte	.LASF14
+ 646 00a7 03       		.byte	0x3
+ 647 00a8 24       		.byte	0x24
+ 648 00a9 50000000 		.4byte	0x50
+ 649 00ad 05       		.uleb128 0x5
+ 650 00ae CE020000 		.4byte	.LASF15
+ 651 00b2 04       		.byte	0x4
+ 652 00b3 F701     		.2byte	0x1f7
+ 653 00b5 37000000 		.4byte	0x37
+ 654 00b9 05       		.uleb128 0x5
+ 655 00ba 19050000 		.4byte	.LASF16
+ 656 00be 04       		.byte	0x4
+ 657 00bf F901     		.2byte	0x1f9
+ 658 00c1 69000000 		.4byte	0x69
+ 659 00c5 02       		.uleb128 0x2
+ 660 00c6 04       		.byte	0x4
+ 661 00c7 04       		.byte	0x4
+ 662 00c8 43000000 		.4byte	.LASF17
+ 663 00cc 02       		.uleb128 0x2
+ 664 00cd 08       		.byte	0x8
+ 665 00ce 04       		.byte	0x4
+ 666 00cf 32050000 		.4byte	.LASF18
+ 667 00d3 02       		.uleb128 0x2
+ 668 00d4 01       		.byte	0x1
+ 669 00d5 08       		.byte	0x8
+ 670 00d6 AF040000 		.4byte	.LASF19
+ 671 00da 05       		.uleb128 0x5
+ 672 00db 78040000 		.4byte	.LASF20
+ 673 00df 04       		.byte	0x4
+ 674 00e0 A302     		.2byte	0x2a3
+ 675 00e2 E6000000 		.4byte	0xe6
+ 676 00e6 06       		.uleb128 0x6
+ 677 00e7 B9000000 		.4byte	0xb9
+ 678 00eb 05       		.uleb128 0x5
+ 679 00ec E7030000 		.4byte	.LASF21
+ 680 00f0 04       		.byte	0x4
+ 681 00f1 B302     		.2byte	0x2b3
+ 682 00f3 F7000000 		.4byte	0xf7
+ 683 00f7 07       		.uleb128 0x7
+ 684 00f8 04       		.byte	0x4
+ 685 00f9 FD000000 		.4byte	0xfd
+ 686 00fd 08       		.uleb128 0x8
+ 687 00fe 02       		.uleb128 0x2
+ 688 00ff 08       		.byte	0x8
+ 689 0100 04       		.byte	0x4
+ 690 0101 D2030000 		.4byte	.LASF22
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccTEweIY.s 			page 21
+
+
+ 691 0105 02       		.uleb128 0x2
+ 692 0106 04       		.byte	0x4
+ 693 0107 07       		.byte	0x7
+ 694 0108 C1000000 		.4byte	.LASF23
+ 695 010c 09       		.uleb128 0x9
+ 696 010d 01       		.byte	0x1
+ 697 010e 37000000 		.4byte	0x37
+ 698 0112 05       		.byte	0x5
+ 699 0113 13       		.byte	0x13
+ 700 0114 43010000 		.4byte	0x143
+ 701 0118 0A       		.uleb128 0xa
+ 702 0119 DE030000 		.4byte	.LASF24
+ 703 011d 00       		.byte	0
+ 704 011e 0A       		.uleb128 0xa
+ 705 011f 5C030000 		.4byte	.LASF25
+ 706 0123 01       		.byte	0x1
+ 707 0124 0A       		.uleb128 0xa
+ 708 0125 A2000000 		.4byte	.LASF26
+ 709 0129 02       		.byte	0x2
+ 710 012a 0A       		.uleb128 0xa
+ 711 012b 68040000 		.4byte	.LASF27
+ 712 012f 03       		.byte	0x3
+ 713 0130 0A       		.uleb128 0xa
+ 714 0131 99030000 		.4byte	.LASF28
+ 715 0135 04       		.byte	0x4
+ 716 0136 0A       		.uleb128 0xa
+ 717 0137 E5000000 		.4byte	.LASF29
+ 718 013b 05       		.byte	0x5
+ 719 013c 0A       		.uleb128 0xa
+ 720 013d 91030000 		.4byte	.LASF30
+ 721 0141 06       		.byte	0x6
+ 722 0142 00       		.byte	0
+ 723 0143 09       		.uleb128 0x9
+ 724 0144 01       		.byte	0x1
+ 725 0145 37000000 		.4byte	0x37
+ 726 0149 05       		.byte	0x5
+ 727 014a 27       		.byte	0x27
+ 728 014b 74010000 		.4byte	0x174
+ 729 014f 0B       		.uleb128 0xb
+ 730 0150 4F464600 		.ascii	"OFF\000"
+ 731 0154 00       		.byte	0
+ 732 0155 0A       		.uleb128 0xa
+ 733 0156 96000000 		.4byte	.LASF31
+ 734 015a 01       		.byte	0x1
+ 735 015b 0B       		.uleb128 0xb
+ 736 015c 43414C00 		.ascii	"CAL\000"
+ 737 0160 02       		.byte	0x2
+ 738 0161 0A       		.uleb128 0xa
+ 739 0162 2E040000 		.4byte	.LASF32
+ 740 0166 03       		.byte	0x3
+ 741 0167 0B       		.uleb128 0xb
+ 742 0168 52554E00 		.ascii	"RUN\000"
+ 743 016c 04       		.byte	0x4
+ 744 016d 0A       		.uleb128 0xa
+ 745 016e F4030000 		.4byte	.LASF33
+ 746 0172 05       		.byte	0x5
+ 747 0173 00       		.byte	0
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccTEweIY.s 			page 22
+
+
+ 748 0174 03       		.uleb128 0x3
+ 749 0175 42050000 		.4byte	.LASF34
+ 750 0179 05       		.byte	0x5
+ 751 017a 27       		.byte	0x27
+ 752 017b 43010000 		.4byte	0x143
+ 753 017f 09       		.uleb128 0x9
+ 754 0180 01       		.byte	0x1
+ 755 0181 37000000 		.4byte	0x37
+ 756 0185 05       		.byte	0x5
+ 757 0186 2A       		.byte	0x2a
+ 758 0187 9E010000 		.4byte	0x19e
+ 759 018b 0B       		.uleb128 0xb
+ 760 018c 4C4F5700 		.ascii	"LOW\000"
+ 761 0190 00       		.byte	0
+ 762 0191 0A       		.uleb128 0xa
+ 763 0192 B9000000 		.4byte	.LASF35
+ 764 0196 01       		.byte	0x1
+ 765 0197 0A       		.uleb128 0xa
+ 766 0198 D2050000 		.4byte	.LASF36
+ 767 019c 02       		.byte	0x2
+ 768 019d 00       		.byte	0
+ 769 019e 03       		.uleb128 0x3
+ 770 019f 1D000000 		.4byte	.LASF37
+ 771 01a3 05       		.byte	0x5
+ 772 01a4 2A       		.byte	0x2a
+ 773 01a5 7F010000 		.4byte	0x17f
+ 774 01a9 0C       		.uleb128 0xc
+ 775 01aa 0B010000 		.4byte	.LASF39
+ 776 01ae 01       		.byte	0x1
+ 777 01af A1       		.byte	0xa1
+ 778 01b0 00000000 		.4byte	.LFB4
+ 779 01b4 94000000 		.4byte	.LFE4-.LFB4
+ 780 01b8 01       		.uleb128 0x1
+ 781 01b9 9C       		.byte	0x9c
+ 782 01ba 01020000 		.4byte	0x201
+ 783 01be 0D       		.uleb128 0xd
+ 784 01bf 3B010000 		.4byte	.LASF38
+ 785 01c3 01       		.byte	0x1
+ 786 01c4 A9       		.byte	0xa9
+ 787 01c5 8C000000 		.4byte	0x8c
+ 788 01c9 00000000 		.4byte	.LLST0
+ 789 01cd 0E       		.uleb128 0xe
+ 790 01ce 7800     		.ascii	"x\000"
+ 791 01d0 01       		.byte	0x1
+ 792 01d1 A9       		.byte	0xa9
+ 793 01d2 8C000000 		.4byte	0x8c
+ 794 01d6 13000000 		.4byte	.LLST1
+ 795 01da 0F       		.uleb128 0xf
+ 796 01db 06000000 		.4byte	.LVL0
+ 797 01df EA050000 		.4byte	0x5ea
+ 798 01e3 0F       		.uleb128 0xf
+ 799 01e4 2A000000 		.4byte	.LVL3
+ 800 01e8 F6050000 		.4byte	0x5f6
+ 801 01ec 10       		.uleb128 0x10
+ 802 01ed 7A000000 		.4byte	.LVL12
+ 803 01f1 02060000 		.4byte	0x602
+ 804 01f5 11       		.uleb128 0x11
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccTEweIY.s 			page 23
+
+
+ 805 01f6 01       		.uleb128 0x1
+ 806 01f7 50       		.byte	0x50
+ 807 01f8 01       		.uleb128 0x1
+ 808 01f9 32       		.byte	0x32
+ 809 01fa 11       		.uleb128 0x11
+ 810 01fb 01       		.uleb128 0x1
+ 811 01fc 51       		.byte	0x51
+ 812 01fd 01       		.uleb128 0x1
+ 813 01fe 32       		.byte	0x32
+ 814 01ff 00       		.byte	0
+ 815 0200 00       		.byte	0
+ 816 0201 0C       		.uleb128 0xc
+ 817 0202 CA000000 		.4byte	.LASF40
+ 818 0206 01       		.byte	0x1
+ 819 0207 E2       		.byte	0xe2
+ 820 0208 00000000 		.4byte	.LFB5
+ 821 020c 0C000000 		.4byte	.LFE5-.LFB5
+ 822 0210 01       		.uleb128 0x1
+ 823 0211 9C       		.byte	0x9c
+ 824 0212 24020000 		.4byte	0x224
+ 825 0216 12       		.uleb128 0x12
+ 826 0217 1C030000 		.4byte	.LASF42
+ 827 021b 01       		.byte	0x1
+ 828 021c E2       		.byte	0xe2
+ 829 021d EB000000 		.4byte	0xeb
+ 830 0221 01       		.uleb128 0x1
+ 831 0222 50       		.byte	0x50
+ 832 0223 00       		.byte	0
+ 833 0224 13       		.uleb128 0x13
+ 834 0225 8B020000 		.4byte	.LASF46
+ 835 0229 01       		.byte	0x1
+ 836 022a F6       		.byte	0xf6
+ 837 022b EB000000 		.4byte	0xeb
+ 838 022f 00000000 		.4byte	.LFB6
+ 839 0233 0C000000 		.4byte	.LFE6-.LFB6
+ 840 0237 01       		.uleb128 0x1
+ 841 0238 9C       		.byte	0x9c
+ 842 0239 14       		.uleb128 0x14
+ 843 023a 00000000 		.4byte	.LASF41
+ 844 023e 01       		.byte	0x1
+ 845 023f 1401     		.2byte	0x114
+ 846 0241 00000000 		.4byte	.LFB7
+ 847 0245 20000000 		.4byte	.LFE7-.LFB7
+ 848 0249 01       		.uleb128 0x1
+ 849 024a 9C       		.byte	0x9c
+ 850 024b 8F020000 		.4byte	0x28f
+ 851 024f 15       		.uleb128 0x15
+ 852 0250 61000000 		.4byte	.LASF43
+ 853 0254 01       		.byte	0x1
+ 854 0255 1401     		.2byte	0x114
+ 855 0257 AD000000 		.4byte	0xad
+ 856 025b 5D000000 		.4byte	.LLST2
+ 857 025f 16       		.uleb128 0x16
+ 858 0260 F6040000 		.4byte	.LASF44
+ 859 0264 01       		.byte	0x1
+ 860 0265 1601     		.2byte	0x116
+ 861 0267 AD000000 		.4byte	0xad
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccTEweIY.s 			page 24
+
+
+ 862 026b 7E000000 		.4byte	.LLST3
+ 863 026f 17       		.uleb128 0x17
+ 864 0270 82030000 		.4byte	.LASF45
+ 865 0274 01       		.byte	0x1
+ 866 0275 1701     		.2byte	0x117
+ 867 0277 B9000000 		.4byte	0xb9
+ 868 027b 06       		.byte	0x6
+ 869 027c 0F       		.uleb128 0xf
+ 870 027d 08000000 		.4byte	.LVL17
+ 871 0281 0D060000 		.4byte	0x60d
+ 872 0285 0F       		.uleb128 0xf
+ 873 0286 1A000000 		.4byte	.LVL18
+ 874 028a 18060000 		.4byte	0x618
+ 875 028e 00       		.byte	0
+ 876 028f 18       		.uleb128 0x18
+ 877 0290 EE000000 		.4byte	.LASF86
+ 878 0294 01       		.byte	0x1
+ 879 0295 3001     		.2byte	0x130
+ 880 0297 AD000000 		.4byte	0xad
+ 881 029b 00000000 		.4byte	.LFB8
+ 882 029f 10000000 		.4byte	.LFE8-.LFB8
+ 883 02a3 01       		.uleb128 0x1
+ 884 02a4 9C       		.byte	0x9c
+ 885 02a5 C7020000 		.4byte	0x2c7
+ 886 02a9 16       		.uleb128 0x16
+ 887 02aa 61000000 		.4byte	.LASF43
+ 888 02ae 01       		.byte	0x1
+ 889 02af 3201     		.2byte	0x132
+ 890 02b1 B9000000 		.4byte	0xb9
+ 891 02b5 91000000 		.4byte	.LLST4
+ 892 02b9 17       		.uleb128 0x17
+ 893 02ba 82030000 		.4byte	.LASF45
+ 894 02be 01       		.byte	0x1
+ 895 02bf 3301     		.2byte	0x133
+ 896 02c1 B9000000 		.4byte	0xb9
+ 897 02c5 06       		.byte	0x6
+ 898 02c6 00       		.byte	0
+ 899 02c7 19       		.uleb128 0x19
+ 900 02c8 74050000 		.4byte	.LASF48
+ 901 02cc 01       		.byte	0x1
+ 902 02cd 4B01     		.2byte	0x14b
+ 903 02cf 00000000 		.4byte	.LFB9
+ 904 02d3 10000000 		.4byte	.LFE9-.LFB9
+ 905 02d7 01       		.uleb128 0x1
+ 906 02d8 9C       		.byte	0x9c
+ 907 02d9 1A       		.uleb128 0x1a
+ 908 02da 45040000 		.4byte	.LASF47
+ 909 02de 01       		.byte	0x1
+ 910 02df 6001     		.2byte	0x160
+ 911 02e1 AD000000 		.4byte	0xad
+ 912 02e5 00000000 		.4byte	.LFB10
+ 913 02e9 14000000 		.4byte	.LFE10-.LFB10
+ 914 02ed 01       		.uleb128 0x1
+ 915 02ee 9C       		.byte	0x9c
+ 916 02ef 19       		.uleb128 0x19
+ 917 02f0 2A000000 		.4byte	.LASF49
+ 918 02f4 01       		.byte	0x1
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccTEweIY.s 			page 25
+
+
+ 919 02f5 7501     		.2byte	0x175
+ 920 02f7 00000000 		.4byte	.LFB11
+ 921 02fb 10000000 		.4byte	.LFE11-.LFB11
+ 922 02ff 01       		.uleb128 0x1
+ 923 0300 9C       		.byte	0x9c
+ 924 0301 0C       		.uleb128 0xc
+ 925 0302 BB050000 		.4byte	.LASF50
+ 926 0306 01       		.byte	0x1
+ 927 0307 3A       		.byte	0x3a
+ 928 0308 00000000 		.4byte	.LFB1
+ 929 030c 1C000000 		.4byte	.LFE1-.LFB1
+ 930 0310 01       		.uleb128 0x1
+ 931 0311 9C       		.byte	0x9c
+ 932 0312 53030000 		.4byte	0x353
+ 933 0316 0F       		.uleb128 0xf
+ 934 0317 06000000 		.4byte	.LVL22
+ 935 031b EF020000 		.4byte	0x2ef
+ 936 031f 1B       		.uleb128 0x1b
+ 937 0320 0C000000 		.4byte	.LVL23
+ 938 0324 01020000 		.4byte	0x201
+ 939 0328 36030000 		.4byte	0x336
+ 940 032c 11       		.uleb128 0x11
+ 941 032d 01       		.uleb128 0x1
+ 942 032e 50       		.byte	0x50
+ 943 032f 05       		.uleb128 0x5
+ 944 0330 03       		.byte	0x3
+ 945 0331 00000000 		.4byte	UART_BLE_SCB_IRQ_Interrupt
+ 946 0335 00       		.byte	0
+ 947 0336 1B       		.uleb128 0x1b
+ 948 0337 12000000 		.4byte	.LVL24
+ 949 033b 39020000 		.4byte	0x239
+ 950 033f 49030000 		.4byte	0x349
+ 951 0343 11       		.uleb128 0x11
+ 952 0344 01       		.uleb128 0x1
+ 953 0345 50       		.byte	0x50
+ 954 0346 01       		.uleb128 0x1
+ 955 0347 33       		.byte	0x33
+ 956 0348 00       		.byte	0
+ 957 0349 0F       		.uleb128 0xf
+ 958 034a 16000000 		.4byte	.LVL25
+ 959 034e C7020000 		.4byte	0x2c7
+ 960 0352 00       		.byte	0
+ 961 0353 0C       		.uleb128 0xc
+ 962 0354 EF010000 		.4byte	.LASF51
+ 963 0358 01       		.byte	0x1
+ 964 0359 65       		.byte	0x65
+ 965 035a 00000000 		.4byte	.LFB2
+ 966 035e 1A000000 		.4byte	.LFE2-.LFB2
+ 967 0362 01       		.uleb128 0x1
+ 968 0363 9C       		.byte	0x9c
+ 969 0364 B1030000 		.4byte	0x3b1
+ 970 0368 1C       		.uleb128 0x1c
+ 971 0369 1C030000 		.4byte	.LASF42
+ 972 036d 01       		.byte	0x1
+ 973 036e 65       		.byte	0x65
+ 974 036f EB000000 		.4byte	0xeb
+ 975 0373 B3000000 		.4byte	.LLST5
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccTEweIY.s 			page 26
+
+
+ 976 0377 0F       		.uleb128 0xf
+ 977 0378 08000000 		.4byte	.LVL27
+ 978 037c EF020000 		.4byte	0x2ef
+ 979 0380 1B       		.uleb128 0x1b
+ 980 0381 0E000000 		.4byte	.LVL28
+ 981 0385 01020000 		.4byte	0x201
+ 982 0389 94030000 		.4byte	0x394
+ 983 038d 11       		.uleb128 0x11
+ 984 038e 01       		.uleb128 0x1
+ 985 038f 50       		.byte	0x50
+ 986 0390 02       		.uleb128 0x2
+ 987 0391 74       		.byte	0x74
+ 988 0392 00       		.sleb128 0
+ 989 0393 00       		.byte	0
+ 990 0394 1B       		.uleb128 0x1b
+ 991 0395 14000000 		.4byte	.LVL29
+ 992 0399 39020000 		.4byte	0x239
+ 993 039d A7030000 		.4byte	0x3a7
+ 994 03a1 11       		.uleb128 0x11
+ 995 03a2 01       		.uleb128 0x1
+ 996 03a3 50       		.byte	0x50
+ 997 03a4 01       		.uleb128 0x1
+ 998 03a5 33       		.byte	0x33
+ 999 03a6 00       		.byte	0
+ 1000 03a7 0F       		.uleb128 0xf
+ 1001 03a8 18000000 		.4byte	.LVL30
+ 1002 03ac C7020000 		.4byte	0x2c7
+ 1003 03b0 00       		.byte	0
+ 1004 03b1 0C       		.uleb128 0xc
+ 1005 03b2 80000000 		.4byte	.LASF52
+ 1006 03b6 01       		.byte	0x1
+ 1007 03b7 83       		.byte	0x83
+ 1008 03b8 00000000 		.4byte	.LFB3
+ 1009 03bc 14000000 		.4byte	.LFE3-.LFB3
+ 1010 03c0 01       		.uleb128 0x1
+ 1011 03c1 9C       		.byte	0x9c
+ 1012 03c2 D9030000 		.4byte	0x3d9
+ 1013 03c6 0F       		.uleb128 0xf
+ 1014 03c7 06000000 		.4byte	.LVL32
+ 1015 03cb EF020000 		.4byte	0x2ef
+ 1016 03cf 0F       		.uleb128 0xf
+ 1017 03d0 0C000000 		.4byte	.LVL33
+ 1018 03d4 01020000 		.4byte	0x201
+ 1019 03d8 00       		.byte	0
+ 1020 03d9 19       		.uleb128 0x19
+ 1021 03da 66030000 		.4byte	.LASF53
+ 1022 03de 01       		.byte	0x1
+ 1023 03df 9001     		.2byte	0x190
+ 1024 03e1 00000000 		.4byte	.LFB12
+ 1025 03e5 10000000 		.4byte	.LFE12-.LFB12
+ 1026 03e9 01       		.uleb128 0x1
+ 1027 03ea 9C       		.byte	0x9c
+ 1028 03eb 19       		.uleb128 0x19
+ 1029 03ec A6020000 		.4byte	.LASF54
+ 1030 03f0 01       		.byte	0x1
+ 1031 03f1 A901     		.2byte	0x1a9
+ 1032 03f3 00000000 		.4byte	.LFB13
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccTEweIY.s 			page 27
+
+
+ 1033 03f7 10000000 		.4byte	.LFE13-.LFB13
+ 1034 03fb 01       		.uleb128 0x1
+ 1035 03fc 9C       		.byte	0x9c
+ 1036 03fd 1D       		.uleb128 0x1d
+ 1037 03fe 0D040000 		.4byte	0x40d
+ 1038 0402 0D040000 		.4byte	0x40d
+ 1039 0406 1E       		.uleb128 0x1e
+ 1040 0407 05010000 		.4byte	0x105
+ 1041 040b 07       		.byte	0x7
+ 1042 040c 00       		.byte	0
+ 1043 040d 06       		.uleb128 0x6
+ 1044 040e 37000000 		.4byte	0x37
+ 1045 0412 1F       		.uleb128 0x1f
+ 1046 0413 21040000 		.4byte	.LASF55
+ 1047 0417 05       		.byte	0x5
+ 1048 0418 30       		.byte	0x30
+ 1049 0419 23040000 		.4byte	0x423
+ 1050 041d 05       		.uleb128 0x5
+ 1051 041e 03       		.byte	0x3
+ 1052 041f 00000000 		.4byte	rx_bytes_dbg
+ 1053 0423 06       		.uleb128 0x6
+ 1054 0424 FD030000 		.4byte	0x3fd
+ 1055 0428 1F       		.uleb128 0x1f
+ 1056 0429 E2020000 		.4byte	.LASF56
+ 1057 042d 05       		.byte	0x5
+ 1058 042e 31       		.byte	0x31
+ 1059 042f 39040000 		.4byte	0x439
+ 1060 0433 05       		.uleb128 0x5
+ 1061 0434 03       		.byte	0x3
+ 1062 0435 00000000 		.4byte	rx_bytes_dbg_buff
+ 1063 0439 06       		.uleb128 0x6
+ 1064 043a FD030000 		.4byte	0x3fd
+ 1065 043e 1F       		.uleb128 0x1f
+ 1066 043f 9E040000 		.4byte	.LASF57
+ 1067 0443 05       		.byte	0x5
+ 1068 0444 32       		.byte	0x32
+ 1069 0445 4F040000 		.4byte	0x44f
+ 1070 0449 05       		.uleb128 0x5
+ 1071 044a 03       		.byte	0x3
+ 1072 044b 00000000 		.4byte	num_rx_bytes_dbg
+ 1073 044f 06       		.uleb128 0x6
+ 1074 0450 8C000000 		.4byte	0x8c
+ 1075 0454 1F       		.uleb128 0x1f
+ 1076 0455 A5050000 		.4byte	.LASF58
+ 1077 0459 05       		.byte	0x5
+ 1078 045a 33       		.byte	0x33
+ 1079 045b 4F040000 		.4byte	0x44f
+ 1080 045f 05       		.uleb128 0x5
+ 1081 0460 03       		.byte	0x3
+ 1082 0461 00000000 		.4byte	num_rx_bytes_dbg_buff
+ 1083 0465 1F       		.uleb128 0x1f
+ 1084 0466 A6030000 		.4byte	.LASF59
+ 1085 046a 05       		.byte	0x5
+ 1086 046b 34       		.byte	0x34
+ 1087 046c 76040000 		.4byte	0x476
+ 1088 0470 05       		.uleb128 0x5
+ 1089 0471 03       		.byte	0x3
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccTEweIY.s 			page 28
+
+
+ 1090 0472 00000000 		.4byte	rx_bytes_ble
+ 1091 0476 06       		.uleb128 0x6
+ 1092 0477 FD030000 		.4byte	0x3fd
+ 1093 047b 1F       		.uleb128 0x1f
+ 1094 047c C0030000 		.4byte	.LASF60
+ 1095 0480 05       		.byte	0x5
+ 1096 0481 35       		.byte	0x35
+ 1097 0482 8C040000 		.4byte	0x48c
+ 1098 0486 05       		.uleb128 0x5
+ 1099 0487 03       		.byte	0x3
+ 1100 0488 00000000 		.4byte	rx_bytes_ble_buff
+ 1101 048c 06       		.uleb128 0x6
+ 1102 048d FD030000 		.4byte	0x3fd
+ 1103 0491 1F       		.uleb128 0x1f
+ 1104 0492 D7050000 		.4byte	.LASF61
+ 1105 0496 05       		.byte	0x5
+ 1106 0497 36       		.byte	0x36
+ 1107 0498 4F040000 		.4byte	0x44f
+ 1108 049c 05       		.uleb128 0x5
+ 1109 049d 03       		.byte	0x3
+ 1110 049e 00000000 		.4byte	BLE_UART_tmr
+ 1111 04a2 1F       		.uleb128 0x1f
+ 1112 04a3 E4050000 		.4byte	.LASF62
+ 1113 04a7 05       		.byte	0x5
+ 1114 04a8 37       		.byte	0x37
+ 1115 04a9 4F040000 		.4byte	0x44f
+ 1116 04ad 05       		.uleb128 0x5
+ 1117 04ae 03       		.byte	0x3
+ 1118 04af 00000000 		.4byte	num_rx_bytes_ble
+ 1119 04b3 1F       		.uleb128 0x1f
+ 1120 04b4 D3040000 		.4byte	.LASF63
+ 1121 04b8 05       		.byte	0x5
+ 1122 04b9 38       		.byte	0x38
+ 1123 04ba 4F040000 		.4byte	0x44f
+ 1124 04be 05       		.uleb128 0x5
+ 1125 04bf 03       		.byte	0x3
+ 1126 04c0 00000000 		.4byte	num_rx_bytes_ble_buff
+ 1127 04c4 1D       		.uleb128 0x1d
+ 1128 04c5 0D040000 		.4byte	0x40d
+ 1129 04c9 D4040000 		.4byte	0x4d4
+ 1130 04cd 1E       		.uleb128 0x1e
+ 1131 04ce 05010000 		.4byte	0x105
+ 1132 04d2 0F       		.byte	0xf
+ 1133 04d3 00       		.byte	0
+ 1134 04d4 1F       		.uleb128 0x1f
+ 1135 04d5 65050000 		.4byte	.LASF64
+ 1136 04d9 05       		.byte	0x5
+ 1137 04da 39       		.byte	0x39
+ 1138 04db E5040000 		.4byte	0x4e5
+ 1139 04df 05       		.uleb128 0x5
+ 1140 04e0 03       		.byte	0x3
+ 1141 04e1 00000000 		.4byte	rx_bytes_lidar
+ 1142 04e5 06       		.uleb128 0x6
+ 1143 04e6 C4040000 		.4byte	0x4c4
+ 1144 04ea 1F       		.uleb128 0x1f
+ 1145 04eb 05050000 		.4byte	.LASF65
+ 1146 04ef 05       		.byte	0x5
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccTEweIY.s 			page 29
+
+
+ 1147 04f0 3A       		.byte	0x3a
+ 1148 04f1 FB040000 		.4byte	0x4fb
+ 1149 04f5 05       		.uleb128 0x5
+ 1150 04f6 03       		.byte	0x3
+ 1151 04f7 00000000 		.4byte	rx_bytes_lidar_buff
+ 1152 04fb 06       		.uleb128 0x6
+ 1153 04fc C4040000 		.4byte	0x4c4
+ 1154 0500 1F       		.uleb128 0x1f
+ 1155 0501 7C020000 		.4byte	.LASF66
+ 1156 0505 05       		.byte	0x5
+ 1157 0506 3B       		.byte	0x3b
+ 1158 0507 4F040000 		.4byte	0x44f
+ 1159 050b 05       		.uleb128 0x5
+ 1160 050c 03       		.byte	0x3
+ 1161 050d 00000000 		.4byte	LIDAR_UART_tmr
+ 1162 0511 1F       		.uleb128 0x1f
+ 1163 0512 DC010000 		.4byte	.LASF67
+ 1164 0516 05       		.byte	0x5
+ 1165 0517 3C       		.byte	0x3c
+ 1166 0518 4F040000 		.4byte	0x44f
+ 1167 051c 05       		.uleb128 0x5
+ 1168 051d 03       		.byte	0x3
+ 1169 051e 00000000 		.4byte	num_rx_bytes_lidar
+ 1170 0522 1F       		.uleb128 0x1f
+ 1171 0523 4D050000 		.4byte	.LASF68
+ 1172 0527 05       		.byte	0x5
+ 1173 0528 3D       		.byte	0x3d
+ 1174 0529 4F040000 		.4byte	0x44f
+ 1175 052d 05       		.uleb128 0x5
+ 1176 052e 03       		.byte	0x3
+ 1177 052f 00000000 		.4byte	num_rx_bytes_lidar_buff
+ 1178 0533 1F       		.uleb128 0x1f
+ 1179 0534 31010000 		.4byte	.LASF69
+ 1180 0538 05       		.byte	0x5
+ 1181 0539 3E       		.byte	0x3e
+ 1182 053a 4F040000 		.4byte	0x44f
+ 1183 053e 05       		.uleb128 0x5
+ 1184 053f 03       		.byte	0x3
+ 1185 0540 00000000 		.4byte	num_tasks
+ 1186 0544 1F       		.uleb128 0x1f
+ 1187 0545 53000000 		.4byte	.LASF70
+ 1188 0549 05       		.byte	0x5
+ 1189 054a 3F       		.byte	0x3f
+ 1190 054b 55050000 		.4byte	0x555
+ 1191 054f 05       		.uleb128 0x5
+ 1192 0550 03       		.byte	0x3
+ 1193 0551 00000000 		.4byte	motor_toggles
+ 1194 0555 06       		.uleb128 0x6
+ 1195 0556 A2000000 		.4byte	0xa2
+ 1196 055a 1F       		.uleb128 0x1f
+ 1197 055b 39050000 		.4byte	.LASF71
+ 1198 055f 05       		.byte	0x5
+ 1199 0560 40       		.byte	0x40
+ 1200 0561 6B050000 		.4byte	0x56b
+ 1201 0565 05       		.uleb128 0x5
+ 1202 0566 03       		.byte	0x3
+ 1203 0567 00000000 		.4byte	ESC_curr
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccTEweIY.s 			page 30
+
+
+ 1204 056b 06       		.uleb128 0x6
+ 1205 056c 97000000 		.4byte	0x97
+ 1206 0570 1F       		.uleb128 0x1f
+ 1207 0571 09030000 		.4byte	.LASF72
+ 1208 0575 05       		.byte	0x5
+ 1209 0576 41       		.byte	0x41
+ 1210 0577 6B050000 		.4byte	0x56b
+ 1211 057b 05       		.uleb128 0x5
+ 1212 057c 03       		.byte	0x3
+ 1213 057d 00000000 		.4byte	Batt_volt
+ 1214 0581 1F       		.uleb128 0x1f
+ 1215 0582 C4020000 		.4byte	.LASF73
+ 1216 0586 05       		.byte	0x5
+ 1217 0587 42       		.byte	0x42
+ 1218 0588 6B050000 		.4byte	0x56b
+ 1219 058c 05       		.uleb128 0x5
+ 1220 058d 03       		.byte	0x3
+ 1221 058e 00000000 		.4byte	Max_Lidar
+ 1222 0592 1F       		.uleb128 0x1f
+ 1223 0593 B3030000 		.4byte	.LASF74
+ 1224 0597 05       		.byte	0x5
+ 1225 0598 43       		.byte	0x43
+ 1226 0599 6B050000 		.4byte	0x56b
+ 1227 059d 05       		.uleb128 0x5
+ 1228 059e 03       		.byte	0x3
+ 1229 059f 00000000 		.4byte	Init_heading
+ 1230 05a3 1F       		.uleb128 0x1f
+ 1231 05a4 8C050000 		.4byte	.LASF75
+ 1232 05a8 05       		.byte	0x5
+ 1233 05a9 44       		.byte	0x44
+ 1234 05aa B4050000 		.4byte	0x5b4
+ 1235 05ae 05       		.uleb128 0x5
+ 1236 05af 03       		.byte	0x3
+ 1237 05b0 00000000 		.4byte	run_mode
+ 1238 05b4 06       		.uleb128 0x6
+ 1239 05b5 74010000 		.4byte	0x174
+ 1240 05b9 1F       		.uleb128 0x1f
+ 1241 05ba 95050000 		.4byte	.LASF76
+ 1242 05be 05       		.byte	0x5
+ 1243 05bf 45       		.byte	0x45
+ 1244 05c0 CA050000 		.4byte	0x5ca
+ 1245 05c4 05       		.uleb128 0x5
+ 1246 05c5 03       		.byte	0x3
+ 1247 05c6 00000000 		.4byte	slider_pos_last
+ 1248 05ca 06       		.uleb128 0x6
+ 1249 05cb 9E010000 		.4byte	0x19e
+ 1250 05cf 1D       		.uleb128 0x1d
+ 1251 05d0 EB000000 		.4byte	0xeb
+ 1252 05d4 DF050000 		.4byte	0x5df
+ 1253 05d8 1E       		.uleb128 0x1e
+ 1254 05d9 05010000 		.4byte	0x105
+ 1255 05dd 2F       		.byte	0x2f
+ 1256 05de 00       		.byte	0
+ 1257 05df 20       		.uleb128 0x20
+ 1258 05e0 E9040000 		.4byte	.LASF77
+ 1259 05e4 01       		.byte	0x1
+ 1260 05e5 23       		.byte	0x23
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccTEweIY.s 			page 31
+
+
+ 1261 05e6 CF050000 		.4byte	0x5cf
+ 1262 05ea 21       		.uleb128 0x21
+ 1263 05eb 32030000 		.4byte	.LASF78
+ 1264 05ef 32030000 		.4byte	.LASF78
+ 1265 05f3 06       		.byte	0x6
+ 1266 05f4 3E03     		.2byte	0x33e
+ 1267 05f6 21       		.uleb128 0x21
+ 1268 05f7 F4020000 		.4byte	.LASF79
+ 1269 05fb F4020000 		.4byte	.LASF79
+ 1270 05ff 06       		.byte	0x6
+ 1271 0600 1003     		.2byte	0x310
+ 1272 0602 22       		.uleb128 0x22
+ 1273 0603 91040000 		.4byte	.LASF80
+ 1274 0607 91040000 		.4byte	.LASF80
+ 1275 060b 05       		.byte	0x5
+ 1276 060c 54       		.byte	0x54
+ 1277 060d 22       		.uleb128 0x22
+ 1278 060e B4040000 		.4byte	.LASF81
+ 1279 0612 B4040000 		.4byte	.LASF81
+ 1280 0616 07       		.byte	0x7
+ 1281 0617 F8       		.byte	0xf8
+ 1282 0618 22       		.uleb128 0x22
+ 1283 0619 6A000000 		.4byte	.LASF82
+ 1284 061d 6A000000 		.4byte	.LASF82
+ 1285 0621 07       		.byte	0x7
+ 1286 0622 F9       		.byte	0xf9
+ 1287 0623 00       		.byte	0
+ 1288              		.section	.debug_abbrev,"",%progbits
+ 1289              	.Ldebug_abbrev0:
+ 1290 0000 01       		.uleb128 0x1
+ 1291 0001 11       		.uleb128 0x11
+ 1292 0002 01       		.byte	0x1
+ 1293 0003 25       		.uleb128 0x25
+ 1294 0004 0E       		.uleb128 0xe
+ 1295 0005 13       		.uleb128 0x13
+ 1296 0006 0B       		.uleb128 0xb
+ 1297 0007 03       		.uleb128 0x3
+ 1298 0008 0E       		.uleb128 0xe
+ 1299 0009 1B       		.uleb128 0x1b
+ 1300 000a 0E       		.uleb128 0xe
+ 1301 000b 55       		.uleb128 0x55
+ 1302 000c 17       		.uleb128 0x17
+ 1303 000d 11       		.uleb128 0x11
+ 1304 000e 01       		.uleb128 0x1
+ 1305 000f 10       		.uleb128 0x10
+ 1306 0010 17       		.uleb128 0x17
+ 1307 0011 00       		.byte	0
+ 1308 0012 00       		.byte	0
+ 1309 0013 02       		.uleb128 0x2
+ 1310 0014 24       		.uleb128 0x24
+ 1311 0015 00       		.byte	0
+ 1312 0016 0B       		.uleb128 0xb
+ 1313 0017 0B       		.uleb128 0xb
+ 1314 0018 3E       		.uleb128 0x3e
+ 1315 0019 0B       		.uleb128 0xb
+ 1316 001a 03       		.uleb128 0x3
+ 1317 001b 0E       		.uleb128 0xe
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccTEweIY.s 			page 32
+
+
+ 1318 001c 00       		.byte	0
+ 1319 001d 00       		.byte	0
+ 1320 001e 03       		.uleb128 0x3
+ 1321 001f 16       		.uleb128 0x16
+ 1322 0020 00       		.byte	0
+ 1323 0021 03       		.uleb128 0x3
+ 1324 0022 0E       		.uleb128 0xe
+ 1325 0023 3A       		.uleb128 0x3a
+ 1326 0024 0B       		.uleb128 0xb
+ 1327 0025 3B       		.uleb128 0x3b
+ 1328 0026 0B       		.uleb128 0xb
+ 1329 0027 49       		.uleb128 0x49
+ 1330 0028 13       		.uleb128 0x13
+ 1331 0029 00       		.byte	0
+ 1332 002a 00       		.byte	0
+ 1333 002b 04       		.uleb128 0x4
+ 1334 002c 24       		.uleb128 0x24
+ 1335 002d 00       		.byte	0
+ 1336 002e 0B       		.uleb128 0xb
+ 1337 002f 0B       		.uleb128 0xb
+ 1338 0030 3E       		.uleb128 0x3e
+ 1339 0031 0B       		.uleb128 0xb
+ 1340 0032 03       		.uleb128 0x3
+ 1341 0033 08       		.uleb128 0x8
+ 1342 0034 00       		.byte	0
+ 1343 0035 00       		.byte	0
+ 1344 0036 05       		.uleb128 0x5
+ 1345 0037 16       		.uleb128 0x16
+ 1346 0038 00       		.byte	0
+ 1347 0039 03       		.uleb128 0x3
+ 1348 003a 0E       		.uleb128 0xe
+ 1349 003b 3A       		.uleb128 0x3a
+ 1350 003c 0B       		.uleb128 0xb
+ 1351 003d 3B       		.uleb128 0x3b
+ 1352 003e 05       		.uleb128 0x5
+ 1353 003f 49       		.uleb128 0x49
+ 1354 0040 13       		.uleb128 0x13
+ 1355 0041 00       		.byte	0
+ 1356 0042 00       		.byte	0
+ 1357 0043 06       		.uleb128 0x6
+ 1358 0044 35       		.uleb128 0x35
+ 1359 0045 00       		.byte	0
+ 1360 0046 49       		.uleb128 0x49
+ 1361 0047 13       		.uleb128 0x13
+ 1362 0048 00       		.byte	0
+ 1363 0049 00       		.byte	0
+ 1364 004a 07       		.uleb128 0x7
+ 1365 004b 0F       		.uleb128 0xf
+ 1366 004c 00       		.byte	0
+ 1367 004d 0B       		.uleb128 0xb
+ 1368 004e 0B       		.uleb128 0xb
+ 1369 004f 49       		.uleb128 0x49
+ 1370 0050 13       		.uleb128 0x13
+ 1371 0051 00       		.byte	0
+ 1372 0052 00       		.byte	0
+ 1373 0053 08       		.uleb128 0x8
+ 1374 0054 15       		.uleb128 0x15
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccTEweIY.s 			page 33
+
+
+ 1375 0055 00       		.byte	0
+ 1376 0056 27       		.uleb128 0x27
+ 1377 0057 19       		.uleb128 0x19
+ 1378 0058 00       		.byte	0
+ 1379 0059 00       		.byte	0
+ 1380 005a 09       		.uleb128 0x9
+ 1381 005b 04       		.uleb128 0x4
+ 1382 005c 01       		.byte	0x1
+ 1383 005d 0B       		.uleb128 0xb
+ 1384 005e 0B       		.uleb128 0xb
+ 1385 005f 49       		.uleb128 0x49
+ 1386 0060 13       		.uleb128 0x13
+ 1387 0061 3A       		.uleb128 0x3a
+ 1388 0062 0B       		.uleb128 0xb
+ 1389 0063 3B       		.uleb128 0x3b
+ 1390 0064 0B       		.uleb128 0xb
+ 1391 0065 01       		.uleb128 0x1
+ 1392 0066 13       		.uleb128 0x13
+ 1393 0067 00       		.byte	0
+ 1394 0068 00       		.byte	0
+ 1395 0069 0A       		.uleb128 0xa
+ 1396 006a 28       		.uleb128 0x28
+ 1397 006b 00       		.byte	0
+ 1398 006c 03       		.uleb128 0x3
+ 1399 006d 0E       		.uleb128 0xe
+ 1400 006e 1C       		.uleb128 0x1c
+ 1401 006f 0B       		.uleb128 0xb
+ 1402 0070 00       		.byte	0
+ 1403 0071 00       		.byte	0
+ 1404 0072 0B       		.uleb128 0xb
+ 1405 0073 28       		.uleb128 0x28
+ 1406 0074 00       		.byte	0
+ 1407 0075 03       		.uleb128 0x3
+ 1408 0076 08       		.uleb128 0x8
+ 1409 0077 1C       		.uleb128 0x1c
+ 1410 0078 0B       		.uleb128 0xb
+ 1411 0079 00       		.byte	0
+ 1412 007a 00       		.byte	0
+ 1413 007b 0C       		.uleb128 0xc
+ 1414 007c 2E       		.uleb128 0x2e
+ 1415 007d 01       		.byte	0x1
+ 1416 007e 3F       		.uleb128 0x3f
+ 1417 007f 19       		.uleb128 0x19
+ 1418 0080 03       		.uleb128 0x3
+ 1419 0081 0E       		.uleb128 0xe
+ 1420 0082 3A       		.uleb128 0x3a
+ 1421 0083 0B       		.uleb128 0xb
+ 1422 0084 3B       		.uleb128 0x3b
+ 1423 0085 0B       		.uleb128 0xb
+ 1424 0086 27       		.uleb128 0x27
+ 1425 0087 19       		.uleb128 0x19
+ 1426 0088 11       		.uleb128 0x11
+ 1427 0089 01       		.uleb128 0x1
+ 1428 008a 12       		.uleb128 0x12
+ 1429 008b 06       		.uleb128 0x6
+ 1430 008c 40       		.uleb128 0x40
+ 1431 008d 18       		.uleb128 0x18
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccTEweIY.s 			page 34
+
+
+ 1432 008e 9742     		.uleb128 0x2117
+ 1433 0090 19       		.uleb128 0x19
+ 1434 0091 01       		.uleb128 0x1
+ 1435 0092 13       		.uleb128 0x13
+ 1436 0093 00       		.byte	0
+ 1437 0094 00       		.byte	0
+ 1438 0095 0D       		.uleb128 0xd
+ 1439 0096 34       		.uleb128 0x34
+ 1440 0097 00       		.byte	0
+ 1441 0098 03       		.uleb128 0x3
+ 1442 0099 0E       		.uleb128 0xe
+ 1443 009a 3A       		.uleb128 0x3a
+ 1444 009b 0B       		.uleb128 0xb
+ 1445 009c 3B       		.uleb128 0x3b
+ 1446 009d 0B       		.uleb128 0xb
+ 1447 009e 49       		.uleb128 0x49
+ 1448 009f 13       		.uleb128 0x13
+ 1449 00a0 02       		.uleb128 0x2
+ 1450 00a1 17       		.uleb128 0x17
+ 1451 00a2 00       		.byte	0
+ 1452 00a3 00       		.byte	0
+ 1453 00a4 0E       		.uleb128 0xe
+ 1454 00a5 34       		.uleb128 0x34
+ 1455 00a6 00       		.byte	0
+ 1456 00a7 03       		.uleb128 0x3
+ 1457 00a8 08       		.uleb128 0x8
+ 1458 00a9 3A       		.uleb128 0x3a
+ 1459 00aa 0B       		.uleb128 0xb
+ 1460 00ab 3B       		.uleb128 0x3b
+ 1461 00ac 0B       		.uleb128 0xb
+ 1462 00ad 49       		.uleb128 0x49
+ 1463 00ae 13       		.uleb128 0x13
+ 1464 00af 02       		.uleb128 0x2
+ 1465 00b0 17       		.uleb128 0x17
+ 1466 00b1 00       		.byte	0
+ 1467 00b2 00       		.byte	0
+ 1468 00b3 0F       		.uleb128 0xf
+ 1469 00b4 898201   		.uleb128 0x4109
+ 1470 00b7 00       		.byte	0
+ 1471 00b8 11       		.uleb128 0x11
+ 1472 00b9 01       		.uleb128 0x1
+ 1473 00ba 31       		.uleb128 0x31
+ 1474 00bb 13       		.uleb128 0x13
+ 1475 00bc 00       		.byte	0
+ 1476 00bd 00       		.byte	0
+ 1477 00be 10       		.uleb128 0x10
+ 1478 00bf 898201   		.uleb128 0x4109
+ 1479 00c2 01       		.byte	0x1
+ 1480 00c3 11       		.uleb128 0x11
+ 1481 00c4 01       		.uleb128 0x1
+ 1482 00c5 31       		.uleb128 0x31
+ 1483 00c6 13       		.uleb128 0x13
+ 1484 00c7 00       		.byte	0
+ 1485 00c8 00       		.byte	0
+ 1486 00c9 11       		.uleb128 0x11
+ 1487 00ca 8A8201   		.uleb128 0x410a
+ 1488 00cd 00       		.byte	0
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccTEweIY.s 			page 35
+
+
+ 1489 00ce 02       		.uleb128 0x2
+ 1490 00cf 18       		.uleb128 0x18
+ 1491 00d0 9142     		.uleb128 0x2111
+ 1492 00d2 18       		.uleb128 0x18
+ 1493 00d3 00       		.byte	0
+ 1494 00d4 00       		.byte	0
+ 1495 00d5 12       		.uleb128 0x12
+ 1496 00d6 05       		.uleb128 0x5
+ 1497 00d7 00       		.byte	0
+ 1498 00d8 03       		.uleb128 0x3
+ 1499 00d9 0E       		.uleb128 0xe
+ 1500 00da 3A       		.uleb128 0x3a
+ 1501 00db 0B       		.uleb128 0xb
+ 1502 00dc 3B       		.uleb128 0x3b
+ 1503 00dd 0B       		.uleb128 0xb
+ 1504 00de 49       		.uleb128 0x49
+ 1505 00df 13       		.uleb128 0x13
+ 1506 00e0 02       		.uleb128 0x2
+ 1507 00e1 18       		.uleb128 0x18
+ 1508 00e2 00       		.byte	0
+ 1509 00e3 00       		.byte	0
+ 1510 00e4 13       		.uleb128 0x13
+ 1511 00e5 2E       		.uleb128 0x2e
+ 1512 00e6 00       		.byte	0
+ 1513 00e7 3F       		.uleb128 0x3f
+ 1514 00e8 19       		.uleb128 0x19
+ 1515 00e9 03       		.uleb128 0x3
+ 1516 00ea 0E       		.uleb128 0xe
+ 1517 00eb 3A       		.uleb128 0x3a
+ 1518 00ec 0B       		.uleb128 0xb
+ 1519 00ed 3B       		.uleb128 0x3b
+ 1520 00ee 0B       		.uleb128 0xb
+ 1521 00ef 27       		.uleb128 0x27
+ 1522 00f0 19       		.uleb128 0x19
+ 1523 00f1 49       		.uleb128 0x49
+ 1524 00f2 13       		.uleb128 0x13
+ 1525 00f3 11       		.uleb128 0x11
+ 1526 00f4 01       		.uleb128 0x1
+ 1527 00f5 12       		.uleb128 0x12
+ 1528 00f6 06       		.uleb128 0x6
+ 1529 00f7 40       		.uleb128 0x40
+ 1530 00f8 18       		.uleb128 0x18
+ 1531 00f9 9742     		.uleb128 0x2117
+ 1532 00fb 19       		.uleb128 0x19
+ 1533 00fc 00       		.byte	0
+ 1534 00fd 00       		.byte	0
+ 1535 00fe 14       		.uleb128 0x14
+ 1536 00ff 2E       		.uleb128 0x2e
+ 1537 0100 01       		.byte	0x1
+ 1538 0101 3F       		.uleb128 0x3f
+ 1539 0102 19       		.uleb128 0x19
+ 1540 0103 03       		.uleb128 0x3
+ 1541 0104 0E       		.uleb128 0xe
+ 1542 0105 3A       		.uleb128 0x3a
+ 1543 0106 0B       		.uleb128 0xb
+ 1544 0107 3B       		.uleb128 0x3b
+ 1545 0108 05       		.uleb128 0x5
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccTEweIY.s 			page 36
+
+
+ 1546 0109 27       		.uleb128 0x27
+ 1547 010a 19       		.uleb128 0x19
+ 1548 010b 11       		.uleb128 0x11
+ 1549 010c 01       		.uleb128 0x1
+ 1550 010d 12       		.uleb128 0x12
+ 1551 010e 06       		.uleb128 0x6
+ 1552 010f 40       		.uleb128 0x40
+ 1553 0110 18       		.uleb128 0x18
+ 1554 0111 9742     		.uleb128 0x2117
+ 1555 0113 19       		.uleb128 0x19
+ 1556 0114 01       		.uleb128 0x1
+ 1557 0115 13       		.uleb128 0x13
+ 1558 0116 00       		.byte	0
+ 1559 0117 00       		.byte	0
+ 1560 0118 15       		.uleb128 0x15
+ 1561 0119 05       		.uleb128 0x5
+ 1562 011a 00       		.byte	0
+ 1563 011b 03       		.uleb128 0x3
+ 1564 011c 0E       		.uleb128 0xe
+ 1565 011d 3A       		.uleb128 0x3a
+ 1566 011e 0B       		.uleb128 0xb
+ 1567 011f 3B       		.uleb128 0x3b
+ 1568 0120 05       		.uleb128 0x5
+ 1569 0121 49       		.uleb128 0x49
+ 1570 0122 13       		.uleb128 0x13
+ 1571 0123 02       		.uleb128 0x2
+ 1572 0124 17       		.uleb128 0x17
+ 1573 0125 00       		.byte	0
+ 1574 0126 00       		.byte	0
+ 1575 0127 16       		.uleb128 0x16
+ 1576 0128 34       		.uleb128 0x34
+ 1577 0129 00       		.byte	0
+ 1578 012a 03       		.uleb128 0x3
+ 1579 012b 0E       		.uleb128 0xe
+ 1580 012c 3A       		.uleb128 0x3a
+ 1581 012d 0B       		.uleb128 0xb
+ 1582 012e 3B       		.uleb128 0x3b
+ 1583 012f 05       		.uleb128 0x5
+ 1584 0130 49       		.uleb128 0x49
+ 1585 0131 13       		.uleb128 0x13
+ 1586 0132 02       		.uleb128 0x2
+ 1587 0133 17       		.uleb128 0x17
+ 1588 0134 00       		.byte	0
+ 1589 0135 00       		.byte	0
+ 1590 0136 17       		.uleb128 0x17
+ 1591 0137 34       		.uleb128 0x34
+ 1592 0138 00       		.byte	0
+ 1593 0139 03       		.uleb128 0x3
+ 1594 013a 0E       		.uleb128 0xe
+ 1595 013b 3A       		.uleb128 0x3a
+ 1596 013c 0B       		.uleb128 0xb
+ 1597 013d 3B       		.uleb128 0x3b
+ 1598 013e 05       		.uleb128 0x5
+ 1599 013f 49       		.uleb128 0x49
+ 1600 0140 13       		.uleb128 0x13
+ 1601 0141 1C       		.uleb128 0x1c
+ 1602 0142 0B       		.uleb128 0xb
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccTEweIY.s 			page 37
+
+
+ 1603 0143 00       		.byte	0
+ 1604 0144 00       		.byte	0
+ 1605 0145 18       		.uleb128 0x18
+ 1606 0146 2E       		.uleb128 0x2e
+ 1607 0147 01       		.byte	0x1
+ 1608 0148 3F       		.uleb128 0x3f
+ 1609 0149 19       		.uleb128 0x19
+ 1610 014a 03       		.uleb128 0x3
+ 1611 014b 0E       		.uleb128 0xe
+ 1612 014c 3A       		.uleb128 0x3a
+ 1613 014d 0B       		.uleb128 0xb
+ 1614 014e 3B       		.uleb128 0x3b
+ 1615 014f 05       		.uleb128 0x5
+ 1616 0150 27       		.uleb128 0x27
+ 1617 0151 19       		.uleb128 0x19
+ 1618 0152 49       		.uleb128 0x49
+ 1619 0153 13       		.uleb128 0x13
+ 1620 0154 11       		.uleb128 0x11
+ 1621 0155 01       		.uleb128 0x1
+ 1622 0156 12       		.uleb128 0x12
+ 1623 0157 06       		.uleb128 0x6
+ 1624 0158 40       		.uleb128 0x40
+ 1625 0159 18       		.uleb128 0x18
+ 1626 015a 9742     		.uleb128 0x2117
+ 1627 015c 19       		.uleb128 0x19
+ 1628 015d 01       		.uleb128 0x1
+ 1629 015e 13       		.uleb128 0x13
+ 1630 015f 00       		.byte	0
+ 1631 0160 00       		.byte	0
+ 1632 0161 19       		.uleb128 0x19
+ 1633 0162 2E       		.uleb128 0x2e
+ 1634 0163 00       		.byte	0
+ 1635 0164 3F       		.uleb128 0x3f
+ 1636 0165 19       		.uleb128 0x19
+ 1637 0166 03       		.uleb128 0x3
+ 1638 0167 0E       		.uleb128 0xe
+ 1639 0168 3A       		.uleb128 0x3a
+ 1640 0169 0B       		.uleb128 0xb
+ 1641 016a 3B       		.uleb128 0x3b
+ 1642 016b 05       		.uleb128 0x5
+ 1643 016c 27       		.uleb128 0x27
+ 1644 016d 19       		.uleb128 0x19
+ 1645 016e 11       		.uleb128 0x11
+ 1646 016f 01       		.uleb128 0x1
+ 1647 0170 12       		.uleb128 0x12
+ 1648 0171 06       		.uleb128 0x6
+ 1649 0172 40       		.uleb128 0x40
+ 1650 0173 18       		.uleb128 0x18
+ 1651 0174 9742     		.uleb128 0x2117
+ 1652 0176 19       		.uleb128 0x19
+ 1653 0177 00       		.byte	0
+ 1654 0178 00       		.byte	0
+ 1655 0179 1A       		.uleb128 0x1a
+ 1656 017a 2E       		.uleb128 0x2e
+ 1657 017b 00       		.byte	0
+ 1658 017c 3F       		.uleb128 0x3f
+ 1659 017d 19       		.uleb128 0x19
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccTEweIY.s 			page 38
+
+
+ 1660 017e 03       		.uleb128 0x3
+ 1661 017f 0E       		.uleb128 0xe
+ 1662 0180 3A       		.uleb128 0x3a
+ 1663 0181 0B       		.uleb128 0xb
+ 1664 0182 3B       		.uleb128 0x3b
+ 1665 0183 05       		.uleb128 0x5
+ 1666 0184 27       		.uleb128 0x27
+ 1667 0185 19       		.uleb128 0x19
+ 1668 0186 49       		.uleb128 0x49
+ 1669 0187 13       		.uleb128 0x13
+ 1670 0188 11       		.uleb128 0x11
+ 1671 0189 01       		.uleb128 0x1
+ 1672 018a 12       		.uleb128 0x12
+ 1673 018b 06       		.uleb128 0x6
+ 1674 018c 40       		.uleb128 0x40
+ 1675 018d 18       		.uleb128 0x18
+ 1676 018e 9742     		.uleb128 0x2117
+ 1677 0190 19       		.uleb128 0x19
+ 1678 0191 00       		.byte	0
+ 1679 0192 00       		.byte	0
+ 1680 0193 1B       		.uleb128 0x1b
+ 1681 0194 898201   		.uleb128 0x4109
+ 1682 0197 01       		.byte	0x1
+ 1683 0198 11       		.uleb128 0x11
+ 1684 0199 01       		.uleb128 0x1
+ 1685 019a 31       		.uleb128 0x31
+ 1686 019b 13       		.uleb128 0x13
+ 1687 019c 01       		.uleb128 0x1
+ 1688 019d 13       		.uleb128 0x13
+ 1689 019e 00       		.byte	0
+ 1690 019f 00       		.byte	0
+ 1691 01a0 1C       		.uleb128 0x1c
+ 1692 01a1 05       		.uleb128 0x5
+ 1693 01a2 00       		.byte	0
+ 1694 01a3 03       		.uleb128 0x3
+ 1695 01a4 0E       		.uleb128 0xe
+ 1696 01a5 3A       		.uleb128 0x3a
+ 1697 01a6 0B       		.uleb128 0xb
+ 1698 01a7 3B       		.uleb128 0x3b
+ 1699 01a8 0B       		.uleb128 0xb
+ 1700 01a9 49       		.uleb128 0x49
+ 1701 01aa 13       		.uleb128 0x13
+ 1702 01ab 02       		.uleb128 0x2
+ 1703 01ac 17       		.uleb128 0x17
+ 1704 01ad 00       		.byte	0
+ 1705 01ae 00       		.byte	0
+ 1706 01af 1D       		.uleb128 0x1d
+ 1707 01b0 01       		.uleb128 0x1
+ 1708 01b1 01       		.byte	0x1
+ 1709 01b2 49       		.uleb128 0x49
+ 1710 01b3 13       		.uleb128 0x13
+ 1711 01b4 01       		.uleb128 0x1
+ 1712 01b5 13       		.uleb128 0x13
+ 1713 01b6 00       		.byte	0
+ 1714 01b7 00       		.byte	0
+ 1715 01b8 1E       		.uleb128 0x1e
+ 1716 01b9 21       		.uleb128 0x21
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccTEweIY.s 			page 39
+
+
+ 1717 01ba 00       		.byte	0
+ 1718 01bb 49       		.uleb128 0x49
+ 1719 01bc 13       		.uleb128 0x13
+ 1720 01bd 2F       		.uleb128 0x2f
+ 1721 01be 0B       		.uleb128 0xb
+ 1722 01bf 00       		.byte	0
+ 1723 01c0 00       		.byte	0
+ 1724 01c1 1F       		.uleb128 0x1f
+ 1725 01c2 34       		.uleb128 0x34
+ 1726 01c3 00       		.byte	0
+ 1727 01c4 03       		.uleb128 0x3
+ 1728 01c5 0E       		.uleb128 0xe
+ 1729 01c6 3A       		.uleb128 0x3a
+ 1730 01c7 0B       		.uleb128 0xb
+ 1731 01c8 3B       		.uleb128 0x3b
+ 1732 01c9 0B       		.uleb128 0xb
+ 1733 01ca 49       		.uleb128 0x49
+ 1734 01cb 13       		.uleb128 0x13
+ 1735 01cc 3F       		.uleb128 0x3f
+ 1736 01cd 19       		.uleb128 0x19
+ 1737 01ce 02       		.uleb128 0x2
+ 1738 01cf 18       		.uleb128 0x18
+ 1739 01d0 00       		.byte	0
+ 1740 01d1 00       		.byte	0
+ 1741 01d2 20       		.uleb128 0x20
+ 1742 01d3 34       		.uleb128 0x34
+ 1743 01d4 00       		.byte	0
+ 1744 01d5 03       		.uleb128 0x3
+ 1745 01d6 0E       		.uleb128 0xe
+ 1746 01d7 3A       		.uleb128 0x3a
+ 1747 01d8 0B       		.uleb128 0xb
+ 1748 01d9 3B       		.uleb128 0x3b
+ 1749 01da 0B       		.uleb128 0xb
+ 1750 01db 49       		.uleb128 0x49
+ 1751 01dc 13       		.uleb128 0x13
+ 1752 01dd 3F       		.uleb128 0x3f
+ 1753 01de 19       		.uleb128 0x19
+ 1754 01df 3C       		.uleb128 0x3c
+ 1755 01e0 19       		.uleb128 0x19
+ 1756 01e1 00       		.byte	0
+ 1757 01e2 00       		.byte	0
+ 1758 01e3 21       		.uleb128 0x21
+ 1759 01e4 2E       		.uleb128 0x2e
+ 1760 01e5 00       		.byte	0
+ 1761 01e6 3F       		.uleb128 0x3f
+ 1762 01e7 19       		.uleb128 0x19
+ 1763 01e8 3C       		.uleb128 0x3c
+ 1764 01e9 19       		.uleb128 0x19
+ 1765 01ea 6E       		.uleb128 0x6e
+ 1766 01eb 0E       		.uleb128 0xe
+ 1767 01ec 03       		.uleb128 0x3
+ 1768 01ed 0E       		.uleb128 0xe
+ 1769 01ee 3A       		.uleb128 0x3a
+ 1770 01ef 0B       		.uleb128 0xb
+ 1771 01f0 3B       		.uleb128 0x3b
+ 1772 01f1 05       		.uleb128 0x5
+ 1773 01f2 00       		.byte	0
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccTEweIY.s 			page 40
+
+
+ 1774 01f3 00       		.byte	0
+ 1775 01f4 22       		.uleb128 0x22
+ 1776 01f5 2E       		.uleb128 0x2e
+ 1777 01f6 00       		.byte	0
+ 1778 01f7 3F       		.uleb128 0x3f
+ 1779 01f8 19       		.uleb128 0x19
+ 1780 01f9 3C       		.uleb128 0x3c
+ 1781 01fa 19       		.uleb128 0x19
+ 1782 01fb 6E       		.uleb128 0x6e
+ 1783 01fc 0E       		.uleb128 0xe
+ 1784 01fd 03       		.uleb128 0x3
+ 1785 01fe 0E       		.uleb128 0xe
+ 1786 01ff 3A       		.uleb128 0x3a
+ 1787 0200 0B       		.uleb128 0xb
+ 1788 0201 3B       		.uleb128 0x3b
+ 1789 0202 0B       		.uleb128 0xb
+ 1790 0203 00       		.byte	0
+ 1791 0204 00       		.byte	0
+ 1792 0205 00       		.byte	0
+ 1793              		.section	.debug_loc,"",%progbits
+ 1794              	.Ldebug_loc0:
+ 1795              	.LLST0:
+ 1796 0000 08000000 		.4byte	.LVL1
+ 1797 0004 7A000000 		.4byte	.LVL13
+ 1798 0008 0100     		.2byte	0x1
+ 1799 000a 55       		.byte	0x55
+ 1800 000b 00000000 		.4byte	0
+ 1801 000f 00000000 		.4byte	0
+ 1802              	.LLST1:
+ 1803 0013 1A000000 		.4byte	.LVL2
+ 1804 0017 32000000 		.4byte	.LVL4
+ 1805 001b 0100     		.2byte	0x1
+ 1806 001d 54       		.byte	0x54
+ 1807 001e 34000000 		.4byte	.LVL5
+ 1808 0022 48000000 		.4byte	.LVL6
+ 1809 0026 0100     		.2byte	0x1
+ 1810 0028 54       		.byte	0x54
+ 1811 0029 48000000 		.4byte	.LVL6
+ 1812 002d 54000000 		.4byte	.LVL7
+ 1813 0031 0100     		.2byte	0x1
+ 1814 0033 53       		.byte	0x53
+ 1815 0034 56000000 		.4byte	.LVL8
+ 1816 0038 58000000 		.4byte	.LVL9
+ 1817 003c 0100     		.2byte	0x1
+ 1818 003e 53       		.byte	0x53
+ 1819 003f 58000000 		.4byte	.LVL9
+ 1820 0043 5A000000 		.4byte	.LVL10
+ 1821 0047 0100     		.2byte	0x1
+ 1822 0049 54       		.byte	0x54
+ 1823 004a 5A000000 		.4byte	.LVL10
+ 1824 004e 62000000 		.4byte	.LVL11
+ 1825 0052 0100     		.2byte	0x1
+ 1826 0054 53       		.byte	0x53
+ 1827 0055 00000000 		.4byte	0
+ 1828 0059 00000000 		.4byte	0
+ 1829              	.LLST2:
+ 1830 005d 00000000 		.4byte	.LVL15
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccTEweIY.s 			page 41
+
+
+ 1831 0061 07000000 		.4byte	.LVL17-1
+ 1832 0065 0100     		.2byte	0x1
+ 1833 0067 50       		.byte	0x50
+ 1834 0068 07000000 		.4byte	.LVL17-1
+ 1835 006c 20000000 		.4byte	.LFE7
+ 1836 0070 0400     		.2byte	0x4
+ 1837 0072 F3       		.byte	0xf3
+ 1838 0073 01       		.uleb128 0x1
+ 1839 0074 50       		.byte	0x50
+ 1840 0075 9F       		.byte	0x9f
+ 1841 0076 00000000 		.4byte	0
+ 1842 007a 00000000 		.4byte	0
+ 1843              	.LLST3:
+ 1844 007e 08000000 		.4byte	.LVL17
+ 1845 0082 19000000 		.4byte	.LVL18-1
+ 1846 0086 0100     		.2byte	0x1
+ 1847 0088 50       		.byte	0x50
+ 1848 0089 00000000 		.4byte	0
+ 1849 008d 00000000 		.4byte	0
+ 1850              	.LLST4:
+ 1851 0091 06000000 		.4byte	.LVL20
+ 1852 0095 0A000000 		.4byte	.LVL21
+ 1853 0099 0500     		.2byte	0x5
+ 1854 009b 70       		.byte	0x70
+ 1855 009c 00       		.sleb128 0
+ 1856 009d 33       		.byte	0x33
+ 1857 009e 1A       		.byte	0x1a
+ 1858 009f 9F       		.byte	0x9f
+ 1859 00a0 0A000000 		.4byte	.LVL21
+ 1860 00a4 10000000 		.4byte	.LFE8
+ 1861 00a8 0100     		.2byte	0x1
+ 1862 00aa 50       		.byte	0x50
+ 1863 00ab 00000000 		.4byte	0
+ 1864 00af 00000000 		.4byte	0
+ 1865              	.LLST5:
+ 1866 00b3 00000000 		.4byte	.LVL26
+ 1867 00b7 07000000 		.4byte	.LVL27-1
+ 1868 00bb 0100     		.2byte	0x1
+ 1869 00bd 50       		.byte	0x50
+ 1870 00be 07000000 		.4byte	.LVL27-1
+ 1871 00c2 18000000 		.4byte	.LVL31
+ 1872 00c6 0100     		.2byte	0x1
+ 1873 00c8 54       		.byte	0x54
+ 1874 00c9 18000000 		.4byte	.LVL31
+ 1875 00cd 1A000000 		.4byte	.LFE2
+ 1876 00d1 0400     		.2byte	0x4
+ 1877 00d3 F3       		.byte	0xf3
+ 1878 00d4 01       		.uleb128 0x1
+ 1879 00d5 50       		.byte	0x50
+ 1880 00d6 9F       		.byte	0x9f
+ 1881 00d7 00000000 		.4byte	0
+ 1882 00db 00000000 		.4byte	0
+ 1883              		.section	.debug_aranges,"",%progbits
+ 1884 0000 7C000000 		.4byte	0x7c
+ 1885 0004 0200     		.2byte	0x2
+ 1886 0006 00000000 		.4byte	.Ldebug_info0
+ 1887 000a 04       		.byte	0x4
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccTEweIY.s 			page 42
+
+
+ 1888 000b 00       		.byte	0
+ 1889 000c 0000     		.2byte	0
+ 1890 000e 0000     		.2byte	0
+ 1891 0010 00000000 		.4byte	.LFB4
+ 1892 0014 94000000 		.4byte	.LFE4-.LFB4
+ 1893 0018 00000000 		.4byte	.LFB5
+ 1894 001c 0C000000 		.4byte	.LFE5-.LFB5
+ 1895 0020 00000000 		.4byte	.LFB6
+ 1896 0024 0C000000 		.4byte	.LFE6-.LFB6
+ 1897 0028 00000000 		.4byte	.LFB7
+ 1898 002c 20000000 		.4byte	.LFE7-.LFB7
+ 1899 0030 00000000 		.4byte	.LFB8
+ 1900 0034 10000000 		.4byte	.LFE8-.LFB8
+ 1901 0038 00000000 		.4byte	.LFB9
+ 1902 003c 10000000 		.4byte	.LFE9-.LFB9
+ 1903 0040 00000000 		.4byte	.LFB10
+ 1904 0044 14000000 		.4byte	.LFE10-.LFB10
+ 1905 0048 00000000 		.4byte	.LFB11
+ 1906 004c 10000000 		.4byte	.LFE11-.LFB11
+ 1907 0050 00000000 		.4byte	.LFB1
+ 1908 0054 1C000000 		.4byte	.LFE1-.LFB1
+ 1909 0058 00000000 		.4byte	.LFB2
+ 1910 005c 1A000000 		.4byte	.LFE2-.LFB2
+ 1911 0060 00000000 		.4byte	.LFB3
+ 1912 0064 14000000 		.4byte	.LFE3-.LFB3
+ 1913 0068 00000000 		.4byte	.LFB12
+ 1914 006c 10000000 		.4byte	.LFE12-.LFB12
+ 1915 0070 00000000 		.4byte	.LFB13
+ 1916 0074 10000000 		.4byte	.LFE13-.LFB13
+ 1917 0078 00000000 		.4byte	0
+ 1918 007c 00000000 		.4byte	0
+ 1919              		.section	.debug_ranges,"",%progbits
+ 1920              	.Ldebug_ranges0:
+ 1921 0000 00000000 		.4byte	.LFB4
+ 1922 0004 94000000 		.4byte	.LFE4
+ 1923 0008 00000000 		.4byte	.LFB5
+ 1924 000c 0C000000 		.4byte	.LFE5
+ 1925 0010 00000000 		.4byte	.LFB6
+ 1926 0014 0C000000 		.4byte	.LFE6
+ 1927 0018 00000000 		.4byte	.LFB7
+ 1928 001c 20000000 		.4byte	.LFE7
+ 1929 0020 00000000 		.4byte	.LFB8
+ 1930 0024 10000000 		.4byte	.LFE8
+ 1931 0028 00000000 		.4byte	.LFB9
+ 1932 002c 10000000 		.4byte	.LFE9
+ 1933 0030 00000000 		.4byte	.LFB10
+ 1934 0034 14000000 		.4byte	.LFE10
+ 1935 0038 00000000 		.4byte	.LFB11
+ 1936 003c 10000000 		.4byte	.LFE11
+ 1937 0040 00000000 		.4byte	.LFB1
+ 1938 0044 1C000000 		.4byte	.LFE1
+ 1939 0048 00000000 		.4byte	.LFB2
+ 1940 004c 1A000000 		.4byte	.LFE2
+ 1941 0050 00000000 		.4byte	.LFB3
+ 1942 0054 14000000 		.4byte	.LFE3
+ 1943 0058 00000000 		.4byte	.LFB12
+ 1944 005c 10000000 		.4byte	.LFE12
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccTEweIY.s 			page 43
+
+
+ 1945 0060 00000000 		.4byte	.LFB13
+ 1946 0064 10000000 		.4byte	.LFE13
+ 1947 0068 00000000 		.4byte	0
+ 1948 006c 00000000 		.4byte	0
+ 1949              		.section	.debug_line,"",%progbits
+ 1950              	.Ldebug_line0:
+ 1951 0000 AC020000 		.section	.debug_str,"MS",%progbits,1
+ 1951      02007801 
+ 1951      00000201 
+ 1951      FB0E0D00 
+ 1951      01010101 
+ 1952              	.LASF41:
+ 1953 0000 55415254 		.ascii	"UART_BLE_SCB_IRQ_SetPriority\000"
+ 1953      5F424C45 
+ 1953      5F534342 
+ 1953      5F495251 
+ 1953      5F536574 
+ 1954              	.LASF37:
+ 1955 001d 736C6964 		.ascii	"slider_pos_t\000"
+ 1955      65725F70 
+ 1955      6F735F74 
+ 1955      00
+ 1956              	.LASF49:
+ 1957 002a 55415254 		.ascii	"UART_BLE_SCB_IRQ_Disable\000"
+ 1957      5F424C45 
+ 1957      5F534342 
+ 1957      5F495251 
+ 1957      5F446973 
+ 1958              	.LASF17:
+ 1959 0043 666C6F61 		.ascii	"float\000"
+ 1959      7400
+ 1960              	.LASF3:
+ 1961 0049 5F5F696E 		.ascii	"__int16_t\000"
+ 1961      7431365F 
+ 1961      7400
+ 1962              	.LASF70:
+ 1963 0053 6D6F746F 		.ascii	"motor_toggles\000"
+ 1963      725F746F 
+ 1963      67676C65 
+ 1963      7300
+ 1964              	.LASF43:
+ 1965 0061 7072696F 		.ascii	"priority\000"
+ 1965      72697479 
+ 1965      00
+ 1966              	.LASF82:
+ 1967 006a 43794578 		.ascii	"CyExitCriticalSection\000"
+ 1967      69744372 
+ 1967      69746963 
+ 1967      616C5365 
+ 1967      6374696F 
+ 1968              	.LASF52:
+ 1969 0080 55415254 		.ascii	"UART_BLE_SCB_IRQ_Stop\000"
+ 1969      5F424C45 
+ 1969      5F534342 
+ 1969      5F495251 
+ 1969      5F53746F 
+ 1970              	.LASF31:
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccTEweIY.s 			page 44
+
+
+ 1971 0096 4D494E5F 		.ascii	"MIN_MTR_SPD\000"
+ 1971      4D54525F 
+ 1971      53504400 
+ 1972              	.LASF26:
+ 1973 00a2 424C455F 		.ascii	"BLE_CMD_PROC\000"
+ 1973      434D445F 
+ 1973      50524F43 
+ 1973      00
+ 1974              	.LASF4:
+ 1975 00af 73686F72 		.ascii	"short int\000"
+ 1975      7420696E 
+ 1975      7400
+ 1976              	.LASF35:
+ 1977 00b9 4E455554 		.ascii	"NEUTRAL\000"
+ 1977      52414C00 
+ 1978              	.LASF23:
+ 1979 00c1 73697A65 		.ascii	"sizetype\000"
+ 1979      74797065 
+ 1979      00
+ 1980              	.LASF40:
+ 1981 00ca 55415254 		.ascii	"UART_BLE_SCB_IRQ_SetVector\000"
+ 1981      5F424C45 
+ 1981      5F534342 
+ 1981      5F495251 
+ 1981      5F536574 
+ 1982              	.LASF29:
+ 1983 00e5 4D41475F 		.ascii	"MAG_READ\000"
+ 1983      52454144 
+ 1983      00
+ 1984              	.LASF86:
+ 1985 00ee 55415254 		.ascii	"UART_BLE_SCB_IRQ_GetPriority\000"
+ 1985      5F424C45 
+ 1985      5F534342 
+ 1985      5F495251 
+ 1985      5F476574 
+ 1986              	.LASF39:
+ 1987 010b 55415254 		.ascii	"UART_BLE_SCB_IRQ_Interrupt\000"
+ 1987      5F424C45 
+ 1987      5F534342 
+ 1987      5F495251 
+ 1987      5F496E74 
+ 1988              	.LASF5:
+ 1989 0126 5F5F7569 		.ascii	"__uint16_t\000"
+ 1989      6E743136 
+ 1989      5F7400
+ 1990              	.LASF69:
+ 1991 0131 6E756D5F 		.ascii	"num_tasks\000"
+ 1991      7461736B 
+ 1991      7300
+ 1992              	.LASF38:
+ 1993 013b 62756666 		.ascii	"buff_depth\000"
+ 1993      5F646570 
+ 1993      746800
+ 1994              	.LASF83:
+ 1995 0146 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 1995      43313120 
+ 1995      352E342E 
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccTEweIY.s 			page 45
+
+
+ 1995      31203230 
+ 1995      31363036 
+ 1996 0179 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m0 -mthumb -g -O"
+ 1996      20726576 
+ 1996      6973696F 
+ 1996      6E203233 
+ 1996      37373135 
+ 1997 01ac 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 1997      66756E63 
+ 1997      74696F6E 
+ 1997      2D736563 
+ 1997      74696F6E 
+ 1998              	.LASF12:
+ 1999 01d4 75696E74 		.ascii	"uint8_t\000"
+ 1999      385F7400 
+ 2000              	.LASF67:
+ 2001 01dc 6E756D5F 		.ascii	"num_rx_bytes_lidar\000"
+ 2001      72785F62 
+ 2001      79746573 
+ 2001      5F6C6964 
+ 2001      617200
+ 2002              	.LASF51:
+ 2003 01ef 55415254 		.ascii	"UART_BLE_SCB_IRQ_StartEx\000"
+ 2003      5F424C45 
+ 2003      5F534342 
+ 2003      5F495251 
+ 2003      5F537461 
+ 2004              	.LASF84:
+ 2005 0208 47656E65 		.ascii	"Generated_Source\\PSoC4\\UART_BLE_SCB_IRQ.c\000"
+ 2005      72617465 
+ 2005      645F536F 
+ 2005      75726365 
+ 2005      5C50536F 
+ 2006              	.LASF85:
+ 2007 0232 433A5C55 		.ascii	"C:\\Users\\EricHoffman\\Documents\\PSoC Creator\\Qu"
+ 2007      73657273 
+ 2007      5C457269 
+ 2007      63486F66 
+ 2007      666D616E 
+ 2008 0260 61645275 		.ascii	"adRunCam6\\QuadRunCam6.cydsn\000"
+ 2008      6E43616D 
+ 2008      365C5175 
+ 2008      61645275 
+ 2008      6E43616D 
+ 2009              	.LASF66:
+ 2010 027c 4C494441 		.ascii	"LIDAR_UART_tmr\000"
+ 2010      525F5541 
+ 2010      52545F74 
+ 2010      6D7200
+ 2011              	.LASF46:
+ 2012 028b 55415254 		.ascii	"UART_BLE_SCB_IRQ_GetVector\000"
+ 2012      5F424C45 
+ 2012      5F534342 
+ 2012      5F495251 
+ 2012      5F476574 
+ 2013              	.LASF54:
+ 2014 02a6 55415254 		.ascii	"UART_BLE_SCB_IRQ_ClearPending\000"
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccTEweIY.s 			page 46
+
+
+ 2014      5F424C45 
+ 2014      5F534342 
+ 2014      5F495251 
+ 2014      5F436C65 
+ 2015              	.LASF73:
+ 2016 02c4 4D61785F 		.ascii	"Max_Lidar\000"
+ 2016      4C696461 
+ 2016      7200
+ 2017              	.LASF15:
+ 2018 02ce 75696E74 		.ascii	"uint8\000"
+ 2018      3800
+ 2019              	.LASF9:
+ 2020 02d4 6C6F6E67 		.ascii	"long long int\000"
+ 2020      206C6F6E 
+ 2020      6720696E 
+ 2020      7400
+ 2021              	.LASF56:
+ 2022 02e2 72785F62 		.ascii	"rx_bytes_dbg_buff\000"
+ 2022      79746573 
+ 2022      5F646267 
+ 2022      5F627566 
+ 2022      6600
+ 2023              	.LASF79:
+ 2024 02f4 55415254 		.ascii	"UART_BLE_UartGetByte\000"
+ 2024      5F424C45 
+ 2024      5F556172 
+ 2024      74476574 
+ 2024      42797465 
+ 2025              	.LASF72:
+ 2026 0309 42617474 		.ascii	"Batt_volt\000"
+ 2026      5F766F6C 
+ 2026      7400
+ 2027              	.LASF7:
+ 2028 0313 6C6F6E67 		.ascii	"long int\000"
+ 2028      20696E74 
+ 2028      00
+ 2029              	.LASF42:
+ 2030 031c 61646472 		.ascii	"address\000"
+ 2030      65737300 
+ 2031              	.LASF1:
+ 2032 0324 756E7369 		.ascii	"unsigned char\000"
+ 2032      676E6564 
+ 2032      20636861 
+ 2032      7200
+ 2033              	.LASF78:
+ 2034 0332 55415254 		.ascii	"UART_BLE_SpiUartGetRxBufferSize\000"
+ 2034      5F424C45 
+ 2034      5F537069 
+ 2034      55617274 
+ 2034      47657452 
+ 2035              	.LASF2:
+ 2036 0352 5F5F7569 		.ascii	"__uint8_t\000"
+ 2036      6E74385F 
+ 2036      7400
+ 2037              	.LASF25:
+ 2038 035c 4759524F 		.ascii	"GYRO_READ\000"
+ 2038      5F524541 
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccTEweIY.s 			page 47
+
+
+ 2038      4400
+ 2039              	.LASF53:
+ 2040 0366 55415254 		.ascii	"UART_BLE_SCB_IRQ_SetPending\000"
+ 2040      5F424C45 
+ 2040      5F534342 
+ 2040      5F495251 
+ 2040      5F536574 
+ 2041              	.LASF45:
+ 2042 0382 7072696F 		.ascii	"priorityOffset\000"
+ 2042      72697479 
+ 2042      4F666673 
+ 2042      657400
+ 2043              	.LASF30:
+ 2044 0391 4132445F 		.ascii	"A2D_RDY\000"
+ 2044      52445900 
+ 2045              	.LASF28:
+ 2046 0399 4442475F 		.ascii	"DBG_CMD_PROC\000"
+ 2046      434D445F 
+ 2046      50524F43 
+ 2046      00
+ 2047              	.LASF59:
+ 2048 03a6 72785F62 		.ascii	"rx_bytes_ble\000"
+ 2048      79746573 
+ 2048      5F626C65 
+ 2048      00
+ 2049              	.LASF74:
+ 2050 03b3 496E6974 		.ascii	"Init_heading\000"
+ 2050      5F686561 
+ 2050      64696E67 
+ 2050      00
+ 2051              	.LASF60:
+ 2052 03c0 72785F62 		.ascii	"rx_bytes_ble_buff\000"
+ 2052      79746573 
+ 2052      5F626C65 
+ 2052      5F627566 
+ 2052      6600
+ 2053              	.LASF22:
+ 2054 03d2 6C6F6E67 		.ascii	"long double\000"
+ 2054      20646F75 
+ 2054      626C6500 
+ 2055              	.LASF24:
+ 2056 03de 544D525F 		.ascii	"TMR_UPDT\000"
+ 2056      55504454 
+ 2056      00
+ 2057              	.LASF21:
+ 2058 03e7 63796973 		.ascii	"cyisraddress\000"
+ 2058      72616464 
+ 2058      72657373 
+ 2058      00
+ 2059              	.LASF33:
+ 2060 03f4 454D4552 		.ascii	"EMER_LAND\000"
+ 2060      5F4C414E 
+ 2060      4400
+ 2061              	.LASF0:
+ 2062 03fe 7369676E 		.ascii	"signed char\000"
+ 2062      65642063 
+ 2062      68617200 
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccTEweIY.s 			page 48
+
+
+ 2063              	.LASF10:
+ 2064 040a 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 2064      206C6F6E 
+ 2064      6720756E 
+ 2064      7369676E 
+ 2064      65642069 
+ 2065              	.LASF55:
+ 2066 0421 72785F62 		.ascii	"rx_bytes_dbg\000"
+ 2066      79746573 
+ 2066      5F646267 
+ 2066      00
+ 2067              	.LASF32:
+ 2068 042e 43414C5F 		.ascii	"CAL_FINAL\000"
+ 2068      46494E41 
+ 2068      4C00
+ 2069              	.LASF11:
+ 2070 0438 756E7369 		.ascii	"unsigned int\000"
+ 2070      676E6564 
+ 2070      20696E74 
+ 2070      00
+ 2071              	.LASF47:
+ 2072 0445 55415254 		.ascii	"UART_BLE_SCB_IRQ_GetState\000"
+ 2072      5F424C45 
+ 2072      5F534342 
+ 2072      5F495251 
+ 2072      5F476574 
+ 2073              	.LASF14:
+ 2074 045f 75696E74 		.ascii	"uint16_t\000"
+ 2074      31365F74 
+ 2074      00
+ 2075              	.LASF27:
+ 2076 0468 4C494441 		.ascii	"LIDAR_PCKT_PROC\000"
+ 2076      525F5043 
+ 2076      4B545F50 
+ 2076      524F4300 
+ 2077              	.LASF20:
+ 2078 0478 72656733 		.ascii	"reg32\000"
+ 2078      3200
+ 2079              	.LASF6:
+ 2080 047e 73686F72 		.ascii	"short unsigned int\000"
+ 2080      7420756E 
+ 2080      7369676E 
+ 2080      65642069 
+ 2080      6E7400
+ 2081              	.LASF80:
+ 2082 0491 656E7175 		.ascii	"enqueue_task\000"
+ 2082      6575655F 
+ 2082      7461736B 
+ 2082      00
+ 2083              	.LASF57:
+ 2084 049e 6E756D5F 		.ascii	"num_rx_bytes_dbg\000"
+ 2084      72785F62 
+ 2084      79746573 
+ 2084      5F646267 
+ 2084      00
+ 2085              	.LASF19:
+ 2086 04af 63686172 		.ascii	"char\000"
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccTEweIY.s 			page 49
+
+
+ 2086      00
+ 2087              	.LASF81:
+ 2088 04b4 4379456E 		.ascii	"CyEnterCriticalSection\000"
+ 2088      74657243 
+ 2088      72697469 
+ 2088      63616C53 
+ 2088      65637469 
+ 2089              	.LASF13:
+ 2090 04cb 696E7431 		.ascii	"int16_t\000"
+ 2090      365F7400 
+ 2091              	.LASF63:
+ 2092 04d3 6E756D5F 		.ascii	"num_rx_bytes_ble_buff\000"
+ 2092      72785F62 
+ 2092      79746573 
+ 2092      5F626C65 
+ 2092      5F627566 
+ 2093              	.LASF77:
+ 2094 04e9 43795261 		.ascii	"CyRamVectors\000"
+ 2094      6D566563 
+ 2094      746F7273 
+ 2094      00
+ 2095              	.LASF44:
+ 2096 04f6 696E7465 		.ascii	"interruptState\000"
+ 2096      72727570 
+ 2096      74537461 
+ 2096      746500
+ 2097              	.LASF65:
+ 2098 0505 72785F62 		.ascii	"rx_bytes_lidar_buff\000"
+ 2098      79746573 
+ 2098      5F6C6964 
+ 2098      61725F62 
+ 2098      75666600 
+ 2099              	.LASF16:
+ 2100 0519 75696E74 		.ascii	"uint32\000"
+ 2100      333200
+ 2101              	.LASF8:
+ 2102 0520 6C6F6E67 		.ascii	"long unsigned int\000"
+ 2102      20756E73 
+ 2102      69676E65 
+ 2102      6420696E 
+ 2102      7400
+ 2103              	.LASF18:
+ 2104 0532 646F7562 		.ascii	"double\000"
+ 2104      6C6500
+ 2105              	.LASF71:
+ 2106 0539 4553435F 		.ascii	"ESC_curr\000"
+ 2106      63757272 
+ 2106      00
+ 2107              	.LASF34:
+ 2108 0542 72756E5F 		.ascii	"run_mode_t\000"
+ 2108      6D6F6465 
+ 2108      5F7400
+ 2109              	.LASF68:
+ 2110 054d 6E756D5F 		.ascii	"num_rx_bytes_lidar_buff\000"
+ 2110      72785F62 
+ 2110      79746573 
+ 2110      5F6C6964 
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\ccTEweIY.s 			page 50
+
+
+ 2110      61725F62 
+ 2111              	.LASF64:
+ 2112 0565 72785F62 		.ascii	"rx_bytes_lidar\000"
+ 2112      79746573 
+ 2112      5F6C6964 
+ 2112      617200
+ 2113              	.LASF48:
+ 2114 0574 55415254 		.ascii	"UART_BLE_SCB_IRQ_Enable\000"
+ 2114      5F424C45 
+ 2114      5F534342 
+ 2114      5F495251 
+ 2114      5F456E61 
+ 2115              	.LASF75:
+ 2116 058c 72756E5F 		.ascii	"run_mode\000"
+ 2116      6D6F6465 
+ 2116      00
+ 2117              	.LASF76:
+ 2118 0595 736C6964 		.ascii	"slider_pos_last\000"
+ 2118      65725F70 
+ 2118      6F735F6C 
+ 2118      61737400 
+ 2119              	.LASF58:
+ 2120 05a5 6E756D5F 		.ascii	"num_rx_bytes_dbg_buff\000"
+ 2120      72785F62 
+ 2120      79746573 
+ 2120      5F646267 
+ 2120      5F627566 
+ 2121              	.LASF50:
+ 2122 05bb 55415254 		.ascii	"UART_BLE_SCB_IRQ_Start\000"
+ 2122      5F424C45 
+ 2122      5F534342 
+ 2122      5F495251 
+ 2122      5F537461 
+ 2123              	.LASF36:
+ 2124 05d2 48494748 		.ascii	"HIGH\000"
+ 2124      00
+ 2125              	.LASF61:
+ 2126 05d7 424C455F 		.ascii	"BLE_UART_tmr\000"
+ 2126      55415254 
+ 2126      5F746D72 
+ 2126      00
+ 2127              	.LASF62:
+ 2128 05e4 6E756D5F 		.ascii	"num_rx_bytes_ble\000"
+ 2128      72785F62 
+ 2128      79746573 
+ 2128      5F626C65 
+ 2128      00
+ 2129              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

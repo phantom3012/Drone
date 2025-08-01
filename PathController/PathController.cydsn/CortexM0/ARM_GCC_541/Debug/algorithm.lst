@@ -1,0 +1,3350 @@
+ARM GAS  C:\Users\SAIKAR~1\AppData\Local\Temp\cc2BPKwL.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m0
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 0
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"algorithm.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.global	__aeabi_dmul
+  20              		.global	__aeabi_ddiv
+  21              		.global	__aeabi_dsub
+  22              		.global	__aeabi_dadd
+  23              		.section	.text.calculate_bearing,"ax",%progbits
+  24              		.align	2
+  25              		.code	16
+  26              		.thumb_func
+  27              		.type	calculate_bearing, %function
+  28              	calculate_bearing:
+  29              	.LFB2:
+  30              		.file 1 "algorithm.c"
+   1:algorithm.c   **** 
+   2:algorithm.c   **** #include "algorithm.h"
+   3:algorithm.c   **** #include "cordic.h" 
+   4:algorithm.c   **** #include <math.h>
+   5:algorithm.c   **** 
+   6:algorithm.c   **** static inline double clamp(double value, double min_val, double max_val) {
+   7:algorithm.c   ****     if (value < min_val) return min_val;
+   8:algorithm.c   ****     if (value > max_val) return max_val;
+   9:algorithm.c   ****     return value;
+  10:algorithm.c   **** }
+  11:algorithm.c   **** 
+  12:algorithm.c   **** double haversine_distance(GPSCoordinate_t pos1, GPSCoordinate_t pos2) {
+  13:algorithm.c   ****     double sin_delta_phi_half, cos_delta_phi_half;
+  14:algorithm.c   ****     double sin_delta_lambda_half, cos_delta_lambda_half;
+  15:algorithm.c   ****     double sin_phi1, cos_phi1;
+  16:algorithm.c   ****     double sin_phi2, cos_phi2;
+  17:algorithm.c   **** 
+  18:algorithm.c   ****     double delta_phi = DEGREES_TO_RADIANS(pos2.lat - pos1.lat);
+  19:algorithm.c   ****     double delta_lambda = DEGREES_TO_RADIANS(pos2.lon - pos1.lon);
+  20:algorithm.c   **** 
+  21:algorithm.c   ****     fast_sincos(delta_phi / 2.0, &sin_delta_phi_half, &cos_delta_phi_half);
+  22:algorithm.c   ****     fast_sincos(delta_lambda / 2.0, &sin_delta_lambda_half, &cos_delta_lambda_half);
+  23:algorithm.c   ****     fast_sincos(DEGREES_TO_RADIANS(pos1.lat), &sin_phi1, &cos_phi1);
+  24:algorithm.c   ****     fast_sincos(DEGREES_TO_RADIANS(pos2.lat), &sin_phi2, &cos_phi2);
+  25:algorithm.c   **** 
+  26:algorithm.c   ****     double a = sin_delta_phi_half * sin_delta_phi_half +
+  27:algorithm.c   ****                cos_phi1 * cos_phi2 *
+ARM GAS  C:\Users\SAIKAR~1\AppData\Local\Temp\cc2BPKwL.s 			page 2
+
+
+  28:algorithm.c   ****                sin_delta_lambda_half * sin_delta_lambda_half;
+  29:algorithm.c   ****     
+  30:algorithm.c   ****     a = clamp(a, 0.0, 1.0);
+  31:algorithm.c   **** 
+  32:algorithm.c   ****     double c = 2.0 * fast_atan2(sqrt(a), sqrt(1.0 - a));
+  33:algorithm.c   ****     return EARTH_RADIUS_METERS * c;
+  34:algorithm.c   **** }
+  35:algorithm.c   **** 
+  36:algorithm.c   **** static double calculate_bearing(GPSCoordinate_t pos1, GPSCoordinate_t pos2) { //TODO: verify logic 
+  31              		.loc 1 36 0
+  32              		.cfi_startproc
+  33              		@ args = 16, pretend = 0, frame = 80
+  34              		@ frame_needed = 0, uses_anonymous_args = 0
+  35 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+  36              		.cfi_def_cfa_offset 20
+  37              		.cfi_offset 4, -20
+  38              		.cfi_offset 5, -16
+  39              		.cfi_offset 6, -12
+  40              		.cfi_offset 7, -8
+  41              		.cfi_offset 14, -4
+  42 0002 95B0     		sub	sp, sp, #84
+  43              		.cfi_def_cfa_offset 104
+  44 0004 0490     		str	r0, [sp, #16]
+  45 0006 0591     		str	r1, [sp, #20]
+  46 0008 0692     		str	r2, [sp, #24]
+  47 000a 0793     		str	r3, [sp, #28]
+  37:algorithm.c   ****     double sin_phi1, cos_phi1;
+  38:algorithm.c   ****     double sin_phi2, cos_phi2;
+  39:algorithm.c   ****     double sin_delta_lambda, cos_delta_lambda;
+  40:algorithm.c   **** 
+  41:algorithm.c   ****     double phi1 = DEGREES_TO_RADIANS(pos1.lat);
+  48              		.loc 1 41 0
+  49 000c 404A     		ldr	r2, .L2
+  50 000e 414B     		ldr	r3, .L2+4
+  51 0010 0498     		ldr	r0, [sp, #16]
+  52 0012 0599     		ldr	r1, [sp, #20]
+  53 0014 FFF7FEFF 		bl	__aeabi_dmul
+  54              	.LVL0:
+  55 0018 0022     		movs	r2, #0
+  56 001a 3F4B     		ldr	r3, .L2+8
+  57 001c FFF7FEFF 		bl	__aeabi_ddiv
+  58              	.LVL1:
+  59 0020 0400     		movs	r4, r0
+  60 0022 0D00     		movs	r5, r1
+  61              	.LVL2:
+  42:algorithm.c   ****     double lambda1 = DEGREES_TO_RADIANS(pos1.lon);
+  62              		.loc 1 42 0
+  63 0024 0698     		ldr	r0, [sp, #24]
+  64 0026 0799     		ldr	r1, [sp, #28]
+  65 0028 394A     		ldr	r2, .L2
+  66 002a 3A4B     		ldr	r3, .L2+4
+  67 002c FFF7FEFF 		bl	__aeabi_dmul
+  68              	.LVL3:
+  69 0030 0022     		movs	r2, #0
+  70 0032 394B     		ldr	r3, .L2+8
+  71 0034 FFF7FEFF 		bl	__aeabi_ddiv
+  72              	.LVL4:
+ARM GAS  C:\Users\SAIKAR~1\AppData\Local\Temp\cc2BPKwL.s 			page 3
+
+
+  73 0038 0090     		str	r0, [sp]
+  74 003a 0191     		str	r1, [sp, #4]
+  75              	.LVL5:
+  43:algorithm.c   ****     double phi2 = DEGREES_TO_RADIANS(pos2.lat);
+  76              		.loc 1 43 0
+  77 003c 344A     		ldr	r2, .L2
+  78 003e 354B     		ldr	r3, .L2+4
+  79 0040 1A98     		ldr	r0, [sp, #104]
+  80 0042 1B99     		ldr	r1, [sp, #108]
+  81              	.LVL6:
+  82 0044 FFF7FEFF 		bl	__aeabi_dmul
+  83              	.LVL7:
+  84 0048 0022     		movs	r2, #0
+  85 004a 334B     		ldr	r3, .L2+8
+  86 004c FFF7FEFF 		bl	__aeabi_ddiv
+  87              	.LVL8:
+  88 0050 0600     		movs	r6, r0
+  89 0052 0F00     		movs	r7, r1
+  90              	.LVL9:
+  44:algorithm.c   ****     double lambda2 = DEGREES_TO_RADIANS(pos2.lon);
+  91              		.loc 1 44 0
+  92 0054 2E4A     		ldr	r2, .L2
+  93 0056 2F4B     		ldr	r3, .L2+4
+  94 0058 1C98     		ldr	r0, [sp, #112]
+  95 005a 1D99     		ldr	r1, [sp, #116]
+  96 005c FFF7FEFF 		bl	__aeabi_dmul
+  97              	.LVL10:
+  98 0060 0022     		movs	r2, #0
+  99 0062 2D4B     		ldr	r3, .L2+8
+ 100 0064 FFF7FEFF 		bl	__aeabi_ddiv
+ 101              	.LVL11:
+ 102 0068 0290     		str	r0, [sp, #8]
+ 103 006a 0391     		str	r1, [sp, #12]
+ 104              	.LVL12:
+  45:algorithm.c   **** 
+  46:algorithm.c   ****     // Use fast_sincos for all trigonometric calculations
+  47:algorithm.c   ****     fast_sincos(phi1, &sin_phi1, &cos_phi1);
+ 105              		.loc 1 47 0
+ 106 006c 10AB     		add	r3, sp, #64
+ 107 006e 12AA     		add	r2, sp, #72
+ 108 0070 2000     		movs	r0, r4
+ 109              	.LVL13:
+ 110 0072 2900     		movs	r1, r5
+ 111 0074 FFF7FEFF 		bl	fast_sincos
+ 112              	.LVL14:
+  48:algorithm.c   ****     fast_sincos(phi2, &sin_phi2, &cos_phi2);
+ 113              		.loc 1 48 0
+ 114 0078 0CAB     		add	r3, sp, #48
+ 115 007a 0EAA     		add	r2, sp, #56
+ 116 007c 3000     		movs	r0, r6
+ 117 007e 3900     		movs	r1, r7
+ 118 0080 FFF7FEFF 		bl	fast_sincos
+ 119              	.LVL15:
+  49:algorithm.c   ****     fast_sincos(lambda2 - lambda1, &sin_delta_lambda, &cos_delta_lambda);
+ 120              		.loc 1 49 0
+ 121 0084 009A     		ldr	r2, [sp]
+ 122 0086 019B     		ldr	r3, [sp, #4]
+ARM GAS  C:\Users\SAIKAR~1\AppData\Local\Temp\cc2BPKwL.s 			page 4
+
+
+ 123 0088 0298     		ldr	r0, [sp, #8]
+ 124 008a 0399     		ldr	r1, [sp, #12]
+ 125 008c FFF7FEFF 		bl	__aeabi_dsub
+ 126              	.LVL16:
+ 127 0090 08AB     		add	r3, sp, #32
+ 128 0092 0AAA     		add	r2, sp, #40
+ 129 0094 FFF7FEFF 		bl	fast_sincos
+ 130              	.LVL17:
+  50:algorithm.c   **** 
+  51:algorithm.c   ****     double y = sin_delta_lambda * cos_phi2;
+ 131              		.loc 1 51 0
+ 132 0098 0C9C     		ldr	r4, [sp, #48]
+ 133 009a 0D9D     		ldr	r5, [sp, #52]
+ 134              	.LVL18:
+ 135 009c 2200     		movs	r2, r4
+ 136 009e 2B00     		movs	r3, r5
+ 137 00a0 0A98     		ldr	r0, [sp, #40]
+ 138 00a2 0B99     		ldr	r1, [sp, #44]
+ 139 00a4 FFF7FEFF 		bl	__aeabi_dmul
+ 140              	.LVL19:
+ 141 00a8 0090     		str	r0, [sp]
+ 142 00aa 0191     		str	r1, [sp, #4]
+ 143              	.LVL20:
+  52:algorithm.c   ****     double x = cos_phi1 * sin_phi2 - sin_phi1 * cos_phi2 * cos_delta_lambda;
+ 144              		.loc 1 52 0
+ 145 00ac 0E9A     		ldr	r2, [sp, #56]
+ 146 00ae 0F9B     		ldr	r3, [sp, #60]
+ 147 00b0 1098     		ldr	r0, [sp, #64]
+ 148 00b2 1199     		ldr	r1, [sp, #68]
+ 149              	.LVL21:
+ 150 00b4 FFF7FEFF 		bl	__aeabi_dmul
+ 151              	.LVL22:
+ 152 00b8 0600     		movs	r6, r0
+ 153              	.LVL23:
+ 154 00ba 0F00     		movs	r7, r1
+ 155 00bc 129A     		ldr	r2, [sp, #72]
+ 156 00be 139B     		ldr	r3, [sp, #76]
+ 157 00c0 2000     		movs	r0, r4
+ 158 00c2 2900     		movs	r1, r5
+ 159 00c4 FFF7FEFF 		bl	__aeabi_dmul
+ 160              	.LVL24:
+ 161 00c8 089A     		ldr	r2, [sp, #32]
+ 162 00ca 099B     		ldr	r3, [sp, #36]
+ 163 00cc FFF7FEFF 		bl	__aeabi_dmul
+ 164              	.LVL25:
+ 165 00d0 0200     		movs	r2, r0
+ 166 00d2 0B00     		movs	r3, r1
+ 167 00d4 3000     		movs	r0, r6
+ 168 00d6 3900     		movs	r1, r7
+ 169 00d8 FFF7FEFF 		bl	__aeabi_dsub
+ 170              	.LVL26:
+ 171 00dc 0200     		movs	r2, r0
+ 172 00de 0B00     		movs	r3, r1
+ 173              	.LVL27:
+  53:algorithm.c   ****     
+  54:algorithm.c   ****     double theta = fast_atan2(y, x); 
+ 174              		.loc 1 54 0
+ARM GAS  C:\Users\SAIKAR~1\AppData\Local\Temp\cc2BPKwL.s 			page 5
+
+
+ 175 00e0 0098     		ldr	r0, [sp]
+ 176 00e2 0199     		ldr	r1, [sp, #4]
+ 177 00e4 FFF7FEFF 		bl	fast_atan2
+ 178              	.LVL28:
+  55:algorithm.c   ****     return fmod((theta * 180.0 / M_PI + 360.0), 360.0);
+ 179              		.loc 1 55 0
+ 180 00e8 0022     		movs	r2, #0
+ 181 00ea 0B4B     		ldr	r3, .L2+8
+ 182 00ec FFF7FEFF 		bl	__aeabi_dmul
+ 183              	.LVL29:
+ 184 00f0 074A     		ldr	r2, .L2
+ 185 00f2 084B     		ldr	r3, .L2+4
+ 186 00f4 FFF7FEFF 		bl	__aeabi_ddiv
+ 187              	.LVL30:
+ 188 00f8 0024     		movs	r4, #0
+ 189 00fa 084D     		ldr	r5, .L2+12
+ 190 00fc 2200     		movs	r2, r4
+ 191 00fe 2B00     		movs	r3, r5
+ 192 0100 FFF7FEFF 		bl	__aeabi_dadd
+ 193              	.LVL31:
+ 194 0104 2200     		movs	r2, r4
+ 195 0106 2B00     		movs	r3, r5
+ 196 0108 FFF7FEFF 		bl	fmod
+ 197              	.LVL32:
+  56:algorithm.c   **** }
+ 198              		.loc 1 56 0
+ 199 010c 15B0     		add	sp, sp, #84
+ 200              	.LVL33:
+ 201              		@ sp needed
+ 202 010e F0BD     		pop	{r4, r5, r6, r7, pc}
+ 203              	.L3:
+ 204              		.align	2
+ 205              	.L2:
+ 206 0110 182D4454 		.word	1413754136
+ 207 0114 FB210940 		.word	1074340347
+ 208 0118 00806640 		.word	1080459264
+ 209 011c 00807640 		.word	1081507840
+ 210              		.cfi_endproc
+ 211              	.LFE2:
+ 212              		.size	calculate_bearing, .-calculate_bearing
+ 213              		.global	__aeabi_dcmplt
+ 214              		.global	__aeabi_dcmpgt
+ 215              		.section	.text.haversine_distance,"ax",%progbits
+ 216              		.align	2
+ 217              		.global	haversine_distance
+ 218              		.code	16
+ 219              		.thumb_func
+ 220              		.type	haversine_distance, %function
+ 221              	haversine_distance:
+ 222              	.LFB1:
+  12:algorithm.c   ****     double sin_delta_phi_half, cos_delta_phi_half;
+ 223              		.loc 1 12 0
+ 224              		.cfi_startproc
+ 225              		@ args = 16, pretend = 0, frame = 96
+ 226              		@ frame_needed = 0, uses_anonymous_args = 0
+ 227 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 228              		.cfi_def_cfa_offset 20
+ARM GAS  C:\Users\SAIKAR~1\AppData\Local\Temp\cc2BPKwL.s 			page 6
+
+
+ 229              		.cfi_offset 4, -20
+ 230              		.cfi_offset 5, -16
+ 231              		.cfi_offset 6, -12
+ 232              		.cfi_offset 7, -8
+ 233              		.cfi_offset 14, -4
+ 234 0002 99B0     		sub	sp, sp, #100
+ 235              		.cfi_def_cfa_offset 120
+ 236 0004 0490     		str	r0, [sp, #16]
+ 237 0006 0591     		str	r1, [sp, #20]
+ 238 0008 0692     		str	r2, [sp, #24]
+ 239 000a 0793     		str	r3, [sp, #28]
+  18:algorithm.c   ****     double delta_lambda = DEGREES_TO_RADIANS(pos2.lon - pos1.lon);
+ 240              		.loc 1 18 0
+ 241 000c 1E9C     		ldr	r4, [sp, #120]
+ 242 000e 1F9D     		ldr	r5, [sp, #124]
+ 243 0010 049E     		ldr	r6, [sp, #16]
+ 244 0012 059F     		ldr	r7, [sp, #20]
+ 245 0014 3200     		movs	r2, r6
+ 246 0016 3B00     		movs	r3, r7
+ 247 0018 2000     		movs	r0, r4
+ 248 001a 2900     		movs	r1, r5
+ 249 001c FFF7FEFF 		bl	__aeabi_dsub
+ 250              	.LVL34:
+ 251 0020 4E4A     		ldr	r2, .L11
+ 252 0022 4F4B     		ldr	r3, .L11+4
+ 253 0024 FFF7FEFF 		bl	__aeabi_dmul
+ 254              	.LVL35:
+ 255 0028 0022     		movs	r2, #0
+ 256 002a 4E4B     		ldr	r3, .L11+8
+ 257 002c FFF7FEFF 		bl	__aeabi_ddiv
+ 258              	.LVL36:
+ 259 0030 0090     		str	r0, [sp]
+ 260 0032 0191     		str	r1, [sp, #4]
+ 261              	.LVL37:
+  19:algorithm.c   **** 
+ 262              		.loc 1 19 0
+ 263 0034 069A     		ldr	r2, [sp, #24]
+ 264 0036 079B     		ldr	r3, [sp, #28]
+ 265 0038 2098     		ldr	r0, [sp, #128]
+ 266 003a 2199     		ldr	r1, [sp, #132]
+ 267              	.LVL38:
+ 268 003c FFF7FEFF 		bl	__aeabi_dsub
+ 269              	.LVL39:
+ 270 0040 464A     		ldr	r2, .L11
+ 271 0042 474B     		ldr	r3, .L11+4
+ 272 0044 FFF7FEFF 		bl	__aeabi_dmul
+ 273              	.LVL40:
+ 274 0048 0022     		movs	r2, #0
+ 275 004a 464B     		ldr	r3, .L11+8
+ 276 004c FFF7FEFF 		bl	__aeabi_ddiv
+ 277              	.LVL41:
+ 278 0050 0290     		str	r0, [sp, #8]
+ 279 0052 0391     		str	r1, [sp, #12]
+ 280              	.LVL42:
+  21:algorithm.c   ****     fast_sincos(delta_lambda / 2.0, &sin_delta_lambda_half, &cos_delta_lambda_half);
+ 281              		.loc 1 21 0
+ 282 0054 0022     		movs	r2, #0
+ARM GAS  C:\Users\SAIKAR~1\AppData\Local\Temp\cc2BPKwL.s 			page 7
+
+
+ 283 0056 444B     		ldr	r3, .L11+12
+ 284 0058 0098     		ldr	r0, [sp]
+ 285 005a 0199     		ldr	r1, [sp, #4]
+ 286              	.LVL43:
+ 287 005c FFF7FEFF 		bl	__aeabi_dmul
+ 288              	.LVL44:
+ 289 0060 14AB     		add	r3, sp, #80
+ 290 0062 16AA     		add	r2, sp, #88
+ 291 0064 FFF7FEFF 		bl	fast_sincos
+ 292              	.LVL45:
+  22:algorithm.c   ****     fast_sincos(DEGREES_TO_RADIANS(pos1.lat), &sin_phi1, &cos_phi1);
+ 293              		.loc 1 22 0
+ 294 0068 0022     		movs	r2, #0
+ 295 006a 3F4B     		ldr	r3, .L11+12
+ 296 006c 0298     		ldr	r0, [sp, #8]
+ 297 006e 0399     		ldr	r1, [sp, #12]
+ 298 0070 FFF7FEFF 		bl	__aeabi_dmul
+ 299              	.LVL46:
+ 300 0074 10AB     		add	r3, sp, #64
+ 301 0076 12AA     		add	r2, sp, #72
+ 302 0078 FFF7FEFF 		bl	fast_sincos
+ 303              	.LVL47:
+  23:algorithm.c   ****     fast_sincos(DEGREES_TO_RADIANS(pos2.lat), &sin_phi2, &cos_phi2);
+ 304              		.loc 1 23 0
+ 305 007c 374A     		ldr	r2, .L11
+ 306 007e 384B     		ldr	r3, .L11+4
+ 307 0080 3000     		movs	r0, r6
+ 308 0082 3900     		movs	r1, r7
+ 309 0084 FFF7FEFF 		bl	__aeabi_dmul
+ 310              	.LVL48:
+ 311 0088 0022     		movs	r2, #0
+ 312 008a 364B     		ldr	r3, .L11+8
+ 313 008c FFF7FEFF 		bl	__aeabi_ddiv
+ 314              	.LVL49:
+ 315 0090 0CAB     		add	r3, sp, #48
+ 316 0092 0EAA     		add	r2, sp, #56
+ 317 0094 FFF7FEFF 		bl	fast_sincos
+ 318              	.LVL50:
+  24:algorithm.c   **** 
+ 319              		.loc 1 24 0
+ 320 0098 304A     		ldr	r2, .L11
+ 321 009a 314B     		ldr	r3, .L11+4
+ 322 009c 2000     		movs	r0, r4
+ 323 009e 2900     		movs	r1, r5
+ 324 00a0 FFF7FEFF 		bl	__aeabi_dmul
+ 325              	.LVL51:
+ 326 00a4 0022     		movs	r2, #0
+ 327 00a6 2F4B     		ldr	r3, .L11+8
+ 328 00a8 FFF7FEFF 		bl	__aeabi_ddiv
+ 329              	.LVL52:
+ 330 00ac 08AB     		add	r3, sp, #32
+ 331 00ae 0AAA     		add	r2, sp, #40
+ 332 00b0 FFF7FEFF 		bl	fast_sincos
+ 333              	.LVL53:
+  26:algorithm.c   ****                cos_phi1 * cos_phi2 *
+ 334              		.loc 1 26 0
+ 335 00b4 169A     		ldr	r2, [sp, #88]
+ARM GAS  C:\Users\SAIKAR~1\AppData\Local\Temp\cc2BPKwL.s 			page 8
+
+
+ 336 00b6 179B     		ldr	r3, [sp, #92]
+ 337 00b8 1000     		movs	r0, r2
+ 338 00ba 1900     		movs	r1, r3
+ 339 00bc FFF7FEFF 		bl	__aeabi_dmul
+ 340              	.LVL54:
+ 341 00c0 0600     		movs	r6, r0
+ 342 00c2 0F00     		movs	r7, r1
+  27:algorithm.c   ****                sin_delta_lambda_half * sin_delta_lambda_half;
+ 343              		.loc 1 27 0
+ 344 00c4 089A     		ldr	r2, [sp, #32]
+ 345 00c6 099B     		ldr	r3, [sp, #36]
+ 346 00c8 0C98     		ldr	r0, [sp, #48]
+ 347 00ca 0D99     		ldr	r1, [sp, #52]
+ 348 00cc FFF7FEFF 		bl	__aeabi_dmul
+ 349              	.LVL55:
+ 350 00d0 129C     		ldr	r4, [sp, #72]
+ 351 00d2 139D     		ldr	r5, [sp, #76]
+ 352 00d4 2200     		movs	r2, r4
+ 353 00d6 2B00     		movs	r3, r5
+ 354 00d8 FFF7FEFF 		bl	__aeabi_dmul
+ 355              	.LVL56:
+ 356 00dc 0200     		movs	r2, r0
+ 357 00de 0B00     		movs	r3, r1
+  28:algorithm.c   ****     
+ 358              		.loc 1 28 0
+ 359 00e0 2000     		movs	r0, r4
+ 360 00e2 2900     		movs	r1, r5
+ 361 00e4 FFF7FEFF 		bl	__aeabi_dmul
+ 362              	.LVL57:
+ 363 00e8 0200     		movs	r2, r0
+ 364 00ea 0B00     		movs	r3, r1
+  26:algorithm.c   ****                cos_phi1 * cos_phi2 *
+ 365              		.loc 1 26 0
+ 366 00ec 3000     		movs	r0, r6
+ 367 00ee 3900     		movs	r1, r7
+ 368 00f0 FFF7FEFF 		bl	__aeabi_dadd
+ 369              	.LVL58:
+ 370 00f4 0400     		movs	r4, r0
+ 371 00f6 0D00     		movs	r5, r1
+ 372              	.LVL59:
+ 373              	.LBB8:
+ 374              	.LBB9:
+   7:algorithm.c   ****     if (value > max_val) return max_val;
+ 375              		.loc 1 7 0
+ 376 00f8 0022     		movs	r2, #0
+ 377 00fa 0023     		movs	r3, #0
+ 378 00fc FFF7FEFF 		bl	__aeabi_dcmplt
+ 379              	.LVL60:
+ 380 0100 0028     		cmp	r0, #0
+ 381 0102 0AD1     		bne	.L7
+   8:algorithm.c   ****     return value;
+ 382              		.loc 1 8 0
+ 383 0104 0022     		movs	r2, #0
+ 384 0106 194B     		ldr	r3, .L11+16
+ 385 0108 2000     		movs	r0, r4
+ 386 010a 2900     		movs	r1, r5
+ 387 010c FFF7FEFF 		bl	__aeabi_dcmpgt
+ARM GAS  C:\Users\SAIKAR~1\AppData\Local\Temp\cc2BPKwL.s 			page 9
+
+
+ 388              	.LVL61:
+ 389 0110 0028     		cmp	r0, #0
+ 390 0112 04D0     		beq	.L5
+ 391 0114 0024     		movs	r4, #0
+ 392              	.LVL62:
+ 393 0116 154D     		ldr	r5, .L11+16
+ 394 0118 01E0     		b	.L5
+ 395              	.LVL63:
+ 396              	.L7:
+   7:algorithm.c   ****     if (value > max_val) return max_val;
+ 397              		.loc 1 7 0
+ 398 011a 0024     		movs	r4, #0
+ 399              	.LVL64:
+ 400 011c 0025     		movs	r5, #0
+ 401              	.L5:
+ 402              	.LVL65:
+ 403              	.LBE9:
+ 404              	.LBE8:
+  32:algorithm.c   ****     return EARTH_RADIUS_METERS * c;
+ 405              		.loc 1 32 0
+ 406 011e 2000     		movs	r0, r4
+ 407 0120 2900     		movs	r1, r5
+ 408 0122 FFF7FEFF 		bl	sqrt
+ 409              	.LVL66:
+ 410 0126 0600     		movs	r6, r0
+ 411 0128 0F00     		movs	r7, r1
+ 412 012a 2200     		movs	r2, r4
+ 413 012c 2B00     		movs	r3, r5
+ 414 012e 0020     		movs	r0, #0
+ 415 0130 0E49     		ldr	r1, .L11+16
+ 416 0132 FFF7FEFF 		bl	__aeabi_dsub
+ 417              	.LVL67:
+ 418 0136 FFF7FEFF 		bl	sqrt
+ 419              	.LVL68:
+ 420 013a 0200     		movs	r2, r0
+ 421 013c 0B00     		movs	r3, r1
+ 422 013e 3000     		movs	r0, r6
+ 423 0140 3900     		movs	r1, r7
+ 424 0142 FFF7FEFF 		bl	fast_atan2
+ 425              	.LVL69:
+ 426 0146 0200     		movs	r2, r0
+ 427 0148 0B00     		movs	r3, r1
+ 428 014a FFF7FEFF 		bl	__aeabi_dadd
+ 429              	.LVL70:
+  33:algorithm.c   **** }
+ 430              		.loc 1 33 0
+ 431 014e 0022     		movs	r2, #0
+ 432 0150 074B     		ldr	r3, .L11+20
+ 433 0152 FFF7FEFF 		bl	__aeabi_dmul
+ 434              	.LVL71:
+  34:algorithm.c   **** 
+ 435              		.loc 1 34 0
+ 436 0156 19B0     		add	sp, sp, #100
+ 437              	.LVL72:
+ 438              		@ sp needed
+ 439 0158 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 440              	.L12:
+ARM GAS  C:\Users\SAIKAR~1\AppData\Local\Temp\cc2BPKwL.s 			page 10
+
+
+ 441 015a C046     		.align	2
+ 442              	.L11:
+ 443 015c 182D4454 		.word	1413754136
+ 444 0160 FB210940 		.word	1074340347
+ 445 0164 00806640 		.word	1080459264
+ 446 0168 0000E03F 		.word	1071644672
+ 447 016c 0000F03F 		.word	1072693248
+ 448 0170 AE4D5841 		.word	1096306094
+ 449              		.cfi_endproc
+ 450              	.LFE1:
+ 451              		.size	haversine_distance, .-haversine_distance
+ 452              		.section	.text.navigator_init,"ax",%progbits
+ 453              		.align	2
+ 454              		.global	navigator_init
+ 455              		.code	16
+ 456              		.thumb_func
+ 457              		.type	navigator_init, %function
+ 458              	navigator_init:
+ 459              	.LFB3:
+  57:algorithm.c   **** 
+  58:algorithm.c   **** 
+  59:algorithm.c   **** void navigator_init(DroneNavigator_t *nav, double target_lat, double target_lon,
+  60:algorithm.c   ****                     double p_gain, double max_pitch,
+  61:algorithm.c   ****                     double max_roll, double dist_thresh) {
+ 460              		.loc 1 61 0
+ 461              		.cfi_startproc
+ 462              		@ args = 40, pretend = 0, frame = 0
+ 463              		@ frame_needed = 0, uses_anonymous_args = 0
+ 464              		@ link register save eliminated.
+ 465              	.LVL73:
+  62:algorithm.c   ****     nav->target_pos.lat = target_lat;
+ 466              		.loc 1 62 0
+ 467 0000 0260     		str	r2, [r0]
+ 468 0002 4360     		str	r3, [r0, #4]
+  63:algorithm.c   ****     nav->target_pos.lon = target_lon;
+ 469              		.loc 1 63 0
+ 470 0004 009A     		ldr	r2, [sp]
+ 471 0006 019B     		ldr	r3, [sp, #4]
+ 472              	.LVL74:
+ 473 0008 8260     		str	r2, [r0, #8]
+ 474 000a C360     		str	r3, [r0, #12]
+  64:algorithm.c   ****     nav->p_gain = p_gain;
+ 475              		.loc 1 64 0
+ 476 000c 029A     		ldr	r2, [sp, #8]
+ 477 000e 039B     		ldr	r3, [sp, #12]
+ 478 0010 0261     		str	r2, [r0, #16]
+ 479 0012 4361     		str	r3, [r0, #20]
+  65:algorithm.c   ****     nav->max_pitch_cmd = max_pitch;
+ 480              		.loc 1 65 0
+ 481 0014 049A     		ldr	r2, [sp, #16]
+ 482 0016 059B     		ldr	r3, [sp, #20]
+ 483 0018 8261     		str	r2, [r0, #24]
+ 484 001a C361     		str	r3, [r0, #28]
+  66:algorithm.c   ****     nav->max_roll_cmd = max_roll;
+ 485              		.loc 1 66 0
+ 486 001c 069A     		ldr	r2, [sp, #24]
+ 487 001e 079B     		ldr	r3, [sp, #28]
+ARM GAS  C:\Users\SAIKAR~1\AppData\Local\Temp\cc2BPKwL.s 			page 11
+
+
+ 488 0020 0262     		str	r2, [r0, #32]
+ 489 0022 4362     		str	r3, [r0, #36]
+  67:algorithm.c   ****     nav->distance_threshold = dist_thresh;
+ 490              		.loc 1 67 0
+ 491 0024 089A     		ldr	r2, [sp, #32]
+ 492 0026 099B     		ldr	r3, [sp, #36]
+ 493 0028 8262     		str	r2, [r0, #40]
+ 494 002a C362     		str	r3, [r0, #44]
+  68:algorithm.c   **** }
+ 495              		.loc 1 68 0
+ 496              		@ sp needed
+ 497 002c 7047     		bx	lr
+ 498              		.cfi_endproc
+ 499              	.LFE3:
+ 500              		.size	navigator_init, .-navigator_init
+ 501              		.section	.text.navigator_update,"ax",%progbits
+ 502              		.align	2
+ 503              		.global	navigator_update
+ 504              		.code	16
+ 505              		.thumb_func
+ 506              		.type	navigator_update, %function
+ 507              	navigator_update:
+ 508              	.LFB4:
+  69:algorithm.c   **** 
+  70:algorithm.c   **** bool navigator_update(DroneNavigator_t *nav, GPSCoordinate_t current_pos,
+  71:algorithm.c   ****                       double drone_heading_degrees, double dt,
+  72:algorithm.c   ****                       double *out_pitch_cmd, double *out_roll_cmd) {
+ 509              		.loc 1 72 0
+ 510              		.cfi_startproc
+ 511              		@ args = 40, pretend = 8, frame = 48
+ 512              		@ frame_needed = 0, uses_anonymous_args = 0
+ 513              	.LVL75:
+ 514 0000 82B0     		sub	sp, sp, #8
+ 515              		.cfi_def_cfa_offset 8
+ 516 0002 F0B5     		push	{r4, r5, r6, r7, lr}
+ 517              		.cfi_def_cfa_offset 28
+ 518              		.cfi_offset 4, -28
+ 519              		.cfi_offset 5, -24
+ 520              		.cfi_offset 6, -20
+ 521              		.cfi_offset 7, -16
+ 522              		.cfi_offset 14, -12
+ 523 0004 91B0     		sub	sp, sp, #68
+ 524              		.cfi_def_cfa_offset 96
+ 525 0006 0700     		movs	r7, r0
+ 526 0008 1692     		str	r2, [sp, #88]
+ 527 000a 1793     		str	r3, [sp, #92]
+  73:algorithm.c   **** 
+  74:algorithm.c   ****     double distance = haversine_distance(current_pos, nav->target_pos);
+ 528              		.loc 1 74 0
+ 529 000c 1022     		movs	r2, #16
+ 530 000e 0100     		movs	r1, r0
+ 531 0010 6846     		mov	r0, sp
+ 532              	.LVL76:
+ 533 0012 FFF7FEFF 		bl	memcpy
+ 534              	.LVL77:
+ 535 0016 1698     		ldr	r0, [sp, #88]
+ 536 0018 1799     		ldr	r1, [sp, #92]
+ARM GAS  C:\Users\SAIKAR~1\AppData\Local\Temp\cc2BPKwL.s 			page 12
+
+
+ 537 001a 189A     		ldr	r2, [sp, #96]
+ 538 001c 199B     		ldr	r3, [sp, #100]
+ 539 001e FFF7FEFF 		bl	haversine_distance
+ 540              	.LVL78:
+ 541 0022 0500     		movs	r5, r0
+ 542 0024 0C00     		movs	r4, r1
+ 543              	.LVL79:
+  75:algorithm.c   ****     if (fabs(distance) < nav->distance_threshold) {
+ 544              		.loc 1 75 0
+ 545 0026 4E00     		lsls	r6, r1, #1
+ 546 0028 BA6A     		ldr	r2, [r7, #40]
+ 547 002a FB6A     		ldr	r3, [r7, #44]
+ 548 002c 2800     		movs	r0, r5
+ 549 002e 7108     		lsrs	r1, r6, #1
+ 550              	.LVL80:
+ 551 0030 FFF7FEFF 		bl	__aeabi_dcmplt
+ 552              	.LVL81:
+ 553 0034 0028     		cmp	r0, #0
+ 554 0036 09D0     		beq	.L27
+  76:algorithm.c   ****         *out_pitch_cmd = 0.0;
+ 555              		.loc 1 76 0
+ 556 0038 0022     		movs	r2, #0
+ 557 003a 0023     		movs	r3, #0
+ 558 003c 1E99     		ldr	r1, [sp, #120]
+ 559 003e 0A60     		str	r2, [r1]
+ 560 0040 4B60     		str	r3, [r1, #4]
+  77:algorithm.c   ****         *out_roll_cmd = 0.0;
+ 561              		.loc 1 77 0
+ 562 0042 1F99     		ldr	r1, [sp, #124]
+ 563 0044 0A60     		str	r2, [r1]
+ 564 0046 4B60     		str	r3, [r1, #4]
+  78:algorithm.c   ****         return true;
+ 565              		.loc 1 78 0
+ 566 0048 0120     		movs	r0, #1
+ 567 004a A7E0     		b	.L17
+ 568              	.L27:
+  79:algorithm.c   ****     }
+  80:algorithm.c   **** 
+  81:algorithm.c   ****     double bearing_to_target_deg = calculate_bearing(current_pos, nav->target_pos);
+ 569              		.loc 1 81 0
+ 570 004c 1022     		movs	r2, #16
+ 571 004e 3900     		movs	r1, r7
+ 572 0050 6846     		mov	r0, sp
+ 573 0052 FFF7FEFF 		bl	memcpy
+ 574              	.LVL82:
+ 575 0056 1698     		ldr	r0, [sp, #88]
+ 576 0058 1799     		ldr	r1, [sp, #92]
+ 577 005a 189A     		ldr	r2, [sp, #96]
+ 578 005c 199B     		ldr	r3, [sp, #100]
+ 579 005e FFF7FEFF 		bl	calculate_bearing
+ 580              	.LVL83:
+  82:algorithm.c   ****     double bearing_rad = DEGREES_TO_RADIANS(bearing_to_target_deg);
+ 581              		.loc 1 82 0
+ 582 0062 514A     		ldr	r2, .L30
+ 583 0064 514B     		ldr	r3, .L30+4
+ 584 0066 FFF7FEFF 		bl	__aeabi_dmul
+ 585              	.LVL84:
+ARM GAS  C:\Users\SAIKAR~1\AppData\Local\Temp\cc2BPKwL.s 			page 13
+
+
+ 586 006a 0022     		movs	r2, #0
+ 587 006c 504B     		ldr	r3, .L30+8
+ 588 006e FFF7FEFF 		bl	__aeabi_ddiv
+ 589              	.LVL85:
+ 590 0072 0490     		str	r0, [sp, #16]
+ 591 0074 0591     		str	r1, [sp, #20]
+ 592              	.LVL86:
+  83:algorithm.c   ****     double heading_rad = DEGREES_TO_RADIANS(drone_heading_degrees);
+ 593              		.loc 1 83 0
+ 594 0076 4C4A     		ldr	r2, .L30
+ 595 0078 4C4B     		ldr	r3, .L30+4
+ 596 007a 1A98     		ldr	r0, [sp, #104]
+ 597 007c 1B99     		ldr	r1, [sp, #108]
+ 598              	.LVL87:
+ 599 007e FFF7FEFF 		bl	__aeabi_dmul
+ 600              	.LVL88:
+ 601 0082 0022     		movs	r2, #0
+ 602 0084 4A4B     		ldr	r3, .L30+8
+ 603 0086 FFF7FEFF 		bl	__aeabi_ddiv
+ 604              	.LVL89:
+ 605 008a 0200     		movs	r2, r0
+ 606 008c 0B00     		movs	r3, r1
+ 607              	.LVL90:
+  84:algorithm.c   **** 
+  85:algorithm.c   ****     double sin_arg, cos_arg;
+  86:algorithm.c   ****     fast_sincos(bearing_rad - heading_rad, &sin_arg, &cos_arg);
+ 608              		.loc 1 86 0
+ 609 008e 0498     		ldr	r0, [sp, #16]
+ 610 0090 0599     		ldr	r1, [sp, #20]
+ 611 0092 FFF7FEFF 		bl	__aeabi_dsub
+ 612              	.LVL91:
+ 613 0096 0CAB     		add	r3, sp, #48
+ 614 0098 0EAA     		add	r2, sp, #56
+ 615 009a FFF7FEFF 		bl	fast_sincos
+ 616              	.LVL92:
+  87:algorithm.c   ****     double relative_bearing_rad = fast_atan2(sin_arg, cos_arg);
+ 617              		.loc 1 87 0
+ 618 009e 0C9A     		ldr	r2, [sp, #48]
+ 619 00a0 0D9B     		ldr	r3, [sp, #52]
+ 620 00a2 0E98     		ldr	r0, [sp, #56]
+ 621 00a4 0F99     		ldr	r1, [sp, #60]
+ 622 00a6 FFF7FEFF 		bl	fast_atan2
+ 623              	.LVL93:
+  88:algorithm.c   **** 
+  89:algorithm.c   ****     double error_forward = distance * cos_arg; 
+ 624              		.loc 1 89 0
+ 625 00aa 0C9A     		ldr	r2, [sp, #48]
+ 626 00ac 0D9B     		ldr	r3, [sp, #52]
+ 627 00ae 2800     		movs	r0, r5
+ 628 00b0 2100     		movs	r1, r4
+ 629 00b2 FFF7FEFF 		bl	__aeabi_dmul
+ 630              	.LVL94:
+ 631 00b6 0490     		str	r0, [sp, #16]
+ 632 00b8 0591     		str	r1, [sp, #20]
+ 633              	.LVL95:
+  90:algorithm.c   ****     double error_right = distance * sin_arg;   
+ 634              		.loc 1 90 0
+ARM GAS  C:\Users\SAIKAR~1\AppData\Local\Temp\cc2BPKwL.s 			page 14
+
+
+ 635 00ba 0E9A     		ldr	r2, [sp, #56]
+ 636 00bc 0F9B     		ldr	r3, [sp, #60]
+ 637 00be 2800     		movs	r0, r5
+ 638              	.LVL96:
+ 639 00c0 2100     		movs	r1, r4
+ 640 00c2 FFF7FEFF 		bl	__aeabi_dmul
+ 641              	.LVL97:
+ 642 00c6 0890     		str	r0, [sp, #32]
+ 643 00c8 0991     		str	r1, [sp, #36]
+ 644              	.LVL98:
+  91:algorithm.c   **** 
+  92:algorithm.c   ****     double pitch_p_term = (fast_atan2(nav->p_gain * error_forward, distance) / (M_PI / 2.0)) * nav-
+ 645              		.loc 1 92 0
+ 646 00ca 3A69     		ldr	r2, [r7, #16]
+ 647 00cc 7B69     		ldr	r3, [r7, #20]
+ 648 00ce 0498     		ldr	r0, [sp, #16]
+ 649 00d0 0599     		ldr	r1, [sp, #20]
+ 650              	.LVL99:
+ 651 00d2 FFF7FEFF 		bl	__aeabi_dmul
+ 652              	.LVL100:
+ 653 00d6 2A00     		movs	r2, r5
+ 654 00d8 2300     		movs	r3, r4
+ 655 00da FFF7FEFF 		bl	fast_atan2
+ 656              	.LVL101:
+ 657 00de 324A     		ldr	r2, .L30
+ 658 00e0 344B     		ldr	r3, .L30+12
+ 659 00e2 FFF7FEFF 		bl	__aeabi_ddiv
+ 660              	.LVL102:
+ 661 00e6 BA69     		ldr	r2, [r7, #24]
+ 662 00e8 FB69     		ldr	r3, [r7, #28]
+ 663 00ea FFF7FEFF 		bl	__aeabi_dmul
+ 664              	.LVL103:
+ 665 00ee 0490     		str	r0, [sp, #16]
+ 666              	.LVL104:
+ 667 00f0 0791     		str	r1, [sp, #28]
+ 668              	.LVL105:
+  93:algorithm.c   ****     double roll_p_term = (fast_atan2(nav->p_gain * error_right, distance) / (M_PI / 2.0)) * nav->ma
+ 669              		.loc 1 93 0
+ 670 00f2 3A69     		ldr	r2, [r7, #16]
+ 671 00f4 7B69     		ldr	r3, [r7, #20]
+ 672 00f6 0898     		ldr	r0, [sp, #32]
+ 673 00f8 0999     		ldr	r1, [sp, #36]
+ 674              	.LVL106:
+ 675 00fa FFF7FEFF 		bl	__aeabi_dmul
+ 676              	.LVL107:
+ 677 00fe 2A00     		movs	r2, r5
+ 678 0100 2300     		movs	r3, r4
+ 679 0102 FFF7FEFF 		bl	fast_atan2
+ 680              	.LVL108:
+ 681 0106 284A     		ldr	r2, .L30
+ 682 0108 2A4B     		ldr	r3, .L30+12
+ 683 010a FFF7FEFF 		bl	__aeabi_ddiv
+ 684              	.LVL109:
+ 685 010e 3A6A     		ldr	r2, [r7, #32]
+ 686 0110 7B6A     		ldr	r3, [r7, #36]
+ 687 0112 FFF7FEFF 		bl	__aeabi_dmul
+ 688              	.LVL110:
+ARM GAS  C:\Users\SAIKAR~1\AppData\Local\Temp\cc2BPKwL.s 			page 15
+
+
+ 689 0116 0890     		str	r0, [sp, #32]
+ 690              	.LVL111:
+ 691 0118 0A91     		str	r1, [sp, #40]
+ 692              	.LVL112:
+  94:algorithm.c   **** 
+  95:algorithm.c   ****     // --- Final Command ---
+  96:algorithm.c   ****     double final_pitch = pitch_p_term;
+  97:algorithm.c   ****     double final_roll = roll_p_term;
+  98:algorithm.c   **** 
+  99:algorithm.c   ****     // Clamp to absolute limits
+ 100:algorithm.c   ****     *out_pitch_cmd = clamp(final_pitch, -nav->max_pitch_cmd, nav->max_pitch_cmd);
+ 693              		.loc 1 100 0
+ 694 011a BC69     		ldr	r4, [r7, #24]
+ 695              	.LVL113:
+ 696 011c FE69     		ldr	r6, [r7, #28]
+ 697 011e 0B94     		str	r4, [sp, #44]
+ 698 0120 8023     		movs	r3, #128
+ 699 0122 1B06     		lsls	r3, r3, #24
+ 700 0124 F518     		adds	r5, r6, r3
+ 701              	.LVL114:
+ 702              	.LBB10:
+ 703              	.LBB11:
+   7:algorithm.c   ****     if (value > max_val) return max_val;
+ 704              		.loc 1 7 0
+ 705 0126 2200     		movs	r2, r4
+ 706 0128 2B00     		movs	r3, r5
+ 707 012a 0498     		ldr	r0, [sp, #16]
+ 708              	.LVL115:
+ 709 012c 0799     		ldr	r1, [sp, #28]
+ 710              	.LVL116:
+ 711 012e FFF7FEFF 		bl	__aeabi_dcmplt
+ 712              	.LVL117:
+ 713 0132 0028     		cmp	r0, #0
+ 714 0134 0DD1     		bne	.L18
+   8:algorithm.c   ****     return value;
+ 715              		.loc 1 8 0
+ 716 0136 2200     		movs	r2, r4
+ 717 0138 3300     		movs	r3, r6
+ 718 013a 0498     		ldr	r0, [sp, #16]
+ 719 013c 0799     		ldr	r1, [sp, #28]
+ 720 013e FFF7FEFF 		bl	__aeabi_dcmpgt
+ 721              	.LVL118:
+ 722 0142 0028     		cmp	r0, #0
+ 723 0144 02D0     		beq	.L28
+ 724 0146 0B94     		str	r4, [sp, #44]
+ 725 0148 3500     		movs	r5, r6
+ 726              	.LVL119:
+ 727 014a 02E0     		b	.L18
+ 728              	.LVL120:
+ 729              	.L28:
+   9:algorithm.c   **** }
+ 730              		.loc 1 9 0
+ 731 014c 049B     		ldr	r3, [sp, #16]
+ 732 014e 0B93     		str	r3, [sp, #44]
+ 733 0150 079D     		ldr	r5, [sp, #28]
+ 734              	.LVL121:
+ 735              	.L18:
+ARM GAS  C:\Users\SAIKAR~1\AppData\Local\Temp\cc2BPKwL.s 			page 16
+
+
+ 736              	.LBE11:
+ 737              	.LBE10:
+ 738              		.loc 1 100 0
+ 739 0152 0B9A     		ldr	r2, [sp, #44]
+ 740 0154 2B00     		movs	r3, r5
+ 741 0156 1E99     		ldr	r1, [sp, #120]
+ 742 0158 0A60     		str	r2, [r1]
+ 743 015a 4B60     		str	r3, [r1, #4]
+ 101:algorithm.c   ****     *out_roll_cmd = clamp(final_roll, -nav->max_roll_cmd, nav->max_roll_cmd);
+ 744              		.loc 1 101 0
+ 745 015c 3C6A     		ldr	r4, [r7, #32]
+ 746 015e 7F6A     		ldr	r7, [r7, #36]
+ 747              	.LVL122:
+ 748 0160 2600     		movs	r6, r4
+ 749 0162 8023     		movs	r3, #128
+ 750 0164 1B06     		lsls	r3, r3, #24
+ 751 0166 FD18     		adds	r5, r7, r3
+ 752              	.LVL123:
+ 753              	.LBB12:
+ 754              	.LBB13:
+   7:algorithm.c   ****     if (value > max_val) return max_val;
+ 755              		.loc 1 7 0
+ 756 0168 2200     		movs	r2, r4
+ 757 016a 2B00     		movs	r3, r5
+ 758 016c 0898     		ldr	r0, [sp, #32]
+ 759 016e 0A99     		ldr	r1, [sp, #40]
+ 760 0170 FFF7FEFF 		bl	__aeabi_dcmplt
+ 761              	.LVL124:
+ 762 0174 0028     		cmp	r0, #0
+ 763 0176 0BD1     		bne	.L20
+   8:algorithm.c   ****     return value;
+ 764              		.loc 1 8 0
+ 765 0178 2200     		movs	r2, r4
+ 766 017a 3B00     		movs	r3, r7
+ 767 017c 0898     		ldr	r0, [sp, #32]
+ 768 017e 0A99     		ldr	r1, [sp, #40]
+ 769 0180 FFF7FEFF 		bl	__aeabi_dcmpgt
+ 770              	.LVL125:
+ 771 0184 0028     		cmp	r0, #0
+ 772 0186 01D0     		beq	.L29
+ 773 0188 3D00     		movs	r5, r7
+ 774              	.LVL126:
+ 775 018a 01E0     		b	.L20
+ 776              	.LVL127:
+ 777              	.L29:
+   9:algorithm.c   **** }
+ 778              		.loc 1 9 0
+ 779 018c 089E     		ldr	r6, [sp, #32]
+ 780 018e 0A9D     		ldr	r5, [sp, #40]
+ 781              	.LVL128:
+ 782              	.L20:
+ 783              	.LBE13:
+ 784              	.LBE12:
+ 785              		.loc 1 101 0
+ 786 0190 3200     		movs	r2, r6
+ 787 0192 2B00     		movs	r3, r5
+ 788 0194 1F99     		ldr	r1, [sp, #124]
+ARM GAS  C:\Users\SAIKAR~1\AppData\Local\Temp\cc2BPKwL.s 			page 17
+
+
+ 789 0196 0A60     		str	r2, [r1]
+ 790 0198 4B60     		str	r3, [r1, #4]
+ 102:algorithm.c   **** 
+ 103:algorithm.c   ****     return false;
+ 791              		.loc 1 103 0
+ 792 019a 0020     		movs	r0, #0
+ 793              	.LVL129:
+ 794              	.L17:
+ 104:algorithm.c   **** }
+ 795              		.loc 1 104 0
+ 796 019c 11B0     		add	sp, sp, #68
+ 797              		@ sp needed
+ 798 019e F0BC     		pop	{r4, r5, r6, r7}
+ 799 01a0 08BC     		pop	{r3}
+ 800 01a2 02B0     		add	sp, sp, #8
+ 801 01a4 1847     		bx	r3
+ 802              	.L31:
+ 803 01a6 C046     		.align	2
+ 804              	.L30:
+ 805 01a8 182D4454 		.word	1413754136
+ 806 01ac FB210940 		.word	1074340347
+ 807 01b0 00806640 		.word	1080459264
+ 808 01b4 FB21F93F 		.word	1073291771
+ 809              		.cfi_endproc
+ 810              	.LFE4:
+ 811              		.size	navigator_update, .-navigator_update
+ 812              		.text
+ 813              	.Letext0:
+ 814              		.file 2 "algorithm.h"
+ 815              		.file 3 "cordic.h"
+ 816              		.file 4 "e:\\acads\\uwm\\psoc creator\\4.4\\psoc creator\\import\\gnu\\arm\\5.4.1\\arm-none-eabi\\
+ 817              		.section	.debug_info,"",%progbits
+ 818              	.Ldebug_info0:
+ 819 0000 03070000 		.4byte	0x703
+ 820 0004 0400     		.2byte	0x4
+ 821 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 822 000a 04       		.byte	0x4
+ 823 000b 01       		.uleb128 0x1
+ 824 000c 3B000000 		.4byte	.LASF71
+ 825 0010 0C       		.byte	0xc
+ 826 0011 C2030000 		.4byte	.LASF72
+ 827 0015 66020000 		.4byte	.LASF73
+ 828 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 829 001d 00000000 		.4byte	0
+ 830 0021 00000000 		.4byte	.Ldebug_line0
+ 831 0025 02       		.uleb128 0x2
+ 832 0026 08       		.byte	0x8
+ 833 0027 04       		.byte	0x4
+ 834 0028 EF010000 		.4byte	.LASF7
+ 835 002c 03       		.uleb128 0x3
+ 836 002d 10       		.byte	0x10
+ 837 002e 02       		.byte	0x2
+ 838 002f 0C       		.byte	0xc
+ 839 0030 4D000000 		.4byte	0x4d
+ 840 0034 04       		.uleb128 0x4
+ 841 0035 6C617400 		.ascii	"lat\000"
+ 842 0039 02       		.byte	0x2
+ARM GAS  C:\Users\SAIKAR~1\AppData\Local\Temp\cc2BPKwL.s 			page 18
+
+
+ 843 003a 0E       		.byte	0xe
+ 844 003b 25000000 		.4byte	0x25
+ 845 003f 00       		.byte	0
+ 846 0040 04       		.uleb128 0x4
+ 847 0041 6C6F6E00 		.ascii	"lon\000"
+ 848 0045 02       		.byte	0x2
+ 849 0046 0F       		.byte	0xf
+ 850 0047 25000000 		.4byte	0x25
+ 851 004b 08       		.byte	0x8
+ 852 004c 00       		.byte	0
+ 853 004d 05       		.uleb128 0x5
+ 854 004e A3010000 		.4byte	.LASF5
+ 855 0052 02       		.byte	0x2
+ 856 0053 10       		.byte	0x10
+ 857 0054 2C000000 		.4byte	0x2c
+ 858 0058 03       		.uleb128 0x3
+ 859 0059 30       		.byte	0x30
+ 860 005a 02       		.byte	0x2
+ 861 005b 12       		.byte	0x12
+ 862 005c 9D000000 		.4byte	0x9d
+ 863 0060 06       		.uleb128 0x6
+ 864 0061 56040000 		.4byte	.LASF0
+ 865 0065 02       		.byte	0x2
+ 866 0066 14       		.byte	0x14
+ 867 0067 4D000000 		.4byte	0x4d
+ 868 006b 00       		.byte	0
+ 869 006c 06       		.uleb128 0x6
+ 870 006d 6C010000 		.4byte	.LASF1
+ 871 0071 02       		.byte	0x2
+ 872 0072 15       		.byte	0x15
+ 873 0073 25000000 		.4byte	0x25
+ 874 0077 10       		.byte	0x10
+ 875 0078 06       		.uleb128 0x6
+ 876 0079 19030000 		.4byte	.LASF2
+ 877 007d 02       		.byte	0x2
+ 878 007e 16       		.byte	0x16
+ 879 007f 25000000 		.4byte	0x25
+ 880 0083 18       		.byte	0x18
+ 881 0084 06       		.uleb128 0x6
+ 882 0085 B4020000 		.4byte	.LASF3
+ 883 0089 02       		.byte	0x2
+ 884 008a 17       		.byte	0x17
+ 885 008b 25000000 		.4byte	0x25
+ 886 008f 20       		.byte	0x20
+ 887 0090 06       		.uleb128 0x6
+ 888 0091 58030000 		.4byte	.LASF4
+ 889 0095 02       		.byte	0x2
+ 890 0096 18       		.byte	0x18
+ 891 0097 25000000 		.4byte	0x25
+ 892 009b 28       		.byte	0x28
+ 893 009c 00       		.byte	0
+ 894 009d 05       		.uleb128 0x5
+ 895 009e 9D030000 		.4byte	.LASF6
+ 896 00a2 02       		.byte	0x2
+ 897 00a3 19       		.byte	0x19
+ 898 00a4 58000000 		.4byte	0x58
+ 899 00a8 07       		.uleb128 0x7
+ARM GAS  C:\Users\SAIKAR~1\AppData\Local\Temp\cc2BPKwL.s 			page 19
+
+
+ 900 00a9 04       		.byte	0x4
+ 901 00aa 05       		.byte	0x5
+ 902 00ab 696E7400 		.ascii	"int\000"
+ 903 00af 02       		.uleb128 0x2
+ 904 00b0 04       		.byte	0x4
+ 905 00b1 07       		.byte	0x7
+ 906 00b2 18020000 		.4byte	.LASF8
+ 907 00b6 02       		.uleb128 0x2
+ 908 00b7 08       		.byte	0x8
+ 909 00b8 05       		.byte	0x5
+ 910 00b9 33010000 		.4byte	.LASF9
+ 911 00bd 02       		.uleb128 0x2
+ 912 00be 08       		.byte	0x8
+ 913 00bf 04       		.byte	0x4
+ 914 00c0 CF020000 		.4byte	.LASF10
+ 915 00c4 02       		.uleb128 0x2
+ 916 00c5 01       		.byte	0x1
+ 917 00c6 06       		.byte	0x6
+ 918 00c7 41010000 		.4byte	.LASF11
+ 919 00cb 02       		.uleb128 0x2
+ 920 00cc 01       		.byte	0x1
+ 921 00cd 08       		.byte	0x8
+ 922 00ce 2D030000 		.4byte	.LASF12
+ 923 00d2 02       		.uleb128 0x2
+ 924 00d3 02       		.byte	0x2
+ 925 00d4 05       		.byte	0x5
+ 926 00d5 4E030000 		.4byte	.LASF13
+ 927 00d9 02       		.uleb128 0x2
+ 928 00da 02       		.byte	0x2
+ 929 00db 07       		.byte	0x7
+ 930 00dc 4D020000 		.4byte	.LASF14
+ 931 00e0 02       		.uleb128 0x2
+ 932 00e1 04       		.byte	0x4
+ 933 00e2 05       		.byte	0x5
+ 934 00e3 73010000 		.4byte	.LASF15
+ 935 00e7 02       		.uleb128 0x2
+ 936 00e8 04       		.byte	0x4
+ 937 00e9 07       		.byte	0x7
+ 938 00ea 2A020000 		.4byte	.LASF16
+ 939 00ee 02       		.uleb128 0x2
+ 940 00ef 08       		.byte	0x8
+ 941 00f0 07       		.byte	0x7
+ 942 00f1 EF000000 		.4byte	.LASF17
+ 943 00f5 02       		.uleb128 0x2
+ 944 00f6 04       		.byte	0x4
+ 945 00f7 07       		.byte	0x7
+ 946 00f8 C6020000 		.4byte	.LASF18
+ 947 00fc 02       		.uleb128 0x2
+ 948 00fd 01       		.byte	0x1
+ 949 00fe 08       		.byte	0x8
+ 950 00ff 98030000 		.4byte	.LASF19
+ 951 0103 02       		.uleb128 0x2
+ 952 0104 04       		.byte	0x4
+ 953 0105 04       		.byte	0x4
+ 954 0106 07030000 		.4byte	.LASF20
+ 955 010a 08       		.uleb128 0x8
+ 956 010b DB030000 		.4byte	.LASF74
+ARM GAS  C:\Users\SAIKAR~1\AppData\Local\Temp\cc2BPKwL.s 			page 20
+
+
+ 957 010f 01       		.byte	0x1
+ 958 0110 06       		.byte	0x6
+ 959 0111 25000000 		.4byte	0x25
+ 960 0115 03       		.byte	0x3
+ 961 0116 3C010000 		.4byte	0x13c
+ 962 011a 09       		.uleb128 0x9
+ 963 011b 12020000 		.4byte	.LASF21
+ 964 011f 01       		.byte	0x1
+ 965 0120 06       		.byte	0x6
+ 966 0121 25000000 		.4byte	0x25
+ 967 0125 09       		.uleb128 0x9
+ 968 0126 0F010000 		.4byte	.LASF22
+ 969 012a 01       		.byte	0x1
+ 970 012b 06       		.byte	0x6
+ 971 012c 25000000 		.4byte	0x25
+ 972 0130 09       		.uleb128 0x9
+ 973 0131 DB020000 		.4byte	.LASF23
+ 974 0135 01       		.byte	0x1
+ 975 0136 06       		.byte	0x6
+ 976 0137 25000000 		.4byte	0x25
+ 977 013b 00       		.byte	0
+ 978 013c 0A       		.uleb128 0xa
+ 979 013d E3020000 		.4byte	.LASF75
+ 980 0141 01       		.byte	0x1
+ 981 0142 24       		.byte	0x24
+ 982 0143 25000000 		.4byte	0x25
+ 983 0147 00000000 		.4byte	.LFB2
+ 984 014b 20010000 		.4byte	.LFE2-.LFB2
+ 985 014f 01       		.uleb128 0x1
+ 986 0150 9C       		.byte	0x9c
+ 987 0151 A1020000 		.4byte	0x2a1
+ 988 0155 0B       		.uleb128 0xb
+ 989 0156 08020000 		.4byte	.LASF24
+ 990 015a 01       		.byte	0x1
+ 991 015b 24       		.byte	0x24
+ 992 015c 4D000000 		.4byte	0x4d
+ 993 0160 03       		.uleb128 0x3
+ 994 0161 91       		.byte	0x91
+ 995 0162 A87F     		.sleb128 -88
+ 996 0164 0B       		.uleb128 0xb
+ 997 0165 0D020000 		.4byte	.LASF25
+ 998 0169 01       		.byte	0x1
+ 999 016a 24       		.byte	0x24
+ 1000 016b 4D000000 		.4byte	0x4d
+ 1001 016f 02       		.uleb128 0x2
+ 1002 0170 91       		.byte	0x91
+ 1003 0171 00       		.sleb128 0
+ 1004 0172 0C       		.uleb128 0xc
+ 1005 0173 F5020000 		.4byte	.LASF26
+ 1006 0177 01       		.byte	0x1
+ 1007 0178 25       		.byte	0x25
+ 1008 0179 25000000 		.4byte	0x25
+ 1009 017d 02       		.uleb128 0x2
+ 1010 017e 91       		.byte	0x91
+ 1011 017f 60       		.sleb128 -32
+ 1012 0180 0C       		.uleb128 0xc
+ 1013 0181 DD000000 		.4byte	.LASF27
+ARM GAS  C:\Users\SAIKAR~1\AppData\Local\Temp\cc2BPKwL.s 			page 21
+
+
+ 1014 0185 01       		.byte	0x1
+ 1015 0186 25       		.byte	0x25
+ 1016 0187 25000000 		.4byte	0x25
+ 1017 018b 02       		.uleb128 0x2
+ 1018 018c 91       		.byte	0x91
+ 1019 018d 58       		.sleb128 -40
+ 1020 018e 0C       		.uleb128 0xc
+ 1021 018f FE020000 		.4byte	.LASF28
+ 1022 0193 01       		.byte	0x1
+ 1023 0194 26       		.byte	0x26
+ 1024 0195 25000000 		.4byte	0x25
+ 1025 0199 02       		.uleb128 0x2
+ 1026 019a 91       		.byte	0x91
+ 1027 019b 50       		.sleb128 -48
+ 1028 019c 0C       		.uleb128 0xc
+ 1029 019d E6000000 		.4byte	.LASF29
+ 1030 01a1 01       		.byte	0x1
+ 1031 01a2 26       		.byte	0x26
+ 1032 01a3 25000000 		.4byte	0x25
+ 1033 01a7 02       		.uleb128 0x2
+ 1034 01a8 91       		.byte	0x91
+ 1035 01a9 48       		.sleb128 -56
+ 1036 01aa 0C       		.uleb128 0xc
+ 1037 01ab 3C020000 		.4byte	.LASF30
+ 1038 01af 01       		.byte	0x1
+ 1039 01b0 27       		.byte	0x27
+ 1040 01b1 25000000 		.4byte	0x25
+ 1041 01b5 02       		.uleb128 0x2
+ 1042 01b6 91       		.byte	0x91
+ 1043 01b7 40       		.sleb128 -64
+ 1044 01b8 0C       		.uleb128 0xc
+ 1045 01b9 92010000 		.4byte	.LASF31
+ 1046 01bd 01       		.byte	0x1
+ 1047 01be 27       		.byte	0x27
+ 1048 01bf 25000000 		.4byte	0x25
+ 1049 01c3 03       		.uleb128 0x3
+ 1050 01c4 91       		.byte	0x91
+ 1051 01c5 B87F     		.sleb128 -72
+ 1052 01c7 0D       		.uleb128 0xd
+ 1053 01c8 FE010000 		.4byte	.LASF32
+ 1054 01cc 01       		.byte	0x1
+ 1055 01cd 29       		.byte	0x29
+ 1056 01ce 25000000 		.4byte	0x25
+ 1057 01d2 00000000 		.4byte	.LLST0
+ 1058 01d6 0D       		.uleb128 0xd
+ 1059 01d7 2D040000 		.4byte	.LASF33
+ 1060 01db 01       		.byte	0x1
+ 1061 01dc 2A       		.byte	0x2a
+ 1062 01dd 25000000 		.4byte	0x25
+ 1063 01e1 18000000 		.4byte	.LLST1
+ 1064 01e5 0D       		.uleb128 0xd
+ 1065 01e6 03020000 		.4byte	.LASF34
+ 1066 01ea 01       		.byte	0x1
+ 1067 01eb 2B       		.byte	0x2b
+ 1068 01ec 25000000 		.4byte	0x25
+ 1069 01f0 3C000000 		.4byte	.LLST2
+ 1070 01f4 0D       		.uleb128 0xd
+ARM GAS  C:\Users\SAIKAR~1\AppData\Local\Temp\cc2BPKwL.s 			page 22
+
+
+ 1071 01f5 35040000 		.4byte	.LASF35
+ 1072 01f9 01       		.byte	0x1
+ 1073 01fa 2C       		.byte	0x2c
+ 1074 01fb 25000000 		.4byte	0x25
+ 1075 01ff 54000000 		.4byte	.LLST3
+ 1076 0203 0E       		.uleb128 0xe
+ 1077 0204 7900     		.ascii	"y\000"
+ 1078 0206 01       		.byte	0x1
+ 1079 0207 33       		.byte	0x33
+ 1080 0208 25000000 		.4byte	0x25
+ 1081 020c 79000000 		.4byte	.LLST4
+ 1082 0210 0E       		.uleb128 0xe
+ 1083 0211 7800     		.ascii	"x\000"
+ 1084 0213 01       		.byte	0x1
+ 1085 0214 34       		.byte	0x34
+ 1086 0215 25000000 		.4byte	0x25
+ 1087 0219 AA000000 		.4byte	.LLST5
+ 1088 021d 0D       		.uleb128 0xd
+ 1089 021e 60020000 		.4byte	.LASF36
+ 1090 0222 01       		.byte	0x1
+ 1091 0223 36       		.byte	0x36
+ 1092 0224 25000000 		.4byte	0x25
+ 1093 0228 C2000000 		.4byte	.LLST6
+ 1094 022c 0F       		.uleb128 0xf
+ 1095 022d 78000000 		.4byte	.LVL14
+ 1096 0231 D1060000 		.4byte	0x6d1
+ 1097 0235 46020000 		.4byte	0x246
+ 1098 0239 10       		.uleb128 0x10
+ 1099 023a 01       		.uleb128 0x1
+ 1100 023b 52       		.byte	0x52
+ 1101 023c 02       		.uleb128 0x2
+ 1102 023d 91       		.byte	0x91
+ 1103 023e 60       		.sleb128 -32
+ 1104 023f 10       		.uleb128 0x10
+ 1105 0240 01       		.uleb128 0x1
+ 1106 0241 53       		.byte	0x53
+ 1107 0242 02       		.uleb128 0x2
+ 1108 0243 91       		.byte	0x91
+ 1109 0244 58       		.sleb128 -40
+ 1110 0245 00       		.byte	0
+ 1111 0246 0F       		.uleb128 0xf
+ 1112 0247 84000000 		.4byte	.LVL15
+ 1113 024b D1060000 		.4byte	0x6d1
+ 1114 024f 60020000 		.4byte	0x260
+ 1115 0253 10       		.uleb128 0x10
+ 1116 0254 01       		.uleb128 0x1
+ 1117 0255 52       		.byte	0x52
+ 1118 0256 02       		.uleb128 0x2
+ 1119 0257 91       		.byte	0x91
+ 1120 0258 50       		.sleb128 -48
+ 1121 0259 10       		.uleb128 0x10
+ 1122 025a 01       		.uleb128 0x1
+ 1123 025b 53       		.byte	0x53
+ 1124 025c 02       		.uleb128 0x2
+ 1125 025d 91       		.byte	0x91
+ 1126 025e 48       		.sleb128 -56
+ 1127 025f 00       		.byte	0
+ARM GAS  C:\Users\SAIKAR~1\AppData\Local\Temp\cc2BPKwL.s 			page 23
+
+
+ 1128 0260 0F       		.uleb128 0xf
+ 1129 0261 98000000 		.4byte	.LVL17
+ 1130 0265 D1060000 		.4byte	0x6d1
+ 1131 0269 7B020000 		.4byte	0x27b
+ 1132 026d 10       		.uleb128 0x10
+ 1133 026e 01       		.uleb128 0x1
+ 1134 026f 52       		.byte	0x52
+ 1135 0270 02       		.uleb128 0x2
+ 1136 0271 91       		.byte	0x91
+ 1137 0272 40       		.sleb128 -64
+ 1138 0273 10       		.uleb128 0x10
+ 1139 0274 01       		.uleb128 0x1
+ 1140 0275 53       		.byte	0x53
+ 1141 0276 03       		.uleb128 0x3
+ 1142 0277 91       		.byte	0x91
+ 1143 0278 B87F     		.sleb128 -72
+ 1144 027a 00       		.byte	0
+ 1145 027b 0F       		.uleb128 0xf
+ 1146 027c E8000000 		.4byte	.LVL28
+ 1147 0280 DC060000 		.4byte	0x6dc
+ 1148 0284 97020000 		.4byte	0x297
+ 1149 0288 10       		.uleb128 0x10
+ 1150 0289 06       		.uleb128 0x6
+ 1151 028a 50       		.byte	0x50
+ 1152 028b 93       		.byte	0x93
+ 1153 028c 04       		.uleb128 0x4
+ 1154 028d 51       		.byte	0x51
+ 1155 028e 93       		.byte	0x93
+ 1156 028f 04       		.uleb128 0x4
+ 1157 0290 05       		.uleb128 0x5
+ 1158 0291 7D       		.byte	0x7d
+ 1159 0292 00       		.sleb128 0
+ 1160 0293 F6       		.byte	0xf6
+ 1161 0294 08       		.byte	0x8
+ 1162 0295 25       		.uleb128 0x25
+ 1163 0296 00       		.byte	0
+ 1164 0297 11       		.uleb128 0x11
+ 1165 0298 0C010000 		.4byte	.LVL32
+ 1166 029c E7060000 		.4byte	0x6e7
+ 1167 02a0 00       		.byte	0
+ 1168 02a1 12       		.uleb128 0x12
+ 1169 02a2 ED030000 		.4byte	.LASF48
+ 1170 02a6 01       		.byte	0x1
+ 1171 02a7 0C       		.byte	0xc
+ 1172 02a8 25000000 		.4byte	0x25
+ 1173 02ac 00000000 		.4byte	.LFB1
+ 1174 02b0 74010000 		.4byte	.LFE1-.LFB1
+ 1175 02b4 01       		.uleb128 0x1
+ 1176 02b5 9C       		.byte	0x9c
+ 1177 02b6 38040000 		.4byte	0x438
+ 1178 02ba 0B       		.uleb128 0xb
+ 1179 02bb 08020000 		.4byte	.LASF24
+ 1180 02bf 01       		.byte	0x1
+ 1181 02c0 0C       		.byte	0xc
+ 1182 02c1 4D000000 		.4byte	0x4d
+ 1183 02c5 03       		.uleb128 0x3
+ 1184 02c6 91       		.byte	0x91
+ARM GAS  C:\Users\SAIKAR~1\AppData\Local\Temp\cc2BPKwL.s 			page 24
+
+
+ 1185 02c7 987F     		.sleb128 -104
+ 1186 02c9 0B       		.uleb128 0xb
+ 1187 02ca 0D020000 		.4byte	.LASF25
+ 1188 02ce 01       		.byte	0x1
+ 1189 02cf 0C       		.byte	0xc
+ 1190 02d0 4D000000 		.4byte	0x4d
+ 1191 02d4 02       		.uleb128 0x2
+ 1192 02d5 91       		.byte	0x91
+ 1193 02d6 00       		.sleb128 0
+ 1194 02d7 0C       		.uleb128 0xc
+ 1195 02d8 A1020000 		.4byte	.LASF37
+ 1196 02dc 01       		.byte	0x1
+ 1197 02dd 0D       		.byte	0xd
+ 1198 02de 25000000 		.4byte	0x25
+ 1199 02e2 02       		.uleb128 0x2
+ 1200 02e3 91       		.byte	0x91
+ 1201 02e4 60       		.sleb128 -32
+ 1202 02e5 0C       		.uleb128 0xc
+ 1203 02e6 3B030000 		.4byte	.LASF38
+ 1204 02ea 01       		.byte	0x1
+ 1205 02eb 0D       		.byte	0xd
+ 1206 02ec 25000000 		.4byte	0x25
+ 1207 02f0 02       		.uleb128 0x2
+ 1208 02f1 91       		.byte	0x91
+ 1209 02f2 58       		.sleb128 -40
+ 1210 02f3 0C       		.uleb128 0xc
+ 1211 02f4 6B030000 		.4byte	.LASF39
+ 1212 02f8 01       		.byte	0x1
+ 1213 02f9 0E       		.byte	0xe
+ 1214 02fa 25000000 		.4byte	0x25
+ 1215 02fe 02       		.uleb128 0x2
+ 1216 02ff 91       		.byte	0x91
+ 1217 0300 50       		.sleb128 -48
+ 1218 0301 0C       		.uleb128 0xc
+ 1219 0302 17040000 		.4byte	.LASF40
+ 1220 0306 01       		.byte	0x1
+ 1221 0307 0E       		.byte	0xe
+ 1222 0308 25000000 		.4byte	0x25
+ 1223 030c 02       		.uleb128 0x2
+ 1224 030d 91       		.byte	0x91
+ 1225 030e 48       		.sleb128 -56
+ 1226 030f 0C       		.uleb128 0xc
+ 1227 0310 F5020000 		.4byte	.LASF26
+ 1228 0314 01       		.byte	0x1
+ 1229 0315 0F       		.byte	0xf
+ 1230 0316 25000000 		.4byte	0x25
+ 1231 031a 02       		.uleb128 0x2
+ 1232 031b 91       		.byte	0x91
+ 1233 031c 40       		.sleb128 -64
+ 1234 031d 0C       		.uleb128 0xc
+ 1235 031e DD000000 		.4byte	.LASF27
+ 1236 0322 01       		.byte	0x1
+ 1237 0323 0F       		.byte	0xf
+ 1238 0324 25000000 		.4byte	0x25
+ 1239 0328 03       		.uleb128 0x3
+ 1240 0329 91       		.byte	0x91
+ 1241 032a B87F     		.sleb128 -72
+ARM GAS  C:\Users\SAIKAR~1\AppData\Local\Temp\cc2BPKwL.s 			page 25
+
+
+ 1242 032c 0C       		.uleb128 0xc
+ 1243 032d FE020000 		.4byte	.LASF28
+ 1244 0331 01       		.byte	0x1
+ 1245 0332 10       		.byte	0x10
+ 1246 0333 25000000 		.4byte	0x25
+ 1247 0337 03       		.uleb128 0x3
+ 1248 0338 91       		.byte	0x91
+ 1249 0339 B07F     		.sleb128 -80
+ 1250 033b 0C       		.uleb128 0xc
+ 1251 033c E6000000 		.4byte	.LASF29
+ 1252 0340 01       		.byte	0x1
+ 1253 0341 10       		.byte	0x10
+ 1254 0342 25000000 		.4byte	0x25
+ 1255 0346 03       		.uleb128 0x3
+ 1256 0347 91       		.byte	0x91
+ 1257 0348 A87F     		.sleb128 -88
+ 1258 034a 0D       		.uleb128 0xd
+ 1259 034b C9000000 		.4byte	.LASF41
+ 1260 034f 01       		.byte	0x1
+ 1261 0350 12       		.byte	0x12
+ 1262 0351 25000000 		.4byte	0x25
+ 1263 0355 DA000000 		.4byte	.LLST7
+ 1264 0359 0D       		.uleb128 0xd
+ 1265 035a CE030000 		.4byte	.LASF42
+ 1266 035e 01       		.byte	0x1
+ 1267 035f 13       		.byte	0x13
+ 1268 0360 25000000 		.4byte	0x25
+ 1269 0364 0B010000 		.4byte	.LLST8
+ 1270 0368 0E       		.uleb128 0xe
+ 1271 0369 6100     		.ascii	"a\000"
+ 1272 036b 01       		.byte	0x1
+ 1273 036c 1A       		.byte	0x1a
+ 1274 036d 25000000 		.4byte	0x25
+ 1275 0371 30010000 		.4byte	.LLST9
+ 1276 0375 0E       		.uleb128 0xe
+ 1277 0376 6300     		.ascii	"c\000"
+ 1278 0378 01       		.byte	0x1
+ 1279 0379 20       		.byte	0x20
+ 1280 037a 25000000 		.4byte	0x25
+ 1281 037e 58010000 		.4byte	.LLST10
+ 1282 0382 13       		.uleb128 0x13
+ 1283 0383 0A010000 		.4byte	0x10a
+ 1284 0387 F8000000 		.4byte	.LBB8
+ 1285 038b 26000000 		.4byte	.LBE8-.LBB8
+ 1286 038f 01       		.byte	0x1
+ 1287 0390 1E       		.byte	0x1e
+ 1288 0391 B1030000 		.4byte	0x3b1
+ 1289 0395 14       		.uleb128 0x14
+ 1290 0396 30010000 		.4byte	0x130
+ 1291 039a 70010000 		.4byte	.LLST11
+ 1292 039e 14       		.uleb128 0x14
+ 1293 039f 25010000 		.4byte	0x125
+ 1294 03a3 8C010000 		.4byte	.LLST12
+ 1295 03a7 14       		.uleb128 0x14
+ 1296 03a8 1A010000 		.4byte	0x11a
+ 1297 03ac 30010000 		.4byte	.LLST9
+ 1298 03b0 00       		.byte	0
+ARM GAS  C:\Users\SAIKAR~1\AppData\Local\Temp\cc2BPKwL.s 			page 26
+
+
+ 1299 03b1 0F       		.uleb128 0xf
+ 1300 03b2 68000000 		.4byte	.LVL45
+ 1301 03b6 D1060000 		.4byte	0x6d1
+ 1302 03ba CB030000 		.4byte	0x3cb
+ 1303 03be 10       		.uleb128 0x10
+ 1304 03bf 01       		.uleb128 0x1
+ 1305 03c0 52       		.byte	0x52
+ 1306 03c1 02       		.uleb128 0x2
+ 1307 03c2 91       		.byte	0x91
+ 1308 03c3 60       		.sleb128 -32
+ 1309 03c4 10       		.uleb128 0x10
+ 1310 03c5 01       		.uleb128 0x1
+ 1311 03c6 53       		.byte	0x53
+ 1312 03c7 02       		.uleb128 0x2
+ 1313 03c8 91       		.byte	0x91
+ 1314 03c9 58       		.sleb128 -40
+ 1315 03ca 00       		.byte	0
+ 1316 03cb 0F       		.uleb128 0xf
+ 1317 03cc 7C000000 		.4byte	.LVL47
+ 1318 03d0 D1060000 		.4byte	0x6d1
+ 1319 03d4 E5030000 		.4byte	0x3e5
+ 1320 03d8 10       		.uleb128 0x10
+ 1321 03d9 01       		.uleb128 0x1
+ 1322 03da 52       		.byte	0x52
+ 1323 03db 02       		.uleb128 0x2
+ 1324 03dc 91       		.byte	0x91
+ 1325 03dd 50       		.sleb128 -48
+ 1326 03de 10       		.uleb128 0x10
+ 1327 03df 01       		.uleb128 0x1
+ 1328 03e0 53       		.byte	0x53
+ 1329 03e1 02       		.uleb128 0x2
+ 1330 03e2 91       		.byte	0x91
+ 1331 03e3 48       		.sleb128 -56
+ 1332 03e4 00       		.byte	0
+ 1333 03e5 0F       		.uleb128 0xf
+ 1334 03e6 98000000 		.4byte	.LVL50
+ 1335 03ea D1060000 		.4byte	0x6d1
+ 1336 03ee 00040000 		.4byte	0x400
+ 1337 03f2 10       		.uleb128 0x10
+ 1338 03f3 01       		.uleb128 0x1
+ 1339 03f4 52       		.byte	0x52
+ 1340 03f5 02       		.uleb128 0x2
+ 1341 03f6 91       		.byte	0x91
+ 1342 03f7 40       		.sleb128 -64
+ 1343 03f8 10       		.uleb128 0x10
+ 1344 03f9 01       		.uleb128 0x1
+ 1345 03fa 53       		.byte	0x53
+ 1346 03fb 03       		.uleb128 0x3
+ 1347 03fc 91       		.byte	0x91
+ 1348 03fd B87F     		.sleb128 -72
+ 1349 03ff 00       		.byte	0
+ 1350 0400 0F       		.uleb128 0xf
+ 1351 0401 B4000000 		.4byte	.LVL53
+ 1352 0405 D1060000 		.4byte	0x6d1
+ 1353 0409 1C040000 		.4byte	0x41c
+ 1354 040d 10       		.uleb128 0x10
+ 1355 040e 01       		.uleb128 0x1
+ARM GAS  C:\Users\SAIKAR~1\AppData\Local\Temp\cc2BPKwL.s 			page 27
+
+
+ 1356 040f 52       		.byte	0x52
+ 1357 0410 03       		.uleb128 0x3
+ 1358 0411 91       		.byte	0x91
+ 1359 0412 B07F     		.sleb128 -80
+ 1360 0414 10       		.uleb128 0x10
+ 1361 0415 01       		.uleb128 0x1
+ 1362 0416 53       		.byte	0x53
+ 1363 0417 03       		.uleb128 0x3
+ 1364 0418 91       		.byte	0x91
+ 1365 0419 A87F     		.sleb128 -88
+ 1366 041b 00       		.byte	0
+ 1367 041c 11       		.uleb128 0x11
+ 1368 041d 26010000 		.4byte	.LVL66
+ 1369 0421 F2060000 		.4byte	0x6f2
+ 1370 0425 11       		.uleb128 0x11
+ 1371 0426 3A010000 		.4byte	.LVL68
+ 1372 042a F2060000 		.4byte	0x6f2
+ 1373 042e 11       		.uleb128 0x11
+ 1374 042f 46010000 		.4byte	.LVL69
+ 1375 0433 DC060000 		.4byte	0x6dc
+ 1376 0437 00       		.byte	0
+ 1377 0438 15       		.uleb128 0x15
+ 1378 0439 17010000 		.4byte	.LASF76
+ 1379 043d 01       		.byte	0x1
+ 1380 043e 3B       		.byte	0x3b
+ 1381 043f 00000000 		.4byte	.LFB3
+ 1382 0443 2E000000 		.4byte	.LFE3-.LFB3
+ 1383 0447 01       		.uleb128 0x1
+ 1384 0448 9C       		.byte	0x9c
+ 1385 0449 B0040000 		.4byte	0x4b0
+ 1386 044d 16       		.uleb128 0x16
+ 1387 044e 6E617600 		.ascii	"nav\000"
+ 1388 0452 01       		.byte	0x1
+ 1389 0453 3B       		.byte	0x3b
+ 1390 0454 B0040000 		.4byte	0x4b0
+ 1391 0458 01       		.uleb128 0x1
+ 1392 0459 50       		.byte	0x50
+ 1393 045a 17       		.uleb128 0x17
+ 1394 045b 0C040000 		.4byte	.LASF43
+ 1395 045f 01       		.byte	0x1
+ 1396 0460 3B       		.byte	0x3b
+ 1397 0461 25000000 		.4byte	0x25
+ 1398 0465 A8010000 		.4byte	.LLST14
+ 1399 0469 0B       		.uleb128 0xb
+ 1400 046a 81030000 		.4byte	.LASF44
+ 1401 046e 01       		.byte	0x1
+ 1402 046f 3B       		.byte	0x3b
+ 1403 0470 25000000 		.4byte	0x25
+ 1404 0474 02       		.uleb128 0x2
+ 1405 0475 91       		.byte	0x91
+ 1406 0476 00       		.sleb128 0
+ 1407 0477 0B       		.uleb128 0xb
+ 1408 0478 6C010000 		.4byte	.LASF1
+ 1409 047c 01       		.byte	0x1
+ 1410 047d 3C       		.byte	0x3c
+ 1411 047e 25000000 		.4byte	0x25
+ 1412 0482 02       		.uleb128 0x2
+ARM GAS  C:\Users\SAIKAR~1\AppData\Local\Temp\cc2BPKwL.s 			page 28
+
+
+ 1413 0483 91       		.byte	0x91
+ 1414 0484 08       		.sleb128 8
+ 1415 0485 0B       		.uleb128 0xb
+ 1416 0486 D3000000 		.4byte	.LASF45
+ 1417 048a 01       		.byte	0x1
+ 1418 048b 3C       		.byte	0x3c
+ 1419 048c 25000000 		.4byte	0x25
+ 1420 0490 02       		.uleb128 0x2
+ 1421 0491 91       		.byte	0x91
+ 1422 0492 10       		.sleb128 16
+ 1423 0493 0B       		.uleb128 0xb
+ 1424 0494 06010000 		.4byte	.LASF46
+ 1425 0498 01       		.byte	0x1
+ 1426 0499 3D       		.byte	0x3d
+ 1427 049a 25000000 		.4byte	0x25
+ 1428 049e 02       		.uleb128 0x2
+ 1429 049f 91       		.byte	0x91
+ 1430 04a0 18       		.sleb128 24
+ 1431 04a1 0B       		.uleb128 0xb
+ 1432 04a2 2F000000 		.4byte	.LASF47
+ 1433 04a6 01       		.byte	0x1
+ 1434 04a7 3D       		.byte	0x3d
+ 1435 04a8 25000000 		.4byte	0x25
+ 1436 04ac 02       		.uleb128 0x2
+ 1437 04ad 91       		.byte	0x91
+ 1438 04ae 20       		.sleb128 32
+ 1439 04af 00       		.byte	0
+ 1440 04b0 18       		.uleb128 0x18
+ 1441 04b1 04       		.byte	0x4
+ 1442 04b2 9D000000 		.4byte	0x9d
+ 1443 04b6 12       		.uleb128 0x12
+ 1444 04b7 BA010000 		.4byte	.LASF49
+ 1445 04bb 01       		.byte	0x1
+ 1446 04bc 46       		.byte	0x46
+ 1447 04bd C4060000 		.4byte	0x6c4
+ 1448 04c1 00000000 		.4byte	.LFB4
+ 1449 04c5 B8010000 		.4byte	.LFE4-.LFB4
+ 1450 04c9 01       		.uleb128 0x1
+ 1451 04ca 9C       		.byte	0x9c
+ 1452 04cb C4060000 		.4byte	0x6c4
+ 1453 04cf 19       		.uleb128 0x19
+ 1454 04d0 6E617600 		.ascii	"nav\000"
+ 1455 04d4 01       		.byte	0x1
+ 1456 04d5 46       		.byte	0x46
+ 1457 04d6 B0040000 		.4byte	0x4b0
+ 1458 04da CC010000 		.4byte	.LLST15
+ 1459 04de 0B       		.uleb128 0xb
+ 1460 04df 8C030000 		.4byte	.LASF50
+ 1461 04e3 01       		.byte	0x1
+ 1462 04e4 46       		.byte	0x46
+ 1463 04e5 4D000000 		.4byte	0x4d
+ 1464 04e9 02       		.uleb128 0x2
+ 1465 04ea 91       		.byte	0x91
+ 1466 04eb 78       		.sleb128 -8
+ 1467 04ec 0B       		.uleb128 0xb
+ 1468 04ed 7C010000 		.4byte	.LASF51
+ 1469 04f1 01       		.byte	0x1
+ARM GAS  C:\Users\SAIKAR~1\AppData\Local\Temp\cc2BPKwL.s 			page 29
+
+
+ 1470 04f2 47       		.byte	0x47
+ 1471 04f3 25000000 		.4byte	0x25
+ 1472 04f7 02       		.uleb128 0x2
+ 1473 04f8 91       		.byte	0x91
+ 1474 04f9 08       		.sleb128 8
+ 1475 04fa 16       		.uleb128 0x16
+ 1476 04fb 647400   		.ascii	"dt\000"
+ 1477 04fe 01       		.byte	0x1
+ 1478 04ff 47       		.byte	0x47
+ 1479 0500 25000000 		.4byte	0x25
+ 1480 0504 02       		.uleb128 0x2
+ 1481 0505 91       		.byte	0x91
+ 1482 0506 10       		.sleb128 16
+ 1483 0507 0B       		.uleb128 0xb
+ 1484 0508 E1010000 		.4byte	.LASF52
+ 1485 050c 01       		.byte	0x1
+ 1486 050d 48       		.byte	0x48
+ 1487 050e CB060000 		.4byte	0x6cb
+ 1488 0512 02       		.uleb128 0x2
+ 1489 0513 91       		.byte	0x91
+ 1490 0514 18       		.sleb128 24
+ 1491 0515 0B       		.uleb128 0xb
+ 1492 0516 49040000 		.4byte	.LASF53
+ 1493 051a 01       		.byte	0x1
+ 1494 051b 48       		.byte	0x48
+ 1495 051c CB060000 		.4byte	0x6cb
+ 1496 0520 02       		.uleb128 0x2
+ 1497 0521 91       		.byte	0x91
+ 1498 0522 1C       		.sleb128 28
+ 1499 0523 0D       		.uleb128 0xd
+ 1500 0524 AE030000 		.4byte	.LASF54
+ 1501 0528 01       		.byte	0x1
+ 1502 0529 4A       		.byte	0x4a
+ 1503 052a 25000000 		.4byte	0x25
+ 1504 052e 03020000 		.4byte	.LLST16
+ 1505 0532 0D       		.uleb128 0xd
+ 1506 0533 CB010000 		.4byte	.LASF55
+ 1507 0537 01       		.byte	0x1
+ 1508 0538 51       		.byte	0x51
+ 1509 0539 25000000 		.4byte	0x25
+ 1510 053d 3B020000 		.4byte	.LLST17
+ 1511 0541 0D       		.uleb128 0xd
+ 1512 0542 3D040000 		.4byte	.LASF56
+ 1513 0546 01       		.byte	0x1
+ 1514 0547 52       		.byte	0x52
+ 1515 0548 25000000 		.4byte	0x25
+ 1516 054c 53020000 		.4byte	.LLST18
+ 1517 0550 0D       		.uleb128 0xd
+ 1518 0551 0D030000 		.4byte	.LASF57
+ 1519 0555 01       		.byte	0x1
+ 1520 0556 53       		.byte	0x53
+ 1521 0557 25000000 		.4byte	0x25
+ 1522 055b 78020000 		.4byte	.LLST19
+ 1523 055f 0C       		.uleb128 0xc
+ 1524 0560 F6010000 		.4byte	.LASF58
+ 1525 0564 01       		.byte	0x1
+ 1526 0565 55       		.byte	0x55
+ARM GAS  C:\Users\SAIKAR~1\AppData\Local\Temp\cc2BPKwL.s 			page 30
+
+
+ 1527 0566 25000000 		.4byte	0x25
+ 1528 056a 02       		.uleb128 0x2
+ 1529 056b 91       		.byte	0x91
+ 1530 056c 58       		.sleb128 -40
+ 1531 056d 0C       		.uleb128 0xc
+ 1532 056e 58010000 		.4byte	.LASF59
+ 1533 0572 01       		.byte	0x1
+ 1534 0573 55       		.byte	0x55
+ 1535 0574 25000000 		.4byte	0x25
+ 1536 0578 02       		.uleb128 0x2
+ 1537 0579 91       		.byte	0x91
+ 1538 057a 50       		.sleb128 -48
+ 1539 057b 1A       		.uleb128 0x1a
+ 1540 057c 0C000000 		.4byte	.LASF77
+ 1541 0580 01       		.byte	0x1
+ 1542 0581 57       		.byte	0x57
+ 1543 0582 25000000 		.4byte	0x25
+ 1544 0586 0D       		.uleb128 0xd
+ 1545 0587 21000000 		.4byte	.LASF60
+ 1546 058b 01       		.byte	0x1
+ 1547 058c 59       		.byte	0x59
+ 1548 058d 25000000 		.4byte	0x25
+ 1549 0591 90020000 		.4byte	.LLST20
+ 1550 0595 0D       		.uleb128 0xd
+ 1551 0596 E1030000 		.4byte	.LASF61
+ 1552 059a 01       		.byte	0x1
+ 1553 059b 5A       		.byte	0x5a
+ 1554 059c 25000000 		.4byte	0x25
+ 1555 05a0 B5020000 		.4byte	.LLST21
+ 1556 05a4 0D       		.uleb128 0xd
+ 1557 05a5 26010000 		.4byte	.LASF62
+ 1558 05a9 01       		.byte	0x1
+ 1559 05aa 5C       		.byte	0x5c
+ 1560 05ab 25000000 		.4byte	0x25
+ 1561 05af DA020000 		.4byte	.LLST22
+ 1562 05b3 0D       		.uleb128 0xd
+ 1563 05b4 00040000 		.4byte	.LASF63
+ 1564 05b8 01       		.byte	0x1
+ 1565 05b9 5D       		.byte	0x5d
+ 1566 05ba 25000000 		.4byte	0x25
+ 1567 05be 18030000 		.4byte	.LLST23
+ 1568 05c2 0D       		.uleb128 0xd
+ 1569 05c3 60010000 		.4byte	.LASF64
+ 1570 05c7 01       		.byte	0x1
+ 1571 05c8 60       		.byte	0x60
+ 1572 05c9 25000000 		.4byte	0x25
+ 1573 05cd 56030000 		.4byte	.LLST24
+ 1574 05d1 0D       		.uleb128 0xd
+ 1575 05d2 4D010000 		.4byte	.LASF65
+ 1576 05d6 01       		.byte	0x1
+ 1577 05d7 61       		.byte	0x61
+ 1578 05d8 25000000 		.4byte	0x25
+ 1579 05dc 18030000 		.4byte	.LLST23
+ 1580 05e0 13       		.uleb128 0x13
+ 1581 05e1 0A010000 		.4byte	0x10a
+ 1582 05e5 26010000 		.4byte	.LBB10
+ 1583 05e9 2C000000 		.4byte	.LBE10-.LBB10
+ARM GAS  C:\Users\SAIKAR~1\AppData\Local\Temp\cc2BPKwL.s 			page 31
+
+
+ 1584 05ed 01       		.byte	0x1
+ 1585 05ee 64       		.byte	0x64
+ 1586 05ef 0F060000 		.4byte	0x60f
+ 1587 05f3 14       		.uleb128 0x14
+ 1588 05f4 30010000 		.4byte	0x130
+ 1589 05f8 72030000 		.4byte	.LLST26
+ 1590 05fc 14       		.uleb128 0x14
+ 1591 05fd 25010000 		.4byte	0x125
+ 1592 0601 8A030000 		.4byte	.LLST27
+ 1593 0605 14       		.uleb128 0x14
+ 1594 0606 1A010000 		.4byte	0x11a
+ 1595 060a B2030000 		.4byte	.LLST28
+ 1596 060e 00       		.byte	0
+ 1597 060f 13       		.uleb128 0x13
+ 1598 0610 0A010000 		.4byte	0x10a
+ 1599 0614 68010000 		.4byte	.LBB12
+ 1600 0618 28000000 		.4byte	.LBE12-.LBB12
+ 1601 061c 01       		.byte	0x1
+ 1602 061d 65       		.byte	0x65
+ 1603 061e 3E060000 		.4byte	0x63e
+ 1604 0622 14       		.uleb128 0x14
+ 1605 0623 30010000 		.4byte	0x130
+ 1606 0627 CE030000 		.4byte	.LLST29
+ 1607 062b 14       		.uleb128 0x14
+ 1608 062c 25010000 		.4byte	0x125
+ 1609 0630 E6030000 		.4byte	.LLST30
+ 1610 0634 14       		.uleb128 0x14
+ 1611 0635 1A010000 		.4byte	0x11a
+ 1612 0639 0E040000 		.4byte	.LLST31
+ 1613 063d 00       		.byte	0
+ 1614 063e 0F       		.uleb128 0xf
+ 1615 063f 16000000 		.4byte	.LVL77
+ 1616 0643 FD060000 		.4byte	0x6fd
+ 1617 0647 5D060000 		.4byte	0x65d
+ 1618 064b 10       		.uleb128 0x10
+ 1619 064c 01       		.uleb128 0x1
+ 1620 064d 50       		.byte	0x50
+ 1621 064e 02       		.uleb128 0x2
+ 1622 064f 7D       		.byte	0x7d
+ 1623 0650 00       		.sleb128 0
+ 1624 0651 10       		.uleb128 0x10
+ 1625 0652 01       		.uleb128 0x1
+ 1626 0653 51       		.byte	0x51
+ 1627 0654 02       		.uleb128 0x2
+ 1628 0655 77       		.byte	0x77
+ 1629 0656 00       		.sleb128 0
+ 1630 0657 10       		.uleb128 0x10
+ 1631 0658 01       		.uleb128 0x1
+ 1632 0659 52       		.byte	0x52
+ 1633 065a 01       		.uleb128 0x1
+ 1634 065b 40       		.byte	0x40
+ 1635 065c 00       		.byte	0
+ 1636 065d 11       		.uleb128 0x11
+ 1637 065e 22000000 		.4byte	.LVL78
+ 1638 0662 A1020000 		.4byte	0x2a1
+ 1639 0666 0F       		.uleb128 0xf
+ 1640 0667 56000000 		.4byte	.LVL82
+ARM GAS  C:\Users\SAIKAR~1\AppData\Local\Temp\cc2BPKwL.s 			page 32
+
+
+ 1641 066b FD060000 		.4byte	0x6fd
+ 1642 066f 85060000 		.4byte	0x685
+ 1643 0673 10       		.uleb128 0x10
+ 1644 0674 01       		.uleb128 0x1
+ 1645 0675 50       		.byte	0x50
+ 1646 0676 02       		.uleb128 0x2
+ 1647 0677 7D       		.byte	0x7d
+ 1648 0678 00       		.sleb128 0
+ 1649 0679 10       		.uleb128 0x10
+ 1650 067a 01       		.uleb128 0x1
+ 1651 067b 51       		.byte	0x51
+ 1652 067c 02       		.uleb128 0x2
+ 1653 067d 77       		.byte	0x77
+ 1654 067e 00       		.sleb128 0
+ 1655 067f 10       		.uleb128 0x10
+ 1656 0680 01       		.uleb128 0x1
+ 1657 0681 52       		.byte	0x52
+ 1658 0682 01       		.uleb128 0x1
+ 1659 0683 40       		.byte	0x40
+ 1660 0684 00       		.byte	0
+ 1661 0685 11       		.uleb128 0x11
+ 1662 0686 62000000 		.4byte	.LVL83
+ 1663 068a 3C010000 		.4byte	0x13c
+ 1664 068e 0F       		.uleb128 0xf
+ 1665 068f 9E000000 		.4byte	.LVL92
+ 1666 0693 D1060000 		.4byte	0x6d1
+ 1667 0697 A8060000 		.4byte	0x6a8
+ 1668 069b 10       		.uleb128 0x10
+ 1669 069c 01       		.uleb128 0x1
+ 1670 069d 52       		.byte	0x52
+ 1671 069e 02       		.uleb128 0x2
+ 1672 069f 91       		.byte	0x91
+ 1673 06a0 48       		.sleb128 -56
+ 1674 06a1 10       		.uleb128 0x10
+ 1675 06a2 01       		.uleb128 0x1
+ 1676 06a3 53       		.byte	0x53
+ 1677 06a4 02       		.uleb128 0x2
+ 1678 06a5 91       		.byte	0x91
+ 1679 06a6 40       		.sleb128 -64
+ 1680 06a7 00       		.byte	0
+ 1681 06a8 11       		.uleb128 0x11
+ 1682 06a9 AA000000 		.4byte	.LVL93
+ 1683 06ad DC060000 		.4byte	0x6dc
+ 1684 06b1 11       		.uleb128 0x11
+ 1685 06b2 DE000000 		.4byte	.LVL101
+ 1686 06b6 DC060000 		.4byte	0x6dc
+ 1687 06ba 11       		.uleb128 0x11
+ 1688 06bb 06010000 		.4byte	.LVL108
+ 1689 06bf DC060000 		.4byte	0x6dc
+ 1690 06c3 00       		.byte	0
+ 1691 06c4 02       		.uleb128 0x2
+ 1692 06c5 01       		.byte	0x1
+ 1693 06c6 02       		.byte	0x2
+ 1694 06c7 27030000 		.4byte	.LASF66
+ 1695 06cb 18       		.uleb128 0x18
+ 1696 06cc 04       		.byte	0x4
+ 1697 06cd 25000000 		.4byte	0x25
+ARM GAS  C:\Users\SAIKAR~1\AppData\Local\Temp\cc2BPKwL.s 			page 33
+
+
+ 1698 06d1 1B       		.uleb128 0x1b
+ 1699 06d2 00000000 		.4byte	.LASF67
+ 1700 06d6 00000000 		.4byte	.LASF67
+ 1701 06da 03       		.byte	0x3
+ 1702 06db 05       		.byte	0x5
+ 1703 06dc 1B       		.uleb128 0x1b
+ 1704 06dd B7030000 		.4byte	.LASF68
+ 1705 06e1 B7030000 		.4byte	.LASF68
+ 1706 06e5 03       		.byte	0x3
+ 1707 06e6 04       		.byte	0x4
+ 1708 06e7 1B       		.uleb128 0x1b
+ 1709 06e8 25020000 		.4byte	.LASF69
+ 1710 06ec 25020000 		.4byte	.LASF69
+ 1711 06f0 04       		.byte	0x4
+ 1712 06f1 88       		.byte	0x88
+ 1713 06f2 1B       		.uleb128 0x1b
+ 1714 06f3 C1020000 		.4byte	.LASF70
+ 1715 06f7 C1020000 		.4byte	.LASF70
+ 1716 06fb 04       		.byte	0x4
+ 1717 06fc 87       		.byte	0x87
+ 1718 06fd 1C       		.uleb128 0x1c
+ 1719 06fe B3010000 		.4byte	.LASF78
+ 1720 0702 B3010000 		.4byte	.LASF78
+ 1721 0706 00       		.byte	0
+ 1722              		.section	.debug_abbrev,"",%progbits
+ 1723              	.Ldebug_abbrev0:
+ 1724 0000 01       		.uleb128 0x1
+ 1725 0001 11       		.uleb128 0x11
+ 1726 0002 01       		.byte	0x1
+ 1727 0003 25       		.uleb128 0x25
+ 1728 0004 0E       		.uleb128 0xe
+ 1729 0005 13       		.uleb128 0x13
+ 1730 0006 0B       		.uleb128 0xb
+ 1731 0007 03       		.uleb128 0x3
+ 1732 0008 0E       		.uleb128 0xe
+ 1733 0009 1B       		.uleb128 0x1b
+ 1734 000a 0E       		.uleb128 0xe
+ 1735 000b 55       		.uleb128 0x55
+ 1736 000c 17       		.uleb128 0x17
+ 1737 000d 11       		.uleb128 0x11
+ 1738 000e 01       		.uleb128 0x1
+ 1739 000f 10       		.uleb128 0x10
+ 1740 0010 17       		.uleb128 0x17
+ 1741 0011 00       		.byte	0
+ 1742 0012 00       		.byte	0
+ 1743 0013 02       		.uleb128 0x2
+ 1744 0014 24       		.uleb128 0x24
+ 1745 0015 00       		.byte	0
+ 1746 0016 0B       		.uleb128 0xb
+ 1747 0017 0B       		.uleb128 0xb
+ 1748 0018 3E       		.uleb128 0x3e
+ 1749 0019 0B       		.uleb128 0xb
+ 1750 001a 03       		.uleb128 0x3
+ 1751 001b 0E       		.uleb128 0xe
+ 1752 001c 00       		.byte	0
+ 1753 001d 00       		.byte	0
+ 1754 001e 03       		.uleb128 0x3
+ARM GAS  C:\Users\SAIKAR~1\AppData\Local\Temp\cc2BPKwL.s 			page 34
+
+
+ 1755 001f 13       		.uleb128 0x13
+ 1756 0020 01       		.byte	0x1
+ 1757 0021 0B       		.uleb128 0xb
+ 1758 0022 0B       		.uleb128 0xb
+ 1759 0023 3A       		.uleb128 0x3a
+ 1760 0024 0B       		.uleb128 0xb
+ 1761 0025 3B       		.uleb128 0x3b
+ 1762 0026 0B       		.uleb128 0xb
+ 1763 0027 01       		.uleb128 0x1
+ 1764 0028 13       		.uleb128 0x13
+ 1765 0029 00       		.byte	0
+ 1766 002a 00       		.byte	0
+ 1767 002b 04       		.uleb128 0x4
+ 1768 002c 0D       		.uleb128 0xd
+ 1769 002d 00       		.byte	0
+ 1770 002e 03       		.uleb128 0x3
+ 1771 002f 08       		.uleb128 0x8
+ 1772 0030 3A       		.uleb128 0x3a
+ 1773 0031 0B       		.uleb128 0xb
+ 1774 0032 3B       		.uleb128 0x3b
+ 1775 0033 0B       		.uleb128 0xb
+ 1776 0034 49       		.uleb128 0x49
+ 1777 0035 13       		.uleb128 0x13
+ 1778 0036 38       		.uleb128 0x38
+ 1779 0037 0B       		.uleb128 0xb
+ 1780 0038 00       		.byte	0
+ 1781 0039 00       		.byte	0
+ 1782 003a 05       		.uleb128 0x5
+ 1783 003b 16       		.uleb128 0x16
+ 1784 003c 00       		.byte	0
+ 1785 003d 03       		.uleb128 0x3
+ 1786 003e 0E       		.uleb128 0xe
+ 1787 003f 3A       		.uleb128 0x3a
+ 1788 0040 0B       		.uleb128 0xb
+ 1789 0041 3B       		.uleb128 0x3b
+ 1790 0042 0B       		.uleb128 0xb
+ 1791 0043 49       		.uleb128 0x49
+ 1792 0044 13       		.uleb128 0x13
+ 1793 0045 00       		.byte	0
+ 1794 0046 00       		.byte	0
+ 1795 0047 06       		.uleb128 0x6
+ 1796 0048 0D       		.uleb128 0xd
+ 1797 0049 00       		.byte	0
+ 1798 004a 03       		.uleb128 0x3
+ 1799 004b 0E       		.uleb128 0xe
+ 1800 004c 3A       		.uleb128 0x3a
+ 1801 004d 0B       		.uleb128 0xb
+ 1802 004e 3B       		.uleb128 0x3b
+ 1803 004f 0B       		.uleb128 0xb
+ 1804 0050 49       		.uleb128 0x49
+ 1805 0051 13       		.uleb128 0x13
+ 1806 0052 38       		.uleb128 0x38
+ 1807 0053 0B       		.uleb128 0xb
+ 1808 0054 00       		.byte	0
+ 1809 0055 00       		.byte	0
+ 1810 0056 07       		.uleb128 0x7
+ 1811 0057 24       		.uleb128 0x24
+ARM GAS  C:\Users\SAIKAR~1\AppData\Local\Temp\cc2BPKwL.s 			page 35
+
+
+ 1812 0058 00       		.byte	0
+ 1813 0059 0B       		.uleb128 0xb
+ 1814 005a 0B       		.uleb128 0xb
+ 1815 005b 3E       		.uleb128 0x3e
+ 1816 005c 0B       		.uleb128 0xb
+ 1817 005d 03       		.uleb128 0x3
+ 1818 005e 08       		.uleb128 0x8
+ 1819 005f 00       		.byte	0
+ 1820 0060 00       		.byte	0
+ 1821 0061 08       		.uleb128 0x8
+ 1822 0062 2E       		.uleb128 0x2e
+ 1823 0063 01       		.byte	0x1
+ 1824 0064 03       		.uleb128 0x3
+ 1825 0065 0E       		.uleb128 0xe
+ 1826 0066 3A       		.uleb128 0x3a
+ 1827 0067 0B       		.uleb128 0xb
+ 1828 0068 3B       		.uleb128 0x3b
+ 1829 0069 0B       		.uleb128 0xb
+ 1830 006a 27       		.uleb128 0x27
+ 1831 006b 19       		.uleb128 0x19
+ 1832 006c 49       		.uleb128 0x49
+ 1833 006d 13       		.uleb128 0x13
+ 1834 006e 20       		.uleb128 0x20
+ 1835 006f 0B       		.uleb128 0xb
+ 1836 0070 01       		.uleb128 0x1
+ 1837 0071 13       		.uleb128 0x13
+ 1838 0072 00       		.byte	0
+ 1839 0073 00       		.byte	0
+ 1840 0074 09       		.uleb128 0x9
+ 1841 0075 05       		.uleb128 0x5
+ 1842 0076 00       		.byte	0
+ 1843 0077 03       		.uleb128 0x3
+ 1844 0078 0E       		.uleb128 0xe
+ 1845 0079 3A       		.uleb128 0x3a
+ 1846 007a 0B       		.uleb128 0xb
+ 1847 007b 3B       		.uleb128 0x3b
+ 1848 007c 0B       		.uleb128 0xb
+ 1849 007d 49       		.uleb128 0x49
+ 1850 007e 13       		.uleb128 0x13
+ 1851 007f 00       		.byte	0
+ 1852 0080 00       		.byte	0
+ 1853 0081 0A       		.uleb128 0xa
+ 1854 0082 2E       		.uleb128 0x2e
+ 1855 0083 01       		.byte	0x1
+ 1856 0084 03       		.uleb128 0x3
+ 1857 0085 0E       		.uleb128 0xe
+ 1858 0086 3A       		.uleb128 0x3a
+ 1859 0087 0B       		.uleb128 0xb
+ 1860 0088 3B       		.uleb128 0x3b
+ 1861 0089 0B       		.uleb128 0xb
+ 1862 008a 27       		.uleb128 0x27
+ 1863 008b 19       		.uleb128 0x19
+ 1864 008c 49       		.uleb128 0x49
+ 1865 008d 13       		.uleb128 0x13
+ 1866 008e 11       		.uleb128 0x11
+ 1867 008f 01       		.uleb128 0x1
+ 1868 0090 12       		.uleb128 0x12
+ARM GAS  C:\Users\SAIKAR~1\AppData\Local\Temp\cc2BPKwL.s 			page 36
+
+
+ 1869 0091 06       		.uleb128 0x6
+ 1870 0092 40       		.uleb128 0x40
+ 1871 0093 18       		.uleb128 0x18
+ 1872 0094 9642     		.uleb128 0x2116
+ 1873 0096 19       		.uleb128 0x19
+ 1874 0097 01       		.uleb128 0x1
+ 1875 0098 13       		.uleb128 0x13
+ 1876 0099 00       		.byte	0
+ 1877 009a 00       		.byte	0
+ 1878 009b 0B       		.uleb128 0xb
+ 1879 009c 05       		.uleb128 0x5
+ 1880 009d 00       		.byte	0
+ 1881 009e 03       		.uleb128 0x3
+ 1882 009f 0E       		.uleb128 0xe
+ 1883 00a0 3A       		.uleb128 0x3a
+ 1884 00a1 0B       		.uleb128 0xb
+ 1885 00a2 3B       		.uleb128 0x3b
+ 1886 00a3 0B       		.uleb128 0xb
+ 1887 00a4 49       		.uleb128 0x49
+ 1888 00a5 13       		.uleb128 0x13
+ 1889 00a6 02       		.uleb128 0x2
+ 1890 00a7 18       		.uleb128 0x18
+ 1891 00a8 00       		.byte	0
+ 1892 00a9 00       		.byte	0
+ 1893 00aa 0C       		.uleb128 0xc
+ 1894 00ab 34       		.uleb128 0x34
+ 1895 00ac 00       		.byte	0
+ 1896 00ad 03       		.uleb128 0x3
+ 1897 00ae 0E       		.uleb128 0xe
+ 1898 00af 3A       		.uleb128 0x3a
+ 1899 00b0 0B       		.uleb128 0xb
+ 1900 00b1 3B       		.uleb128 0x3b
+ 1901 00b2 0B       		.uleb128 0xb
+ 1902 00b3 49       		.uleb128 0x49
+ 1903 00b4 13       		.uleb128 0x13
+ 1904 00b5 02       		.uleb128 0x2
+ 1905 00b6 18       		.uleb128 0x18
+ 1906 00b7 00       		.byte	0
+ 1907 00b8 00       		.byte	0
+ 1908 00b9 0D       		.uleb128 0xd
+ 1909 00ba 34       		.uleb128 0x34
+ 1910 00bb 00       		.byte	0
+ 1911 00bc 03       		.uleb128 0x3
+ 1912 00bd 0E       		.uleb128 0xe
+ 1913 00be 3A       		.uleb128 0x3a
+ 1914 00bf 0B       		.uleb128 0xb
+ 1915 00c0 3B       		.uleb128 0x3b
+ 1916 00c1 0B       		.uleb128 0xb
+ 1917 00c2 49       		.uleb128 0x49
+ 1918 00c3 13       		.uleb128 0x13
+ 1919 00c4 02       		.uleb128 0x2
+ 1920 00c5 17       		.uleb128 0x17
+ 1921 00c6 00       		.byte	0
+ 1922 00c7 00       		.byte	0
+ 1923 00c8 0E       		.uleb128 0xe
+ 1924 00c9 34       		.uleb128 0x34
+ 1925 00ca 00       		.byte	0
+ARM GAS  C:\Users\SAIKAR~1\AppData\Local\Temp\cc2BPKwL.s 			page 37
+
+
+ 1926 00cb 03       		.uleb128 0x3
+ 1927 00cc 08       		.uleb128 0x8
+ 1928 00cd 3A       		.uleb128 0x3a
+ 1929 00ce 0B       		.uleb128 0xb
+ 1930 00cf 3B       		.uleb128 0x3b
+ 1931 00d0 0B       		.uleb128 0xb
+ 1932 00d1 49       		.uleb128 0x49
+ 1933 00d2 13       		.uleb128 0x13
+ 1934 00d3 02       		.uleb128 0x2
+ 1935 00d4 17       		.uleb128 0x17
+ 1936 00d5 00       		.byte	0
+ 1937 00d6 00       		.byte	0
+ 1938 00d7 0F       		.uleb128 0xf
+ 1939 00d8 898201   		.uleb128 0x4109
+ 1940 00db 01       		.byte	0x1
+ 1941 00dc 11       		.uleb128 0x11
+ 1942 00dd 01       		.uleb128 0x1
+ 1943 00de 31       		.uleb128 0x31
+ 1944 00df 13       		.uleb128 0x13
+ 1945 00e0 01       		.uleb128 0x1
+ 1946 00e1 13       		.uleb128 0x13
+ 1947 00e2 00       		.byte	0
+ 1948 00e3 00       		.byte	0
+ 1949 00e4 10       		.uleb128 0x10
+ 1950 00e5 8A8201   		.uleb128 0x410a
+ 1951 00e8 00       		.byte	0
+ 1952 00e9 02       		.uleb128 0x2
+ 1953 00ea 18       		.uleb128 0x18
+ 1954 00eb 9142     		.uleb128 0x2111
+ 1955 00ed 18       		.uleb128 0x18
+ 1956 00ee 00       		.byte	0
+ 1957 00ef 00       		.byte	0
+ 1958 00f0 11       		.uleb128 0x11
+ 1959 00f1 898201   		.uleb128 0x4109
+ 1960 00f4 00       		.byte	0
+ 1961 00f5 11       		.uleb128 0x11
+ 1962 00f6 01       		.uleb128 0x1
+ 1963 00f7 31       		.uleb128 0x31
+ 1964 00f8 13       		.uleb128 0x13
+ 1965 00f9 00       		.byte	0
+ 1966 00fa 00       		.byte	0
+ 1967 00fb 12       		.uleb128 0x12
+ 1968 00fc 2E       		.uleb128 0x2e
+ 1969 00fd 01       		.byte	0x1
+ 1970 00fe 3F       		.uleb128 0x3f
+ 1971 00ff 19       		.uleb128 0x19
+ 1972 0100 03       		.uleb128 0x3
+ 1973 0101 0E       		.uleb128 0xe
+ 1974 0102 3A       		.uleb128 0x3a
+ 1975 0103 0B       		.uleb128 0xb
+ 1976 0104 3B       		.uleb128 0x3b
+ 1977 0105 0B       		.uleb128 0xb
+ 1978 0106 27       		.uleb128 0x27
+ 1979 0107 19       		.uleb128 0x19
+ 1980 0108 49       		.uleb128 0x49
+ 1981 0109 13       		.uleb128 0x13
+ 1982 010a 11       		.uleb128 0x11
+ARM GAS  C:\Users\SAIKAR~1\AppData\Local\Temp\cc2BPKwL.s 			page 38
+
+
+ 1983 010b 01       		.uleb128 0x1
+ 1984 010c 12       		.uleb128 0x12
+ 1985 010d 06       		.uleb128 0x6
+ 1986 010e 40       		.uleb128 0x40
+ 1987 010f 18       		.uleb128 0x18
+ 1988 0110 9642     		.uleb128 0x2116
+ 1989 0112 19       		.uleb128 0x19
+ 1990 0113 01       		.uleb128 0x1
+ 1991 0114 13       		.uleb128 0x13
+ 1992 0115 00       		.byte	0
+ 1993 0116 00       		.byte	0
+ 1994 0117 13       		.uleb128 0x13
+ 1995 0118 1D       		.uleb128 0x1d
+ 1996 0119 01       		.byte	0x1
+ 1997 011a 31       		.uleb128 0x31
+ 1998 011b 13       		.uleb128 0x13
+ 1999 011c 11       		.uleb128 0x11
+ 2000 011d 01       		.uleb128 0x1
+ 2001 011e 12       		.uleb128 0x12
+ 2002 011f 06       		.uleb128 0x6
+ 2003 0120 58       		.uleb128 0x58
+ 2004 0121 0B       		.uleb128 0xb
+ 2005 0122 59       		.uleb128 0x59
+ 2006 0123 0B       		.uleb128 0xb
+ 2007 0124 01       		.uleb128 0x1
+ 2008 0125 13       		.uleb128 0x13
+ 2009 0126 00       		.byte	0
+ 2010 0127 00       		.byte	0
+ 2011 0128 14       		.uleb128 0x14
+ 2012 0129 05       		.uleb128 0x5
+ 2013 012a 00       		.byte	0
+ 2014 012b 31       		.uleb128 0x31
+ 2015 012c 13       		.uleb128 0x13
+ 2016 012d 02       		.uleb128 0x2
+ 2017 012e 17       		.uleb128 0x17
+ 2018 012f 00       		.byte	0
+ 2019 0130 00       		.byte	0
+ 2020 0131 15       		.uleb128 0x15
+ 2021 0132 2E       		.uleb128 0x2e
+ 2022 0133 01       		.byte	0x1
+ 2023 0134 3F       		.uleb128 0x3f
+ 2024 0135 19       		.uleb128 0x19
+ 2025 0136 03       		.uleb128 0x3
+ 2026 0137 0E       		.uleb128 0xe
+ 2027 0138 3A       		.uleb128 0x3a
+ 2028 0139 0B       		.uleb128 0xb
+ 2029 013a 3B       		.uleb128 0x3b
+ 2030 013b 0B       		.uleb128 0xb
+ 2031 013c 27       		.uleb128 0x27
+ 2032 013d 19       		.uleb128 0x19
+ 2033 013e 11       		.uleb128 0x11
+ 2034 013f 01       		.uleb128 0x1
+ 2035 0140 12       		.uleb128 0x12
+ 2036 0141 06       		.uleb128 0x6
+ 2037 0142 40       		.uleb128 0x40
+ 2038 0143 18       		.uleb128 0x18
+ 2039 0144 9742     		.uleb128 0x2117
+ARM GAS  C:\Users\SAIKAR~1\AppData\Local\Temp\cc2BPKwL.s 			page 39
+
+
+ 2040 0146 19       		.uleb128 0x19
+ 2041 0147 01       		.uleb128 0x1
+ 2042 0148 13       		.uleb128 0x13
+ 2043 0149 00       		.byte	0
+ 2044 014a 00       		.byte	0
+ 2045 014b 16       		.uleb128 0x16
+ 2046 014c 05       		.uleb128 0x5
+ 2047 014d 00       		.byte	0
+ 2048 014e 03       		.uleb128 0x3
+ 2049 014f 08       		.uleb128 0x8
+ 2050 0150 3A       		.uleb128 0x3a
+ 2051 0151 0B       		.uleb128 0xb
+ 2052 0152 3B       		.uleb128 0x3b
+ 2053 0153 0B       		.uleb128 0xb
+ 2054 0154 49       		.uleb128 0x49
+ 2055 0155 13       		.uleb128 0x13
+ 2056 0156 02       		.uleb128 0x2
+ 2057 0157 18       		.uleb128 0x18
+ 2058 0158 00       		.byte	0
+ 2059 0159 00       		.byte	0
+ 2060 015a 17       		.uleb128 0x17
+ 2061 015b 05       		.uleb128 0x5
+ 2062 015c 00       		.byte	0
+ 2063 015d 03       		.uleb128 0x3
+ 2064 015e 0E       		.uleb128 0xe
+ 2065 015f 3A       		.uleb128 0x3a
+ 2066 0160 0B       		.uleb128 0xb
+ 2067 0161 3B       		.uleb128 0x3b
+ 2068 0162 0B       		.uleb128 0xb
+ 2069 0163 49       		.uleb128 0x49
+ 2070 0164 13       		.uleb128 0x13
+ 2071 0165 02       		.uleb128 0x2
+ 2072 0166 17       		.uleb128 0x17
+ 2073 0167 00       		.byte	0
+ 2074 0168 00       		.byte	0
+ 2075 0169 18       		.uleb128 0x18
+ 2076 016a 0F       		.uleb128 0xf
+ 2077 016b 00       		.byte	0
+ 2078 016c 0B       		.uleb128 0xb
+ 2079 016d 0B       		.uleb128 0xb
+ 2080 016e 49       		.uleb128 0x49
+ 2081 016f 13       		.uleb128 0x13
+ 2082 0170 00       		.byte	0
+ 2083 0171 00       		.byte	0
+ 2084 0172 19       		.uleb128 0x19
+ 2085 0173 05       		.uleb128 0x5
+ 2086 0174 00       		.byte	0
+ 2087 0175 03       		.uleb128 0x3
+ 2088 0176 08       		.uleb128 0x8
+ 2089 0177 3A       		.uleb128 0x3a
+ 2090 0178 0B       		.uleb128 0xb
+ 2091 0179 3B       		.uleb128 0x3b
+ 2092 017a 0B       		.uleb128 0xb
+ 2093 017b 49       		.uleb128 0x49
+ 2094 017c 13       		.uleb128 0x13
+ 2095 017d 02       		.uleb128 0x2
+ 2096 017e 17       		.uleb128 0x17
+ARM GAS  C:\Users\SAIKAR~1\AppData\Local\Temp\cc2BPKwL.s 			page 40
+
+
+ 2097 017f 00       		.byte	0
+ 2098 0180 00       		.byte	0
+ 2099 0181 1A       		.uleb128 0x1a
+ 2100 0182 34       		.uleb128 0x34
+ 2101 0183 00       		.byte	0
+ 2102 0184 03       		.uleb128 0x3
+ 2103 0185 0E       		.uleb128 0xe
+ 2104 0186 3A       		.uleb128 0x3a
+ 2105 0187 0B       		.uleb128 0xb
+ 2106 0188 3B       		.uleb128 0x3b
+ 2107 0189 0B       		.uleb128 0xb
+ 2108 018a 49       		.uleb128 0x49
+ 2109 018b 13       		.uleb128 0x13
+ 2110 018c 00       		.byte	0
+ 2111 018d 00       		.byte	0
+ 2112 018e 1B       		.uleb128 0x1b
+ 2113 018f 2E       		.uleb128 0x2e
+ 2114 0190 00       		.byte	0
+ 2115 0191 3F       		.uleb128 0x3f
+ 2116 0192 19       		.uleb128 0x19
+ 2117 0193 3C       		.uleb128 0x3c
+ 2118 0194 19       		.uleb128 0x19
+ 2119 0195 6E       		.uleb128 0x6e
+ 2120 0196 0E       		.uleb128 0xe
+ 2121 0197 03       		.uleb128 0x3
+ 2122 0198 0E       		.uleb128 0xe
+ 2123 0199 3A       		.uleb128 0x3a
+ 2124 019a 0B       		.uleb128 0xb
+ 2125 019b 3B       		.uleb128 0x3b
+ 2126 019c 0B       		.uleb128 0xb
+ 2127 019d 00       		.byte	0
+ 2128 019e 00       		.byte	0
+ 2129 019f 1C       		.uleb128 0x1c
+ 2130 01a0 2E       		.uleb128 0x2e
+ 2131 01a1 00       		.byte	0
+ 2132 01a2 3F       		.uleb128 0x3f
+ 2133 01a3 19       		.uleb128 0x19
+ 2134 01a4 3C       		.uleb128 0x3c
+ 2135 01a5 19       		.uleb128 0x19
+ 2136 01a6 6E       		.uleb128 0x6e
+ 2137 01a7 0E       		.uleb128 0xe
+ 2138 01a8 03       		.uleb128 0x3
+ 2139 01a9 0E       		.uleb128 0xe
+ 2140 01aa 00       		.byte	0
+ 2141 01ab 00       		.byte	0
+ 2142 01ac 00       		.byte	0
+ 2143              		.section	.debug_loc,"",%progbits
+ 2144              	.Ldebug_loc0:
+ 2145              	.LLST0:
+ 2146 0000 24000000 		.4byte	.LVL2
+ 2147 0004 9C000000 		.4byte	.LVL18
+ 2148 0008 0600     		.2byte	0x6
+ 2149 000a 54       		.byte	0x54
+ 2150 000b 93       		.byte	0x93
+ 2151 000c 04       		.uleb128 0x4
+ 2152 000d 55       		.byte	0x55
+ 2153 000e 93       		.byte	0x93
+ARM GAS  C:\Users\SAIKAR~1\AppData\Local\Temp\cc2BPKwL.s 			page 41
+
+
+ 2154 000f 04       		.uleb128 0x4
+ 2155 0010 00000000 		.4byte	0
+ 2156 0014 00000000 		.4byte	0
+ 2157              	.LLST1:
+ 2158 0018 3C000000 		.4byte	.LVL5
+ 2159 001c 44000000 		.4byte	.LVL6
+ 2160 0020 0600     		.2byte	0x6
+ 2161 0022 50       		.byte	0x50
+ 2162 0023 93       		.byte	0x93
+ 2163 0024 04       		.uleb128 0x4
+ 2164 0025 51       		.byte	0x51
+ 2165 0026 93       		.byte	0x93
+ 2166 0027 04       		.uleb128 0x4
+ 2167 0028 44000000 		.4byte	.LVL6
+ 2168 002c AC000000 		.4byte	.LVL20
+ 2169 0030 0200     		.2byte	0x2
+ 2170 0032 7D       		.byte	0x7d
+ 2171 0033 00       		.sleb128 0
+ 2172 0034 00000000 		.4byte	0
+ 2173 0038 00000000 		.4byte	0
+ 2174              	.LLST2:
+ 2175 003c 54000000 		.4byte	.LVL9
+ 2176 0040 BA000000 		.4byte	.LVL23
+ 2177 0044 0600     		.2byte	0x6
+ 2178 0046 56       		.byte	0x56
+ 2179 0047 93       		.byte	0x93
+ 2180 0048 04       		.uleb128 0x4
+ 2181 0049 57       		.byte	0x57
+ 2182 004a 93       		.byte	0x93
+ 2183 004b 04       		.uleb128 0x4
+ 2184 004c 00000000 		.4byte	0
+ 2185 0050 00000000 		.4byte	0
+ 2186              	.LLST3:
+ 2187 0054 6C000000 		.4byte	.LVL12
+ 2188 0058 72000000 		.4byte	.LVL13
+ 2189 005c 0600     		.2byte	0x6
+ 2190 005e 50       		.byte	0x50
+ 2191 005f 93       		.byte	0x93
+ 2192 0060 04       		.uleb128 0x4
+ 2193 0061 51       		.byte	0x51
+ 2194 0062 93       		.byte	0x93
+ 2195 0063 04       		.uleb128 0x4
+ 2196 0064 72000000 		.4byte	.LVL13
+ 2197 0068 20010000 		.4byte	.LFE2
+ 2198 006c 0300     		.2byte	0x3
+ 2199 006e 91       		.byte	0x91
+ 2200 006f A07F     		.sleb128 -96
+ 2201 0071 00000000 		.4byte	0
+ 2202 0075 00000000 		.4byte	0
+ 2203              	.LLST4:
+ 2204 0079 AC000000 		.4byte	.LVL20
+ 2205 007d B4000000 		.4byte	.LVL21
+ 2206 0081 0600     		.2byte	0x6
+ 2207 0083 50       		.byte	0x50
+ 2208 0084 93       		.byte	0x93
+ 2209 0085 04       		.uleb128 0x4
+ 2210 0086 51       		.byte	0x51
+ARM GAS  C:\Users\SAIKAR~1\AppData\Local\Temp\cc2BPKwL.s 			page 42
+
+
+ 2211 0087 93       		.byte	0x93
+ 2212 0088 04       		.uleb128 0x4
+ 2213 0089 B4000000 		.4byte	.LVL21
+ 2214 008d 0E010000 		.4byte	.LVL33
+ 2215 0091 0200     		.2byte	0x2
+ 2216 0093 7D       		.byte	0x7d
+ 2217 0094 00       		.sleb128 0
+ 2218 0095 0E010000 		.4byte	.LVL33
+ 2219 0099 20010000 		.4byte	.LFE2
+ 2220 009d 0300     		.2byte	0x3
+ 2221 009f 91       		.byte	0x91
+ 2222 00a0 987F     		.sleb128 -104
+ 2223 00a2 00000000 		.4byte	0
+ 2224 00a6 00000000 		.4byte	0
+ 2225              	.LLST5:
+ 2226 00aa E0000000 		.4byte	.LVL27
+ 2227 00ae E7000000 		.4byte	.LVL28-1
+ 2228 00b2 0600     		.2byte	0x6
+ 2229 00b4 52       		.byte	0x52
+ 2230 00b5 93       		.byte	0x93
+ 2231 00b6 04       		.uleb128 0x4
+ 2232 00b7 53       		.byte	0x53
+ 2233 00b8 93       		.byte	0x93
+ 2234 00b9 04       		.uleb128 0x4
+ 2235 00ba 00000000 		.4byte	0
+ 2236 00be 00000000 		.4byte	0
+ 2237              	.LLST6:
+ 2238 00c2 E8000000 		.4byte	.LVL28
+ 2239 00c6 EF000000 		.4byte	.LVL29-1
+ 2240 00ca 0600     		.2byte	0x6
+ 2241 00cc 50       		.byte	0x50
+ 2242 00cd 93       		.byte	0x93
+ 2243 00ce 04       		.uleb128 0x4
+ 2244 00cf 51       		.byte	0x51
+ 2245 00d0 93       		.byte	0x93
+ 2246 00d1 04       		.uleb128 0x4
+ 2247 00d2 00000000 		.4byte	0
+ 2248 00d6 00000000 		.4byte	0
+ 2249              	.LLST7:
+ 2250 00da 34000000 		.4byte	.LVL37
+ 2251 00de 3C000000 		.4byte	.LVL38
+ 2252 00e2 0600     		.2byte	0x6
+ 2253 00e4 50       		.byte	0x50
+ 2254 00e5 93       		.byte	0x93
+ 2255 00e6 04       		.uleb128 0x4
+ 2256 00e7 51       		.byte	0x51
+ 2257 00e8 93       		.byte	0x93
+ 2258 00e9 04       		.uleb128 0x4
+ 2259 00ea 3C000000 		.4byte	.LVL38
+ 2260 00ee 58010000 		.4byte	.LVL72
+ 2261 00f2 0200     		.2byte	0x2
+ 2262 00f4 7D       		.byte	0x7d
+ 2263 00f5 00       		.sleb128 0
+ 2264 00f6 58010000 		.4byte	.LVL72
+ 2265 00fa 74010000 		.4byte	.LFE1
+ 2266 00fe 0300     		.2byte	0x3
+ 2267 0100 91       		.byte	0x91
+ARM GAS  C:\Users\SAIKAR~1\AppData\Local\Temp\cc2BPKwL.s 			page 43
+
+
+ 2268 0101 887F     		.sleb128 -120
+ 2269 0103 00000000 		.4byte	0
+ 2270 0107 00000000 		.4byte	0
+ 2271              	.LLST8:
+ 2272 010b 54000000 		.4byte	.LVL42
+ 2273 010f 5C000000 		.4byte	.LVL43
+ 2274 0113 0600     		.2byte	0x6
+ 2275 0115 50       		.byte	0x50
+ 2276 0116 93       		.byte	0x93
+ 2277 0117 04       		.uleb128 0x4
+ 2278 0118 51       		.byte	0x51
+ 2279 0119 93       		.byte	0x93
+ 2280 011a 04       		.uleb128 0x4
+ 2281 011b 5C000000 		.4byte	.LVL43
+ 2282 011f 74010000 		.4byte	.LFE1
+ 2283 0123 0300     		.2byte	0x3
+ 2284 0125 91       		.byte	0x91
+ 2285 0126 907F     		.sleb128 -112
+ 2286 0128 00000000 		.4byte	0
+ 2287 012c 00000000 		.4byte	0
+ 2288              	.LLST9:
+ 2289 0130 F8000000 		.4byte	.LVL59
+ 2290 0134 16010000 		.4byte	.LVL62
+ 2291 0138 0600     		.2byte	0x6
+ 2292 013a 54       		.byte	0x54
+ 2293 013b 93       		.byte	0x93
+ 2294 013c 04       		.uleb128 0x4
+ 2295 013d 55       		.byte	0x55
+ 2296 013e 93       		.byte	0x93
+ 2297 013f 04       		.uleb128 0x4
+ 2298 0140 1A010000 		.4byte	.LVL63
+ 2299 0144 1C010000 		.4byte	.LVL64
+ 2300 0148 0600     		.2byte	0x6
+ 2301 014a 54       		.byte	0x54
+ 2302 014b 93       		.byte	0x93
+ 2303 014c 04       		.uleb128 0x4
+ 2304 014d 55       		.byte	0x55
+ 2305 014e 93       		.byte	0x93
+ 2306 014f 04       		.uleb128 0x4
+ 2307 0150 00000000 		.4byte	0
+ 2308 0154 00000000 		.4byte	0
+ 2309              	.LLST10:
+ 2310 0158 4E010000 		.4byte	.LVL70
+ 2311 015c 55010000 		.4byte	.LVL71-1
+ 2312 0160 0600     		.2byte	0x6
+ 2313 0162 50       		.byte	0x50
+ 2314 0163 93       		.byte	0x93
+ 2315 0164 04       		.uleb128 0x4
+ 2316 0165 51       		.byte	0x51
+ 2317 0166 93       		.byte	0x93
+ 2318 0167 04       		.uleb128 0x4
+ 2319 0168 00000000 		.4byte	0
+ 2320 016c 00000000 		.4byte	0
+ 2321              	.LLST11:
+ 2322 0170 F8000000 		.4byte	.LVL59
+ 2323 0174 1E010000 		.4byte	.LVL65
+ 2324 0178 0A00     		.2byte	0xa
+ARM GAS  C:\Users\SAIKAR~1\AppData\Local\Temp\cc2BPKwL.s 			page 44
+
+
+ 2325 017a 9E       		.byte	0x9e
+ 2326 017b 08       		.uleb128 0x8
+ 2327 017c 00000000 		.4byte	0
+ 2328 0180 0000F03F 		.4byte	0x3ff00000
+ 2329 0184 00000000 		.4byte	0
+ 2330 0188 00000000 		.4byte	0
+ 2331              	.LLST12:
+ 2332 018c F8000000 		.4byte	.LVL59
+ 2333 0190 1E010000 		.4byte	.LVL65
+ 2334 0194 0A00     		.2byte	0xa
+ 2335 0196 9E       		.byte	0x9e
+ 2336 0197 08       		.uleb128 0x8
+ 2337 0198 00000000 		.4byte	0
+ 2338 019c 00000000 		.4byte	0
+ 2339 01a0 00000000 		.4byte	0
+ 2340 01a4 00000000 		.4byte	0
+ 2341              	.LLST14:
+ 2342 01a8 00000000 		.4byte	.LVL73
+ 2343 01ac 08000000 		.4byte	.LVL74
+ 2344 01b0 0600     		.2byte	0x6
+ 2345 01b2 52       		.byte	0x52
+ 2346 01b3 93       		.byte	0x93
+ 2347 01b4 04       		.uleb128 0x4
+ 2348 01b5 53       		.byte	0x53
+ 2349 01b6 93       		.byte	0x93
+ 2350 01b7 04       		.uleb128 0x4
+ 2351 01b8 08000000 		.4byte	.LVL74
+ 2352 01bc 2E000000 		.4byte	.LFE3
+ 2353 01c0 0200     		.2byte	0x2
+ 2354 01c2 70       		.byte	0x70
+ 2355 01c3 00       		.sleb128 0
+ 2356 01c4 00000000 		.4byte	0
+ 2357 01c8 00000000 		.4byte	0
+ 2358              	.LLST15:
+ 2359 01cc 00000000 		.4byte	.LVL75
+ 2360 01d0 12000000 		.4byte	.LVL76
+ 2361 01d4 0100     		.2byte	0x1
+ 2362 01d6 50       		.byte	0x50
+ 2363 01d7 12000000 		.4byte	.LVL76
+ 2364 01db 15000000 		.4byte	.LVL77-1
+ 2365 01df 0100     		.2byte	0x1
+ 2366 01e1 51       		.byte	0x51
+ 2367 01e2 15000000 		.4byte	.LVL77-1
+ 2368 01e6 60010000 		.4byte	.LVL122
+ 2369 01ea 0100     		.2byte	0x1
+ 2370 01ec 57       		.byte	0x57
+ 2371 01ed 60010000 		.4byte	.LVL122
+ 2372 01f1 B8010000 		.4byte	.LFE4
+ 2373 01f5 0400     		.2byte	0x4
+ 2374 01f7 F3       		.byte	0xf3
+ 2375 01f8 01       		.uleb128 0x1
+ 2376 01f9 50       		.byte	0x50
+ 2377 01fa 9F       		.byte	0x9f
+ 2378 01fb 00000000 		.4byte	0
+ 2379 01ff 00000000 		.4byte	0
+ 2380              	.LLST16:
+ 2381 0203 26000000 		.4byte	.LVL79
+ARM GAS  C:\Users\SAIKAR~1\AppData\Local\Temp\cc2BPKwL.s 			page 45
+
+
+ 2382 0207 30000000 		.4byte	.LVL80
+ 2383 020b 0600     		.2byte	0x6
+ 2384 020d 50       		.byte	0x50
+ 2385 020e 93       		.byte	0x93
+ 2386 020f 04       		.uleb128 0x4
+ 2387 0210 51       		.byte	0x51
+ 2388 0211 93       		.byte	0x93
+ 2389 0212 04       		.uleb128 0x4
+ 2390 0213 30000000 		.4byte	.LVL80
+ 2391 0217 33000000 		.4byte	.LVL81-1
+ 2392 021b 0600     		.2byte	0x6
+ 2393 021d 50       		.byte	0x50
+ 2394 021e 93       		.byte	0x93
+ 2395 021f 04       		.uleb128 0x4
+ 2396 0220 54       		.byte	0x54
+ 2397 0221 93       		.byte	0x93
+ 2398 0222 04       		.uleb128 0x4
+ 2399 0223 33000000 		.4byte	.LVL81-1
+ 2400 0227 1C010000 		.4byte	.LVL113
+ 2401 022b 0600     		.2byte	0x6
+ 2402 022d 55       		.byte	0x55
+ 2403 022e 93       		.byte	0x93
+ 2404 022f 04       		.uleb128 0x4
+ 2405 0230 54       		.byte	0x54
+ 2406 0231 93       		.byte	0x93
+ 2407 0232 04       		.uleb128 0x4
+ 2408 0233 00000000 		.4byte	0
+ 2409 0237 00000000 		.4byte	0
+ 2410              	.LLST17:
+ 2411 023b 62000000 		.4byte	.LVL83
+ 2412 023f 69000000 		.4byte	.LVL84-1
+ 2413 0243 0600     		.2byte	0x6
+ 2414 0245 50       		.byte	0x50
+ 2415 0246 93       		.byte	0x93
+ 2416 0247 04       		.uleb128 0x4
+ 2417 0248 51       		.byte	0x51
+ 2418 0249 93       		.byte	0x93
+ 2419 024a 04       		.uleb128 0x4
+ 2420 024b 00000000 		.4byte	0
+ 2421 024f 00000000 		.4byte	0
+ 2422              	.LLST18:
+ 2423 0253 76000000 		.4byte	.LVL86
+ 2424 0257 7E000000 		.4byte	.LVL87
+ 2425 025b 0600     		.2byte	0x6
+ 2426 025d 50       		.byte	0x50
+ 2427 025e 93       		.byte	0x93
+ 2428 025f 04       		.uleb128 0x4
+ 2429 0260 51       		.byte	0x51
+ 2430 0261 93       		.byte	0x93
+ 2431 0262 04       		.uleb128 0x4
+ 2432 0263 7E000000 		.4byte	.LVL87
+ 2433 0267 BA000000 		.4byte	.LVL95
+ 2434 026b 0300     		.2byte	0x3
+ 2435 026d 91       		.byte	0x91
+ 2436 026e A07F     		.sleb128 -96
+ 2437 0270 00000000 		.4byte	0
+ 2438 0274 00000000 		.4byte	0
+ARM GAS  C:\Users\SAIKAR~1\AppData\Local\Temp\cc2BPKwL.s 			page 46
+
+
+ 2439              	.LLST19:
+ 2440 0278 8E000000 		.4byte	.LVL90
+ 2441 027c 95000000 		.4byte	.LVL91-1
+ 2442 0280 0600     		.2byte	0x6
+ 2443 0282 52       		.byte	0x52
+ 2444 0283 93       		.byte	0x93
+ 2445 0284 04       		.uleb128 0x4
+ 2446 0285 53       		.byte	0x53
+ 2447 0286 93       		.byte	0x93
+ 2448 0287 04       		.uleb128 0x4
+ 2449 0288 00000000 		.4byte	0
+ 2450 028c 00000000 		.4byte	0
+ 2451              	.LLST20:
+ 2452 0290 BA000000 		.4byte	.LVL95
+ 2453 0294 C0000000 		.4byte	.LVL96
+ 2454 0298 0600     		.2byte	0x6
+ 2455 029a 50       		.byte	0x50
+ 2456 029b 93       		.byte	0x93
+ 2457 029c 04       		.uleb128 0x4
+ 2458 029d 51       		.byte	0x51
+ 2459 029e 93       		.byte	0x93
+ 2460 029f 04       		.uleb128 0x4
+ 2461 02a0 C0000000 		.4byte	.LVL96
+ 2462 02a4 F0000000 		.4byte	.LVL104
+ 2463 02a8 0300     		.2byte	0x3
+ 2464 02aa 91       		.byte	0x91
+ 2465 02ab A07F     		.sleb128 -96
+ 2466 02ad 00000000 		.4byte	0
+ 2467 02b1 00000000 		.4byte	0
+ 2468              	.LLST21:
+ 2469 02b5 CA000000 		.4byte	.LVL98
+ 2470 02b9 D2000000 		.4byte	.LVL99
+ 2471 02bd 0600     		.2byte	0x6
+ 2472 02bf 50       		.byte	0x50
+ 2473 02c0 93       		.byte	0x93
+ 2474 02c1 04       		.uleb128 0x4
+ 2475 02c2 51       		.byte	0x51
+ 2476 02c3 93       		.byte	0x93
+ 2477 02c4 04       		.uleb128 0x4
+ 2478 02c5 D2000000 		.4byte	.LVL99
+ 2479 02c9 18010000 		.4byte	.LVL111
+ 2480 02cd 0300     		.2byte	0x3
+ 2481 02cf 91       		.byte	0x91
+ 2482 02d0 B07F     		.sleb128 -80
+ 2483 02d2 00000000 		.4byte	0
+ 2484 02d6 00000000 		.4byte	0
+ 2485              	.LLST22:
+ 2486 02da F2000000 		.4byte	.LVL105
+ 2487 02de FA000000 		.4byte	.LVL106
+ 2488 02e2 0600     		.2byte	0x6
+ 2489 02e4 50       		.byte	0x50
+ 2490 02e5 93       		.byte	0x93
+ 2491 02e6 04       		.uleb128 0x4
+ 2492 02e7 51       		.byte	0x51
+ 2493 02e8 93       		.byte	0x93
+ 2494 02e9 04       		.uleb128 0x4
+ 2495 02ea FA000000 		.4byte	.LVL106
+ARM GAS  C:\Users\SAIKAR~1\AppData\Local\Temp\cc2BPKwL.s 			page 47
+
+
+ 2496 02ee FD000000 		.4byte	.LVL107-1
+ 2497 02f2 0800     		.2byte	0x8
+ 2498 02f4 91       		.byte	0x91
+ 2499 02f5 A07F     		.sleb128 -96
+ 2500 02f7 93       		.byte	0x93
+ 2501 02f8 04       		.uleb128 0x4
+ 2502 02f9 51       		.byte	0x51
+ 2503 02fa 93       		.byte	0x93
+ 2504 02fb 04       		.uleb128 0x4
+ 2505 02fc FD000000 		.4byte	.LVL107-1
+ 2506 0300 9C010000 		.4byte	.LVL129
+ 2507 0304 0A00     		.2byte	0xa
+ 2508 0306 91       		.byte	0x91
+ 2509 0307 A07F     		.sleb128 -96
+ 2510 0309 93       		.byte	0x93
+ 2511 030a 04       		.uleb128 0x4
+ 2512 030b 91       		.byte	0x91
+ 2513 030c AC7F     		.sleb128 -84
+ 2514 030e 93       		.byte	0x93
+ 2515 030f 04       		.uleb128 0x4
+ 2516 0310 00000000 		.4byte	0
+ 2517 0314 00000000 		.4byte	0
+ 2518              	.LLST23:
+ 2519 0318 1A010000 		.4byte	.LVL112
+ 2520 031c 2C010000 		.4byte	.LVL115
+ 2521 0320 0600     		.2byte	0x6
+ 2522 0322 50       		.byte	0x50
+ 2523 0323 93       		.byte	0x93
+ 2524 0324 04       		.uleb128 0x4
+ 2525 0325 51       		.byte	0x51
+ 2526 0326 93       		.byte	0x93
+ 2527 0327 04       		.uleb128 0x4
+ 2528 0328 2C010000 		.4byte	.LVL115
+ 2529 032c 2E010000 		.4byte	.LVL116
+ 2530 0330 0800     		.2byte	0x8
+ 2531 0332 91       		.byte	0x91
+ 2532 0333 B07F     		.sleb128 -80
+ 2533 0335 93       		.byte	0x93
+ 2534 0336 04       		.uleb128 0x4
+ 2535 0337 51       		.byte	0x51
+ 2536 0338 93       		.byte	0x93
+ 2537 0339 04       		.uleb128 0x4
+ 2538 033a 2E010000 		.4byte	.LVL116
+ 2539 033e 9C010000 		.4byte	.LVL129
+ 2540 0342 0A00     		.2byte	0xa
+ 2541 0344 91       		.byte	0x91
+ 2542 0345 B07F     		.sleb128 -80
+ 2543 0347 93       		.byte	0x93
+ 2544 0348 04       		.uleb128 0x4
+ 2545 0349 91       		.byte	0x91
+ 2546 034a B87F     		.sleb128 -72
+ 2547 034c 93       		.byte	0x93
+ 2548 034d 04       		.uleb128 0x4
+ 2549 034e 00000000 		.4byte	0
+ 2550 0352 00000000 		.4byte	0
+ 2551              	.LLST24:
+ 2552 0356 1A010000 		.4byte	.LVL112
+ARM GAS  C:\Users\SAIKAR~1\AppData\Local\Temp\cc2BPKwL.s 			page 48
+
+
+ 2553 035a 9C010000 		.4byte	.LVL129
+ 2554 035e 0A00     		.2byte	0xa
+ 2555 0360 91       		.byte	0x91
+ 2556 0361 A07F     		.sleb128 -96
+ 2557 0363 93       		.byte	0x93
+ 2558 0364 04       		.uleb128 0x4
+ 2559 0365 91       		.byte	0x91
+ 2560 0366 AC7F     		.sleb128 -84
+ 2561 0368 93       		.byte	0x93
+ 2562 0369 04       		.uleb128 0x4
+ 2563 036a 00000000 		.4byte	0
+ 2564 036e 00000000 		.4byte	0
+ 2565              	.LLST26:
+ 2566 0372 26010000 		.4byte	.LVL114
+ 2567 0376 52010000 		.4byte	.LVL121
+ 2568 037a 0600     		.2byte	0x6
+ 2569 037c 54       		.byte	0x54
+ 2570 037d 93       		.byte	0x93
+ 2571 037e 04       		.uleb128 0x4
+ 2572 037f 56       		.byte	0x56
+ 2573 0380 93       		.byte	0x93
+ 2574 0381 04       		.uleb128 0x4
+ 2575 0382 00000000 		.4byte	0
+ 2576 0386 00000000 		.4byte	0
+ 2577              	.LLST27:
+ 2578 038a 26010000 		.4byte	.LVL114
+ 2579 038e 4A010000 		.4byte	.LVL119
+ 2580 0392 0600     		.2byte	0x6
+ 2581 0394 54       		.byte	0x54
+ 2582 0395 93       		.byte	0x93
+ 2583 0396 04       		.uleb128 0x4
+ 2584 0397 55       		.byte	0x55
+ 2585 0398 93       		.byte	0x93
+ 2586 0399 04       		.uleb128 0x4
+ 2587 039a 4C010000 		.4byte	.LVL120
+ 2588 039e 52010000 		.4byte	.LVL121
+ 2589 03a2 0600     		.2byte	0x6
+ 2590 03a4 54       		.byte	0x54
+ 2591 03a5 93       		.byte	0x93
+ 2592 03a6 04       		.uleb128 0x4
+ 2593 03a7 55       		.byte	0x55
+ 2594 03a8 93       		.byte	0x93
+ 2595 03a9 04       		.uleb128 0x4
+ 2596 03aa 00000000 		.4byte	0
+ 2597 03ae 00000000 		.4byte	0
+ 2598              	.LLST28:
+ 2599 03b2 26010000 		.4byte	.LVL114
+ 2600 03b6 52010000 		.4byte	.LVL121
+ 2601 03ba 0A00     		.2byte	0xa
+ 2602 03bc 91       		.byte	0x91
+ 2603 03bd A07F     		.sleb128 -96
+ 2604 03bf 93       		.byte	0x93
+ 2605 03c0 04       		.uleb128 0x4
+ 2606 03c1 91       		.byte	0x91
+ 2607 03c2 AC7F     		.sleb128 -84
+ 2608 03c4 93       		.byte	0x93
+ 2609 03c5 04       		.uleb128 0x4
+ARM GAS  C:\Users\SAIKAR~1\AppData\Local\Temp\cc2BPKwL.s 			page 49
+
+
+ 2610 03c6 00000000 		.4byte	0
+ 2611 03ca 00000000 		.4byte	0
+ 2612              	.LLST29:
+ 2613 03ce 68010000 		.4byte	.LVL123
+ 2614 03d2 90010000 		.4byte	.LVL128
+ 2615 03d6 0600     		.2byte	0x6
+ 2616 03d8 54       		.byte	0x54
+ 2617 03d9 93       		.byte	0x93
+ 2618 03da 04       		.uleb128 0x4
+ 2619 03db 57       		.byte	0x57
+ 2620 03dc 93       		.byte	0x93
+ 2621 03dd 04       		.uleb128 0x4
+ 2622 03de 00000000 		.4byte	0
+ 2623 03e2 00000000 		.4byte	0
+ 2624              	.LLST30:
+ 2625 03e6 68010000 		.4byte	.LVL123
+ 2626 03ea 8A010000 		.4byte	.LVL126
+ 2627 03ee 0600     		.2byte	0x6
+ 2628 03f0 54       		.byte	0x54
+ 2629 03f1 93       		.byte	0x93
+ 2630 03f2 04       		.uleb128 0x4
+ 2631 03f3 55       		.byte	0x55
+ 2632 03f4 93       		.byte	0x93
+ 2633 03f5 04       		.uleb128 0x4
+ 2634 03f6 8C010000 		.4byte	.LVL127
+ 2635 03fa 90010000 		.4byte	.LVL128
+ 2636 03fe 0600     		.2byte	0x6
+ 2637 0400 54       		.byte	0x54
+ 2638 0401 93       		.byte	0x93
+ 2639 0402 04       		.uleb128 0x4
+ 2640 0403 55       		.byte	0x55
+ 2641 0404 93       		.byte	0x93
+ 2642 0405 04       		.uleb128 0x4
+ 2643 0406 00000000 		.4byte	0
+ 2644 040a 00000000 		.4byte	0
+ 2645              	.LLST31:
+ 2646 040e 68010000 		.4byte	.LVL123
+ 2647 0412 90010000 		.4byte	.LVL128
+ 2648 0416 0A00     		.2byte	0xa
+ 2649 0418 91       		.byte	0x91
+ 2650 0419 B07F     		.sleb128 -80
+ 2651 041b 93       		.byte	0x93
+ 2652 041c 04       		.uleb128 0x4
+ 2653 041d 91       		.byte	0x91
+ 2654 041e B87F     		.sleb128 -72
+ 2655 0420 93       		.byte	0x93
+ 2656 0421 04       		.uleb128 0x4
+ 2657 0422 00000000 		.4byte	0
+ 2658 0426 00000000 		.4byte	0
+ 2659              		.section	.debug_aranges,"",%progbits
+ 2660 0000 34000000 		.4byte	0x34
+ 2661 0004 0200     		.2byte	0x2
+ 2662 0006 00000000 		.4byte	.Ldebug_info0
+ 2663 000a 04       		.byte	0x4
+ 2664 000b 00       		.byte	0
+ 2665 000c 0000     		.2byte	0
+ 2666 000e 0000     		.2byte	0
+ARM GAS  C:\Users\SAIKAR~1\AppData\Local\Temp\cc2BPKwL.s 			page 50
+
+
+ 2667 0010 00000000 		.4byte	.LFB2
+ 2668 0014 20010000 		.4byte	.LFE2-.LFB2
+ 2669 0018 00000000 		.4byte	.LFB1
+ 2670 001c 74010000 		.4byte	.LFE1-.LFB1
+ 2671 0020 00000000 		.4byte	.LFB3
+ 2672 0024 2E000000 		.4byte	.LFE3-.LFB3
+ 2673 0028 00000000 		.4byte	.LFB4
+ 2674 002c B8010000 		.4byte	.LFE4-.LFB4
+ 2675 0030 00000000 		.4byte	0
+ 2676 0034 00000000 		.4byte	0
+ 2677              		.section	.debug_ranges,"",%progbits
+ 2678              	.Ldebug_ranges0:
+ 2679 0000 00000000 		.4byte	.LFB2
+ 2680 0004 20010000 		.4byte	.LFE2
+ 2681 0008 00000000 		.4byte	.LFB1
+ 2682 000c 74010000 		.4byte	.LFE1
+ 2683 0010 00000000 		.4byte	.LFB3
+ 2684 0014 2E000000 		.4byte	.LFE3
+ 2685 0018 00000000 		.4byte	.LFB4
+ 2686 001c B8010000 		.4byte	.LFE4
+ 2687 0020 00000000 		.4byte	0
+ 2688 0024 00000000 		.4byte	0
+ 2689              		.section	.debug_line,"",%progbits
+ 2690              	.Ldebug_line0:
+ 2691 0000 33010000 		.section	.debug_str,"MS",%progbits,1
+ 2691      02009D00 
+ 2691      00000201 
+ 2691      FB0E0D00 
+ 2691      01010101 
+ 2692              	.LASF67:
+ 2693 0000 66617374 		.ascii	"fast_sincos\000"
+ 2693      5F73696E 
+ 2693      636F7300 
+ 2694              	.LASF77:
+ 2695 000c 72656C61 		.ascii	"relative_bearing_rad\000"
+ 2695      74697665 
+ 2695      5F626561 
+ 2695      72696E67 
+ 2695      5F726164 
+ 2696              	.LASF60:
+ 2697 0021 6572726F 		.ascii	"error_forward\000"
+ 2697      725F666F 
+ 2697      72776172 
+ 2697      6400
+ 2698              	.LASF47:
+ 2699 002f 64697374 		.ascii	"dist_thresh\000"
+ 2699      5F746872 
+ 2699      65736800 
+ 2700              	.LASF71:
+ 2701 003b 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 2701      43313120 
+ 2701      352E342E 
+ 2701      31203230 
+ 2701      31363036 
+ 2702 006e 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m0 -mthumb -g -O"
+ 2702      20726576 
+ 2702      6973696F 
+ARM GAS  C:\Users\SAIKAR~1\AppData\Local\Temp\cc2BPKwL.s 			page 51
+
+
+ 2702      6E203233 
+ 2702      37373135 
+ 2703 00a1 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 2703      66756E63 
+ 2703      74696F6E 
+ 2703      2D736563 
+ 2703      74696F6E 
+ 2704              	.LASF41:
+ 2705 00c9 64656C74 		.ascii	"delta_phi\000"
+ 2705      615F7068 
+ 2705      6900
+ 2706              	.LASF45:
+ 2707 00d3 6D61785F 		.ascii	"max_pitch\000"
+ 2707      70697463 
+ 2707      6800
+ 2708              	.LASF27:
+ 2709 00dd 636F735F 		.ascii	"cos_phi1\000"
+ 2709      70686931 
+ 2709      00
+ 2710              	.LASF29:
+ 2711 00e6 636F735F 		.ascii	"cos_phi2\000"
+ 2711      70686932 
+ 2711      00
+ 2712              	.LASF17:
+ 2713 00ef 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 2713      206C6F6E 
+ 2713      6720756E 
+ 2713      7369676E 
+ 2713      65642069 
+ 2714              	.LASF46:
+ 2715 0106 6D61785F 		.ascii	"max_roll\000"
+ 2715      726F6C6C 
+ 2715      00
+ 2716              	.LASF22:
+ 2717 010f 6D696E5F 		.ascii	"min_val\000"
+ 2717      76616C00 
+ 2718              	.LASF76:
+ 2719 0117 6E617669 		.ascii	"navigator_init\000"
+ 2719      6761746F 
+ 2719      725F696E 
+ 2719      697400
+ 2720              	.LASF62:
+ 2721 0126 70697463 		.ascii	"pitch_p_term\000"
+ 2721      685F705F 
+ 2721      7465726D 
+ 2721      00
+ 2722              	.LASF9:
+ 2723 0133 6C6F6E67 		.ascii	"long long int\000"
+ 2723      206C6F6E 
+ 2723      6720696E 
+ 2723      7400
+ 2724              	.LASF11:
+ 2725 0141 7369676E 		.ascii	"signed char\000"
+ 2725      65642063 
+ 2725      68617200 
+ 2726              	.LASF65:
+ 2727 014d 66696E61 		.ascii	"final_roll\000"
+ARM GAS  C:\Users\SAIKAR~1\AppData\Local\Temp\cc2BPKwL.s 			page 52
+
+
+ 2727      6C5F726F 
+ 2727      6C6C00
+ 2728              	.LASF59:
+ 2729 0158 636F735F 		.ascii	"cos_arg\000"
+ 2729      61726700 
+ 2730              	.LASF64:
+ 2731 0160 66696E61 		.ascii	"final_pitch\000"
+ 2731      6C5F7069 
+ 2731      74636800 
+ 2732              	.LASF1:
+ 2733 016c 705F6761 		.ascii	"p_gain\000"
+ 2733      696E00
+ 2734              	.LASF15:
+ 2735 0173 6C6F6E67 		.ascii	"long int\000"
+ 2735      20696E74 
+ 2735      00
+ 2736              	.LASF51:
+ 2737 017c 64726F6E 		.ascii	"drone_heading_degrees\000"
+ 2737      655F6865 
+ 2737      6164696E 
+ 2737      675F6465 
+ 2737      67726565 
+ 2738              	.LASF31:
+ 2739 0192 636F735F 		.ascii	"cos_delta_lambda\000"
+ 2739      64656C74 
+ 2739      615F6C61 
+ 2739      6D626461 
+ 2739      00
+ 2740              	.LASF5:
+ 2741 01a3 47505343 		.ascii	"GPSCoordinate_t\000"
+ 2741      6F6F7264 
+ 2741      696E6174 
+ 2741      655F7400 
+ 2742              	.LASF78:
+ 2743 01b3 6D656D63 		.ascii	"memcpy\000"
+ 2743      707900
+ 2744              	.LASF49:
+ 2745 01ba 6E617669 		.ascii	"navigator_update\000"
+ 2745      6761746F 
+ 2745      725F7570 
+ 2745      64617465 
+ 2745      00
+ 2746              	.LASF55:
+ 2747 01cb 62656172 		.ascii	"bearing_to_target_deg\000"
+ 2747      696E675F 
+ 2747      746F5F74 
+ 2747      61726765 
+ 2747      745F6465 
+ 2748              	.LASF52:
+ 2749 01e1 6F75745F 		.ascii	"out_pitch_cmd\000"
+ 2749      70697463 
+ 2749      685F636D 
+ 2749      6400
+ 2750              	.LASF7:
+ 2751 01ef 646F7562 		.ascii	"double\000"
+ 2751      6C6500
+ 2752              	.LASF58:
+ARM GAS  C:\Users\SAIKAR~1\AppData\Local\Temp\cc2BPKwL.s 			page 53
+
+
+ 2753 01f6 73696E5F 		.ascii	"sin_arg\000"
+ 2753      61726700 
+ 2754              	.LASF32:
+ 2755 01fe 70686931 		.ascii	"phi1\000"
+ 2755      00
+ 2756              	.LASF34:
+ 2757 0203 70686932 		.ascii	"phi2\000"
+ 2757      00
+ 2758              	.LASF24:
+ 2759 0208 706F7331 		.ascii	"pos1\000"
+ 2759      00
+ 2760              	.LASF25:
+ 2761 020d 706F7332 		.ascii	"pos2\000"
+ 2761      00
+ 2762              	.LASF21:
+ 2763 0212 76616C75 		.ascii	"value\000"
+ 2763      6500
+ 2764              	.LASF8:
+ 2765 0218 756E7369 		.ascii	"unsigned int\000"
+ 2765      676E6564 
+ 2765      20696E74 
+ 2765      00
+ 2766              	.LASF69:
+ 2767 0225 666D6F64 		.ascii	"fmod\000"
+ 2767      00
+ 2768              	.LASF16:
+ 2769 022a 6C6F6E67 		.ascii	"long unsigned int\000"
+ 2769      20756E73 
+ 2769      69676E65 
+ 2769      6420696E 
+ 2769      7400
+ 2770              	.LASF30:
+ 2771 023c 73696E5F 		.ascii	"sin_delta_lambda\000"
+ 2771      64656C74 
+ 2771      615F6C61 
+ 2771      6D626461 
+ 2771      00
+ 2772              	.LASF14:
+ 2773 024d 73686F72 		.ascii	"short unsigned int\000"
+ 2773      7420756E 
+ 2773      7369676E 
+ 2773      65642069 
+ 2773      6E7400
+ 2774              	.LASF36:
+ 2775 0260 74686574 		.ascii	"theta\000"
+ 2775      6100
+ 2776              	.LASF73:
+ 2777 0266 453A5C41 		.ascii	"E:\\Acads\\UWM\\Summer 25\\PathController\\PathCont"
+ 2777      63616473 
+ 2777      5C55574D 
+ 2777      5C53756D 
+ 2777      6D657220 
+ 2778 0294 726F6C6C 		.ascii	"roller.cydsn\000"
+ 2778      65722E63 
+ 2778      7964736E 
+ 2778      00
+ 2779              	.LASF37:
+ARM GAS  C:\Users\SAIKAR~1\AppData\Local\Temp\cc2BPKwL.s 			page 54
+
+
+ 2780 02a1 73696E5F 		.ascii	"sin_delta_phi_half\000"
+ 2780      64656C74 
+ 2780      615F7068 
+ 2780      695F6861 
+ 2780      6C6600
+ 2781              	.LASF3:
+ 2782 02b4 6D61785F 		.ascii	"max_roll_cmd\000"
+ 2782      726F6C6C 
+ 2782      5F636D64 
+ 2782      00
+ 2783              	.LASF70:
+ 2784 02c1 73717274 		.ascii	"sqrt\000"
+ 2784      00
+ 2785              	.LASF18:
+ 2786 02c6 73697A65 		.ascii	"sizetype\000"
+ 2786      74797065 
+ 2786      00
+ 2787              	.LASF10:
+ 2788 02cf 6C6F6E67 		.ascii	"long double\000"
+ 2788      20646F75 
+ 2788      626C6500 
+ 2789              	.LASF23:
+ 2790 02db 6D61785F 		.ascii	"max_val\000"
+ 2790      76616C00 
+ 2791              	.LASF75:
+ 2792 02e3 63616C63 		.ascii	"calculate_bearing\000"
+ 2792      756C6174 
+ 2792      655F6265 
+ 2792      6172696E 
+ 2792      6700
+ 2793              	.LASF26:
+ 2794 02f5 73696E5F 		.ascii	"sin_phi1\000"
+ 2794      70686931 
+ 2794      00
+ 2795              	.LASF28:
+ 2796 02fe 73696E5F 		.ascii	"sin_phi2\000"
+ 2796      70686932 
+ 2796      00
+ 2797              	.LASF20:
+ 2798 0307 666C6F61 		.ascii	"float\000"
+ 2798      7400
+ 2799              	.LASF57:
+ 2800 030d 68656164 		.ascii	"heading_rad\000"
+ 2800      696E675F 
+ 2800      72616400 
+ 2801              	.LASF2:
+ 2802 0319 6D61785F 		.ascii	"max_pitch_cmd\000"
+ 2802      70697463 
+ 2802      685F636D 
+ 2802      6400
+ 2803              	.LASF66:
+ 2804 0327 5F426F6F 		.ascii	"_Bool\000"
+ 2804      6C00
+ 2805              	.LASF12:
+ 2806 032d 756E7369 		.ascii	"unsigned char\000"
+ 2806      676E6564 
+ 2806      20636861 
+ARM GAS  C:\Users\SAIKAR~1\AppData\Local\Temp\cc2BPKwL.s 			page 55
+
+
+ 2806      7200
+ 2807              	.LASF38:
+ 2808 033b 636F735F 		.ascii	"cos_delta_phi_half\000"
+ 2808      64656C74 
+ 2808      615F7068 
+ 2808      695F6861 
+ 2808      6C6600
+ 2809              	.LASF13:
+ 2810 034e 73686F72 		.ascii	"short int\000"
+ 2810      7420696E 
+ 2810      7400
+ 2811              	.LASF4:
+ 2812 0358 64697374 		.ascii	"distance_threshold\000"
+ 2812      616E6365 
+ 2812      5F746872 
+ 2812      6573686F 
+ 2812      6C6400
+ 2813              	.LASF39:
+ 2814 036b 73696E5F 		.ascii	"sin_delta_lambda_half\000"
+ 2814      64656C74 
+ 2814      615F6C61 
+ 2814      6D626461 
+ 2814      5F68616C 
+ 2815              	.LASF44:
+ 2816 0381 74617267 		.ascii	"target_lon\000"
+ 2816      65745F6C 
+ 2816      6F6E00
+ 2817              	.LASF50:
+ 2818 038c 63757272 		.ascii	"current_pos\000"
+ 2818      656E745F 
+ 2818      706F7300 
+ 2819              	.LASF19:
+ 2820 0398 63686172 		.ascii	"char\000"
+ 2820      00
+ 2821              	.LASF6:
+ 2822 039d 44726F6E 		.ascii	"DroneNavigator_t\000"
+ 2822      654E6176 
+ 2822      69676174 
+ 2822      6F725F74 
+ 2822      00
+ 2823              	.LASF54:
+ 2824 03ae 64697374 		.ascii	"distance\000"
+ 2824      616E6365 
+ 2824      00
+ 2825              	.LASF68:
+ 2826 03b7 66617374 		.ascii	"fast_atan2\000"
+ 2826      5F617461 
+ 2826      6E3200
+ 2827              	.LASF72:
+ 2828 03c2 616C676F 		.ascii	"algorithm.c\000"
+ 2828      72697468 
+ 2828      6D2E6300 
+ 2829              	.LASF42:
+ 2830 03ce 64656C74 		.ascii	"delta_lambda\000"
+ 2830      615F6C61 
+ 2830      6D626461 
+ 2830      00
+ARM GAS  C:\Users\SAIKAR~1\AppData\Local\Temp\cc2BPKwL.s 			page 56
+
+
+ 2831              	.LASF74:
+ 2832 03db 636C616D 		.ascii	"clamp\000"
+ 2832      7000
+ 2833              	.LASF61:
+ 2834 03e1 6572726F 		.ascii	"error_right\000"
+ 2834      725F7269 
+ 2834      67687400 
+ 2835              	.LASF48:
+ 2836 03ed 68617665 		.ascii	"haversine_distance\000"
+ 2836      7273696E 
+ 2836      655F6469 
+ 2836      7374616E 
+ 2836      636500
+ 2837              	.LASF63:
+ 2838 0400 726F6C6C 		.ascii	"roll_p_term\000"
+ 2838      5F705F74 
+ 2838      65726D00 
+ 2839              	.LASF43:
+ 2840 040c 74617267 		.ascii	"target_lat\000"
+ 2840      65745F6C 
+ 2840      617400
+ 2841              	.LASF40:
+ 2842 0417 636F735F 		.ascii	"cos_delta_lambda_half\000"
+ 2842      64656C74 
+ 2842      615F6C61 
+ 2842      6D626461 
+ 2842      5F68616C 
+ 2843              	.LASF33:
+ 2844 042d 6C616D62 		.ascii	"lambda1\000"
+ 2844      64613100 
+ 2845              	.LASF35:
+ 2846 0435 6C616D62 		.ascii	"lambda2\000"
+ 2846      64613200 
+ 2847              	.LASF56:
+ 2848 043d 62656172 		.ascii	"bearing_rad\000"
+ 2848      696E675F 
+ 2848      72616400 
+ 2849              	.LASF53:
+ 2850 0449 6F75745F 		.ascii	"out_roll_cmd\000"
+ 2850      726F6C6C 
+ 2850      5F636D64 
+ 2850      00
+ 2851              	.LASF0:
+ 2852 0456 74617267 		.ascii	"target_pos\000"
+ 2852      65745F70 
+ 2852      6F7300
+ 2853              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

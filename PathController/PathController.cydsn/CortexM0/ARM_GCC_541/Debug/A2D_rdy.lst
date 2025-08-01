@@ -1,0 +1,2772 @@
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\cc4ju9qe.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m0
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 0
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"A2D_rdy.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.A2D_rdy_SetVector,"ax",%progbits
+  20              		.align	2
+  21              		.global	A2D_rdy_SetVector
+  22              		.code	16
+  23              		.thumb_func
+  24              		.type	A2D_rdy_SetVector, %function
+  25              	A2D_rdy_SetVector:
+  26              	.LFB5:
+  27              		.file 1 "Generated_Source\\PSoC4\\A2D_rdy.c"
+   1:Generated_Source\PSoC4/A2D_rdy.c **** /*******************************************************************************
+   2:Generated_Source\PSoC4/A2D_rdy.c **** * File Name: A2D_rdy.c  
+   3:Generated_Source\PSoC4/A2D_rdy.c **** * Version 1.70
+   4:Generated_Source\PSoC4/A2D_rdy.c **** *
+   5:Generated_Source\PSoC4/A2D_rdy.c **** *  Description:
+   6:Generated_Source\PSoC4/A2D_rdy.c **** *   API for controlling the state of an interrupt.
+   7:Generated_Source\PSoC4/A2D_rdy.c **** *
+   8:Generated_Source\PSoC4/A2D_rdy.c **** *
+   9:Generated_Source\PSoC4/A2D_rdy.c **** *  Note:
+  10:Generated_Source\PSoC4/A2D_rdy.c **** *
+  11:Generated_Source\PSoC4/A2D_rdy.c **** ********************************************************************************
+  12:Generated_Source\PSoC4/A2D_rdy.c **** * Copyright 2008-2015, Cypress Semiconductor Corporation.  All rights reserved.
+  13:Generated_Source\PSoC4/A2D_rdy.c **** * You may use this file only in accordance with the license, terms, conditions, 
+  14:Generated_Source\PSoC4/A2D_rdy.c **** * disclaimers, and limitations in the end user license agreement accompanying 
+  15:Generated_Source\PSoC4/A2D_rdy.c **** * the software package with which this file was provided.
+  16:Generated_Source\PSoC4/A2D_rdy.c **** *******************************************************************************/
+  17:Generated_Source\PSoC4/A2D_rdy.c **** 
+  18:Generated_Source\PSoC4/A2D_rdy.c **** 
+  19:Generated_Source\PSoC4/A2D_rdy.c **** #include <cydevice_trm.h>
+  20:Generated_Source\PSoC4/A2D_rdy.c **** #include <CyLib.h>
+  21:Generated_Source\PSoC4/A2D_rdy.c **** #include <A2D_rdy.h>
+  22:Generated_Source\PSoC4/A2D_rdy.c **** #include "cyapicallbacks.h"
+  23:Generated_Source\PSoC4/A2D_rdy.c **** 
+  24:Generated_Source\PSoC4/A2D_rdy.c **** #if !defined(A2D_rdy__REMOVED) /* Check for removal by optimization */
+  25:Generated_Source\PSoC4/A2D_rdy.c **** 
+  26:Generated_Source\PSoC4/A2D_rdy.c **** /*******************************************************************************
+  27:Generated_Source\PSoC4/A2D_rdy.c **** *  Place your includes, defines and code here 
+  28:Generated_Source\PSoC4/A2D_rdy.c **** ********************************************************************************/
+  29:Generated_Source\PSoC4/A2D_rdy.c **** /* `#START A2D_rdy_intc` */
+  30:Generated_Source\PSoC4/A2D_rdy.c ****     #include "main.h"
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\cc4ju9qe.s 			page 2
+
+
+  31:Generated_Source\PSoC4/A2D_rdy.c ****     #include "A2D.h"
+  32:Generated_Source\PSoC4/A2D_rdy.c **** /* `#END` */
+  33:Generated_Source\PSoC4/A2D_rdy.c **** 
+  34:Generated_Source\PSoC4/A2D_rdy.c **** extern cyisraddress CyRamVectors[CYINT_IRQ_BASE + CY_NUM_INTERRUPTS];
+  35:Generated_Source\PSoC4/A2D_rdy.c **** 
+  36:Generated_Source\PSoC4/A2D_rdy.c **** /* Declared in startup, used to set unused interrupts to. */
+  37:Generated_Source\PSoC4/A2D_rdy.c **** CY_ISR_PROTO(IntDefaultHandler);
+  38:Generated_Source\PSoC4/A2D_rdy.c **** 
+  39:Generated_Source\PSoC4/A2D_rdy.c **** 
+  40:Generated_Source\PSoC4/A2D_rdy.c **** /*******************************************************************************
+  41:Generated_Source\PSoC4/A2D_rdy.c **** * Function Name: A2D_rdy_Start
+  42:Generated_Source\PSoC4/A2D_rdy.c **** ********************************************************************************
+  43:Generated_Source\PSoC4/A2D_rdy.c **** *
+  44:Generated_Source\PSoC4/A2D_rdy.c **** * Summary:
+  45:Generated_Source\PSoC4/A2D_rdy.c **** *  Set up the interrupt and enable it. This function disables the interrupt, 
+  46:Generated_Source\PSoC4/A2D_rdy.c **** *  sets the default interrupt vector, sets the priority from the value in the
+  47:Generated_Source\PSoC4/A2D_rdy.c **** *  Design Wide Resources Interrupt Editor, then enables the interrupt to the 
+  48:Generated_Source\PSoC4/A2D_rdy.c **** *  interrupt controller.
+  49:Generated_Source\PSoC4/A2D_rdy.c **** *
+  50:Generated_Source\PSoC4/A2D_rdy.c **** * Parameters:  
+  51:Generated_Source\PSoC4/A2D_rdy.c **** *   None
+  52:Generated_Source\PSoC4/A2D_rdy.c **** *
+  53:Generated_Source\PSoC4/A2D_rdy.c **** * Return:
+  54:Generated_Source\PSoC4/A2D_rdy.c **** *   None
+  55:Generated_Source\PSoC4/A2D_rdy.c **** *
+  56:Generated_Source\PSoC4/A2D_rdy.c **** *******************************************************************************/
+  57:Generated_Source\PSoC4/A2D_rdy.c **** void A2D_rdy_Start(void)
+  58:Generated_Source\PSoC4/A2D_rdy.c **** {
+  59:Generated_Source\PSoC4/A2D_rdy.c ****     /* For all we know the interrupt is active. */
+  60:Generated_Source\PSoC4/A2D_rdy.c ****     A2D_rdy_Disable();
+  61:Generated_Source\PSoC4/A2D_rdy.c **** 
+  62:Generated_Source\PSoC4/A2D_rdy.c ****     /* Set the ISR to point to the A2D_rdy Interrupt. */
+  63:Generated_Source\PSoC4/A2D_rdy.c ****     A2D_rdy_SetVector(&A2D_rdy_Interrupt);
+  64:Generated_Source\PSoC4/A2D_rdy.c **** 
+  65:Generated_Source\PSoC4/A2D_rdy.c ****     /* Set the priority. */
+  66:Generated_Source\PSoC4/A2D_rdy.c ****     A2D_rdy_SetPriority((uint8)A2D_rdy_INTC_PRIOR_NUMBER);
+  67:Generated_Source\PSoC4/A2D_rdy.c **** 
+  68:Generated_Source\PSoC4/A2D_rdy.c ****     /* Enable it. */
+  69:Generated_Source\PSoC4/A2D_rdy.c ****     A2D_rdy_Enable();
+  70:Generated_Source\PSoC4/A2D_rdy.c **** }
+  71:Generated_Source\PSoC4/A2D_rdy.c **** 
+  72:Generated_Source\PSoC4/A2D_rdy.c **** 
+  73:Generated_Source\PSoC4/A2D_rdy.c **** /*******************************************************************************
+  74:Generated_Source\PSoC4/A2D_rdy.c **** * Function Name: A2D_rdy_StartEx
+  75:Generated_Source\PSoC4/A2D_rdy.c **** ********************************************************************************
+  76:Generated_Source\PSoC4/A2D_rdy.c **** *
+  77:Generated_Source\PSoC4/A2D_rdy.c **** * Summary:
+  78:Generated_Source\PSoC4/A2D_rdy.c **** *  Sets up the interrupt and enables it. This function disables the interrupt,
+  79:Generated_Source\PSoC4/A2D_rdy.c **** *  sets the interrupt vector based on the address passed in, sets the priority 
+  80:Generated_Source\PSoC4/A2D_rdy.c **** *  from the value in the Design Wide Resources Interrupt Editor, then enables 
+  81:Generated_Source\PSoC4/A2D_rdy.c **** *  the interrupt to the interrupt controller.
+  82:Generated_Source\PSoC4/A2D_rdy.c **** *  
+  83:Generated_Source\PSoC4/A2D_rdy.c **** *  When defining ISR functions, the CY_ISR and CY_ISR_PROTO macros should be 
+  84:Generated_Source\PSoC4/A2D_rdy.c **** *  used to provide consistent definition across compilers:
+  85:Generated_Source\PSoC4/A2D_rdy.c **** *  
+  86:Generated_Source\PSoC4/A2D_rdy.c **** *  Function definition example:
+  87:Generated_Source\PSoC4/A2D_rdy.c **** *   CY_ISR(MyISR)
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\cc4ju9qe.s 			page 3
+
+
+  88:Generated_Source\PSoC4/A2D_rdy.c **** *   {
+  89:Generated_Source\PSoC4/A2D_rdy.c **** *   }
+  90:Generated_Source\PSoC4/A2D_rdy.c **** *   Function prototype example:
+  91:Generated_Source\PSoC4/A2D_rdy.c **** *   CY_ISR_PROTO(MyISR);
+  92:Generated_Source\PSoC4/A2D_rdy.c **** *
+  93:Generated_Source\PSoC4/A2D_rdy.c **** * Parameters:  
+  94:Generated_Source\PSoC4/A2D_rdy.c **** *   address: Address of the ISR to set in the interrupt vector table.
+  95:Generated_Source\PSoC4/A2D_rdy.c **** *
+  96:Generated_Source\PSoC4/A2D_rdy.c **** * Return:
+  97:Generated_Source\PSoC4/A2D_rdy.c **** *   None
+  98:Generated_Source\PSoC4/A2D_rdy.c **** *
+  99:Generated_Source\PSoC4/A2D_rdy.c **** *******************************************************************************/
+ 100:Generated_Source\PSoC4/A2D_rdy.c **** void A2D_rdy_StartEx(cyisraddress address)
+ 101:Generated_Source\PSoC4/A2D_rdy.c **** {
+ 102:Generated_Source\PSoC4/A2D_rdy.c ****     /* For all we know the interrupt is active. */
+ 103:Generated_Source\PSoC4/A2D_rdy.c ****     A2D_rdy_Disable();
+ 104:Generated_Source\PSoC4/A2D_rdy.c **** 
+ 105:Generated_Source\PSoC4/A2D_rdy.c ****     /* Set the ISR to point to the A2D_rdy Interrupt. */
+ 106:Generated_Source\PSoC4/A2D_rdy.c ****     A2D_rdy_SetVector(address);
+ 107:Generated_Source\PSoC4/A2D_rdy.c **** 
+ 108:Generated_Source\PSoC4/A2D_rdy.c ****     /* Set the priority. */
+ 109:Generated_Source\PSoC4/A2D_rdy.c ****     A2D_rdy_SetPriority((uint8)A2D_rdy_INTC_PRIOR_NUMBER);
+ 110:Generated_Source\PSoC4/A2D_rdy.c **** 
+ 111:Generated_Source\PSoC4/A2D_rdy.c ****     /* Enable it. */
+ 112:Generated_Source\PSoC4/A2D_rdy.c ****     A2D_rdy_Enable();
+ 113:Generated_Source\PSoC4/A2D_rdy.c **** }
+ 114:Generated_Source\PSoC4/A2D_rdy.c **** 
+ 115:Generated_Source\PSoC4/A2D_rdy.c **** 
+ 116:Generated_Source\PSoC4/A2D_rdy.c **** /*******************************************************************************
+ 117:Generated_Source\PSoC4/A2D_rdy.c **** * Function Name: A2D_rdy_Stop
+ 118:Generated_Source\PSoC4/A2D_rdy.c **** ********************************************************************************
+ 119:Generated_Source\PSoC4/A2D_rdy.c **** *
+ 120:Generated_Source\PSoC4/A2D_rdy.c **** * Summary:
+ 121:Generated_Source\PSoC4/A2D_rdy.c **** *   Disables and removes the interrupt.
+ 122:Generated_Source\PSoC4/A2D_rdy.c **** *
+ 123:Generated_Source\PSoC4/A2D_rdy.c **** * Parameters:  
+ 124:Generated_Source\PSoC4/A2D_rdy.c **** *   None
+ 125:Generated_Source\PSoC4/A2D_rdy.c **** *
+ 126:Generated_Source\PSoC4/A2D_rdy.c **** * Return:
+ 127:Generated_Source\PSoC4/A2D_rdy.c **** *   None
+ 128:Generated_Source\PSoC4/A2D_rdy.c **** *
+ 129:Generated_Source\PSoC4/A2D_rdy.c **** *******************************************************************************/
+ 130:Generated_Source\PSoC4/A2D_rdy.c **** void A2D_rdy_Stop(void)
+ 131:Generated_Source\PSoC4/A2D_rdy.c **** {
+ 132:Generated_Source\PSoC4/A2D_rdy.c ****     /* Disable this interrupt. */
+ 133:Generated_Source\PSoC4/A2D_rdy.c ****     A2D_rdy_Disable();
+ 134:Generated_Source\PSoC4/A2D_rdy.c **** 
+ 135:Generated_Source\PSoC4/A2D_rdy.c ****     /* Set the ISR to point to the passive one. */
+ 136:Generated_Source\PSoC4/A2D_rdy.c ****     A2D_rdy_SetVector(&IntDefaultHandler);
+ 137:Generated_Source\PSoC4/A2D_rdy.c **** }
+ 138:Generated_Source\PSoC4/A2D_rdy.c **** 
+ 139:Generated_Source\PSoC4/A2D_rdy.c **** 
+ 140:Generated_Source\PSoC4/A2D_rdy.c **** /*******************************************************************************
+ 141:Generated_Source\PSoC4/A2D_rdy.c **** * Function Name: A2D_rdy_Interrupt
+ 142:Generated_Source\PSoC4/A2D_rdy.c **** ********************************************************************************
+ 143:Generated_Source\PSoC4/A2D_rdy.c **** *
+ 144:Generated_Source\PSoC4/A2D_rdy.c **** * Summary:
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\cc4ju9qe.s 			page 4
+
+
+ 145:Generated_Source\PSoC4/A2D_rdy.c **** *   The default Interrupt Service Routine for A2D_rdy.
+ 146:Generated_Source\PSoC4/A2D_rdy.c **** *
+ 147:Generated_Source\PSoC4/A2D_rdy.c **** *   Add custom code between the START and END comments to keep the next version
+ 148:Generated_Source\PSoC4/A2D_rdy.c **** *   of this file from over-writing your code.
+ 149:Generated_Source\PSoC4/A2D_rdy.c **** *
+ 150:Generated_Source\PSoC4/A2D_rdy.c **** *   Note You may use either the default ISR by using this API, or you may define
+ 151:Generated_Source\PSoC4/A2D_rdy.c **** *   your own separate ISR through ISR_StartEx().
+ 152:Generated_Source\PSoC4/A2D_rdy.c **** *
+ 153:Generated_Source\PSoC4/A2D_rdy.c **** * Parameters:  
+ 154:Generated_Source\PSoC4/A2D_rdy.c **** *   None
+ 155:Generated_Source\PSoC4/A2D_rdy.c **** *
+ 156:Generated_Source\PSoC4/A2D_rdy.c **** * Return:
+ 157:Generated_Source\PSoC4/A2D_rdy.c **** *   None
+ 158:Generated_Source\PSoC4/A2D_rdy.c **** *
+ 159:Generated_Source\PSoC4/A2D_rdy.c **** *******************************************************************************/
+ 160:Generated_Source\PSoC4/A2D_rdy.c **** CY_ISR(A2D_rdy_Interrupt)
+ 161:Generated_Source\PSoC4/A2D_rdy.c **** {
+ 162:Generated_Source\PSoC4/A2D_rdy.c ****     #ifdef A2D_rdy_INTERRUPT_INTERRUPT_CALLBACK
+ 163:Generated_Source\PSoC4/A2D_rdy.c ****         A2D_rdy_Interrupt_InterruptCallback();
+ 164:Generated_Source\PSoC4/A2D_rdy.c ****     #endif /* A2D_rdy_INTERRUPT_INTERRUPT_CALLBACK */ 
+ 165:Generated_Source\PSoC4/A2D_rdy.c **** 
+ 166:Generated_Source\PSoC4/A2D_rdy.c ****     /*  Place your Interrupt code here. */
+ 167:Generated_Source\PSoC4/A2D_rdy.c ****     /* `#START A2D_rdy_Interrupt` */
+ 168:Generated_Source\PSoC4/A2D_rdy.c ****     ESC_curr = A2D_GetResult16(0x00);
+ 169:Generated_Source\PSoC4/A2D_rdy.c ****     Batt_volt = A2D_GetResult16(0x01);
+ 170:Generated_Source\PSoC4/A2D_rdy.c ****     Max_Lidar = A2D_GetResult16(0x02);
+ 171:Generated_Source\PSoC4/A2D_rdy.c ****     Init_heading = A2D_GetResult16(0x03);
+ 172:Generated_Source\PSoC4/A2D_rdy.c ****     A2D_rdy_ClearPending();
+ 173:Generated_Source\PSoC4/A2D_rdy.c ****     enqueue_task(A2D_RDY,2);
+ 174:Generated_Source\PSoC4/A2D_rdy.c ****     /* `#END` */
+ 175:Generated_Source\PSoC4/A2D_rdy.c **** }
+ 176:Generated_Source\PSoC4/A2D_rdy.c **** 
+ 177:Generated_Source\PSoC4/A2D_rdy.c **** 
+ 178:Generated_Source\PSoC4/A2D_rdy.c **** /*******************************************************************************
+ 179:Generated_Source\PSoC4/A2D_rdy.c **** * Function Name: A2D_rdy_SetVector
+ 180:Generated_Source\PSoC4/A2D_rdy.c **** ********************************************************************************
+ 181:Generated_Source\PSoC4/A2D_rdy.c **** *
+ 182:Generated_Source\PSoC4/A2D_rdy.c **** * Summary:
+ 183:Generated_Source\PSoC4/A2D_rdy.c **** *   Change the ISR vector for the Interrupt. Note calling A2D_rdy_Start
+ 184:Generated_Source\PSoC4/A2D_rdy.c **** *   will override any effect this method would have had. To set the vector 
+ 185:Generated_Source\PSoC4/A2D_rdy.c **** *   before the component has been started use A2D_rdy_StartEx instead.
+ 186:Generated_Source\PSoC4/A2D_rdy.c **** * 
+ 187:Generated_Source\PSoC4/A2D_rdy.c **** *   When defining ISR functions, the CY_ISR and CY_ISR_PROTO macros should be 
+ 188:Generated_Source\PSoC4/A2D_rdy.c **** *   used to provide consistent definition across compilers:
+ 189:Generated_Source\PSoC4/A2D_rdy.c **** *
+ 190:Generated_Source\PSoC4/A2D_rdy.c **** *   Function definition example:
+ 191:Generated_Source\PSoC4/A2D_rdy.c **** *   CY_ISR(MyISR)
+ 192:Generated_Source\PSoC4/A2D_rdy.c **** *   {
+ 193:Generated_Source\PSoC4/A2D_rdy.c **** *   }
+ 194:Generated_Source\PSoC4/A2D_rdy.c **** *
+ 195:Generated_Source\PSoC4/A2D_rdy.c **** *   Function prototype example:
+ 196:Generated_Source\PSoC4/A2D_rdy.c **** *     CY_ISR_PROTO(MyISR);
+ 197:Generated_Source\PSoC4/A2D_rdy.c **** *
+ 198:Generated_Source\PSoC4/A2D_rdy.c **** * Parameters:
+ 199:Generated_Source\PSoC4/A2D_rdy.c **** *   address: Address of the ISR to set in the interrupt vector table.
+ 200:Generated_Source\PSoC4/A2D_rdy.c **** *
+ 201:Generated_Source\PSoC4/A2D_rdy.c **** * Return:
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\cc4ju9qe.s 			page 5
+
+
+ 202:Generated_Source\PSoC4/A2D_rdy.c **** *   None
+ 203:Generated_Source\PSoC4/A2D_rdy.c **** *
+ 204:Generated_Source\PSoC4/A2D_rdy.c **** *******************************************************************************/
+ 205:Generated_Source\PSoC4/A2D_rdy.c **** void A2D_rdy_SetVector(cyisraddress address)
+ 206:Generated_Source\PSoC4/A2D_rdy.c **** {
+  28              		.loc 1 206 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              		@ link register save eliminated.
+  33              	.LVL0:
+ 207:Generated_Source\PSoC4/A2D_rdy.c ****     CyRamVectors[CYINT_IRQ_BASE + A2D_rdy__INTC_NUMBER] = address;
+  34              		.loc 1 207 0
+  35 0000 014B     		ldr	r3, .L2
+  36 0002 1864     		str	r0, [r3, #64]
+ 208:Generated_Source\PSoC4/A2D_rdy.c **** }
+  37              		.loc 1 208 0
+  38              		@ sp needed
+  39 0004 7047     		bx	lr
+  40              	.L3:
+  41 0006 C046     		.align	2
+  42              	.L2:
+  43 0008 00000000 		.word	CyRamVectors
+  44              		.cfi_endproc
+  45              	.LFE5:
+  46              		.size	A2D_rdy_SetVector, .-A2D_rdy_SetVector
+  47              		.section	.text.A2D_rdy_GetVector,"ax",%progbits
+  48              		.align	2
+  49              		.global	A2D_rdy_GetVector
+  50              		.code	16
+  51              		.thumb_func
+  52              		.type	A2D_rdy_GetVector, %function
+  53              	A2D_rdy_GetVector:
+  54              	.LFB6:
+ 209:Generated_Source\PSoC4/A2D_rdy.c **** 
+ 210:Generated_Source\PSoC4/A2D_rdy.c **** 
+ 211:Generated_Source\PSoC4/A2D_rdy.c **** /*******************************************************************************
+ 212:Generated_Source\PSoC4/A2D_rdy.c **** * Function Name: A2D_rdy_GetVector
+ 213:Generated_Source\PSoC4/A2D_rdy.c **** ********************************************************************************
+ 214:Generated_Source\PSoC4/A2D_rdy.c **** *
+ 215:Generated_Source\PSoC4/A2D_rdy.c **** * Summary:
+ 216:Generated_Source\PSoC4/A2D_rdy.c **** *   Gets the "address" of the current ISR vector for the Interrupt.
+ 217:Generated_Source\PSoC4/A2D_rdy.c **** *
+ 218:Generated_Source\PSoC4/A2D_rdy.c **** * Parameters:
+ 219:Generated_Source\PSoC4/A2D_rdy.c **** *   None
+ 220:Generated_Source\PSoC4/A2D_rdy.c **** *
+ 221:Generated_Source\PSoC4/A2D_rdy.c **** * Return:
+ 222:Generated_Source\PSoC4/A2D_rdy.c **** *   Address of the ISR in the interrupt vector table.
+ 223:Generated_Source\PSoC4/A2D_rdy.c **** *
+ 224:Generated_Source\PSoC4/A2D_rdy.c **** *******************************************************************************/
+ 225:Generated_Source\PSoC4/A2D_rdy.c **** cyisraddress A2D_rdy_GetVector(void)
+ 226:Generated_Source\PSoC4/A2D_rdy.c **** {
+  55              		.loc 1 226 0
+  56              		.cfi_startproc
+  57              		@ args = 0, pretend = 0, frame = 0
+  58              		@ frame_needed = 0, uses_anonymous_args = 0
+  59              		@ link register save eliminated.
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\cc4ju9qe.s 			page 6
+
+
+ 227:Generated_Source\PSoC4/A2D_rdy.c ****     return CyRamVectors[CYINT_IRQ_BASE + A2D_rdy__INTC_NUMBER];
+  60              		.loc 1 227 0
+  61 0000 014B     		ldr	r3, .L5
+  62 0002 186C     		ldr	r0, [r3, #64]
+ 228:Generated_Source\PSoC4/A2D_rdy.c **** }
+  63              		.loc 1 228 0
+  64              		@ sp needed
+  65 0004 7047     		bx	lr
+  66              	.L6:
+  67 0006 C046     		.align	2
+  68              	.L5:
+  69 0008 00000000 		.word	CyRamVectors
+  70              		.cfi_endproc
+  71              	.LFE6:
+  72              		.size	A2D_rdy_GetVector, .-A2D_rdy_GetVector
+  73              		.section	.text.A2D_rdy_SetPriority,"ax",%progbits
+  74              		.align	2
+  75              		.global	A2D_rdy_SetPriority
+  76              		.code	16
+  77              		.thumb_func
+  78              		.type	A2D_rdy_SetPriority, %function
+  79              	A2D_rdy_SetPriority:
+  80              	.LFB7:
+ 229:Generated_Source\PSoC4/A2D_rdy.c **** 
+ 230:Generated_Source\PSoC4/A2D_rdy.c **** 
+ 231:Generated_Source\PSoC4/A2D_rdy.c **** /*******************************************************************************
+ 232:Generated_Source\PSoC4/A2D_rdy.c **** * Function Name: A2D_rdy_SetPriority
+ 233:Generated_Source\PSoC4/A2D_rdy.c **** ********************************************************************************
+ 234:Generated_Source\PSoC4/A2D_rdy.c **** *
+ 235:Generated_Source\PSoC4/A2D_rdy.c **** * Summary:
+ 236:Generated_Source\PSoC4/A2D_rdy.c **** *   Sets the Priority of the Interrupt. 
+ 237:Generated_Source\PSoC4/A2D_rdy.c **** *
+ 238:Generated_Source\PSoC4/A2D_rdy.c **** *   Note calling A2D_rdy_Start or A2D_rdy_StartEx will 
+ 239:Generated_Source\PSoC4/A2D_rdy.c **** *   override any effect this API would have had. This API should only be called
+ 240:Generated_Source\PSoC4/A2D_rdy.c **** *   after A2D_rdy_Start or A2D_rdy_StartEx has been called. 
+ 241:Generated_Source\PSoC4/A2D_rdy.c **** *   To set the initial priority for the component, use the Design-Wide Resources
+ 242:Generated_Source\PSoC4/A2D_rdy.c **** *   Interrupt Editor.
+ 243:Generated_Source\PSoC4/A2D_rdy.c **** *
+ 244:Generated_Source\PSoC4/A2D_rdy.c **** *   Note This API has no effect on Non-maskable interrupt NMI).
+ 245:Generated_Source\PSoC4/A2D_rdy.c **** *
+ 246:Generated_Source\PSoC4/A2D_rdy.c **** * Parameters:
+ 247:Generated_Source\PSoC4/A2D_rdy.c **** *   priority: Priority of the interrupt, 0 being the highest priority
+ 248:Generated_Source\PSoC4/A2D_rdy.c **** *             PSoC 3 and PSoC 5LP: Priority is from 0 to 7.
+ 249:Generated_Source\PSoC4/A2D_rdy.c **** *             PSoC 4: Priority is from 0 to 3.
+ 250:Generated_Source\PSoC4/A2D_rdy.c **** *
+ 251:Generated_Source\PSoC4/A2D_rdy.c **** * Return:
+ 252:Generated_Source\PSoC4/A2D_rdy.c **** *   None
+ 253:Generated_Source\PSoC4/A2D_rdy.c **** *
+ 254:Generated_Source\PSoC4/A2D_rdy.c **** *******************************************************************************/
+ 255:Generated_Source\PSoC4/A2D_rdy.c **** void A2D_rdy_SetPriority(uint8 priority)
+ 256:Generated_Source\PSoC4/A2D_rdy.c **** {
+  81              		.loc 1 256 0
+  82              		.cfi_startproc
+  83              		@ args = 0, pretend = 0, frame = 0
+  84              		@ frame_needed = 0, uses_anonymous_args = 0
+  85              	.LVL1:
+  86 0000 10B5     		push	{r4, lr}
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\cc4ju9qe.s 			page 7
+
+
+  87              		.cfi_def_cfa_offset 8
+  88              		.cfi_offset 4, -8
+  89              		.cfi_offset 14, -4
+  90 0002 0400     		movs	r4, r0
+  91              	.LVL2:
+ 257:Generated_Source\PSoC4/A2D_rdy.c **** 	uint8 interruptState;
+ 258:Generated_Source\PSoC4/A2D_rdy.c ****     uint32 priorityOffset = ((A2D_rdy__INTC_NUMBER % 4u) * 8u) + 6u;
+ 259:Generated_Source\PSoC4/A2D_rdy.c ****     
+ 260:Generated_Source\PSoC4/A2D_rdy.c **** 	interruptState = CyEnterCriticalSection();
+  92              		.loc 1 260 0
+  93 0004 FFF7FEFF 		bl	CyEnterCriticalSection
+  94              	.LVL3:
+ 261:Generated_Source\PSoC4/A2D_rdy.c ****     *A2D_rdy_INTC_PRIOR = (*A2D_rdy_INTC_PRIOR & (uint32)(~A2D_rdy__INTC_PRIOR_MASK)) |
+  95              		.loc 1 261 0
+  96 0008 044A     		ldr	r2, .L8
+  97 000a 1368     		ldr	r3, [r2]
+  98 000c C021     		movs	r1, #192
+  99 000e 8B43     		bics	r3, r1
+ 262:Generated_Source\PSoC4/A2D_rdy.c ****                                     ((uint32)priority << priorityOffset);
+ 100              		.loc 1 262 0
+ 101 0010 A401     		lsls	r4, r4, #6
+ 261:Generated_Source\PSoC4/A2D_rdy.c ****     *A2D_rdy_INTC_PRIOR = (*A2D_rdy_INTC_PRIOR & (uint32)(~A2D_rdy__INTC_PRIOR_MASK)) |
+ 102              		.loc 1 261 0
+ 103 0012 1C43     		orrs	r4, r3
+ 104 0014 1460     		str	r4, [r2]
+ 263:Generated_Source\PSoC4/A2D_rdy.c **** 	CyExitCriticalSection(interruptState);
+ 105              		.loc 1 263 0
+ 106 0016 FFF7FEFF 		bl	CyExitCriticalSection
+ 107              	.LVL4:
+ 264:Generated_Source\PSoC4/A2D_rdy.c **** }
+ 108              		.loc 1 264 0
+ 109              		@ sp needed
+ 110 001a 10BD     		pop	{r4, pc}
+ 111              	.L9:
+ 112              		.align	2
+ 113              	.L8:
+ 114 001c 00E400E0 		.word	-536812544
+ 115              		.cfi_endproc
+ 116              	.LFE7:
+ 117              		.size	A2D_rdy_SetPriority, .-A2D_rdy_SetPriority
+ 118              		.section	.text.A2D_rdy_GetPriority,"ax",%progbits
+ 119              		.align	2
+ 120              		.global	A2D_rdy_GetPriority
+ 121              		.code	16
+ 122              		.thumb_func
+ 123              		.type	A2D_rdy_GetPriority, %function
+ 124              	A2D_rdy_GetPriority:
+ 125              	.LFB8:
+ 265:Generated_Source\PSoC4/A2D_rdy.c **** 
+ 266:Generated_Source\PSoC4/A2D_rdy.c **** 
+ 267:Generated_Source\PSoC4/A2D_rdy.c **** /*******************************************************************************
+ 268:Generated_Source\PSoC4/A2D_rdy.c **** * Function Name: A2D_rdy_GetPriority
+ 269:Generated_Source\PSoC4/A2D_rdy.c **** ********************************************************************************
+ 270:Generated_Source\PSoC4/A2D_rdy.c **** *
+ 271:Generated_Source\PSoC4/A2D_rdy.c **** * Summary:
+ 272:Generated_Source\PSoC4/A2D_rdy.c **** *   Gets the Priority of the Interrupt.
+ 273:Generated_Source\PSoC4/A2D_rdy.c **** *
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\cc4ju9qe.s 			page 8
+
+
+ 274:Generated_Source\PSoC4/A2D_rdy.c **** * Parameters:
+ 275:Generated_Source\PSoC4/A2D_rdy.c **** *   None
+ 276:Generated_Source\PSoC4/A2D_rdy.c **** *
+ 277:Generated_Source\PSoC4/A2D_rdy.c **** * Return:
+ 278:Generated_Source\PSoC4/A2D_rdy.c **** *   Priority of the interrupt, 0 being the highest priority
+ 279:Generated_Source\PSoC4/A2D_rdy.c **** *    PSoC 3 and PSoC 5LP: Priority is from 0 to 7.
+ 280:Generated_Source\PSoC4/A2D_rdy.c **** *    PSoC 4: Priority is from 0 to 3.
+ 281:Generated_Source\PSoC4/A2D_rdy.c **** *
+ 282:Generated_Source\PSoC4/A2D_rdy.c **** *******************************************************************************/
+ 283:Generated_Source\PSoC4/A2D_rdy.c **** uint8 A2D_rdy_GetPriority(void)
+ 284:Generated_Source\PSoC4/A2D_rdy.c **** {
+ 126              		.loc 1 284 0
+ 127              		.cfi_startproc
+ 128              		@ args = 0, pretend = 0, frame = 0
+ 129              		@ frame_needed = 0, uses_anonymous_args = 0
+ 130              		@ link register save eliminated.
+ 131              	.LVL5:
+ 285:Generated_Source\PSoC4/A2D_rdy.c ****     uint32 priority;
+ 286:Generated_Source\PSoC4/A2D_rdy.c **** 	uint32 priorityOffset = ((A2D_rdy__INTC_NUMBER % 4u) * 8u) + 6u;
+ 287:Generated_Source\PSoC4/A2D_rdy.c **** 
+ 288:Generated_Source\PSoC4/A2D_rdy.c ****     priority = (*A2D_rdy_INTC_PRIOR & A2D_rdy__INTC_PRIOR_MASK) >> priorityOffset;
+ 132              		.loc 1 288 0
+ 133 0000 024B     		ldr	r3, .L11
+ 134 0002 1868     		ldr	r0, [r3]
+ 135 0004 8009     		lsrs	r0, r0, #6
+ 136              	.LVL6:
+ 289:Generated_Source\PSoC4/A2D_rdy.c **** 
+ 290:Generated_Source\PSoC4/A2D_rdy.c ****     return (uint8)priority;
+ 137              		.loc 1 290 0
+ 138 0006 0323     		movs	r3, #3
+ 139 0008 1840     		ands	r0, r3
+ 140              	.LVL7:
+ 291:Generated_Source\PSoC4/A2D_rdy.c **** }
+ 141              		.loc 1 291 0
+ 142              		@ sp needed
+ 143 000a 7047     		bx	lr
+ 144              	.L12:
+ 145              		.align	2
+ 146              	.L11:
+ 147 000c 00E400E0 		.word	-536812544
+ 148              		.cfi_endproc
+ 149              	.LFE8:
+ 150              		.size	A2D_rdy_GetPriority, .-A2D_rdy_GetPriority
+ 151              		.section	.text.A2D_rdy_Enable,"ax",%progbits
+ 152              		.align	2
+ 153              		.global	A2D_rdy_Enable
+ 154              		.code	16
+ 155              		.thumb_func
+ 156              		.type	A2D_rdy_Enable, %function
+ 157              	A2D_rdy_Enable:
+ 158              	.LFB9:
+ 292:Generated_Source\PSoC4/A2D_rdy.c **** 
+ 293:Generated_Source\PSoC4/A2D_rdy.c **** 
+ 294:Generated_Source\PSoC4/A2D_rdy.c **** /*******************************************************************************
+ 295:Generated_Source\PSoC4/A2D_rdy.c **** * Function Name: A2D_rdy_Enable
+ 296:Generated_Source\PSoC4/A2D_rdy.c **** ********************************************************************************
+ 297:Generated_Source\PSoC4/A2D_rdy.c **** *
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\cc4ju9qe.s 			page 9
+
+
+ 298:Generated_Source\PSoC4/A2D_rdy.c **** * Summary:
+ 299:Generated_Source\PSoC4/A2D_rdy.c **** *   Enables the interrupt to the interrupt controller. Do not call this function
+ 300:Generated_Source\PSoC4/A2D_rdy.c **** *   unless ISR_Start() has been called or the functionality of the ISR_Start() 
+ 301:Generated_Source\PSoC4/A2D_rdy.c **** *   function, which sets the vector and the priority, has been called.
+ 302:Generated_Source\PSoC4/A2D_rdy.c **** *
+ 303:Generated_Source\PSoC4/A2D_rdy.c **** * Parameters:
+ 304:Generated_Source\PSoC4/A2D_rdy.c **** *   None
+ 305:Generated_Source\PSoC4/A2D_rdy.c **** *
+ 306:Generated_Source\PSoC4/A2D_rdy.c **** * Return:
+ 307:Generated_Source\PSoC4/A2D_rdy.c **** *   None
+ 308:Generated_Source\PSoC4/A2D_rdy.c **** *
+ 309:Generated_Source\PSoC4/A2D_rdy.c **** *******************************************************************************/
+ 310:Generated_Source\PSoC4/A2D_rdy.c **** void A2D_rdy_Enable(void)
+ 311:Generated_Source\PSoC4/A2D_rdy.c **** {
+ 159              		.loc 1 311 0
+ 160              		.cfi_startproc
+ 161              		@ args = 0, pretend = 0, frame = 0
+ 162              		@ frame_needed = 0, uses_anonymous_args = 0
+ 163              		@ link register save eliminated.
+ 312:Generated_Source\PSoC4/A2D_rdy.c ****     /* Enable the general interrupt. */
+ 313:Generated_Source\PSoC4/A2D_rdy.c ****     *A2D_rdy_INTC_SET_EN = A2D_rdy__INTC_MASK;
+ 164              		.loc 1 313 0
+ 165 0000 0122     		movs	r2, #1
+ 166 0002 014B     		ldr	r3, .L14
+ 167 0004 1A60     		str	r2, [r3]
+ 314:Generated_Source\PSoC4/A2D_rdy.c **** }
+ 168              		.loc 1 314 0
+ 169              		@ sp needed
+ 170 0006 7047     		bx	lr
+ 171              	.L15:
+ 172              		.align	2
+ 173              	.L14:
+ 174 0008 00E100E0 		.word	-536813312
+ 175              		.cfi_endproc
+ 176              	.LFE9:
+ 177              		.size	A2D_rdy_Enable, .-A2D_rdy_Enable
+ 178              		.section	.text.A2D_rdy_GetState,"ax",%progbits
+ 179              		.align	2
+ 180              		.global	A2D_rdy_GetState
+ 181              		.code	16
+ 182              		.thumb_func
+ 183              		.type	A2D_rdy_GetState, %function
+ 184              	A2D_rdy_GetState:
+ 185              	.LFB10:
+ 315:Generated_Source\PSoC4/A2D_rdy.c **** 
+ 316:Generated_Source\PSoC4/A2D_rdy.c **** 
+ 317:Generated_Source\PSoC4/A2D_rdy.c **** /*******************************************************************************
+ 318:Generated_Source\PSoC4/A2D_rdy.c **** * Function Name: A2D_rdy_GetState
+ 319:Generated_Source\PSoC4/A2D_rdy.c **** ********************************************************************************
+ 320:Generated_Source\PSoC4/A2D_rdy.c **** *
+ 321:Generated_Source\PSoC4/A2D_rdy.c **** * Summary:
+ 322:Generated_Source\PSoC4/A2D_rdy.c **** *   Gets the state (enabled, disabled) of the Interrupt.
+ 323:Generated_Source\PSoC4/A2D_rdy.c **** *
+ 324:Generated_Source\PSoC4/A2D_rdy.c **** * Parameters:
+ 325:Generated_Source\PSoC4/A2D_rdy.c **** *   None
+ 326:Generated_Source\PSoC4/A2D_rdy.c **** *
+ 327:Generated_Source\PSoC4/A2D_rdy.c **** * Return:
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\cc4ju9qe.s 			page 10
+
+
+ 328:Generated_Source\PSoC4/A2D_rdy.c **** *   1 if enabled, 0 if disabled.
+ 329:Generated_Source\PSoC4/A2D_rdy.c **** *
+ 330:Generated_Source\PSoC4/A2D_rdy.c **** *******************************************************************************/
+ 331:Generated_Source\PSoC4/A2D_rdy.c **** uint8 A2D_rdy_GetState(void)
+ 332:Generated_Source\PSoC4/A2D_rdy.c **** {
+ 186              		.loc 1 332 0
+ 187              		.cfi_startproc
+ 188              		@ args = 0, pretend = 0, frame = 0
+ 189              		@ frame_needed = 0, uses_anonymous_args = 0
+ 190              		@ link register save eliminated.
+ 333:Generated_Source\PSoC4/A2D_rdy.c ****     /* Get the state of the general interrupt. */
+ 334:Generated_Source\PSoC4/A2D_rdy.c ****     return ((*A2D_rdy_INTC_SET_EN & (uint32)A2D_rdy__INTC_MASK) != 0u) ? 1u:0u;
+ 191              		.loc 1 334 0
+ 192 0000 024B     		ldr	r3, .L17
+ 193 0002 1B68     		ldr	r3, [r3]
+ 194 0004 0120     		movs	r0, #1
+ 195 0006 1840     		ands	r0, r3
+ 335:Generated_Source\PSoC4/A2D_rdy.c **** }
+ 196              		.loc 1 335 0
+ 197              		@ sp needed
+ 198 0008 7047     		bx	lr
+ 199              	.L18:
+ 200 000a C046     		.align	2
+ 201              	.L17:
+ 202 000c 00E100E0 		.word	-536813312
+ 203              		.cfi_endproc
+ 204              	.LFE10:
+ 205              		.size	A2D_rdy_GetState, .-A2D_rdy_GetState
+ 206              		.section	.text.A2D_rdy_Disable,"ax",%progbits
+ 207              		.align	2
+ 208              		.global	A2D_rdy_Disable
+ 209              		.code	16
+ 210              		.thumb_func
+ 211              		.type	A2D_rdy_Disable, %function
+ 212              	A2D_rdy_Disable:
+ 213              	.LFB11:
+ 336:Generated_Source\PSoC4/A2D_rdy.c **** 
+ 337:Generated_Source\PSoC4/A2D_rdy.c **** 
+ 338:Generated_Source\PSoC4/A2D_rdy.c **** /*******************************************************************************
+ 339:Generated_Source\PSoC4/A2D_rdy.c **** * Function Name: A2D_rdy_Disable
+ 340:Generated_Source\PSoC4/A2D_rdy.c **** ********************************************************************************
+ 341:Generated_Source\PSoC4/A2D_rdy.c **** *
+ 342:Generated_Source\PSoC4/A2D_rdy.c **** * Summary:
+ 343:Generated_Source\PSoC4/A2D_rdy.c **** *   Disables the Interrupt in the interrupt controller.
+ 344:Generated_Source\PSoC4/A2D_rdy.c **** *
+ 345:Generated_Source\PSoC4/A2D_rdy.c **** * Parameters:
+ 346:Generated_Source\PSoC4/A2D_rdy.c **** *   None
+ 347:Generated_Source\PSoC4/A2D_rdy.c **** *
+ 348:Generated_Source\PSoC4/A2D_rdy.c **** * Return:
+ 349:Generated_Source\PSoC4/A2D_rdy.c **** *   None
+ 350:Generated_Source\PSoC4/A2D_rdy.c **** *
+ 351:Generated_Source\PSoC4/A2D_rdy.c **** *******************************************************************************/
+ 352:Generated_Source\PSoC4/A2D_rdy.c **** void A2D_rdy_Disable(void)
+ 353:Generated_Source\PSoC4/A2D_rdy.c **** {
+ 214              		.loc 1 353 0
+ 215              		.cfi_startproc
+ 216              		@ args = 0, pretend = 0, frame = 0
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\cc4ju9qe.s 			page 11
+
+
+ 217              		@ frame_needed = 0, uses_anonymous_args = 0
+ 218              		@ link register save eliminated.
+ 354:Generated_Source\PSoC4/A2D_rdy.c ****     /* Disable the general interrupt. */
+ 355:Generated_Source\PSoC4/A2D_rdy.c ****     *A2D_rdy_INTC_CLR_EN = A2D_rdy__INTC_MASK;
+ 219              		.loc 1 355 0
+ 220 0000 0122     		movs	r2, #1
+ 221 0002 014B     		ldr	r3, .L20
+ 222 0004 1A60     		str	r2, [r3]
+ 356:Generated_Source\PSoC4/A2D_rdy.c **** }
+ 223              		.loc 1 356 0
+ 224              		@ sp needed
+ 225 0006 7047     		bx	lr
+ 226              	.L21:
+ 227              		.align	2
+ 228              	.L20:
+ 229 0008 80E100E0 		.word	-536813184
+ 230              		.cfi_endproc
+ 231              	.LFE11:
+ 232              		.size	A2D_rdy_Disable, .-A2D_rdy_Disable
+ 233              		.section	.text.A2D_rdy_Start,"ax",%progbits
+ 234              		.align	2
+ 235              		.global	A2D_rdy_Start
+ 236              		.code	16
+ 237              		.thumb_func
+ 238              		.type	A2D_rdy_Start, %function
+ 239              	A2D_rdy_Start:
+ 240              	.LFB1:
+  58:Generated_Source\PSoC4/A2D_rdy.c ****     /* For all we know the interrupt is active. */
+ 241              		.loc 1 58 0
+ 242              		.cfi_startproc
+ 243              		@ args = 0, pretend = 0, frame = 0
+ 244              		@ frame_needed = 0, uses_anonymous_args = 0
+ 245 0000 10B5     		push	{r4, lr}
+ 246              		.cfi_def_cfa_offset 8
+ 247              		.cfi_offset 4, -8
+ 248              		.cfi_offset 14, -4
+  60:Generated_Source\PSoC4/A2D_rdy.c **** 
+ 249              		.loc 1 60 0
+ 250 0002 FFF7FEFF 		bl	A2D_rdy_Disable
+ 251              	.LVL8:
+  63:Generated_Source\PSoC4/A2D_rdy.c **** 
+ 252              		.loc 1 63 0
+ 253 0006 0448     		ldr	r0, .L23
+ 254 0008 FFF7FEFF 		bl	A2D_rdy_SetVector
+ 255              	.LVL9:
+  66:Generated_Source\PSoC4/A2D_rdy.c **** 
+ 256              		.loc 1 66 0
+ 257 000c 0320     		movs	r0, #3
+ 258 000e FFF7FEFF 		bl	A2D_rdy_SetPriority
+ 259              	.LVL10:
+  69:Generated_Source\PSoC4/A2D_rdy.c **** }
+ 260              		.loc 1 69 0
+ 261 0012 FFF7FEFF 		bl	A2D_rdy_Enable
+ 262              	.LVL11:
+  70:Generated_Source\PSoC4/A2D_rdy.c **** 
+ 263              		.loc 1 70 0
+ 264              		@ sp needed
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\cc4ju9qe.s 			page 12
+
+
+ 265 0016 10BD     		pop	{r4, pc}
+ 266              	.L24:
+ 267              		.align	2
+ 268              	.L23:
+ 269 0018 00000000 		.word	A2D_rdy_Interrupt
+ 270              		.cfi_endproc
+ 271              	.LFE1:
+ 272              		.size	A2D_rdy_Start, .-A2D_rdy_Start
+ 273              		.section	.text.A2D_rdy_StartEx,"ax",%progbits
+ 274              		.align	2
+ 275              		.global	A2D_rdy_StartEx
+ 276              		.code	16
+ 277              		.thumb_func
+ 278              		.type	A2D_rdy_StartEx, %function
+ 279              	A2D_rdy_StartEx:
+ 280              	.LFB2:
+ 101:Generated_Source\PSoC4/A2D_rdy.c ****     /* For all we know the interrupt is active. */
+ 281              		.loc 1 101 0
+ 282              		.cfi_startproc
+ 283              		@ args = 0, pretend = 0, frame = 0
+ 284              		@ frame_needed = 0, uses_anonymous_args = 0
+ 285              	.LVL12:
+ 286 0000 10B5     		push	{r4, lr}
+ 287              		.cfi_def_cfa_offset 8
+ 288              		.cfi_offset 4, -8
+ 289              		.cfi_offset 14, -4
+ 290 0002 0400     		movs	r4, r0
+ 103:Generated_Source\PSoC4/A2D_rdy.c **** 
+ 291              		.loc 1 103 0
+ 292 0004 FFF7FEFF 		bl	A2D_rdy_Disable
+ 293              	.LVL13:
+ 106:Generated_Source\PSoC4/A2D_rdy.c **** 
+ 294              		.loc 1 106 0
+ 295 0008 2000     		movs	r0, r4
+ 296 000a FFF7FEFF 		bl	A2D_rdy_SetVector
+ 297              	.LVL14:
+ 109:Generated_Source\PSoC4/A2D_rdy.c **** 
+ 298              		.loc 1 109 0
+ 299 000e 0320     		movs	r0, #3
+ 300 0010 FFF7FEFF 		bl	A2D_rdy_SetPriority
+ 301              	.LVL15:
+ 112:Generated_Source\PSoC4/A2D_rdy.c **** }
+ 302              		.loc 1 112 0
+ 303 0014 FFF7FEFF 		bl	A2D_rdy_Enable
+ 304              	.LVL16:
+ 113:Generated_Source\PSoC4/A2D_rdy.c **** 
+ 305              		.loc 1 113 0
+ 306              		@ sp needed
+ 307              	.LVL17:
+ 308 0018 10BD     		pop	{r4, pc}
+ 309              		.cfi_endproc
+ 310              	.LFE2:
+ 311              		.size	A2D_rdy_StartEx, .-A2D_rdy_StartEx
+ 312 001a C046     		.section	.text.A2D_rdy_Stop,"ax",%progbits
+ 313              		.align	2
+ 314              		.global	A2D_rdy_Stop
+ 315              		.code	16
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\cc4ju9qe.s 			page 13
+
+
+ 316              		.thumb_func
+ 317              		.type	A2D_rdy_Stop, %function
+ 318              	A2D_rdy_Stop:
+ 319              	.LFB3:
+ 131:Generated_Source\PSoC4/A2D_rdy.c ****     /* Disable this interrupt. */
+ 320              		.loc 1 131 0
+ 321              		.cfi_startproc
+ 322              		@ args = 0, pretend = 0, frame = 0
+ 323              		@ frame_needed = 0, uses_anonymous_args = 0
+ 324 0000 10B5     		push	{r4, lr}
+ 325              		.cfi_def_cfa_offset 8
+ 326              		.cfi_offset 4, -8
+ 327              		.cfi_offset 14, -4
+ 133:Generated_Source\PSoC4/A2D_rdy.c **** 
+ 328              		.loc 1 133 0
+ 329 0002 FFF7FEFF 		bl	A2D_rdy_Disable
+ 330              	.LVL18:
+ 136:Generated_Source\PSoC4/A2D_rdy.c **** }
+ 331              		.loc 1 136 0
+ 332 0006 0248     		ldr	r0, .L27
+ 333 0008 FFF7FEFF 		bl	A2D_rdy_SetVector
+ 334              	.LVL19:
+ 137:Generated_Source\PSoC4/A2D_rdy.c **** 
+ 335              		.loc 1 137 0
+ 336              		@ sp needed
+ 337 000c 10BD     		pop	{r4, pc}
+ 338              	.L28:
+ 339 000e C046     		.align	2
+ 340              	.L27:
+ 341 0010 00000000 		.word	IntDefaultHandler
+ 342              		.cfi_endproc
+ 343              	.LFE3:
+ 344              		.size	A2D_rdy_Stop, .-A2D_rdy_Stop
+ 345              		.section	.text.A2D_rdy_SetPending,"ax",%progbits
+ 346              		.align	2
+ 347              		.global	A2D_rdy_SetPending
+ 348              		.code	16
+ 349              		.thumb_func
+ 350              		.type	A2D_rdy_SetPending, %function
+ 351              	A2D_rdy_SetPending:
+ 352              	.LFB12:
+ 357:Generated_Source\PSoC4/A2D_rdy.c **** 
+ 358:Generated_Source\PSoC4/A2D_rdy.c **** 
+ 359:Generated_Source\PSoC4/A2D_rdy.c **** /*******************************************************************************
+ 360:Generated_Source\PSoC4/A2D_rdy.c **** * Function Name: A2D_rdy_SetPending
+ 361:Generated_Source\PSoC4/A2D_rdy.c **** ********************************************************************************
+ 362:Generated_Source\PSoC4/A2D_rdy.c **** *
+ 363:Generated_Source\PSoC4/A2D_rdy.c **** * Summary:
+ 364:Generated_Source\PSoC4/A2D_rdy.c **** *   Causes the Interrupt to enter the pending state, a software method of
+ 365:Generated_Source\PSoC4/A2D_rdy.c **** *   generating the interrupt.
+ 366:Generated_Source\PSoC4/A2D_rdy.c **** *
+ 367:Generated_Source\PSoC4/A2D_rdy.c **** * Parameters:
+ 368:Generated_Source\PSoC4/A2D_rdy.c **** *   None
+ 369:Generated_Source\PSoC4/A2D_rdy.c **** *
+ 370:Generated_Source\PSoC4/A2D_rdy.c **** * Return:
+ 371:Generated_Source\PSoC4/A2D_rdy.c **** *   None
+ 372:Generated_Source\PSoC4/A2D_rdy.c **** *
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\cc4ju9qe.s 			page 14
+
+
+ 373:Generated_Source\PSoC4/A2D_rdy.c **** * Side Effects:
+ 374:Generated_Source\PSoC4/A2D_rdy.c **** *   If interrupts are enabled and the interrupt is set up properly, the ISR is
+ 375:Generated_Source\PSoC4/A2D_rdy.c **** *   entered (depending on the priority of this interrupt and other pending 
+ 376:Generated_Source\PSoC4/A2D_rdy.c **** *   interrupts).
+ 377:Generated_Source\PSoC4/A2D_rdy.c **** *
+ 378:Generated_Source\PSoC4/A2D_rdy.c **** *******************************************************************************/
+ 379:Generated_Source\PSoC4/A2D_rdy.c **** void A2D_rdy_SetPending(void)
+ 380:Generated_Source\PSoC4/A2D_rdy.c **** {
+ 353              		.loc 1 380 0
+ 354              		.cfi_startproc
+ 355              		@ args = 0, pretend = 0, frame = 0
+ 356              		@ frame_needed = 0, uses_anonymous_args = 0
+ 357              		@ link register save eliminated.
+ 381:Generated_Source\PSoC4/A2D_rdy.c ****     *A2D_rdy_INTC_SET_PD = A2D_rdy__INTC_MASK;
+ 358              		.loc 1 381 0
+ 359 0000 0122     		movs	r2, #1
+ 360 0002 014B     		ldr	r3, .L30
+ 361 0004 1A60     		str	r2, [r3]
+ 382:Generated_Source\PSoC4/A2D_rdy.c **** }
+ 362              		.loc 1 382 0
+ 363              		@ sp needed
+ 364 0006 7047     		bx	lr
+ 365              	.L31:
+ 366              		.align	2
+ 367              	.L30:
+ 368 0008 00E200E0 		.word	-536813056
+ 369              		.cfi_endproc
+ 370              	.LFE12:
+ 371              		.size	A2D_rdy_SetPending, .-A2D_rdy_SetPending
+ 372              		.section	.text.A2D_rdy_ClearPending,"ax",%progbits
+ 373              		.align	2
+ 374              		.global	A2D_rdy_ClearPending
+ 375              		.code	16
+ 376              		.thumb_func
+ 377              		.type	A2D_rdy_ClearPending, %function
+ 378              	A2D_rdy_ClearPending:
+ 379              	.LFB13:
+ 383:Generated_Source\PSoC4/A2D_rdy.c **** 
+ 384:Generated_Source\PSoC4/A2D_rdy.c **** 
+ 385:Generated_Source\PSoC4/A2D_rdy.c **** /*******************************************************************************
+ 386:Generated_Source\PSoC4/A2D_rdy.c **** * Function Name: A2D_rdy_ClearPending
+ 387:Generated_Source\PSoC4/A2D_rdy.c **** ********************************************************************************
+ 388:Generated_Source\PSoC4/A2D_rdy.c **** *
+ 389:Generated_Source\PSoC4/A2D_rdy.c **** * Summary:
+ 390:Generated_Source\PSoC4/A2D_rdy.c **** *   Clears a pending interrupt in the interrupt controller.
+ 391:Generated_Source\PSoC4/A2D_rdy.c **** *
+ 392:Generated_Source\PSoC4/A2D_rdy.c **** *   Note Some interrupt sources are clear-on-read and require the block 
+ 393:Generated_Source\PSoC4/A2D_rdy.c **** *   interrupt/status register to be read/cleared with the appropriate block API 
+ 394:Generated_Source\PSoC4/A2D_rdy.c **** *   (GPIO, UART, and so on). Otherwise the ISR will continue to remain in 
+ 395:Generated_Source\PSoC4/A2D_rdy.c **** *   pending state even though the interrupt itself is cleared using this API.
+ 396:Generated_Source\PSoC4/A2D_rdy.c **** *
+ 397:Generated_Source\PSoC4/A2D_rdy.c **** * Parameters:
+ 398:Generated_Source\PSoC4/A2D_rdy.c **** *   None
+ 399:Generated_Source\PSoC4/A2D_rdy.c **** *
+ 400:Generated_Source\PSoC4/A2D_rdy.c **** * Return:
+ 401:Generated_Source\PSoC4/A2D_rdy.c **** *   None
+ 402:Generated_Source\PSoC4/A2D_rdy.c **** *
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\cc4ju9qe.s 			page 15
+
+
+ 403:Generated_Source\PSoC4/A2D_rdy.c **** *******************************************************************************/
+ 404:Generated_Source\PSoC4/A2D_rdy.c **** void A2D_rdy_ClearPending(void)
+ 405:Generated_Source\PSoC4/A2D_rdy.c **** {
+ 380              		.loc 1 405 0
+ 381              		.cfi_startproc
+ 382              		@ args = 0, pretend = 0, frame = 0
+ 383              		@ frame_needed = 0, uses_anonymous_args = 0
+ 384              		@ link register save eliminated.
+ 406:Generated_Source\PSoC4/A2D_rdy.c ****     *A2D_rdy_INTC_CLR_PD = A2D_rdy__INTC_MASK;
+ 385              		.loc 1 406 0
+ 386 0000 0122     		movs	r2, #1
+ 387 0002 014B     		ldr	r3, .L33
+ 388 0004 1A60     		str	r2, [r3]
+ 407:Generated_Source\PSoC4/A2D_rdy.c **** }
+ 389              		.loc 1 407 0
+ 390              		@ sp needed
+ 391 0006 7047     		bx	lr
+ 392              	.L34:
+ 393              		.align	2
+ 394              	.L33:
+ 395 0008 80E200E0 		.word	-536812928
+ 396              		.cfi_endproc
+ 397              	.LFE13:
+ 398              		.size	A2D_rdy_ClearPending, .-A2D_rdy_ClearPending
+ 399              		.section	.text.A2D_rdy_Interrupt,"ax",%progbits
+ 400              		.align	2
+ 401              		.global	A2D_rdy_Interrupt
+ 402              		.code	16
+ 403              		.thumb_func
+ 404              		.type	A2D_rdy_Interrupt, %function
+ 405              	A2D_rdy_Interrupt:
+ 406              	.LFB4:
+ 161:Generated_Source\PSoC4/A2D_rdy.c ****     #ifdef A2D_rdy_INTERRUPT_INTERRUPT_CALLBACK
+ 407              		.loc 1 161 0
+ 408              		.cfi_startproc
+ 409              		@ args = 0, pretend = 0, frame = 0
+ 410              		@ frame_needed = 0, uses_anonymous_args = 0
+ 411 0000 10B5     		push	{r4, lr}
+ 412              		.cfi_def_cfa_offset 8
+ 413              		.cfi_offset 4, -8
+ 414              		.cfi_offset 14, -4
+ 168:Generated_Source\PSoC4/A2D_rdy.c ****     Batt_volt = A2D_GetResult16(0x01);
+ 415              		.loc 1 168 0
+ 416 0002 0020     		movs	r0, #0
+ 417 0004 FFF7FEFF 		bl	A2D_GetResult16
+ 418              	.LVL20:
+ 419 0008 0B4B     		ldr	r3, .L36
+ 420 000a 1880     		strh	r0, [r3]
+ 169:Generated_Source\PSoC4/A2D_rdy.c ****     Max_Lidar = A2D_GetResult16(0x02);
+ 421              		.loc 1 169 0
+ 422 000c 0120     		movs	r0, #1
+ 423 000e FFF7FEFF 		bl	A2D_GetResult16
+ 424              	.LVL21:
+ 425 0012 0A4B     		ldr	r3, .L36+4
+ 426 0014 1880     		strh	r0, [r3]
+ 170:Generated_Source\PSoC4/A2D_rdy.c ****     Init_heading = A2D_GetResult16(0x03);
+ 427              		.loc 1 170 0
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\cc4ju9qe.s 			page 16
+
+
+ 428 0016 0220     		movs	r0, #2
+ 429 0018 FFF7FEFF 		bl	A2D_GetResult16
+ 430              	.LVL22:
+ 431 001c 084B     		ldr	r3, .L36+8
+ 432 001e 1880     		strh	r0, [r3]
+ 171:Generated_Source\PSoC4/A2D_rdy.c ****     A2D_rdy_ClearPending();
+ 433              		.loc 1 171 0
+ 434 0020 0320     		movs	r0, #3
+ 435 0022 FFF7FEFF 		bl	A2D_GetResult16
+ 436              	.LVL23:
+ 437 0026 074B     		ldr	r3, .L36+12
+ 438 0028 1880     		strh	r0, [r3]
+ 172:Generated_Source\PSoC4/A2D_rdy.c ****     enqueue_task(A2D_RDY,2);
+ 439              		.loc 1 172 0
+ 440 002a FFF7FEFF 		bl	A2D_rdy_ClearPending
+ 441              	.LVL24:
+ 173:Generated_Source\PSoC4/A2D_rdy.c ****     /* `#END` */
+ 442              		.loc 1 173 0
+ 443 002e 0221     		movs	r1, #2
+ 444 0030 0620     		movs	r0, #6
+ 445 0032 FFF7FEFF 		bl	enqueue_task
+ 446              	.LVL25:
+ 175:Generated_Source\PSoC4/A2D_rdy.c **** 
+ 447              		.loc 1 175 0
+ 448              		@ sp needed
+ 449 0036 10BD     		pop	{r4, pc}
+ 450              	.L37:
+ 451              		.align	2
+ 452              	.L36:
+ 453 0038 00000000 		.word	ESC_curr
+ 454 003c 00000000 		.word	Batt_volt
+ 455 0040 00000000 		.word	Max_Lidar
+ 456 0044 00000000 		.word	Init_heading
+ 457              		.cfi_endproc
+ 458              	.LFE4:
+ 459              		.size	A2D_rdy_Interrupt, .-A2D_rdy_Interrupt
+ 460              		.comm	slider_pos_last,1,1
+ 461              		.comm	run_mode,1,1
+ 462              		.comm	Init_heading,2,2
+ 463              		.comm	Max_Lidar,2,2
+ 464              		.comm	Batt_volt,2,2
+ 465              		.comm	ESC_curr,2,2
+ 466              		.comm	motor_toggles,2,2
+ 467              		.comm	num_tasks,1,1
+ 468              		.comm	num_rx_bytes_lidar_buff,1,1
+ 469              		.comm	num_rx_bytes_lidar,1,1
+ 470              		.comm	LIDAR_UART_tmr,1,1
+ 471              		.comm	rx_bytes_lidar_buff,16,4
+ 472              		.comm	rx_bytes_lidar,16,4
+ 473              		.comm	num_rx_bytes_ble_buff,1,1
+ 474              		.comm	num_rx_bytes_ble,1,1
+ 475              		.comm	BLE_UART_tmr,1,1
+ 476              		.comm	rx_bytes_ble_buff,8,4
+ 477              		.comm	rx_bytes_ble,8,4
+ 478              		.comm	num_rx_bytes_dbg_buff,1,1
+ 479              		.comm	num_rx_bytes_dbg,1,1
+ 480              		.comm	rx_bytes_dbg_buff,8,4
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\cc4ju9qe.s 			page 17
+
+
+ 481              		.comm	rx_bytes_dbg,8,4
+ 482              		.text
+ 483              	.Letext0:
+ 484              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.3\\psoc creator\\import\\gnu\\arm\\5.4.
+ 485              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.3\\psoc creator\\import\\gnu\\arm\\5.4.
+ 486              		.file 4 "Generated_Source\\PSoC4/cytypes.h"
+ 487              		.file 5 "./main.h"
+ 488              		.file 6 "Generated_Source\\PSoC4/CyLib.h"
+ 489              		.file 7 "Generated_Source\\PSoC4\\A2D.h"
+ 490              		.section	.debug_info,"",%progbits
+ 491              	.Ldebug_info0:
+ 492 0000 38060000 		.4byte	0x638
+ 493 0004 0400     		.2byte	0x4
+ 494 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 495 000a 04       		.byte	0x4
+ 496 000b 01       		.uleb128 0x1
+ 497 000c 52000000 		.4byte	.LASF81
+ 498 0010 0C       		.byte	0xc
+ 499 0011 72020000 		.4byte	.LASF82
+ 500 0015 03040000 		.4byte	.LASF83
+ 501 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 502 001d 00000000 		.4byte	0
+ 503 0021 00000000 		.4byte	.Ldebug_line0
+ 504 0025 02       		.uleb128 0x2
+ 505 0026 01       		.byte	0x1
+ 506 0027 06       		.byte	0x6
+ 507 0028 38010000 		.4byte	.LASF0
+ 508 002c 03       		.uleb128 0x3
+ 509 002d 20000000 		.4byte	.LASF2
+ 510 0031 02       		.byte	0x2
+ 511 0032 1D       		.byte	0x1d
+ 512 0033 37000000 		.4byte	0x37
+ 513 0037 02       		.uleb128 0x2
+ 514 0038 01       		.byte	0x1
+ 515 0039 08       		.byte	0x8
+ 516 003a 99030000 		.4byte	.LASF1
+ 517 003e 03       		.uleb128 0x3
+ 518 003f D8010000 		.4byte	.LASF3
+ 519 0043 02       		.byte	0x2
+ 520 0044 29       		.byte	0x29
+ 521 0045 49000000 		.4byte	0x49
+ 522 0049 02       		.uleb128 0x2
+ 523 004a 02       		.byte	0x2
+ 524 004b 05       		.byte	0x5
+ 525 004c C5030000 		.4byte	.LASF4
+ 526 0050 03       		.uleb128 0x3
+ 527 0051 8D040000 		.4byte	.LASF5
+ 528 0055 02       		.byte	0x2
+ 529 0056 2B       		.byte	0x2b
+ 530 0057 5B000000 		.4byte	0x5b
+ 531 005b 02       		.uleb128 0x2
+ 532 005c 02       		.byte	0x2
+ 533 005d 07       		.byte	0x7
+ 534 005e 5F020000 		.4byte	.LASF6
+ 535 0062 02       		.uleb128 0x2
+ 536 0063 04       		.byte	0x4
+ 537 0064 05       		.byte	0x5
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\cc4ju9qe.s 			page 18
+
+
+ 538 0065 67010000 		.4byte	.LASF7
+ 539 0069 02       		.uleb128 0x2
+ 540 006a 04       		.byte	0x4
+ 541 006b 07       		.byte	0x7
+ 542 006c 17020000 		.4byte	.LASF8
+ 543 0070 02       		.uleb128 0x2
+ 544 0071 08       		.byte	0x8
+ 545 0072 05       		.byte	0x5
+ 546 0073 2A010000 		.4byte	.LASF9
+ 547 0077 02       		.uleb128 0x2
+ 548 0078 08       		.byte	0x8
+ 549 0079 07       		.byte	0x7
+ 550 007a E0000000 		.4byte	.LASF10
+ 551 007e 04       		.uleb128 0x4
+ 552 007f 04       		.byte	0x4
+ 553 0080 05       		.byte	0x5
+ 554 0081 696E7400 		.ascii	"int\000"
+ 555 0085 02       		.uleb128 0x2
+ 556 0086 04       		.byte	0x4
+ 557 0087 07       		.byte	0x7
+ 558 0088 F9010000 		.4byte	.LASF11
+ 559 008c 03       		.uleb128 0x3
+ 560 008d E7040000 		.4byte	.LASF12
+ 561 0091 03       		.byte	0x3
+ 562 0092 18       		.byte	0x18
+ 563 0093 2C000000 		.4byte	0x2c
+ 564 0097 03       		.uleb128 0x3
+ 565 0098 22010000 		.4byte	.LASF13
+ 566 009c 03       		.byte	0x3
+ 567 009d 20       		.byte	0x20
+ 568 009e 3E000000 		.4byte	0x3e
+ 569 00a2 03       		.uleb128 0x3
+ 570 00a3 96010000 		.4byte	.LASF14
+ 571 00a7 03       		.byte	0x3
+ 572 00a8 24       		.byte	0x24
+ 573 00a9 50000000 		.4byte	0x50
+ 574 00ad 05       		.uleb128 0x5
+ 575 00ae 90010000 		.4byte	.LASF15
+ 576 00b2 04       		.byte	0x4
+ 577 00b3 F701     		.2byte	0x1f7
+ 578 00b5 37000000 		.4byte	0x37
+ 579 00b9 05       		.uleb128 0x5
+ 580 00ba AF010000 		.4byte	.LASF16
+ 581 00be 04       		.byte	0x4
+ 582 00bf F901     		.2byte	0x1f9
+ 583 00c1 69000000 		.4byte	0x69
+ 584 00c5 02       		.uleb128 0x2
+ 585 00c6 04       		.byte	0x4
+ 586 00c7 04       		.byte	0x4
+ 587 00c8 58030000 		.4byte	.LASF17
+ 588 00cc 02       		.uleb128 0x2
+ 589 00cd 08       		.byte	0x8
+ 590 00ce 04       		.byte	0x4
+ 591 00cf 9F010000 		.4byte	.LASF18
+ 592 00d3 02       		.uleb128 0x2
+ 593 00d4 01       		.byte	0x1
+ 594 00d5 08       		.byte	0x8
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\cc4ju9qe.s 			page 19
+
+
+ 595 00d6 71040000 		.4byte	.LASF19
+ 596 00da 05       		.uleb128 0x5
+ 597 00db B7020000 		.4byte	.LASF20
+ 598 00df 04       		.byte	0x4
+ 599 00e0 A302     		.2byte	0x2a3
+ 600 00e2 E6000000 		.4byte	0xe6
+ 601 00e6 06       		.uleb128 0x6
+ 602 00e7 B9000000 		.4byte	0xb9
+ 603 00eb 05       		.uleb128 0x5
+ 604 00ec 76040000 		.4byte	.LASF21
+ 605 00f0 04       		.byte	0x4
+ 606 00f1 B302     		.2byte	0x2b3
+ 607 00f3 F7000000 		.4byte	0xf7
+ 608 00f7 07       		.uleb128 0x7
+ 609 00f8 04       		.byte	0x4
+ 610 00f9 FD000000 		.4byte	0xfd
+ 611 00fd 08       		.uleb128 0x8
+ 612 00fe 02       		.uleb128 0x2
+ 613 00ff 08       		.byte	0x8
+ 614 0100 04       		.byte	0x4
+ 615 0101 DA020000 		.4byte	.LASF22
+ 616 0105 02       		.uleb128 0x2
+ 617 0106 04       		.byte	0x4
+ 618 0107 07       		.byte	0x7
+ 619 0108 D1020000 		.4byte	.LASF23
+ 620 010c 09       		.uleb128 0x9
+ 621 010d 01       		.byte	0x1
+ 622 010e 37000000 		.4byte	0x37
+ 623 0112 05       		.byte	0x5
+ 624 0113 13       		.byte	0x13
+ 625 0114 43010000 		.4byte	0x143
+ 626 0118 0A       		.uleb128 0xa
+ 627 0119 49020000 		.4byte	.LASF24
+ 628 011d 00       		.byte	0
+ 629 011e 0A       		.uleb128 0xa
+ 630 011f DC030000 		.4byte	.LASF25
+ 631 0123 01       		.byte	0x1
+ 632 0124 0A       		.uleb128 0xa
+ 633 0125 E2010000 		.4byte	.LASF26
+ 634 0129 02       		.byte	0x2
+ 635 012a 0A       		.uleb128 0xa
+ 636 012b 32030000 		.4byte	.LASF27
+ 637 012f 03       		.byte	0x3
+ 638 0130 0A       		.uleb128 0xa
+ 639 0131 A7030000 		.4byte	.LASF28
+ 640 0135 04       		.byte	0x4
+ 641 0136 0A       		.uleb128 0xa
+ 642 0137 29020000 		.4byte	.LASF29
+ 643 013b 05       		.byte	0x5
+ 644 013c 0A       		.uleb128 0xa
+ 645 013d 31050000 		.4byte	.LASF30
+ 646 0141 06       		.byte	0x6
+ 647 0142 00       		.byte	0
+ 648 0143 09       		.uleb128 0x9
+ 649 0144 01       		.byte	0x1
+ 650 0145 37000000 		.4byte	0x37
+ 651 0149 05       		.byte	0x5
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\cc4ju9qe.s 			page 20
+
+
+ 652 014a 27       		.byte	0x27
+ 653 014b 74010000 		.4byte	0x174
+ 654 014f 0B       		.uleb128 0xb
+ 655 0150 4F464600 		.ascii	"OFF\000"
+ 656 0154 00       		.byte	0
+ 657 0155 0A       		.uleb128 0xa
+ 658 0156 E6030000 		.4byte	.LASF31
+ 659 015a 01       		.byte	0x1
+ 660 015b 0B       		.uleb128 0xb
+ 661 015c 43414C00 		.ascii	"CAL\000"
+ 662 0160 02       		.byte	0x2
+ 663 0161 0A       		.uleb128 0xa
+ 664 0162 BD020000 		.4byte	.LASF32
+ 665 0166 03       		.byte	0x3
+ 666 0167 0B       		.uleb128 0xb
+ 667 0168 52554E00 		.ascii	"RUN\000"
+ 668 016c 04       		.byte	0x4
+ 669 016d 0A       		.uleb128 0xa
+ 670 016e C7020000 		.4byte	.LASF33
+ 671 0172 05       		.byte	0x5
+ 672 0173 00       		.byte	0
+ 673 0174 03       		.uleb128 0x3
+ 674 0175 C5040000 		.4byte	.LASF34
+ 675 0179 05       		.byte	0x5
+ 676 017a 27       		.byte	0x27
+ 677 017b 43010000 		.4byte	0x143
+ 678 017f 09       		.uleb128 0x9
+ 679 0180 01       		.byte	0x1
+ 680 0181 37000000 		.4byte	0x37
+ 681 0185 05       		.byte	0x5
+ 682 0186 2A       		.byte	0x2a
+ 683 0187 9E010000 		.4byte	0x19e
+ 684 018b 0B       		.uleb128 0xb
+ 685 018c 4C4F5700 		.ascii	"LOW\000"
+ 686 0190 00       		.byte	0
+ 687 0191 0A       		.uleb128 0xa
+ 688 0192 D0010000 		.4byte	.LASF35
+ 689 0196 01       		.byte	0x1
+ 690 0197 0A       		.uleb128 0xa
+ 691 0198 D0040000 		.4byte	.LASF36
+ 692 019c 02       		.byte	0x2
+ 693 019d 00       		.byte	0
+ 694 019e 03       		.uleb128 0x3
+ 695 019f 74030000 		.4byte	.LASF37
+ 696 01a3 05       		.byte	0x5
+ 697 01a4 2A       		.byte	0x2a
+ 698 01a5 7F010000 		.4byte	0x17f
+ 699 01a9 0C       		.uleb128 0xc
+ 700 01aa 0B050000 		.4byte	.LASF38
+ 701 01ae 01       		.byte	0x1
+ 702 01af CD       		.byte	0xcd
+ 703 01b0 00000000 		.4byte	.LFB5
+ 704 01b4 0C000000 		.4byte	.LFE5-.LFB5
+ 705 01b8 01       		.uleb128 0x1
+ 706 01b9 9C       		.byte	0x9c
+ 707 01ba CC010000 		.4byte	0x1cc
+ 708 01be 0D       		.uleb128 0xd
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\cc4ju9qe.s 			page 21
+
+
+ 709 01bf F8020000 		.4byte	.LASF40
+ 710 01c3 01       		.byte	0x1
+ 711 01c4 CD       		.byte	0xcd
+ 712 01c5 EB000000 		.4byte	0xeb
+ 713 01c9 01       		.uleb128 0x1
+ 714 01ca 50       		.byte	0x50
+ 715 01cb 00       		.byte	0
+ 716 01cc 0E       		.uleb128 0xe
+ 717 01cd E6020000 		.4byte	.LASF44
+ 718 01d1 01       		.byte	0x1
+ 719 01d2 E1       		.byte	0xe1
+ 720 01d3 EB000000 		.4byte	0xeb
+ 721 01d7 00000000 		.4byte	.LFB6
+ 722 01db 0C000000 		.4byte	.LFE6-.LFB6
+ 723 01df 01       		.uleb128 0x1
+ 724 01e0 9C       		.byte	0x9c
+ 725 01e1 0C       		.uleb128 0xc
+ 726 01e2 4D040000 		.4byte	.LASF39
+ 727 01e6 01       		.byte	0x1
+ 728 01e7 FF       		.byte	0xff
+ 729 01e8 00000000 		.4byte	.LFB7
+ 730 01ec 20000000 		.4byte	.LFE7-.LFB7
+ 731 01f0 01       		.uleb128 0x1
+ 732 01f1 9C       		.byte	0x9c
+ 733 01f2 35020000 		.4byte	0x235
+ 734 01f6 0F       		.uleb128 0xf
+ 735 01f7 93020000 		.4byte	.LASF41
+ 736 01fb 01       		.byte	0x1
+ 737 01fc FF       		.byte	0xff
+ 738 01fd AD000000 		.4byte	0xad
+ 739 0201 00000000 		.4byte	.LLST0
+ 740 0205 10       		.uleb128 0x10
+ 741 0206 58010000 		.4byte	.LASF42
+ 742 020a 01       		.byte	0x1
+ 743 020b 0101     		.2byte	0x101
+ 744 020d AD000000 		.4byte	0xad
+ 745 0211 21000000 		.4byte	.LLST1
+ 746 0215 11       		.uleb128 0x11
+ 747 0216 06010000 		.4byte	.LASF43
+ 748 021a 01       		.byte	0x1
+ 749 021b 0201     		.2byte	0x102
+ 750 021d B9000000 		.4byte	0xb9
+ 751 0221 06       		.byte	0x6
+ 752 0222 12       		.uleb128 0x12
+ 753 0223 08000000 		.4byte	.LVL3
+ 754 0227 0F060000 		.4byte	0x60f
+ 755 022b 12       		.uleb128 0x12
+ 756 022c 1A000000 		.4byte	.LVL4
+ 757 0230 1A060000 		.4byte	0x61a
+ 758 0234 00       		.byte	0
+ 759 0235 13       		.uleb128 0x13
+ 760 0236 44010000 		.4byte	.LASF84
+ 761 023a 01       		.byte	0x1
+ 762 023b 1B01     		.2byte	0x11b
+ 763 023d AD000000 		.4byte	0xad
+ 764 0241 00000000 		.4byte	.LFB8
+ 765 0245 10000000 		.4byte	.LFE8-.LFB8
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\cc4ju9qe.s 			page 22
+
+
+ 766 0249 01       		.uleb128 0x1
+ 767 024a 9C       		.byte	0x9c
+ 768 024b 6D020000 		.4byte	0x26d
+ 769 024f 10       		.uleb128 0x10
+ 770 0250 93020000 		.4byte	.LASF41
+ 771 0254 01       		.byte	0x1
+ 772 0255 1D01     		.2byte	0x11d
+ 773 0257 B9000000 		.4byte	0xb9
+ 774 025b 34000000 		.4byte	.LLST2
+ 775 025f 11       		.uleb128 0x11
+ 776 0260 06010000 		.4byte	.LASF43
+ 777 0264 01       		.byte	0x1
+ 778 0265 1E01     		.2byte	0x11e
+ 779 0267 B9000000 		.4byte	0xb9
+ 780 026b 06       		.byte	0x6
+ 781 026c 00       		.byte	0
+ 782 026d 14       		.uleb128 0x14
+ 783 026e FC040000 		.4byte	.LASF46
+ 784 0272 01       		.byte	0x1
+ 785 0273 3601     		.2byte	0x136
+ 786 0275 00000000 		.4byte	.LFB9
+ 787 0279 0C000000 		.4byte	.LFE9-.LFB9
+ 788 027d 01       		.uleb128 0x1
+ 789 027e 9C       		.byte	0x9c
+ 790 027f 15       		.uleb128 0x15
+ 791 0280 F2030000 		.4byte	.LASF45
+ 792 0284 01       		.byte	0x1
+ 793 0285 4B01     		.2byte	0x14b
+ 794 0287 AD000000 		.4byte	0xad
+ 795 028b 00000000 		.4byte	.LFB10
+ 796 028f 10000000 		.4byte	.LFE10-.LFB10
+ 797 0293 01       		.uleb128 0x1
+ 798 0294 9C       		.byte	0x9c
+ 799 0295 14       		.uleb128 0x14
+ 800 0296 61040000 		.4byte	.LASF47
+ 801 029a 01       		.byte	0x1
+ 802 029b 6001     		.2byte	0x160
+ 803 029d 00000000 		.4byte	.LFB11
+ 804 02a1 0C000000 		.4byte	.LFE11-.LFB11
+ 805 02a5 01       		.uleb128 0x1
+ 806 02a6 9C       		.byte	0x9c
+ 807 02a7 0C       		.uleb128 0xc
+ 808 02a8 A9020000 		.4byte	.LASF48
+ 809 02ac 01       		.byte	0x1
+ 810 02ad 39       		.byte	0x39
+ 811 02ae 00000000 		.4byte	.LFB1
+ 812 02b2 1C000000 		.4byte	.LFE1-.LFB1
+ 813 02b6 01       		.uleb128 0x1
+ 814 02b7 9C       		.byte	0x9c
+ 815 02b8 F9020000 		.4byte	0x2f9
+ 816 02bc 12       		.uleb128 0x12
+ 817 02bd 06000000 		.4byte	.LVL8
+ 818 02c1 95020000 		.4byte	0x295
+ 819 02c5 16       		.uleb128 0x16
+ 820 02c6 0C000000 		.4byte	.LVL9
+ 821 02ca A9010000 		.4byte	0x1a9
+ 822 02ce DC020000 		.4byte	0x2dc
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\cc4ju9qe.s 			page 23
+
+
+ 823 02d2 17       		.uleb128 0x17
+ 824 02d3 01       		.uleb128 0x1
+ 825 02d4 50       		.byte	0x50
+ 826 02d5 05       		.uleb128 0x5
+ 827 02d6 03       		.byte	0x3
+ 828 02d7 00000000 		.4byte	A2D_rdy_Interrupt
+ 829 02db 00       		.byte	0
+ 830 02dc 16       		.uleb128 0x16
+ 831 02dd 12000000 		.4byte	.LVL10
+ 832 02e1 E1010000 		.4byte	0x1e1
+ 833 02e5 EF020000 		.4byte	0x2ef
+ 834 02e9 17       		.uleb128 0x17
+ 835 02ea 01       		.uleb128 0x1
+ 836 02eb 50       		.byte	0x50
+ 837 02ec 01       		.uleb128 0x1
+ 838 02ed 33       		.byte	0x33
+ 839 02ee 00       		.byte	0
+ 840 02ef 12       		.uleb128 0x12
+ 841 02f0 16000000 		.4byte	.LVL11
+ 842 02f4 6D020000 		.4byte	0x26d
+ 843 02f8 00       		.byte	0
+ 844 02f9 0C       		.uleb128 0xc
+ 845 02fa 70010000 		.4byte	.LASF49
+ 846 02fe 01       		.byte	0x1
+ 847 02ff 64       		.byte	0x64
+ 848 0300 00000000 		.4byte	.LFB2
+ 849 0304 1A000000 		.4byte	.LFE2-.LFB2
+ 850 0308 01       		.uleb128 0x1
+ 851 0309 9C       		.byte	0x9c
+ 852 030a 57030000 		.4byte	0x357
+ 853 030e 0F       		.uleb128 0xf
+ 854 030f F8020000 		.4byte	.LASF40
+ 855 0313 01       		.byte	0x1
+ 856 0314 64       		.byte	0x64
+ 857 0315 EB000000 		.4byte	0xeb
+ 858 0319 56000000 		.4byte	.LLST3
+ 859 031d 12       		.uleb128 0x12
+ 860 031e 08000000 		.4byte	.LVL13
+ 861 0322 95020000 		.4byte	0x295
+ 862 0326 16       		.uleb128 0x16
+ 863 0327 0E000000 		.4byte	.LVL14
+ 864 032b A9010000 		.4byte	0x1a9
+ 865 032f 3A030000 		.4byte	0x33a
+ 866 0333 17       		.uleb128 0x17
+ 867 0334 01       		.uleb128 0x1
+ 868 0335 50       		.byte	0x50
+ 869 0336 02       		.uleb128 0x2
+ 870 0337 74       		.byte	0x74
+ 871 0338 00       		.sleb128 0
+ 872 0339 00       		.byte	0
+ 873 033a 16       		.uleb128 0x16
+ 874 033b 14000000 		.4byte	.LVL15
+ 875 033f E1010000 		.4byte	0x1e1
+ 876 0343 4D030000 		.4byte	0x34d
+ 877 0347 17       		.uleb128 0x17
+ 878 0348 01       		.uleb128 0x1
+ 879 0349 50       		.byte	0x50
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\cc4ju9qe.s 			page 24
+
+
+ 880 034a 01       		.uleb128 0x1
+ 881 034b 33       		.byte	0x33
+ 882 034c 00       		.byte	0
+ 883 034d 12       		.uleb128 0x12
+ 884 034e 18000000 		.4byte	.LVL16
+ 885 0352 6D020000 		.4byte	0x26d
+ 886 0356 00       		.byte	0
+ 887 0357 0C       		.uleb128 0xc
+ 888 0358 00000000 		.4byte	.LASF50
+ 889 035c 01       		.byte	0x1
+ 890 035d 82       		.byte	0x82
+ 891 035e 00000000 		.4byte	.LFB3
+ 892 0362 14000000 		.4byte	.LFE3-.LFB3
+ 893 0366 01       		.uleb128 0x1
+ 894 0367 9C       		.byte	0x9c
+ 895 0368 7F030000 		.4byte	0x37f
+ 896 036c 12       		.uleb128 0x12
+ 897 036d 06000000 		.4byte	.LVL18
+ 898 0371 95020000 		.4byte	0x295
+ 899 0375 12       		.uleb128 0x12
+ 900 0376 0C000000 		.4byte	.LVL19
+ 901 037a A9010000 		.4byte	0x1a9
+ 902 037e 00       		.byte	0
+ 903 037f 14       		.uleb128 0x14
+ 904 0380 0D030000 		.4byte	.LASF51
+ 905 0384 01       		.byte	0x1
+ 906 0385 7B01     		.2byte	0x17b
+ 907 0387 00000000 		.4byte	.LFB12
+ 908 038b 0C000000 		.4byte	.LFE12-.LFB12
+ 909 038f 01       		.uleb128 0x1
+ 910 0390 9C       		.byte	0x9c
+ 911 0391 14       		.uleb128 0x14
+ 912 0392 A1040000 		.4byte	.LASF52
+ 913 0396 01       		.byte	0x1
+ 914 0397 9401     		.2byte	0x194
+ 915 0399 00000000 		.4byte	.LFB13
+ 916 039d 0C000000 		.4byte	.LFE13-.LFB13
+ 917 03a1 01       		.uleb128 0x1
+ 918 03a2 9C       		.byte	0x9c
+ 919 03a3 0C       		.uleb128 0xc
+ 920 03a4 D5040000 		.4byte	.LASF53
+ 921 03a8 01       		.byte	0x1
+ 922 03a9 A0       		.byte	0xa0
+ 923 03aa 00000000 		.4byte	.LFB4
+ 924 03ae 48000000 		.4byte	.LFE4-.LFB4
+ 925 03b2 01       		.uleb128 0x1
+ 926 03b3 9C       		.byte	0x9c
+ 927 03b4 22040000 		.4byte	0x422
+ 928 03b8 16       		.uleb128 0x16
+ 929 03b9 08000000 		.4byte	.LVL20
+ 930 03bd 25060000 		.4byte	0x625
+ 931 03c1 CB030000 		.4byte	0x3cb
+ 932 03c5 17       		.uleb128 0x17
+ 933 03c6 01       		.uleb128 0x1
+ 934 03c7 50       		.byte	0x50
+ 935 03c8 01       		.uleb128 0x1
+ 936 03c9 30       		.byte	0x30
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\cc4ju9qe.s 			page 25
+
+
+ 937 03ca 00       		.byte	0
+ 938 03cb 16       		.uleb128 0x16
+ 939 03cc 12000000 		.4byte	.LVL21
+ 940 03d0 25060000 		.4byte	0x625
+ 941 03d4 DE030000 		.4byte	0x3de
+ 942 03d8 17       		.uleb128 0x17
+ 943 03d9 01       		.uleb128 0x1
+ 944 03da 50       		.byte	0x50
+ 945 03db 01       		.uleb128 0x1
+ 946 03dc 31       		.byte	0x31
+ 947 03dd 00       		.byte	0
+ 948 03de 16       		.uleb128 0x16
+ 949 03df 1C000000 		.4byte	.LVL22
+ 950 03e3 25060000 		.4byte	0x625
+ 951 03e7 F1030000 		.4byte	0x3f1
+ 952 03eb 17       		.uleb128 0x17
+ 953 03ec 01       		.uleb128 0x1
+ 954 03ed 50       		.byte	0x50
+ 955 03ee 01       		.uleb128 0x1
+ 956 03ef 32       		.byte	0x32
+ 957 03f0 00       		.byte	0
+ 958 03f1 16       		.uleb128 0x16
+ 959 03f2 26000000 		.4byte	.LVL23
+ 960 03f6 25060000 		.4byte	0x625
+ 961 03fa 04040000 		.4byte	0x404
+ 962 03fe 17       		.uleb128 0x17
+ 963 03ff 01       		.uleb128 0x1
+ 964 0400 50       		.byte	0x50
+ 965 0401 01       		.uleb128 0x1
+ 966 0402 33       		.byte	0x33
+ 967 0403 00       		.byte	0
+ 968 0404 12       		.uleb128 0x12
+ 969 0405 2E000000 		.4byte	.LVL24
+ 970 0409 91030000 		.4byte	0x391
+ 971 040d 18       		.uleb128 0x18
+ 972 040e 36000000 		.4byte	.LVL25
+ 973 0412 30060000 		.4byte	0x630
+ 974 0416 17       		.uleb128 0x17
+ 975 0417 01       		.uleb128 0x1
+ 976 0418 50       		.byte	0x50
+ 977 0419 01       		.uleb128 0x1
+ 978 041a 36       		.byte	0x36
+ 979 041b 17       		.uleb128 0x17
+ 980 041c 01       		.uleb128 0x1
+ 981 041d 51       		.byte	0x51
+ 982 041e 01       		.uleb128 0x1
+ 983 041f 32       		.byte	0x32
+ 984 0420 00       		.byte	0
+ 985 0421 00       		.byte	0
+ 986 0422 19       		.uleb128 0x19
+ 987 0423 32040000 		.4byte	0x432
+ 988 0427 32040000 		.4byte	0x432
+ 989 042b 1A       		.uleb128 0x1a
+ 990 042c 05010000 		.4byte	0x105
+ 991 0430 07       		.byte	0x7
+ 992 0431 00       		.byte	0
+ 993 0432 06       		.uleb128 0x6
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\cc4ju9qe.s 			page 26
+
+
+ 994 0433 37000000 		.4byte	0x37
+ 995 0437 1B       		.uleb128 0x1b
+ 996 0438 9C020000 		.4byte	.LASF54
+ 997 043c 05       		.byte	0x5
+ 998 043d 30       		.byte	0x30
+ 999 043e 48040000 		.4byte	0x448
+ 1000 0442 05       		.uleb128 0x5
+ 1001 0443 03       		.byte	0x3
+ 1002 0444 00000000 		.4byte	rx_bytes_dbg
+ 1003 0448 06       		.uleb128 0x6
+ 1004 0449 22040000 		.4byte	0x422
+ 1005 044d 1B       		.uleb128 0x1b
+ 1006 044e 2A000000 		.4byte	.LASF55
+ 1007 0452 05       		.byte	0x5
+ 1008 0453 31       		.byte	0x31
+ 1009 0454 5E040000 		.4byte	0x45e
+ 1010 0458 05       		.uleb128 0x5
+ 1011 0459 03       		.byte	0x3
+ 1012 045a 00000000 		.4byte	rx_bytes_dbg_buff
+ 1013 045e 06       		.uleb128 0x6
+ 1014 045f 22040000 		.4byte	0x422
+ 1015 0463 1B       		.uleb128 0x1b
+ 1016 0464 B4030000 		.4byte	.LASF56
+ 1017 0468 05       		.byte	0x5
+ 1018 0469 32       		.byte	0x32
+ 1019 046a 74040000 		.4byte	0x474
+ 1020 046e 05       		.uleb128 0x5
+ 1021 046f 03       		.byte	0x3
+ 1022 0470 00000000 		.4byte	num_rx_bytes_dbg
+ 1023 0474 06       		.uleb128 0x6
+ 1024 0475 8C000000 		.4byte	0x8c
+ 1025 0479 1B       		.uleb128 0x1b
+ 1026 047a 42030000 		.4byte	.LASF57
+ 1027 047e 05       		.byte	0x5
+ 1028 047f 33       		.byte	0x33
+ 1029 0480 74040000 		.4byte	0x474
+ 1030 0484 05       		.uleb128 0x5
+ 1031 0485 03       		.byte	0x3
+ 1032 0486 00000000 		.4byte	num_rx_bytes_dbg_buff
+ 1033 048a 1B       		.uleb128 0x1b
+ 1034 048b 15010000 		.4byte	.LASF58
+ 1035 048f 05       		.byte	0x5
+ 1036 0490 34       		.byte	0x34
+ 1037 0491 9B040000 		.4byte	0x49b
+ 1038 0495 05       		.uleb128 0x5
+ 1039 0496 03       		.byte	0x3
+ 1040 0497 00000000 		.4byte	rx_bytes_ble
+ 1041 049b 06       		.uleb128 0x6
+ 1042 049c 22040000 		.4byte	0x422
+ 1043 04a0 1B       		.uleb128 0x1b
+ 1044 04a1 20030000 		.4byte	.LASF59
+ 1045 04a5 05       		.byte	0x5
+ 1046 04a6 35       		.byte	0x35
+ 1047 04a7 B1040000 		.4byte	0x4b1
+ 1048 04ab 05       		.uleb128 0x5
+ 1049 04ac 03       		.byte	0x3
+ 1050 04ad 00000000 		.4byte	rx_bytes_ble_buff
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\cc4ju9qe.s 			page 27
+
+
+ 1051 04b1 06       		.uleb128 0x6
+ 1052 04b2 22040000 		.4byte	0x422
+ 1053 04b6 1B       		.uleb128 0x1b
+ 1054 04b7 00030000 		.4byte	.LASF60
+ 1055 04bb 05       		.byte	0x5
+ 1056 04bc 36       		.byte	0x36
+ 1057 04bd 74040000 		.4byte	0x474
+ 1058 04c1 05       		.uleb128 0x5
+ 1059 04c2 03       		.byte	0x3
+ 1060 04c3 00000000 		.4byte	BLE_UART_tmr
+ 1061 04c7 1B       		.uleb128 0x1b
+ 1062 04c8 06020000 		.4byte	.LASF61
+ 1063 04cc 05       		.byte	0x5
+ 1064 04cd 37       		.byte	0x37
+ 1065 04ce 74040000 		.4byte	0x474
+ 1066 04d2 05       		.uleb128 0x5
+ 1067 04d3 03       		.byte	0x3
+ 1068 04d4 00000000 		.4byte	num_rx_bytes_ble
+ 1069 04d8 1B       		.uleb128 0x1b
+ 1070 04d9 3C000000 		.4byte	.LASF62
+ 1071 04dd 05       		.byte	0x5
+ 1072 04de 38       		.byte	0x38
+ 1073 04df 74040000 		.4byte	0x474
+ 1074 04e3 05       		.uleb128 0x5
+ 1075 04e4 03       		.byte	0x3
+ 1076 04e5 00000000 		.4byte	num_rx_bytes_ble_buff
+ 1077 04e9 19       		.uleb128 0x19
+ 1078 04ea 32040000 		.4byte	0x432
+ 1079 04ee F9040000 		.4byte	0x4f9
+ 1080 04f2 1A       		.uleb128 0x1a
+ 1081 04f3 05010000 		.4byte	0x105
+ 1082 04f7 0F       		.byte	0xf
+ 1083 04f8 00       		.byte	0
+ 1084 04f9 1B       		.uleb128 0x1b
+ 1085 04fa F7000000 		.4byte	.LASF63
+ 1086 04fe 05       		.byte	0x5
+ 1087 04ff 39       		.byte	0x39
+ 1088 0500 0A050000 		.4byte	0x50a
+ 1089 0504 05       		.uleb128 0x5
+ 1090 0505 03       		.byte	0x3
+ 1091 0506 00000000 		.4byte	rx_bytes_lidar
+ 1092 050a 06       		.uleb128 0x6
+ 1093 050b E9040000 		.4byte	0x4e9
+ 1094 050f 1B       		.uleb128 0x1b
+ 1095 0510 1D050000 		.4byte	.LASF64
+ 1096 0514 05       		.byte	0x5
+ 1097 0515 3A       		.byte	0x3a
+ 1098 0516 20050000 		.4byte	0x520
+ 1099 051a 05       		.uleb128 0x5
+ 1100 051b 03       		.byte	0x3
+ 1101 051c 00000000 		.4byte	rx_bytes_lidar_buff
+ 1102 0520 06       		.uleb128 0x6
+ 1103 0521 E9040000 		.4byte	0x4e9
+ 1104 0525 1B       		.uleb128 0x1b
+ 1105 0526 B6040000 		.4byte	.LASF65
+ 1106 052a 05       		.byte	0x5
+ 1107 052b 3B       		.byte	0x3b
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\cc4ju9qe.s 			page 28
+
+
+ 1108 052c 74040000 		.4byte	0x474
+ 1109 0530 05       		.uleb128 0x5
+ 1110 0531 03       		.byte	0x3
+ 1111 0532 00000000 		.4byte	LIDAR_UART_tmr
+ 1112 0536 1B       		.uleb128 0x1b
+ 1113 0537 0D000000 		.4byte	.LASF66
+ 1114 053b 05       		.byte	0x5
+ 1115 053c 3C       		.byte	0x3c
+ 1116 053d 74040000 		.4byte	0x474
+ 1117 0541 05       		.uleb128 0x5
+ 1118 0542 03       		.byte	0x3
+ 1119 0543 00000000 		.4byte	num_rx_bytes_lidar
+ 1120 0547 1B       		.uleb128 0x1b
+ 1121 0548 81030000 		.4byte	.LASF67
+ 1122 054c 05       		.byte	0x5
+ 1123 054d 3D       		.byte	0x3d
+ 1124 054e 74040000 		.4byte	0x474
+ 1125 0552 05       		.uleb128 0x5
+ 1126 0553 03       		.byte	0x3
+ 1127 0554 00000000 		.4byte	num_rx_bytes_lidar_buff
+ 1128 0558 1B       		.uleb128 0x1b
+ 1129 0559 83040000 		.4byte	.LASF68
+ 1130 055d 05       		.byte	0x5
+ 1131 055e 3E       		.byte	0x3e
+ 1132 055f 74040000 		.4byte	0x474
+ 1133 0563 05       		.uleb128 0x5
+ 1134 0564 03       		.byte	0x3
+ 1135 0565 00000000 		.4byte	num_tasks
+ 1136 0569 1B       		.uleb128 0x1b
+ 1137 056a 39050000 		.4byte	.LASF69
+ 1138 056e 05       		.byte	0x5
+ 1139 056f 3F       		.byte	0x3f
+ 1140 0570 7A050000 		.4byte	0x57a
+ 1141 0574 05       		.uleb128 0x5
+ 1142 0575 03       		.byte	0x3
+ 1143 0576 00000000 		.4byte	motor_toggles
+ 1144 057a 06       		.uleb128 0x6
+ 1145 057b A2000000 		.4byte	0xa2
+ 1146 057f 1B       		.uleb128 0x1b
+ 1147 0580 A6010000 		.4byte	.LASF70
+ 1148 0584 05       		.byte	0x5
+ 1149 0585 40       		.byte	0x40
+ 1150 0586 90050000 		.4byte	0x590
+ 1151 058a 05       		.uleb128 0x5
+ 1152 058b 03       		.byte	0x3
+ 1153 058c 00000000 		.4byte	ESC_curr
+ 1154 0590 06       		.uleb128 0x6
+ 1155 0591 97000000 		.4byte	0x97
+ 1156 0595 1B       		.uleb128 0x1b
+ 1157 0596 B6010000 		.4byte	.LASF71
+ 1158 059a 05       		.byte	0x5
+ 1159 059b 41       		.byte	0x41
+ 1160 059c 90050000 		.4byte	0x590
+ 1161 05a0 05       		.uleb128 0x5
+ 1162 05a1 03       		.byte	0x3
+ 1163 05a2 00000000 		.4byte	Batt_volt
+ 1164 05a6 1B       		.uleb128 0x1b
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\cc4ju9qe.s 			page 29
+
+
+ 1165 05a7 EF010000 		.4byte	.LASF72
+ 1166 05ab 05       		.byte	0x5
+ 1167 05ac 42       		.byte	0x42
+ 1168 05ad 90050000 		.4byte	0x590
+ 1169 05b1 05       		.uleb128 0x5
+ 1170 05b2 03       		.byte	0x3
+ 1171 05b3 00000000 		.4byte	Max_Lidar
+ 1172 05b7 1B       		.uleb128 0x1b
+ 1173 05b8 EF040000 		.4byte	.LASF73
+ 1174 05bc 05       		.byte	0x5
+ 1175 05bd 43       		.byte	0x43
+ 1176 05be 90050000 		.4byte	0x590
+ 1177 05c2 05       		.uleb128 0x5
+ 1178 05c3 03       		.byte	0x3
+ 1179 05c4 00000000 		.4byte	Init_heading
+ 1180 05c8 1B       		.uleb128 0x1b
+ 1181 05c9 98040000 		.4byte	.LASF74
+ 1182 05cd 05       		.byte	0x5
+ 1183 05ce 44       		.byte	0x44
+ 1184 05cf D9050000 		.4byte	0x5d9
+ 1185 05d3 05       		.uleb128 0x5
+ 1186 05d4 03       		.byte	0x3
+ 1187 05d5 00000000 		.4byte	run_mode
+ 1188 05d9 06       		.uleb128 0x6
+ 1189 05da 74010000 		.4byte	0x174
+ 1190 05de 1B       		.uleb128 0x1b
+ 1191 05df C0010000 		.4byte	.LASF75
+ 1192 05e3 05       		.byte	0x5
+ 1193 05e4 45       		.byte	0x45
+ 1194 05e5 EF050000 		.4byte	0x5ef
+ 1195 05e9 05       		.uleb128 0x5
+ 1196 05ea 03       		.byte	0x3
+ 1197 05eb 00000000 		.4byte	slider_pos_last
+ 1198 05ef 06       		.uleb128 0x6
+ 1199 05f0 9E010000 		.4byte	0x19e
+ 1200 05f4 19       		.uleb128 0x19
+ 1201 05f5 EB000000 		.4byte	0xeb
+ 1202 05f9 04060000 		.4byte	0x604
+ 1203 05fd 1A       		.uleb128 0x1a
+ 1204 05fe 05010000 		.4byte	0x105
+ 1205 0602 2F       		.byte	0x2f
+ 1206 0603 00       		.byte	0
+ 1207 0604 1C       		.uleb128 0x1c
+ 1208 0605 CF030000 		.4byte	.LASF76
+ 1209 0609 01       		.byte	0x1
+ 1210 060a 22       		.byte	0x22
+ 1211 060b F4050000 		.4byte	0x5f4
+ 1212 060f 1D       		.uleb128 0x1d
+ 1213 0610 32020000 		.4byte	.LASF77
+ 1214 0614 32020000 		.4byte	.LASF77
+ 1215 0618 06       		.byte	0x6
+ 1216 0619 F8       		.byte	0xf8
+ 1217 061a 1D       		.uleb128 0x1d
+ 1218 061b 5E030000 		.4byte	.LASF78
+ 1219 061f 5E030000 		.4byte	.LASF78
+ 1220 0623 06       		.byte	0x6
+ 1221 0624 F9       		.byte	0xf9
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\cc4ju9qe.s 			page 30
+
+
+ 1222 0625 1D       		.uleb128 0x1d
+ 1223 0626 80010000 		.4byte	.LASF79
+ 1224 062a 80010000 		.4byte	.LASF79
+ 1225 062e 07       		.byte	0x7
+ 1226 062f A0       		.byte	0xa0
+ 1227 0630 1D       		.uleb128 0x1d
+ 1228 0631 52020000 		.4byte	.LASF80
+ 1229 0635 52020000 		.4byte	.LASF80
+ 1230 0639 05       		.byte	0x5
+ 1231 063a 54       		.byte	0x54
+ 1232 063b 00       		.byte	0
+ 1233              		.section	.debug_abbrev,"",%progbits
+ 1234              	.Ldebug_abbrev0:
+ 1235 0000 01       		.uleb128 0x1
+ 1236 0001 11       		.uleb128 0x11
+ 1237 0002 01       		.byte	0x1
+ 1238 0003 25       		.uleb128 0x25
+ 1239 0004 0E       		.uleb128 0xe
+ 1240 0005 13       		.uleb128 0x13
+ 1241 0006 0B       		.uleb128 0xb
+ 1242 0007 03       		.uleb128 0x3
+ 1243 0008 0E       		.uleb128 0xe
+ 1244 0009 1B       		.uleb128 0x1b
+ 1245 000a 0E       		.uleb128 0xe
+ 1246 000b 55       		.uleb128 0x55
+ 1247 000c 17       		.uleb128 0x17
+ 1248 000d 11       		.uleb128 0x11
+ 1249 000e 01       		.uleb128 0x1
+ 1250 000f 10       		.uleb128 0x10
+ 1251 0010 17       		.uleb128 0x17
+ 1252 0011 00       		.byte	0
+ 1253 0012 00       		.byte	0
+ 1254 0013 02       		.uleb128 0x2
+ 1255 0014 24       		.uleb128 0x24
+ 1256 0015 00       		.byte	0
+ 1257 0016 0B       		.uleb128 0xb
+ 1258 0017 0B       		.uleb128 0xb
+ 1259 0018 3E       		.uleb128 0x3e
+ 1260 0019 0B       		.uleb128 0xb
+ 1261 001a 03       		.uleb128 0x3
+ 1262 001b 0E       		.uleb128 0xe
+ 1263 001c 00       		.byte	0
+ 1264 001d 00       		.byte	0
+ 1265 001e 03       		.uleb128 0x3
+ 1266 001f 16       		.uleb128 0x16
+ 1267 0020 00       		.byte	0
+ 1268 0021 03       		.uleb128 0x3
+ 1269 0022 0E       		.uleb128 0xe
+ 1270 0023 3A       		.uleb128 0x3a
+ 1271 0024 0B       		.uleb128 0xb
+ 1272 0025 3B       		.uleb128 0x3b
+ 1273 0026 0B       		.uleb128 0xb
+ 1274 0027 49       		.uleb128 0x49
+ 1275 0028 13       		.uleb128 0x13
+ 1276 0029 00       		.byte	0
+ 1277 002a 00       		.byte	0
+ 1278 002b 04       		.uleb128 0x4
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\cc4ju9qe.s 			page 31
+
+
+ 1279 002c 24       		.uleb128 0x24
+ 1280 002d 00       		.byte	0
+ 1281 002e 0B       		.uleb128 0xb
+ 1282 002f 0B       		.uleb128 0xb
+ 1283 0030 3E       		.uleb128 0x3e
+ 1284 0031 0B       		.uleb128 0xb
+ 1285 0032 03       		.uleb128 0x3
+ 1286 0033 08       		.uleb128 0x8
+ 1287 0034 00       		.byte	0
+ 1288 0035 00       		.byte	0
+ 1289 0036 05       		.uleb128 0x5
+ 1290 0037 16       		.uleb128 0x16
+ 1291 0038 00       		.byte	0
+ 1292 0039 03       		.uleb128 0x3
+ 1293 003a 0E       		.uleb128 0xe
+ 1294 003b 3A       		.uleb128 0x3a
+ 1295 003c 0B       		.uleb128 0xb
+ 1296 003d 3B       		.uleb128 0x3b
+ 1297 003e 05       		.uleb128 0x5
+ 1298 003f 49       		.uleb128 0x49
+ 1299 0040 13       		.uleb128 0x13
+ 1300 0041 00       		.byte	0
+ 1301 0042 00       		.byte	0
+ 1302 0043 06       		.uleb128 0x6
+ 1303 0044 35       		.uleb128 0x35
+ 1304 0045 00       		.byte	0
+ 1305 0046 49       		.uleb128 0x49
+ 1306 0047 13       		.uleb128 0x13
+ 1307 0048 00       		.byte	0
+ 1308 0049 00       		.byte	0
+ 1309 004a 07       		.uleb128 0x7
+ 1310 004b 0F       		.uleb128 0xf
+ 1311 004c 00       		.byte	0
+ 1312 004d 0B       		.uleb128 0xb
+ 1313 004e 0B       		.uleb128 0xb
+ 1314 004f 49       		.uleb128 0x49
+ 1315 0050 13       		.uleb128 0x13
+ 1316 0051 00       		.byte	0
+ 1317 0052 00       		.byte	0
+ 1318 0053 08       		.uleb128 0x8
+ 1319 0054 15       		.uleb128 0x15
+ 1320 0055 00       		.byte	0
+ 1321 0056 27       		.uleb128 0x27
+ 1322 0057 19       		.uleb128 0x19
+ 1323 0058 00       		.byte	0
+ 1324 0059 00       		.byte	0
+ 1325 005a 09       		.uleb128 0x9
+ 1326 005b 04       		.uleb128 0x4
+ 1327 005c 01       		.byte	0x1
+ 1328 005d 0B       		.uleb128 0xb
+ 1329 005e 0B       		.uleb128 0xb
+ 1330 005f 49       		.uleb128 0x49
+ 1331 0060 13       		.uleb128 0x13
+ 1332 0061 3A       		.uleb128 0x3a
+ 1333 0062 0B       		.uleb128 0xb
+ 1334 0063 3B       		.uleb128 0x3b
+ 1335 0064 0B       		.uleb128 0xb
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\cc4ju9qe.s 			page 32
+
+
+ 1336 0065 01       		.uleb128 0x1
+ 1337 0066 13       		.uleb128 0x13
+ 1338 0067 00       		.byte	0
+ 1339 0068 00       		.byte	0
+ 1340 0069 0A       		.uleb128 0xa
+ 1341 006a 28       		.uleb128 0x28
+ 1342 006b 00       		.byte	0
+ 1343 006c 03       		.uleb128 0x3
+ 1344 006d 0E       		.uleb128 0xe
+ 1345 006e 1C       		.uleb128 0x1c
+ 1346 006f 0B       		.uleb128 0xb
+ 1347 0070 00       		.byte	0
+ 1348 0071 00       		.byte	0
+ 1349 0072 0B       		.uleb128 0xb
+ 1350 0073 28       		.uleb128 0x28
+ 1351 0074 00       		.byte	0
+ 1352 0075 03       		.uleb128 0x3
+ 1353 0076 08       		.uleb128 0x8
+ 1354 0077 1C       		.uleb128 0x1c
+ 1355 0078 0B       		.uleb128 0xb
+ 1356 0079 00       		.byte	0
+ 1357 007a 00       		.byte	0
+ 1358 007b 0C       		.uleb128 0xc
+ 1359 007c 2E       		.uleb128 0x2e
+ 1360 007d 01       		.byte	0x1
+ 1361 007e 3F       		.uleb128 0x3f
+ 1362 007f 19       		.uleb128 0x19
+ 1363 0080 03       		.uleb128 0x3
+ 1364 0081 0E       		.uleb128 0xe
+ 1365 0082 3A       		.uleb128 0x3a
+ 1366 0083 0B       		.uleb128 0xb
+ 1367 0084 3B       		.uleb128 0x3b
+ 1368 0085 0B       		.uleb128 0xb
+ 1369 0086 27       		.uleb128 0x27
+ 1370 0087 19       		.uleb128 0x19
+ 1371 0088 11       		.uleb128 0x11
+ 1372 0089 01       		.uleb128 0x1
+ 1373 008a 12       		.uleb128 0x12
+ 1374 008b 06       		.uleb128 0x6
+ 1375 008c 40       		.uleb128 0x40
+ 1376 008d 18       		.uleb128 0x18
+ 1377 008e 9742     		.uleb128 0x2117
+ 1378 0090 19       		.uleb128 0x19
+ 1379 0091 01       		.uleb128 0x1
+ 1380 0092 13       		.uleb128 0x13
+ 1381 0093 00       		.byte	0
+ 1382 0094 00       		.byte	0
+ 1383 0095 0D       		.uleb128 0xd
+ 1384 0096 05       		.uleb128 0x5
+ 1385 0097 00       		.byte	0
+ 1386 0098 03       		.uleb128 0x3
+ 1387 0099 0E       		.uleb128 0xe
+ 1388 009a 3A       		.uleb128 0x3a
+ 1389 009b 0B       		.uleb128 0xb
+ 1390 009c 3B       		.uleb128 0x3b
+ 1391 009d 0B       		.uleb128 0xb
+ 1392 009e 49       		.uleb128 0x49
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\cc4ju9qe.s 			page 33
+
+
+ 1393 009f 13       		.uleb128 0x13
+ 1394 00a0 02       		.uleb128 0x2
+ 1395 00a1 18       		.uleb128 0x18
+ 1396 00a2 00       		.byte	0
+ 1397 00a3 00       		.byte	0
+ 1398 00a4 0E       		.uleb128 0xe
+ 1399 00a5 2E       		.uleb128 0x2e
+ 1400 00a6 00       		.byte	0
+ 1401 00a7 3F       		.uleb128 0x3f
+ 1402 00a8 19       		.uleb128 0x19
+ 1403 00a9 03       		.uleb128 0x3
+ 1404 00aa 0E       		.uleb128 0xe
+ 1405 00ab 3A       		.uleb128 0x3a
+ 1406 00ac 0B       		.uleb128 0xb
+ 1407 00ad 3B       		.uleb128 0x3b
+ 1408 00ae 0B       		.uleb128 0xb
+ 1409 00af 27       		.uleb128 0x27
+ 1410 00b0 19       		.uleb128 0x19
+ 1411 00b1 49       		.uleb128 0x49
+ 1412 00b2 13       		.uleb128 0x13
+ 1413 00b3 11       		.uleb128 0x11
+ 1414 00b4 01       		.uleb128 0x1
+ 1415 00b5 12       		.uleb128 0x12
+ 1416 00b6 06       		.uleb128 0x6
+ 1417 00b7 40       		.uleb128 0x40
+ 1418 00b8 18       		.uleb128 0x18
+ 1419 00b9 9742     		.uleb128 0x2117
+ 1420 00bb 19       		.uleb128 0x19
+ 1421 00bc 00       		.byte	0
+ 1422 00bd 00       		.byte	0
+ 1423 00be 0F       		.uleb128 0xf
+ 1424 00bf 05       		.uleb128 0x5
+ 1425 00c0 00       		.byte	0
+ 1426 00c1 03       		.uleb128 0x3
+ 1427 00c2 0E       		.uleb128 0xe
+ 1428 00c3 3A       		.uleb128 0x3a
+ 1429 00c4 0B       		.uleb128 0xb
+ 1430 00c5 3B       		.uleb128 0x3b
+ 1431 00c6 0B       		.uleb128 0xb
+ 1432 00c7 49       		.uleb128 0x49
+ 1433 00c8 13       		.uleb128 0x13
+ 1434 00c9 02       		.uleb128 0x2
+ 1435 00ca 17       		.uleb128 0x17
+ 1436 00cb 00       		.byte	0
+ 1437 00cc 00       		.byte	0
+ 1438 00cd 10       		.uleb128 0x10
+ 1439 00ce 34       		.uleb128 0x34
+ 1440 00cf 00       		.byte	0
+ 1441 00d0 03       		.uleb128 0x3
+ 1442 00d1 0E       		.uleb128 0xe
+ 1443 00d2 3A       		.uleb128 0x3a
+ 1444 00d3 0B       		.uleb128 0xb
+ 1445 00d4 3B       		.uleb128 0x3b
+ 1446 00d5 05       		.uleb128 0x5
+ 1447 00d6 49       		.uleb128 0x49
+ 1448 00d7 13       		.uleb128 0x13
+ 1449 00d8 02       		.uleb128 0x2
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\cc4ju9qe.s 			page 34
+
+
+ 1450 00d9 17       		.uleb128 0x17
+ 1451 00da 00       		.byte	0
+ 1452 00db 00       		.byte	0
+ 1453 00dc 11       		.uleb128 0x11
+ 1454 00dd 34       		.uleb128 0x34
+ 1455 00de 00       		.byte	0
+ 1456 00df 03       		.uleb128 0x3
+ 1457 00e0 0E       		.uleb128 0xe
+ 1458 00e1 3A       		.uleb128 0x3a
+ 1459 00e2 0B       		.uleb128 0xb
+ 1460 00e3 3B       		.uleb128 0x3b
+ 1461 00e4 05       		.uleb128 0x5
+ 1462 00e5 49       		.uleb128 0x49
+ 1463 00e6 13       		.uleb128 0x13
+ 1464 00e7 1C       		.uleb128 0x1c
+ 1465 00e8 0B       		.uleb128 0xb
+ 1466 00e9 00       		.byte	0
+ 1467 00ea 00       		.byte	0
+ 1468 00eb 12       		.uleb128 0x12
+ 1469 00ec 898201   		.uleb128 0x4109
+ 1470 00ef 00       		.byte	0
+ 1471 00f0 11       		.uleb128 0x11
+ 1472 00f1 01       		.uleb128 0x1
+ 1473 00f2 31       		.uleb128 0x31
+ 1474 00f3 13       		.uleb128 0x13
+ 1475 00f4 00       		.byte	0
+ 1476 00f5 00       		.byte	0
+ 1477 00f6 13       		.uleb128 0x13
+ 1478 00f7 2E       		.uleb128 0x2e
+ 1479 00f8 01       		.byte	0x1
+ 1480 00f9 3F       		.uleb128 0x3f
+ 1481 00fa 19       		.uleb128 0x19
+ 1482 00fb 03       		.uleb128 0x3
+ 1483 00fc 0E       		.uleb128 0xe
+ 1484 00fd 3A       		.uleb128 0x3a
+ 1485 00fe 0B       		.uleb128 0xb
+ 1486 00ff 3B       		.uleb128 0x3b
+ 1487 0100 05       		.uleb128 0x5
+ 1488 0101 27       		.uleb128 0x27
+ 1489 0102 19       		.uleb128 0x19
+ 1490 0103 49       		.uleb128 0x49
+ 1491 0104 13       		.uleb128 0x13
+ 1492 0105 11       		.uleb128 0x11
+ 1493 0106 01       		.uleb128 0x1
+ 1494 0107 12       		.uleb128 0x12
+ 1495 0108 06       		.uleb128 0x6
+ 1496 0109 40       		.uleb128 0x40
+ 1497 010a 18       		.uleb128 0x18
+ 1498 010b 9742     		.uleb128 0x2117
+ 1499 010d 19       		.uleb128 0x19
+ 1500 010e 01       		.uleb128 0x1
+ 1501 010f 13       		.uleb128 0x13
+ 1502 0110 00       		.byte	0
+ 1503 0111 00       		.byte	0
+ 1504 0112 14       		.uleb128 0x14
+ 1505 0113 2E       		.uleb128 0x2e
+ 1506 0114 00       		.byte	0
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\cc4ju9qe.s 			page 35
+
+
+ 1507 0115 3F       		.uleb128 0x3f
+ 1508 0116 19       		.uleb128 0x19
+ 1509 0117 03       		.uleb128 0x3
+ 1510 0118 0E       		.uleb128 0xe
+ 1511 0119 3A       		.uleb128 0x3a
+ 1512 011a 0B       		.uleb128 0xb
+ 1513 011b 3B       		.uleb128 0x3b
+ 1514 011c 05       		.uleb128 0x5
+ 1515 011d 27       		.uleb128 0x27
+ 1516 011e 19       		.uleb128 0x19
+ 1517 011f 11       		.uleb128 0x11
+ 1518 0120 01       		.uleb128 0x1
+ 1519 0121 12       		.uleb128 0x12
+ 1520 0122 06       		.uleb128 0x6
+ 1521 0123 40       		.uleb128 0x40
+ 1522 0124 18       		.uleb128 0x18
+ 1523 0125 9742     		.uleb128 0x2117
+ 1524 0127 19       		.uleb128 0x19
+ 1525 0128 00       		.byte	0
+ 1526 0129 00       		.byte	0
+ 1527 012a 15       		.uleb128 0x15
+ 1528 012b 2E       		.uleb128 0x2e
+ 1529 012c 00       		.byte	0
+ 1530 012d 3F       		.uleb128 0x3f
+ 1531 012e 19       		.uleb128 0x19
+ 1532 012f 03       		.uleb128 0x3
+ 1533 0130 0E       		.uleb128 0xe
+ 1534 0131 3A       		.uleb128 0x3a
+ 1535 0132 0B       		.uleb128 0xb
+ 1536 0133 3B       		.uleb128 0x3b
+ 1537 0134 05       		.uleb128 0x5
+ 1538 0135 27       		.uleb128 0x27
+ 1539 0136 19       		.uleb128 0x19
+ 1540 0137 49       		.uleb128 0x49
+ 1541 0138 13       		.uleb128 0x13
+ 1542 0139 11       		.uleb128 0x11
+ 1543 013a 01       		.uleb128 0x1
+ 1544 013b 12       		.uleb128 0x12
+ 1545 013c 06       		.uleb128 0x6
+ 1546 013d 40       		.uleb128 0x40
+ 1547 013e 18       		.uleb128 0x18
+ 1548 013f 9742     		.uleb128 0x2117
+ 1549 0141 19       		.uleb128 0x19
+ 1550 0142 00       		.byte	0
+ 1551 0143 00       		.byte	0
+ 1552 0144 16       		.uleb128 0x16
+ 1553 0145 898201   		.uleb128 0x4109
+ 1554 0148 01       		.byte	0x1
+ 1555 0149 11       		.uleb128 0x11
+ 1556 014a 01       		.uleb128 0x1
+ 1557 014b 31       		.uleb128 0x31
+ 1558 014c 13       		.uleb128 0x13
+ 1559 014d 01       		.uleb128 0x1
+ 1560 014e 13       		.uleb128 0x13
+ 1561 014f 00       		.byte	0
+ 1562 0150 00       		.byte	0
+ 1563 0151 17       		.uleb128 0x17
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\cc4ju9qe.s 			page 36
+
+
+ 1564 0152 8A8201   		.uleb128 0x410a
+ 1565 0155 00       		.byte	0
+ 1566 0156 02       		.uleb128 0x2
+ 1567 0157 18       		.uleb128 0x18
+ 1568 0158 9142     		.uleb128 0x2111
+ 1569 015a 18       		.uleb128 0x18
+ 1570 015b 00       		.byte	0
+ 1571 015c 00       		.byte	0
+ 1572 015d 18       		.uleb128 0x18
+ 1573 015e 898201   		.uleb128 0x4109
+ 1574 0161 01       		.byte	0x1
+ 1575 0162 11       		.uleb128 0x11
+ 1576 0163 01       		.uleb128 0x1
+ 1577 0164 31       		.uleb128 0x31
+ 1578 0165 13       		.uleb128 0x13
+ 1579 0166 00       		.byte	0
+ 1580 0167 00       		.byte	0
+ 1581 0168 19       		.uleb128 0x19
+ 1582 0169 01       		.uleb128 0x1
+ 1583 016a 01       		.byte	0x1
+ 1584 016b 49       		.uleb128 0x49
+ 1585 016c 13       		.uleb128 0x13
+ 1586 016d 01       		.uleb128 0x1
+ 1587 016e 13       		.uleb128 0x13
+ 1588 016f 00       		.byte	0
+ 1589 0170 00       		.byte	0
+ 1590 0171 1A       		.uleb128 0x1a
+ 1591 0172 21       		.uleb128 0x21
+ 1592 0173 00       		.byte	0
+ 1593 0174 49       		.uleb128 0x49
+ 1594 0175 13       		.uleb128 0x13
+ 1595 0176 2F       		.uleb128 0x2f
+ 1596 0177 0B       		.uleb128 0xb
+ 1597 0178 00       		.byte	0
+ 1598 0179 00       		.byte	0
+ 1599 017a 1B       		.uleb128 0x1b
+ 1600 017b 34       		.uleb128 0x34
+ 1601 017c 00       		.byte	0
+ 1602 017d 03       		.uleb128 0x3
+ 1603 017e 0E       		.uleb128 0xe
+ 1604 017f 3A       		.uleb128 0x3a
+ 1605 0180 0B       		.uleb128 0xb
+ 1606 0181 3B       		.uleb128 0x3b
+ 1607 0182 0B       		.uleb128 0xb
+ 1608 0183 49       		.uleb128 0x49
+ 1609 0184 13       		.uleb128 0x13
+ 1610 0185 3F       		.uleb128 0x3f
+ 1611 0186 19       		.uleb128 0x19
+ 1612 0187 02       		.uleb128 0x2
+ 1613 0188 18       		.uleb128 0x18
+ 1614 0189 00       		.byte	0
+ 1615 018a 00       		.byte	0
+ 1616 018b 1C       		.uleb128 0x1c
+ 1617 018c 34       		.uleb128 0x34
+ 1618 018d 00       		.byte	0
+ 1619 018e 03       		.uleb128 0x3
+ 1620 018f 0E       		.uleb128 0xe
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\cc4ju9qe.s 			page 37
+
+
+ 1621 0190 3A       		.uleb128 0x3a
+ 1622 0191 0B       		.uleb128 0xb
+ 1623 0192 3B       		.uleb128 0x3b
+ 1624 0193 0B       		.uleb128 0xb
+ 1625 0194 49       		.uleb128 0x49
+ 1626 0195 13       		.uleb128 0x13
+ 1627 0196 3F       		.uleb128 0x3f
+ 1628 0197 19       		.uleb128 0x19
+ 1629 0198 3C       		.uleb128 0x3c
+ 1630 0199 19       		.uleb128 0x19
+ 1631 019a 00       		.byte	0
+ 1632 019b 00       		.byte	0
+ 1633 019c 1D       		.uleb128 0x1d
+ 1634 019d 2E       		.uleb128 0x2e
+ 1635 019e 00       		.byte	0
+ 1636 019f 3F       		.uleb128 0x3f
+ 1637 01a0 19       		.uleb128 0x19
+ 1638 01a1 3C       		.uleb128 0x3c
+ 1639 01a2 19       		.uleb128 0x19
+ 1640 01a3 6E       		.uleb128 0x6e
+ 1641 01a4 0E       		.uleb128 0xe
+ 1642 01a5 03       		.uleb128 0x3
+ 1643 01a6 0E       		.uleb128 0xe
+ 1644 01a7 3A       		.uleb128 0x3a
+ 1645 01a8 0B       		.uleb128 0xb
+ 1646 01a9 3B       		.uleb128 0x3b
+ 1647 01aa 0B       		.uleb128 0xb
+ 1648 01ab 00       		.byte	0
+ 1649 01ac 00       		.byte	0
+ 1650 01ad 00       		.byte	0
+ 1651              		.section	.debug_loc,"",%progbits
+ 1652              	.Ldebug_loc0:
+ 1653              	.LLST0:
+ 1654 0000 00000000 		.4byte	.LVL1
+ 1655 0004 07000000 		.4byte	.LVL3-1
+ 1656 0008 0100     		.2byte	0x1
+ 1657 000a 50       		.byte	0x50
+ 1658 000b 07000000 		.4byte	.LVL3-1
+ 1659 000f 20000000 		.4byte	.LFE7
+ 1660 0013 0400     		.2byte	0x4
+ 1661 0015 F3       		.byte	0xf3
+ 1662 0016 01       		.uleb128 0x1
+ 1663 0017 50       		.byte	0x50
+ 1664 0018 9F       		.byte	0x9f
+ 1665 0019 00000000 		.4byte	0
+ 1666 001d 00000000 		.4byte	0
+ 1667              	.LLST1:
+ 1668 0021 08000000 		.4byte	.LVL3
+ 1669 0025 19000000 		.4byte	.LVL4-1
+ 1670 0029 0100     		.2byte	0x1
+ 1671 002b 50       		.byte	0x50
+ 1672 002c 00000000 		.4byte	0
+ 1673 0030 00000000 		.4byte	0
+ 1674              	.LLST2:
+ 1675 0034 06000000 		.4byte	.LVL6
+ 1676 0038 0A000000 		.4byte	.LVL7
+ 1677 003c 0500     		.2byte	0x5
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\cc4ju9qe.s 			page 38
+
+
+ 1678 003e 70       		.byte	0x70
+ 1679 003f 00       		.sleb128 0
+ 1680 0040 33       		.byte	0x33
+ 1681 0041 1A       		.byte	0x1a
+ 1682 0042 9F       		.byte	0x9f
+ 1683 0043 0A000000 		.4byte	.LVL7
+ 1684 0047 10000000 		.4byte	.LFE8
+ 1685 004b 0100     		.2byte	0x1
+ 1686 004d 50       		.byte	0x50
+ 1687 004e 00000000 		.4byte	0
+ 1688 0052 00000000 		.4byte	0
+ 1689              	.LLST3:
+ 1690 0056 00000000 		.4byte	.LVL12
+ 1691 005a 07000000 		.4byte	.LVL13-1
+ 1692 005e 0100     		.2byte	0x1
+ 1693 0060 50       		.byte	0x50
+ 1694 0061 07000000 		.4byte	.LVL13-1
+ 1695 0065 18000000 		.4byte	.LVL17
+ 1696 0069 0100     		.2byte	0x1
+ 1697 006b 54       		.byte	0x54
+ 1698 006c 18000000 		.4byte	.LVL17
+ 1699 0070 1A000000 		.4byte	.LFE2
+ 1700 0074 0400     		.2byte	0x4
+ 1701 0076 F3       		.byte	0xf3
+ 1702 0077 01       		.uleb128 0x1
+ 1703 0078 50       		.byte	0x50
+ 1704 0079 9F       		.byte	0x9f
+ 1705 007a 00000000 		.4byte	0
+ 1706 007e 00000000 		.4byte	0
+ 1707              		.section	.debug_aranges,"",%progbits
+ 1708 0000 7C000000 		.4byte	0x7c
+ 1709 0004 0200     		.2byte	0x2
+ 1710 0006 00000000 		.4byte	.Ldebug_info0
+ 1711 000a 04       		.byte	0x4
+ 1712 000b 00       		.byte	0
+ 1713 000c 0000     		.2byte	0
+ 1714 000e 0000     		.2byte	0
+ 1715 0010 00000000 		.4byte	.LFB5
+ 1716 0014 0C000000 		.4byte	.LFE5-.LFB5
+ 1717 0018 00000000 		.4byte	.LFB6
+ 1718 001c 0C000000 		.4byte	.LFE6-.LFB6
+ 1719 0020 00000000 		.4byte	.LFB7
+ 1720 0024 20000000 		.4byte	.LFE7-.LFB7
+ 1721 0028 00000000 		.4byte	.LFB8
+ 1722 002c 10000000 		.4byte	.LFE8-.LFB8
+ 1723 0030 00000000 		.4byte	.LFB9
+ 1724 0034 0C000000 		.4byte	.LFE9-.LFB9
+ 1725 0038 00000000 		.4byte	.LFB10
+ 1726 003c 10000000 		.4byte	.LFE10-.LFB10
+ 1727 0040 00000000 		.4byte	.LFB11
+ 1728 0044 0C000000 		.4byte	.LFE11-.LFB11
+ 1729 0048 00000000 		.4byte	.LFB1
+ 1730 004c 1C000000 		.4byte	.LFE1-.LFB1
+ 1731 0050 00000000 		.4byte	.LFB2
+ 1732 0054 1A000000 		.4byte	.LFE2-.LFB2
+ 1733 0058 00000000 		.4byte	.LFB3
+ 1734 005c 14000000 		.4byte	.LFE3-.LFB3
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\cc4ju9qe.s 			page 39
+
+
+ 1735 0060 00000000 		.4byte	.LFB12
+ 1736 0064 0C000000 		.4byte	.LFE12-.LFB12
+ 1737 0068 00000000 		.4byte	.LFB13
+ 1738 006c 0C000000 		.4byte	.LFE13-.LFB13
+ 1739 0070 00000000 		.4byte	.LFB4
+ 1740 0074 48000000 		.4byte	.LFE4-.LFB4
+ 1741 0078 00000000 		.4byte	0
+ 1742 007c 00000000 		.4byte	0
+ 1743              		.section	.debug_ranges,"",%progbits
+ 1744              	.Ldebug_ranges0:
+ 1745 0000 00000000 		.4byte	.LFB5
+ 1746 0004 0C000000 		.4byte	.LFE5
+ 1747 0008 00000000 		.4byte	.LFB6
+ 1748 000c 0C000000 		.4byte	.LFE6
+ 1749 0010 00000000 		.4byte	.LFB7
+ 1750 0014 20000000 		.4byte	.LFE7
+ 1751 0018 00000000 		.4byte	.LFB8
+ 1752 001c 10000000 		.4byte	.LFE8
+ 1753 0020 00000000 		.4byte	.LFB9
+ 1754 0024 0C000000 		.4byte	.LFE9
+ 1755 0028 00000000 		.4byte	.LFB10
+ 1756 002c 10000000 		.4byte	.LFE10
+ 1757 0030 00000000 		.4byte	.LFB11
+ 1758 0034 0C000000 		.4byte	.LFE11
+ 1759 0038 00000000 		.4byte	.LFB1
+ 1760 003c 1C000000 		.4byte	.LFE1
+ 1761 0040 00000000 		.4byte	.LFB2
+ 1762 0044 1A000000 		.4byte	.LFE2
+ 1763 0048 00000000 		.4byte	.LFB3
+ 1764 004c 14000000 		.4byte	.LFE3
+ 1765 0050 00000000 		.4byte	.LFB12
+ 1766 0054 0C000000 		.4byte	.LFE12
+ 1767 0058 00000000 		.4byte	.LFB13
+ 1768 005c 0C000000 		.4byte	.LFE13
+ 1769 0060 00000000 		.4byte	.LFB4
+ 1770 0064 48000000 		.4byte	.LFE4
+ 1771 0068 00000000 		.4byte	0
+ 1772 006c 00000000 		.4byte	0
+ 1773              		.section	.debug_line,"",%progbits
+ 1774              	.Ldebug_line0:
+ 1775 0000 61020000 		.section	.debug_str,"MS",%progbits,1
+ 1775      02006101 
+ 1775      00000201 
+ 1775      FB0E0D00 
+ 1775      01010101 
+ 1776              	.LASF50:
+ 1777 0000 4132445F 		.ascii	"A2D_rdy_Stop\000"
+ 1777      7264795F 
+ 1777      53746F70 
+ 1777      00
+ 1778              	.LASF66:
+ 1779 000d 6E756D5F 		.ascii	"num_rx_bytes_lidar\000"
+ 1779      72785F62 
+ 1779      79746573 
+ 1779      5F6C6964 
+ 1779      617200
+ 1780              	.LASF2:
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\cc4ju9qe.s 			page 40
+
+
+ 1781 0020 5F5F7569 		.ascii	"__uint8_t\000"
+ 1781      6E74385F 
+ 1781      7400
+ 1782              	.LASF55:
+ 1783 002a 72785F62 		.ascii	"rx_bytes_dbg_buff\000"
+ 1783      79746573 
+ 1783      5F646267 
+ 1783      5F627566 
+ 1783      6600
+ 1784              	.LASF62:
+ 1785 003c 6E756D5F 		.ascii	"num_rx_bytes_ble_buff\000"
+ 1785      72785F62 
+ 1785      79746573 
+ 1785      5F626C65 
+ 1785      5F627566 
+ 1786              	.LASF81:
+ 1787 0052 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 1787      43313120 
+ 1787      352E342E 
+ 1787      31203230 
+ 1787      31363036 
+ 1788 0085 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m0 -mthumb -g -O"
+ 1788      20726576 
+ 1788      6973696F 
+ 1788      6E203233 
+ 1788      37373135 
+ 1789 00b8 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 1789      66756E63 
+ 1789      74696F6E 
+ 1789      2D736563 
+ 1789      74696F6E 
+ 1790              	.LASF10:
+ 1791 00e0 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1791      206C6F6E 
+ 1791      6720756E 
+ 1791      7369676E 
+ 1791      65642069 
+ 1792              	.LASF63:
+ 1793 00f7 72785F62 		.ascii	"rx_bytes_lidar\000"
+ 1793      79746573 
+ 1793      5F6C6964 
+ 1793      617200
+ 1794              	.LASF43:
+ 1795 0106 7072696F 		.ascii	"priorityOffset\000"
+ 1795      72697479 
+ 1795      4F666673 
+ 1795      657400
+ 1796              	.LASF58:
+ 1797 0115 72785F62 		.ascii	"rx_bytes_ble\000"
+ 1797      79746573 
+ 1797      5F626C65 
+ 1797      00
+ 1798              	.LASF13:
+ 1799 0122 696E7431 		.ascii	"int16_t\000"
+ 1799      365F7400 
+ 1800              	.LASF9:
+ 1801 012a 6C6F6E67 		.ascii	"long long int\000"
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\cc4ju9qe.s 			page 41
+
+
+ 1801      206C6F6E 
+ 1801      6720696E 
+ 1801      7400
+ 1802              	.LASF0:
+ 1803 0138 7369676E 		.ascii	"signed char\000"
+ 1803      65642063 
+ 1803      68617200 
+ 1804              	.LASF84:
+ 1805 0144 4132445F 		.ascii	"A2D_rdy_GetPriority\000"
+ 1805      7264795F 
+ 1805      47657450 
+ 1805      72696F72 
+ 1805      69747900 
+ 1806              	.LASF42:
+ 1807 0158 696E7465 		.ascii	"interruptState\000"
+ 1807      72727570 
+ 1807      74537461 
+ 1807      746500
+ 1808              	.LASF7:
+ 1809 0167 6C6F6E67 		.ascii	"long int\000"
+ 1809      20696E74 
+ 1809      00
+ 1810              	.LASF49:
+ 1811 0170 4132445F 		.ascii	"A2D_rdy_StartEx\000"
+ 1811      7264795F 
+ 1811      53746172 
+ 1811      74457800 
+ 1812              	.LASF79:
+ 1813 0180 4132445F 		.ascii	"A2D_GetResult16\000"
+ 1813      47657452 
+ 1813      6573756C 
+ 1813      74313600 
+ 1814              	.LASF15:
+ 1815 0190 75696E74 		.ascii	"uint8\000"
+ 1815      3800
+ 1816              	.LASF14:
+ 1817 0196 75696E74 		.ascii	"uint16_t\000"
+ 1817      31365F74 
+ 1817      00
+ 1818              	.LASF18:
+ 1819 019f 646F7562 		.ascii	"double\000"
+ 1819      6C6500
+ 1820              	.LASF70:
+ 1821 01a6 4553435F 		.ascii	"ESC_curr\000"
+ 1821      63757272 
+ 1821      00
+ 1822              	.LASF16:
+ 1823 01af 75696E74 		.ascii	"uint32\000"
+ 1823      333200
+ 1824              	.LASF71:
+ 1825 01b6 42617474 		.ascii	"Batt_volt\000"
+ 1825      5F766F6C 
+ 1825      7400
+ 1826              	.LASF75:
+ 1827 01c0 736C6964 		.ascii	"slider_pos_last\000"
+ 1827      65725F70 
+ 1827      6F735F6C 
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\cc4ju9qe.s 			page 42
+
+
+ 1827      61737400 
+ 1828              	.LASF35:
+ 1829 01d0 4E455554 		.ascii	"NEUTRAL\000"
+ 1829      52414C00 
+ 1830              	.LASF3:
+ 1831 01d8 5F5F696E 		.ascii	"__int16_t\000"
+ 1831      7431365F 
+ 1831      7400
+ 1832              	.LASF26:
+ 1833 01e2 424C455F 		.ascii	"BLE_CMD_PROC\000"
+ 1833      434D445F 
+ 1833      50524F43 
+ 1833      00
+ 1834              	.LASF72:
+ 1835 01ef 4D61785F 		.ascii	"Max_Lidar\000"
+ 1835      4C696461 
+ 1835      7200
+ 1836              	.LASF11:
+ 1837 01f9 756E7369 		.ascii	"unsigned int\000"
+ 1837      676E6564 
+ 1837      20696E74 
+ 1837      00
+ 1838              	.LASF61:
+ 1839 0206 6E756D5F 		.ascii	"num_rx_bytes_ble\000"
+ 1839      72785F62 
+ 1839      79746573 
+ 1839      5F626C65 
+ 1839      00
+ 1840              	.LASF8:
+ 1841 0217 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1841      20756E73 
+ 1841      69676E65 
+ 1841      6420696E 
+ 1841      7400
+ 1842              	.LASF29:
+ 1843 0229 4D41475F 		.ascii	"MAG_READ\000"
+ 1843      52454144 
+ 1843      00
+ 1844              	.LASF77:
+ 1845 0232 4379456E 		.ascii	"CyEnterCriticalSection\000"
+ 1845      74657243 
+ 1845      72697469 
+ 1845      63616C53 
+ 1845      65637469 
+ 1846              	.LASF24:
+ 1847 0249 544D525F 		.ascii	"TMR_UPDT\000"
+ 1847      55504454 
+ 1847      00
+ 1848              	.LASF80:
+ 1849 0252 656E7175 		.ascii	"enqueue_task\000"
+ 1849      6575655F 
+ 1849      7461736B 
+ 1849      00
+ 1850              	.LASF6:
+ 1851 025f 73686F72 		.ascii	"short unsigned int\000"
+ 1851      7420756E 
+ 1851      7369676E 
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\cc4ju9qe.s 			page 43
+
+
+ 1851      65642069 
+ 1851      6E7400
+ 1852              	.LASF82:
+ 1853 0272 47656E65 		.ascii	"Generated_Source\\PSoC4\\A2D_rdy.c\000"
+ 1853      72617465 
+ 1853      645F536F 
+ 1853      75726365 
+ 1853      5C50536F 
+ 1854              	.LASF41:
+ 1855 0293 7072696F 		.ascii	"priority\000"
+ 1855      72697479 
+ 1855      00
+ 1856              	.LASF54:
+ 1857 029c 72785F62 		.ascii	"rx_bytes_dbg\000"
+ 1857      79746573 
+ 1857      5F646267 
+ 1857      00
+ 1858              	.LASF48:
+ 1859 02a9 4132445F 		.ascii	"A2D_rdy_Start\000"
+ 1859      7264795F 
+ 1859      53746172 
+ 1859      7400
+ 1860              	.LASF20:
+ 1861 02b7 72656733 		.ascii	"reg32\000"
+ 1861      3200
+ 1862              	.LASF32:
+ 1863 02bd 43414C5F 		.ascii	"CAL_FINAL\000"
+ 1863      46494E41 
+ 1863      4C00
+ 1864              	.LASF33:
+ 1865 02c7 454D4552 		.ascii	"EMER_LAND\000"
+ 1865      5F4C414E 
+ 1865      4400
+ 1866              	.LASF23:
+ 1867 02d1 73697A65 		.ascii	"sizetype\000"
+ 1867      74797065 
+ 1867      00
+ 1868              	.LASF22:
+ 1869 02da 6C6F6E67 		.ascii	"long double\000"
+ 1869      20646F75 
+ 1869      626C6500 
+ 1870              	.LASF44:
+ 1871 02e6 4132445F 		.ascii	"A2D_rdy_GetVector\000"
+ 1871      7264795F 
+ 1871      47657456 
+ 1871      6563746F 
+ 1871      7200
+ 1872              	.LASF40:
+ 1873 02f8 61646472 		.ascii	"address\000"
+ 1873      65737300 
+ 1874              	.LASF60:
+ 1875 0300 424C455F 		.ascii	"BLE_UART_tmr\000"
+ 1875      55415254 
+ 1875      5F746D72 
+ 1875      00
+ 1876              	.LASF51:
+ 1877 030d 4132445F 		.ascii	"A2D_rdy_SetPending\000"
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\cc4ju9qe.s 			page 44
+
+
+ 1877      7264795F 
+ 1877      53657450 
+ 1877      656E6469 
+ 1877      6E6700
+ 1878              	.LASF59:
+ 1879 0320 72785F62 		.ascii	"rx_bytes_ble_buff\000"
+ 1879      79746573 
+ 1879      5F626C65 
+ 1879      5F627566 
+ 1879      6600
+ 1880              	.LASF27:
+ 1881 0332 4C494441 		.ascii	"LIDAR_PCKT_PROC\000"
+ 1881      525F5043 
+ 1881      4B545F50 
+ 1881      524F4300 
+ 1882              	.LASF57:
+ 1883 0342 6E756D5F 		.ascii	"num_rx_bytes_dbg_buff\000"
+ 1883      72785F62 
+ 1883      79746573 
+ 1883      5F646267 
+ 1883      5F627566 
+ 1884              	.LASF17:
+ 1885 0358 666C6F61 		.ascii	"float\000"
+ 1885      7400
+ 1886              	.LASF78:
+ 1887 035e 43794578 		.ascii	"CyExitCriticalSection\000"
+ 1887      69744372 
+ 1887      69746963 
+ 1887      616C5365 
+ 1887      6374696F 
+ 1888              	.LASF37:
+ 1889 0374 736C6964 		.ascii	"slider_pos_t\000"
+ 1889      65725F70 
+ 1889      6F735F74 
+ 1889      00
+ 1890              	.LASF67:
+ 1891 0381 6E756D5F 		.ascii	"num_rx_bytes_lidar_buff\000"
+ 1891      72785F62 
+ 1891      79746573 
+ 1891      5F6C6964 
+ 1891      61725F62 
+ 1892              	.LASF1:
+ 1893 0399 756E7369 		.ascii	"unsigned char\000"
+ 1893      676E6564 
+ 1893      20636861 
+ 1893      7200
+ 1894              	.LASF28:
+ 1895 03a7 4442475F 		.ascii	"DBG_CMD_PROC\000"
+ 1895      434D445F 
+ 1895      50524F43 
+ 1895      00
+ 1896              	.LASF56:
+ 1897 03b4 6E756D5F 		.ascii	"num_rx_bytes_dbg\000"
+ 1897      72785F62 
+ 1897      79746573 
+ 1897      5F646267 
+ 1897      00
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\cc4ju9qe.s 			page 45
+
+
+ 1898              	.LASF4:
+ 1899 03c5 73686F72 		.ascii	"short int\000"
+ 1899      7420696E 
+ 1899      7400
+ 1900              	.LASF76:
+ 1901 03cf 43795261 		.ascii	"CyRamVectors\000"
+ 1901      6D566563 
+ 1901      746F7273 
+ 1901      00
+ 1902              	.LASF25:
+ 1903 03dc 4759524F 		.ascii	"GYRO_READ\000"
+ 1903      5F524541 
+ 1903      4400
+ 1904              	.LASF31:
+ 1905 03e6 4D494E5F 		.ascii	"MIN_MTR_SPD\000"
+ 1905      4D54525F 
+ 1905      53504400 
+ 1906              	.LASF45:
+ 1907 03f2 4132445F 		.ascii	"A2D_rdy_GetState\000"
+ 1907      7264795F 
+ 1907      47657453 
+ 1907      74617465 
+ 1907      00
+ 1908              	.LASF83:
+ 1909 0403 433A5C55 		.ascii	"C:\\Users\\EricHoffman\\Documents\\PSoC Creator\\Qu"
+ 1909      73657273 
+ 1909      5C457269 
+ 1909      63486F66 
+ 1909      666D616E 
+ 1910 0431 61645275 		.ascii	"adRunCam6\\QuadRunCam6.cydsn\000"
+ 1910      6E43616D 
+ 1910      365C5175 
+ 1910      61645275 
+ 1910      6E43616D 
+ 1911              	.LASF39:
+ 1912 044d 4132445F 		.ascii	"A2D_rdy_SetPriority\000"
+ 1912      7264795F 
+ 1912      53657450 
+ 1912      72696F72 
+ 1912      69747900 
+ 1913              	.LASF47:
+ 1914 0461 4132445F 		.ascii	"A2D_rdy_Disable\000"
+ 1914      7264795F 
+ 1914      44697361 
+ 1914      626C6500 
+ 1915              	.LASF19:
+ 1916 0471 63686172 		.ascii	"char\000"
+ 1916      00
+ 1917              	.LASF21:
+ 1918 0476 63796973 		.ascii	"cyisraddress\000"
+ 1918      72616464 
+ 1918      72657373 
+ 1918      00
+ 1919              	.LASF68:
+ 1920 0483 6E756D5F 		.ascii	"num_tasks\000"
+ 1920      7461736B 
+ 1920      7300
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\cc4ju9qe.s 			page 46
+
+
+ 1921              	.LASF5:
+ 1922 048d 5F5F7569 		.ascii	"__uint16_t\000"
+ 1922      6E743136 
+ 1922      5F7400
+ 1923              	.LASF74:
+ 1924 0498 72756E5F 		.ascii	"run_mode\000"
+ 1924      6D6F6465 
+ 1924      00
+ 1925              	.LASF52:
+ 1926 04a1 4132445F 		.ascii	"A2D_rdy_ClearPending\000"
+ 1926      7264795F 
+ 1926      436C6561 
+ 1926      7250656E 
+ 1926      64696E67 
+ 1927              	.LASF65:
+ 1928 04b6 4C494441 		.ascii	"LIDAR_UART_tmr\000"
+ 1928      525F5541 
+ 1928      52545F74 
+ 1928      6D7200
+ 1929              	.LASF34:
+ 1930 04c5 72756E5F 		.ascii	"run_mode_t\000"
+ 1930      6D6F6465 
+ 1930      5F7400
+ 1931              	.LASF36:
+ 1932 04d0 48494748 		.ascii	"HIGH\000"
+ 1932      00
+ 1933              	.LASF53:
+ 1934 04d5 4132445F 		.ascii	"A2D_rdy_Interrupt\000"
+ 1934      7264795F 
+ 1934      496E7465 
+ 1934      72727570 
+ 1934      7400
+ 1935              	.LASF12:
+ 1936 04e7 75696E74 		.ascii	"uint8_t\000"
+ 1936      385F7400 
+ 1937              	.LASF73:
+ 1938 04ef 496E6974 		.ascii	"Init_heading\000"
+ 1938      5F686561 
+ 1938      64696E67 
+ 1938      00
+ 1939              	.LASF46:
+ 1940 04fc 4132445F 		.ascii	"A2D_rdy_Enable\000"
+ 1940      7264795F 
+ 1940      456E6162 
+ 1940      6C6500
+ 1941              	.LASF38:
+ 1942 050b 4132445F 		.ascii	"A2D_rdy_SetVector\000"
+ 1942      7264795F 
+ 1942      53657456 
+ 1942      6563746F 
+ 1942      7200
+ 1943              	.LASF64:
+ 1944 051d 72785F62 		.ascii	"rx_bytes_lidar_buff\000"
+ 1944      79746573 
+ 1944      5F6C6964 
+ 1944      61725F62 
+ 1944      75666600 
+ARM GAS  C:\Users\ERICHO~1\AppData\Local\Temp\cc4ju9qe.s 			page 47
+
+
+ 1945              	.LASF30:
+ 1946 0531 4132445F 		.ascii	"A2D_RDY\000"
+ 1946      52445900 
+ 1947              	.LASF69:
+ 1948 0539 6D6F746F 		.ascii	"motor_toggles\000"
+ 1948      725F746F 
+ 1948      67676C65 
+ 1948      7300
+ 1949              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
